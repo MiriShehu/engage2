@@ -1,0 +1,282 @@
+You are a Senior Front-End Engineer, SaaS Product Designer, and CRO Specialist.
+
+Your task is to redesign and rebuild this website using Astro:
+https://www.engagehealthgroup.co.uk/
+
+---
+
+## ⚠️ STRICT REQUIREMENTS
+
+- Use Astro (latest version)
+- Use Tailwind CSS
+- Component-based architecture
+- Clean, production-ready code
+- Mobile-first responsive design
+- Fast performance (Lighthouse 90+)
+
+---
+
+## 🎨 DESIGN RULES
+
+- KEEP the original brand colors:
+  - Purple: #76186f
+  - Dark teal: #003648
+  - White / light backgrounds
+
+- Style must feel like:
+  - Stripe
+  - Deel
+  - Remote.com
+  - Modern SaaS dashboards
+
+- Use:
+  - Large spacing
+  - Clean typography (Inter)
+  - Rounded cards (xl)
+  - Soft shadows
+  - Subtle gradients
+  - Minimal but premium UI
+
+---
+
+## 🔥 INSPIRATION (VERY IMPORTANT)
+
+Use these as visual + UX references:
+
+- https://metafi-astro-template.vercel.app/
+- https://lumen-astro-template.vercel.app/
+- https://www.shadcnblocks.com/template/zippay
+
+Your design should feel at this level of quality.
+
+---
+
+## 🧠 BUSINESS CONTEXT
+
+This is a:
+→ Business Health Insurance / Employee Benefits company (UK)
+
+Target users:
+- Business owners
+- HR managers
+- Decision makers
+
+Goal:
+→ Generate leads ("Get Quote")
+
+---
+
+## 🧱 NAVIGATION (COPY + IMPROVE UX)
+
+Use the FULL menu structure from the original website, but reorganise into a modern SaaS navigation:
+
+### NAVBAR STRUCTURE
+
+Solutions
+  → UK Benefits
+  → International Benefits
+  → Xcelerate (featured)
+
+Products (Mega Menu)
+  → Health Insurance
+  → Life Insurance
+  → Income Protection
+  → Critical Illness
+  → Dental Insurance
+  → Corporate Wellness
+  → EAP
+  → Health Cash Plan
+  → Key Person Insurance
+  → Relevant Life Insurance
+
+How It Works
+
+Resources
+  → Knowledge Hub
+  → Guides
+  → Case Studies
+
+Company
+  → About
+  → Team
+  → Testimonials
+
+CTA Button:
+→ Get Quote
+
+---
+
+## ⚡ NAVBAR UX (VERY IMPORTANT)
+
+- Sticky navbar
+- Transparent → solid on scroll
+- Animated dropdowns
+- Mega menu for Products
+- Smooth transitions (fade + slide)
+- Hover interactions
+
+---
+
+## 📁 PROJECT STRUCTURE
+
+Generate full Astro project:
+
+/src
+  /components
+    Navbar.astro
+    Hero.astro
+    TrustBar.astro
+    ServicesGrid.astro
+    HowItWorks.astro
+    Testimonials.astro
+    CTASection.astro
+    Footer.astro
+  /layouts
+    MainLayout.astro
+  /pages
+    index.astro
+    solutions.astro
+    products.astro
+    contact.astro
+  /styles
+    global.css
+
+---
+
+## 🧩 HOMEPAGE STRUCTURE (index.astro)
+
+Build a premium SaaS homepage:
+
+### 1. HERO
+- Strong headline (clear value prop)
+- Subheadline (benefits)
+- CTA: Get a Quote
+- Secondary CTA: Compare Plans
+- Right side: SaaS-style illustration or UI mock
+
+---
+
+### 2. TRUST BAR
+- Insurer logos (AXA, Bupa, Vitality placeholders)
+- Stats (e.g. 98% retention)
+
+---
+
+### 3. PROBLEM → SOLUTION
+- 3 pain points
+- 3 solutions
+
+---
+
+### 4. SERVICES GRID
+Card-based layout:
+- Health Insurance
+- Life Insurance
+- Income Protection
+- Employee Benefits
+
+---
+
+### 5. HOW IT WORKS
+3 steps:
+1. Tell us about your business
+2. Compare quotes
+3. We manage everything
+
+---
+
+### 6. TESTIMONIALS
+- Card or slider
+- Include trust signals
+
+---
+
+### 7. BENEFITS / WHY CHOOSE US
+
+---
+
+### 8. CTA SECTION
+- Lead capture block
+
+---
+
+### 9. FOOTER
+
+---
+
+## ✨ UX ANIMATIONS (MANDATORY)
+
+Add modern animations:
+
+- Fade-in on scroll
+- Hover lift on cards
+- Dropdown slide + fade
+- Button hover effects
+- Smooth transitions
+
+Use:
+- Tailwind transitions
+- Minimal JS or Alpine.js if needed
+
+---
+
+## 🧠 CRO IMPROVEMENTS
+
+- Multiple CTA placements
+- Sticky CTA button
+- Clear hierarchy
+- Reduce text density
+- Add trust signals
+- Add comparison-style layout
+
+---
+
+## 🧩 COMPONENT DESIGN
+
+All UI must be reusable components:
+- Navbar
+- Hero
+- Cards
+- Sections
+- CTA blocks
+
+Think like React / design system.
+
+---
+
+## 💻 CODE QUALITY
+
+- Clean, readable
+- Semantic HTML
+- Accessible (ARIA)
+- No unnecessary JS
+- Optimized images
+
+---
+
+## 🚀 BONUS FEATURES
+
+If possible include:
+
+- Multi-step quote form (UI only)
+- Comparison table component
+- Animated stats counters
+
+---
+
+## 🎯 OUTPUT FORMAT
+
+- FULL Astro project code
+- Each file clearly separated
+- Ready to copy-paste
+- No explanations, just code + minimal comments
+
+---
+
+## FINAL GOAL
+
+This should feel like:
+→ A premium SaaS platform  
+→ NOT a traditional insurance broker website  
+
+High-end, modern, conversion-focused.

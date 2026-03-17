@@ -1,0 +1,62 @@
+import { Star, Quote } from "lucide-react";
+
+export function Testimonials() {
+  const testimonials = [
+    {
+      quote: "Engage Health transformed our benefits package. Staff retention improved by 15% within 6 months, and we actually saved money on our premiums.",
+      name: "Sarah Mitchell",
+      role: "HR Director",
+      company: "TechCorp Ltd"
+    },
+    {
+      quote: "The most straightforward broker we've worked with. Zero hassle from start to finish. Our account manager resolves queries usually within the hour.",
+      name: "James Patel",
+      role: "CEO",
+      company: "Growth Agency"
+    },
+    {
+      quote: "Finally a broker that speaks plain English. They explained exactly what our team needed and stripped out the expensive fluff we didn't.",
+      name: "Emma Clarke",
+      role: "Operations Manager",
+      company: "Fintech Startup"
+    }
+  ];
+
+  return (
+    <section className="py-24 bg-muted/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Clients Say</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what HR leaders and founders think of our service.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-lg border border-border/50 relative">
+              <Quote className="absolute top-6 right-6 w-12 h-12 text-primary/10 rotate-180" />
+              <div className="flex gap-1 mb-6">
+                {[...Array(5)].map((_, j) => (
+                  <Star key={j} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-foreground text-lg mb-8 relative z-10 font-medium leading-relaxed">
+                "{t.quote}"
+              </p>
+              <div className="flex items-center gap-4 border-t border-border pt-6">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
+                  {t.name.charAt(0)}
+                </div>
+                <div>
+                  <div className="font-bold text-secondary">{t.name}</div>
+                  <div className="text-sm text-muted-foreground">{t.role}, {t.company}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

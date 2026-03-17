@@ -1,0 +1,8 @@
+packages:
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility function to efficiently merge Tailwind CSS classes"
+
+notes:
+  - Frontend-only implementation of Engage Health Group website
+  - Using Tailwind v4 and React 19
+  - No backend required for these static marketing and lead capture pages
