@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   Heart, Shield, TrendingUp, Smile, Headphones,
-  AlertCircle, Globe, Building2, ArrowRight, Check,
+  AlertCircle, Globe, Building2, ArrowRight, Crown,
   HeartPulse, Lock,
 } from "lucide-react";
 import { Link } from "wouter";
@@ -103,7 +103,7 @@ export function ServicesGrid() {
                   <h3 className="text-white text-xl font-extrabold">Employee Benefits</h3>
                 </div>
                 <div className="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center">
-                  <Check className="w-6 h-6 text-white" />
+                  <Crown className="w-6 h-6 text-white" />
                 </div>
               </div>
               <p className="text-white/70 text-sm mt-3 leading-relaxed">
