@@ -242,18 +242,18 @@ export function OurExperts() {
               className="group"
               style={{ flex: "0 0 20%", padding: "0 8px" }}
             >
-              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-shadow duration-300 bg-white h-full">
-                {/* Photo area */}
+              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-shadow duration-300 bg-white h-full flex flex-col">
+                {/* Photo area — full natural size, transparent PNG cutout */}
                 <div
-                  className="relative h-[280px] overflow-hidden"
-                  style={{ background: `linear-gradient(160deg, ${person.accent}18 0%, ${person.accent}35 100%)` }}
+                  className="relative flex items-end justify-center pt-6 px-4"
+                  style={{ background: `linear-gradient(160deg, ${person.accent}15 0%, ${person.accent}30 100%)` }}
                 >
                   <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: person.accent }} />
 
                   <img
                     src={person.img}
                     alt={person.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="relative z-10 w-full max-h-[320px] object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500 drop-shadow-md"
                     onError={(e) => {
                       const el = e.currentTarget;
                       el.style.display = "none";
@@ -261,9 +261,10 @@ export function OurExperts() {
                       if (fallback) fallback.style.display = "flex";
                     }}
                   />
+                  {/* initials fallback */}
                   <div
-                    className="absolute inset-0 hidden items-center justify-center text-white text-4xl font-black"
-                    style={{ background: `linear-gradient(135deg, ${person.accent}, ${person.accent}aa)` }}
+                    className="hidden w-full h-[280px] items-center justify-center text-white text-4xl font-black"
+                    style={{ background: `linear-gradient(135deg, ${person.accent}, ${person.accent}99)` }}
                   >
                     {person.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
                   </div>
@@ -273,7 +274,7 @@ export function OurExperts() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={e => e.stopPropagation()}
-                    className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0077b5] shadow hover:bg-white transition-colors"
+                    className="absolute top-3 right-3 z-20 w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0077b5] shadow hover:bg-white transition-colors"
                   >
                     <Linkedin className="w-3 h-3" />
                   </a>
