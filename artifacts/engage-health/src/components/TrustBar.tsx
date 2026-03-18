@@ -13,7 +13,7 @@ export function TrustBar() {
     <section className="py-12 border-y border-border bg-white overflow-hidden flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <p className="text-center text-sm font-bold tracking-widest uppercase text-muted-foreground mb-8">
-          Trusted by 500+ UK businesses & Partnering with leading insurers
+          Independent broker — partnering with all leading UK &amp; international insurers
         </p>
         
         {/* Infinite scrolling effect container */}

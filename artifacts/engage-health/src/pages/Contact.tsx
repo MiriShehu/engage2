@@ -28,7 +28,7 @@ export default function Contact() {
                   <div>
                     <h4 className="font-bold text-lg text-foreground">Call Us</h4>
                     <p className="text-muted-foreground mb-1">Mon-Fri, 9am until 5pm</p>
-                    <a href="tel:08001234567" className="text-primary font-bold text-lg hover:underline">0800 123 4567</a>
+                    <a href="tel:01273974419" className="text-primary font-bold text-lg hover:underline">01273 974419</a>
                   </div>
                 </div>
                 
@@ -39,7 +39,7 @@ export default function Contact() {
                   <div>
                     <h4 className="font-bold text-lg text-foreground">Email Us</h4>
                     <p className="text-muted-foreground mb-1">We aim to reply within 2 hours</p>
-                    <a href="mailto:hello@engagehealth.co.uk" className="text-primary font-bold hover:underline">hello@engagehealth.co.uk</a>
+                    <a href="mailto:enquiries@engagehealthgroup.co.uk" className="text-primary font-bold hover:underline">enquiries@engagehealthgroup.co.uk</a>
                   </div>
                 </div>
 
@@ -51,8 +51,8 @@ export default function Contact() {
                     <h4 className="font-bold text-lg text-foreground">Visit Us</h4>
                     <p className="text-muted-foreground">
                       Engage Health Group<br />
-                      123 Business Park<br />
-                      London, EC1A 1BB
+                      1A City Gate, 185 Dyke Road<br />
+                      Hove, BN3 1TL
                     </p>
                   </div>
                 </div>

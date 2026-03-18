@@ -121,9 +121,9 @@ export function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:08001234567" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mr-2">
+            <a href="tel:01273974419" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mr-2">
               <Phone className="w-4 h-4" />
-              0800 123 4567
+              01273 974419
             </a>
             <Link href="/contact" className="px-6 py-2.5 rounded-full font-semibold text-sm bg-primary text-white shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
               Get a Quote
@@ -167,9 +167,9 @@ export function Navbar() {
           <Link href="/" className="text-foreground hover:text-primary py-2 border-b border-border">About Company</Link>
           
           <div className="mt-8 flex flex-col gap-4">
-            <a href="tel:08001234567" className="flex items-center justify-center gap-2 p-4 rounded-xl bg-muted text-foreground font-medium">
+            <a href="tel:01273974419" className="flex items-center justify-center gap-2 p-4 rounded-xl bg-muted text-foreground font-medium">
               <Phone className="w-5 h-5" />
-              Call us: 0800 123 4567
+              Call us: 01273 974419
             </a>
             <Link href="/contact" className="w-full text-center px-6 py-4 rounded-xl font-bold bg-primary text-white shadow-lg">
               Get a Free Quote

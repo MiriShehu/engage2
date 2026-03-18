@@ -3,22 +3,22 @@ import { Star, Quote } from "lucide-react";
 export function Testimonials() {
   const testimonials = [
     {
-      quote: "Engage Health transformed our benefits package. Staff retention improved by 15% within 6 months, and we actually saved money on our premiums.",
-      name: "Sarah Mitchell",
+      quote: "Engage Health managed our international health insurance across multiple countries seamlessly. They understood the complexities of our globally mobile workforce and delivered quickly.",
+      name: "Client Team",
+      role: "People Operations",
+      company: "Remote"
+    },
+    {
+      quote: "A genuinely professional team who took the time to understand our complex requirements. Quick turnaround and great value — exactly what we needed as a growing company.",
+      name: "Client Team",
       role: "HR Director",
-      company: "TechCorp Ltd"
+      company: "SaltPay"
     },
     {
-      quote: "The most straightforward broker we've worked with. Zero hassle from start to finish. Our account manager resolves queries usually within the hour.",
-      name: "James Patel",
-      role: "CEO",
-      company: "Growth Agency"
-    },
-    {
-      quote: "Finally a broker that speaks plain English. They explained exactly what our team needed and stripped out the expensive fluff we didn't.",
-      name: "Emma Clarke",
+      quote: "Engage Health handled everything from policy design to employee communications. Their ongoing support means we never have to worry about renewals or claims.",
+      name: "Client Team",
       role: "Operations Manager",
-      company: "Fintech Startup"
+      company: "CAE Parc Aviation"
     }
   ];
 
@@ -28,7 +28,7 @@ export function Testimonials() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Clients Say</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what HR leaders and founders think of our service.
+            Trusted by companies across the UK and internationally — from startups to large corporates.
           </p>
         </div>
 

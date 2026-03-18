@@ -2,18 +2,33 @@ export function HowItWorks() {
   const steps = [
     {
       number: "01",
-      title: "Tell us about your business",
-      description: "Brief call to understand your team demographic, current setup, and budget goals."
+      title: "Discovery",
+      description: "We take time to understand your business challenges, workforce demographics, and goals — so we can advise properly."
     },
     {
       number: "02",
-      title: "We compare the market",
-      description: "Our experts review 15+ top insurers to find the best value and coverage for you."
+      title: "Benchmarking",
+      description: "We provide insights into what comparable businesses are offering, so you know exactly how your package stacks up."
     },
     {
       number: "03",
-      title: "We manage everything",
-      description: "From rollout to employees, to handling claims and fighting for better renewal rates."
+      title: "Solution Design",
+      description: "We propose best-fit options across the whole market with transparent, competitive pricing — no hidden charges."
+    },
+    {
+      number: "04",
+      title: "Implementation",
+      description: "We liaise directly with insurers on your behalf to set up policies smoothly and handle all the admin."
+    },
+    {
+      number: "05",
+      title: "Communication",
+      description: "We create bespoke employee materials and can conduct onsite presentations so your team understands their benefits."
+    },
+    {
+      number: "06",
+      title: "Ongoing Support",
+      description: "We manage claims, negotiate renewals, and make policy adjustments — your dedicated account manager is always on hand."
     }
   ];
 
@@ -25,13 +40,11 @@ export function HowItWorks() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get Set Up in 3 Simple Steps</h2>
-          <p className="text-lg text-white/70 max-w-2xl mx-auto">We do the heavy lifting so you can focus on running your business.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">How We Work With You</h2>
+          <p className="text-lg text-white/70 max-w-2xl mx-auto">A complete consultancy service — from first conversation to ongoing claims support.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          {/* Connecting line for desktop */}
-          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-primary/50 via-primary to-primary/50 -z-10"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 relative">
 
           {steps.map((step, index) => (
             <div key={index} className="flex flex-col items-center text-center group">

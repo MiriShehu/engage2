@@ -3,23 +3,23 @@ import { Search, Headset, FileText, Trophy } from "lucide-react";
 export function WhyChooseUs() {
   const features = [
     {
-      title: "Whole of Market Access",
-      desc: "We aren't tied to one provider. We compare 15+ leading insurers to find the perfect fit for your exact needs and budget.",
+      title: "Truly Independent Advice",
+      desc: "We are not tied to any insurer. As a whole-of-market broker, we access every available option to find the best fit for your business.",
       icon: Search
     },
     {
-      title: "Dedicated Account Manager",
-      desc: "No call centers. You get one dedicated expert who knows your business inside out and is always a direct phone call away.",
-      icon: Headset
-    },
-    {
-      title: "Zero Admin Burden",
-      desc: "We handle the mountain of paperwork, onboard your employees, and manage renewals automatically.",
+      title: "No Fees, Ever",
+      desc: "Our consultancy service is completely free to clients. We are remunerated by insurers — you pay nothing extra and have no contractual obligation.",
       icon: FileText
     },
     {
-      title: "Award-Winning Service",
-      desc: "Recognised across the UK industry for our transparent, jargon-free approach to corporate health insurance.",
+      title: "Dedicated Account Manager",
+      desc: "One point of contact who knows your business inside out. Always reachable by phone — no call centres, no ticket queues.",
+      icon: Headset
+    },
+    {
+      title: "Award-Winning Expertise",
+      desc: "Named Best International Group Advice Firm at the UK Health & Protection Awards in both 2023 and 2024. Over 30 years of combined industry experience.",
       icon: Trophy
     }
   ];
@@ -37,7 +37,7 @@ export function WhyChooseUs() {
               Why Businesses Choose <span className="text-primary">Engage Health</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Navigating employee benefits shouldn't require a PhD. We cut through the jargon, remove the admin headache, and deliver packages your team will actually value.
+              Founded in 2016 by Nick Hale, Engage Health Group has grown into one of the UK's most trusted independent employee benefits consultancies — with specialists drawn from Bupa Global, Aetna, Vitality, and beyond.
             </p>
             {/* Optional Unsplash image as requested if fitting - but keeping it minimal as instructed */}
             <div className="rounded-2xl overflow-hidden shadow-xl">

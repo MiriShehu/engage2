@@ -18,33 +18,33 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              Rated 5 Stars by 500+ UK Businesses
+              Best International Group Advice Firm — UK Health &amp; Protection Awards 2024
             </div>
             
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-secondary leading-[1.1]">
-              Employee Benefits That <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Actually Get Used</span>.
+              Award-Winning <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Employee Benefits</span> Consultancy.
             </h1>
             
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl">
-              We help UK businesses attract and retain top talent with premium health insurance and employee benefits packages — completely managed for you.
+              Impartial advice on health insurance and employee benefits for UK businesses of all sizes — from SMEs to large corporates. No fees. No tie-ins. Just better cover.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-primary shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all duration-300">
-                Get a Free Quote
+                Get a Free Market Review
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="/products" className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-foreground bg-white border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
-                Compare Plans
+                Explore Products
               </Link>
             </div>
             
             <div className="flex items-center gap-6 text-sm font-medium text-muted-foreground pt-4">
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-500" /> Whole of market
+                <Check className="w-4 h-4 text-green-500" /> Independent &amp; whole-of-market
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-500" /> £0 Broker Fees
+                <Check className="w-4 h-4 text-green-500" /> No fees, no contractual tie-in
               </div>
             </div>
           </div>

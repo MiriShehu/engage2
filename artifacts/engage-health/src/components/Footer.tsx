@@ -18,13 +18,13 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-white/60 max-w-sm mb-8 leading-relaxed">
-              The UK's leading independent employee benefits and health insurance brokerage. Making premiums fair and admin invisible.
+              Award-winning independent employee benefits consultancy. Impartial advice for UK businesses — no fees, no tie-ins, whole-of-market access. FCA Authorised No. 812846.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://www.linkedin.com/company/engage-health-group/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors">
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors">
+              <a href="https://twitter.com/engagehealthgrp" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors">
                 <Twitter className="w-5 h-5 text-white" />
               </a>
             </div>
@@ -56,15 +56,15 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span>0800 123 4567</span>
+                <a href="tel:01273974419" className="hover:text-primary transition-colors">01273 974419</a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>hello@engagehealth.co.uk</span>
+                <a href="mailto:enquiries@engagehealthgroup.co.uk" className="hover:text-primary transition-colors">enquiries@engagehealthgroup.co.uk</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span>123 Business Park,<br />London, EC1A 1BB</span>
+                <span>1A City Gate, 185 Dyke Road,<br />Hove, BN3 1TL</span>
               </li>
             </ul>
           </div>

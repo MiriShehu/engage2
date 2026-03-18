@@ -14,10 +14,10 @@ export function CTASection() {
           
           <div className="text-white max-w-xl">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Ready to upgrade your employee benefits?
+              Get a free, no-obligation market review today.
             </h2>
             <p className="text-xl text-white/80 mb-8 leading-relaxed">
-              Join 500+ UK businesses that trust Engage Health Group to deliver better coverage, remove admin, and lower premium costs.
+              Whether you're setting up employee benefits for the first time or reviewing an existing scheme, we'll benchmark the whole market and present your best options — at no cost.
             </p>
             
             <div className="space-y-6">
@@ -26,8 +26,8 @@ export function CTASection() {
                   <span className="text-primary font-bold">1</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">Quick Form</h4>
-                  <p className="text-white/60">Takes 60 seconds to tell us what you need.</p>
+                  <h4 className="font-bold text-lg">Tell us about your business</h4>
+                  <p className="text-white/60">A quick form — takes about 60 seconds.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -35,8 +35,8 @@ export function CTASection() {
                   <span className="text-primary font-bold">2</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">Free Market Review</h4>
-                  <p className="text-white/60">We analyse the whole market to find your perfect fit.</p>
+                  <h4 className="font-bold text-lg">We search the whole market</h4>
+                  <p className="text-white/60">Access to every major UK and international insurer.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -44,8 +44,8 @@ export function CTASection() {
                   <span className="text-primary font-bold">3</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg">No Obligation</h4>
-                  <p className="text-white/60">Review our recommendations with zero pressure.</p>
+                  <h4 className="font-bold text-lg">No fees, no obligation</h4>
+                  <p className="text-white/60">Our service is free. You decide if and when to proceed.</p>
                 </div>
               </div>
             </div>
