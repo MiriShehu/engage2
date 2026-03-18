@@ -1,3 +1,5 @@
+import { LogoCloud } from "@/components/ui/logo-cloud-3";
+
 import marshmallow  from "@assets/0x0_1773872351104.png";
 import oyster       from "@assets/6201434ebeae0fd1206873cb_Vector12_1773872351104.png";
 import boohoo       from "@assets/boohoo_1773872351104.png";
@@ -12,70 +14,26 @@ import unmind       from "@assets/unmind_1773872351107.png";
 import vayner       from "@assets/vayner-media-logo-e1741707986477_1773872351107.png";
 
 const row1 = [
-  { src: marshmallow, alt: "Marshmallow", h: "h-7" },
-  { src: klarna,      alt: "Klarna",      h: "h-9" },
-  { src: vayner,      alt: "VaynerMedia", h: "h-6" },
-  { src: cae,         alt: "CAE",         h: "h-9" },
-  { src: boohoo,      alt: "boohoo",      h: "h-7" },
-  { src: unmind,      alt: "unmind",      h: "h-8" },
+  { src: marshmallow, alt: "Marshmallow" },
+  { src: klarna,      alt: "Klarna" },
+  { src: vayner,      alt: "VaynerMedia" },
+  { src: cae,         alt: "CAE" },
+  { src: boohoo,      alt: "boohoo" },
+  { src: unmind,      alt: "unmind" },
 ];
 
 const row2 = [
-  { src: oyster,      alt: "Oyster",      h: "h-7" },
-  { src: breathe,     alt: "breathe",     h: "h-7" },
-  { src: seedcamp,    alt: "Seedcamp",    h: "h-7" },
-  { src: teladoc,     alt: "Teladoc",     h: "h-8" },
-  { src: superscript, alt: "Superscript", h: "h-8" },
-  { src: pleo,        alt: "Pleo",        h: "h-7" },
+  { src: oyster,      alt: "Oyster" },
+  { src: breathe,     alt: "breathe" },
+  { src: seedcamp,    alt: "Seedcamp" },
+  { src: teladoc,     alt: "Teladoc" },
+  { src: superscript, alt: "Superscript" },
+  { src: pleo,        alt: "Pleo" },
 ];
-
-function LogoRow({
-  logos,
-  direction = "left",
-  speed = 40,
-}: {
-  logos: typeof row1;
-  direction?: "left" | "right";
-  speed?: number;
-}) {
-  const keyframes =
-    direction === "left"
-      ? `@keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }`
-      : `@keyframes scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }`;
-
-  const animName = direction === "left" ? "scroll-left" : "scroll-right";
-
-  return (
-    <div className="overflow-hidden relative group">
-      <style>{keyframes}</style>
-      <div
-        className="flex gap-6 group-hover:[animation-play-state:paused]"
-        style={{
-          animation: `${animName} ${speed}s linear infinite`,
-          width: "max-content",
-        }}
-      >
-        {[...logos, ...logos, ...logos].map((logo, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-center px-8 py-5 rounded-2xl bg-white/90 border border-white/20 hover:bg-white hover:scale-105 transition-all duration-300 shrink-0 shadow-lg group/card"
-          >
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              className={`${logo.h} w-auto object-contain grayscale opacity-70 group-hover/card:grayscale-0 group-hover/card:opacity-100 transition-all duration-300`}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function ClientLogos() {
   return (
     <section className="bg-secondary py-20 overflow-hidden">
-      {/* heading */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
         <p className="text-xs font-bold tracking-widest uppercase text-white/35 mb-3">
           Trusted by
@@ -88,10 +46,9 @@ export function ClientLogos() {
         </p>
       </div>
 
-      {/* two-row marquee */}
       <div className="space-y-4">
-        <LogoRow logos={row1} direction="left"  speed={38} />
-        <LogoRow logos={row2} direction="right" speed={44} />
+        <LogoCloud logos={row1} duration={35} durationOnHover={70} />
+        <LogoCloud logos={row2} duration={40} durationOnHover={80} reverse />
       </div>
     </section>
   );
