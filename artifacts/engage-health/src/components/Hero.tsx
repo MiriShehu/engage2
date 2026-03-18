@@ -21,31 +21,35 @@ export function Hero() {
               Best International Group Advice Firm — UK Health &amp; Protection Awards 2024
             </div>
             
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-secondary leading-[1.1]">
-              Award-Winning <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Employee Benefits</span> Consultancy.
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight text-secondary leading-[1.15]">
+              Source outstanding employee benefits in the{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">UK and around the world</span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl">
-              Impartial advice on health insurance and employee benefits for UK businesses of all sizes — from SMEs to large corporates. No fees. No tie-ins. Just better cover.
-            </p>
+            <ul className="flex flex-col gap-3 pt-2">
+              {[
+                "FREE policy reviews",
+                "Personalised quotes",
+                "Expert advice",
+                "Ongoing administrative support",
+                "Multi-country expertise",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3 text-base sm:text-lg text-foreground font-medium">
+                  <span className="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 text-white" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-primary shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all duration-300">
-                Get a Free Market Review
-                <ArrowRight className="w-5 h-5" />
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-secondary hover:bg-secondary/90 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                I need UK employee benefits
               </Link>
-              <Link href="/products" className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-foreground bg-white border-2 border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300">
-                Explore Products
+              <Link href="/solutions" className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white bg-primary shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all duration-300">
+                I need International benefits
               </Link>
-            </div>
-            
-            <div className="flex items-center gap-6 text-sm font-medium text-muted-foreground pt-4">
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-500" /> Independent &amp; whole-of-market
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-green-500" /> No fees, no contractual tie-in
-              </div>
             </div>
           </div>
 
