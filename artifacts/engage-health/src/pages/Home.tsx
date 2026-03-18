@@ -8,6 +8,7 @@ import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
 import { EngageNumbers } from "@/components/EngageNumbers";
 import { Testimonials } from "@/components/Testimonials";
 import { WhatWeOffer } from "@/components/WhatWeOffer";
+import { WhyEngageSection } from "@/components/WhyEngageSection";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { CharityFund } from "@/components/CharityFund";
 import { BlogPosts } from "@/components/BlogPosts";
@@ -37,6 +38,7 @@ export default function Home() {
         <TrustBar />
         <WhatWeOffer />
         <ServicesGrid />
+        <WhyEngageSection />
         <ProblemSolution />
         <HowItWorks />
         <AnimatedTeamSection
