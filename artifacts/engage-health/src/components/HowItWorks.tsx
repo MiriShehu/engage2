@@ -1,317 +1,270 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-  MessageCircle,
-  Lightbulb,
-  FileCheck,
-  Presentation,
-  HeartHandshake,
-  ArrowRight,
-  ArrowLeft,
+  Search, Compass, PackageCheck, Settings2, RefreshCcw, ArrowRight,
+  CheckCircle2,
 } from "lucide-react";
 import { Link } from "wouter";
 
 const stages = [
   {
     number: "01",
-    title: "Understanding Your Needs",
+    word: "Learn",
     subtitle: "Free consultation & discovery",
     description:
-      "We start with a free consultation to understand your business requirements, workforce demographics, and priorities. We assess any existing policies, identify coverage gaps, and listen carefully — so our advice is genuinely tailored to you.",
-    icon: MessageCircle,
-    color: "from-violet-500 to-purple-700",
-    lightColor: "bg-violet-50",
-    iconColor: "text-violet-600",
-    borderColor: "border-violet-200",
+      "We start with a free, no-obligation consultation to understand your business — your workforce size, demographics, existing cover, and ambitions. We listen first, ask the right questions, and build a clear picture of exactly what your people need.",
+    bullets: [
+      "Free discovery call — no obligation",
+      "Workforce & demographic analysis",
+      "Existing policy benchmarking",
+      "Coverage gap identification",
+    ],
+    icon: Compass,
+    accent: "#76186f",
+    gradient: "from-purple-600 to-primary",
+    light: "bg-purple-50",
+    lightText: "text-purple-700",
   },
   {
     number: "02",
-    title: "Expert Advice & Sourcing",
-    subtitle: "Whole-of-market access",
+    word: "Source",
+    subtitle: "Whole-of-market research",
     description:
-      "We provide impartial recommendations based on your specific requirements, with access to the full UK and international insurance market. We compare multiple providers to find the most cost-effective fit — and we'll always give straight advice, even if that means telling you not to buy.",
-    icon: Lightbulb,
-    color: "from-amber-400 to-orange-500",
-    lightColor: "bg-amber-50",
-    iconColor: "text-amber-600",
-    borderColor: "border-amber-200",
+      "With access to every major UK and international insurer, we run a comprehensive market search tailored to your brief. We compare providers on price, quality, and fit — giving you impartial recommendations with no pressure to buy.",
+    bullets: [
+      "Access to the whole UK & international market",
+      "Multi-provider comparison",
+      "Impartial, regulated advice",
+      "Honest recommendations — even if that means no purchase",
+    ],
+    icon: Search,
+    accent: "#0dab76",
+    gradient: "from-emerald-500 to-teal-600",
+    light: "bg-emerald-50",
+    lightText: "text-emerald-700",
   },
   {
     number: "03",
-    title: "Policy Purchase & Implementation",
+    word: "Implement",
     subtitle: "We handle everything",
     description:
-      "Once you're happy, we purchase policies and services on your behalf and manage all the procurement details. We liaise directly with insurers to ensure every plan is set up correctly — including international policies such as Xcelerate for global teams.",
-    icon: FileCheck,
-    color: "from-emerald-400 to-teal-600",
-    lightColor: "bg-emerald-50",
-    iconColor: "text-emerald-600",
-    borderColor: "border-emerald-200",
+      "Once you're happy with our recommendation, we purchase and implement your policies on your behalf. We liaise directly with insurers, handle all paperwork, and ensure every plan is set up correctly — including complex international arrangements.",
+    bullets: [
+      "Policy purchase & procurement",
+      "Direct insurer liaison",
+      "International policy setup (inc. Xcelerate)",
+      "Full documentation & compliance checks",
+    ],
+    icon: PackageCheck,
+    accent: "#3568d4",
+    gradient: "from-blue-500 to-indigo-600",
+    light: "bg-blue-50",
+    lightText: "text-blue-700",
   },
   {
     number: "04",
-    title: "Scheme Delivery & Introduction",
-    subtitle: "Seamless rollout to your team",
+    word: "Manage",
+    subtitle: "Seamless day-to-day support",
     description:
-      "We deliver the scheme to your business and introduce the benefits to your workforce. We create bespoke employee communications, manage enrolment, and can conduct onsite or virtual presentations — significantly reducing the burden on your HR team.",
-    icon: Presentation,
-    color: "from-blue-400 to-indigo-600",
-    lightColor: "bg-blue-50",
-    iconColor: "text-blue-600",
-    borderColor: "border-blue-200",
+      "We introduce the scheme to your workforce and become your long-term partner. Your dedicated account manager handles claims, new joiners, leavers, and policy queries — significantly reducing the burden on your HR team.",
+    bullets: [
+      "Bespoke employee communications",
+      "Onsite or virtual benefit presentations",
+      "Claims & member support",
+      "New joiner & leaver administration",
+    ],
+    icon: Settings2,
+    accent: "#f59e0b",
+    gradient: "from-amber-400 to-orange-500",
+    light: "bg-amber-50",
+    lightText: "text-amber-700",
   },
   {
     number: "05",
-    title: "Ongoing Management & Support",
-    subtitle: "Your long-term partner",
+    word: "Review",
+    subtitle: "Your scheme stays competitive",
     description:
-      "Your dedicated account manager is your single point of contact for everything. We help with claims, enrol new joiners, answer policy queries, manage renewals, and keep your benefits package up to date — providing full administrative support for the life of your policy.",
-    icon: HeartHandshake,
-    color: "from-rose-400 to-primary",
-    lightColor: "bg-rose-50",
-    iconColor: "text-rose-600",
-    borderColor: "border-rose-200",
+      "Markets change, and so do your needs. We proactively review your benefits package at each renewal — re-benchmarking the market, identifying improvements, and ensuring your cover evolves with your business. Year after year.",
+    bullets: [
+      "Annual market re-benchmark",
+      "Renewal negotiation & strategy",
+      "Benefits effectiveness reporting",
+      "Continuous improvement recommendations",
+    ],
+    icon: RefreshCcw,
+    accent: "#003648",
+    gradient: "from-teal-600 to-secondary",
+    light: "bg-teal-50",
+    lightText: "text-teal-700",
   },
 ];
 
-const AUTOPLAY_INTERVAL = 5000;
-
 export function HowItWorks() {
   const [active, setActive] = useState(0);
-  const [animating, setAnimating] = useState(false);
-  const [direction, setDirection] = useState<"next" | "prev">("next");
-  const [progress, setProgress] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const dragStartX = useRef<number | null>(null);
-
-  const goTo = useCallback(
-    (index: number, dir: "next" | "prev" = "next") => {
-      if (animating) return;
-      setDirection(dir);
-      setAnimating(true);
-      setProgress(0);
-      setTimeout(() => {
-        setActive(index);
-        setAnimating(false);
-      }, 350);
-    },
-    [animating]
-  );
-
-  const next = useCallback(() => {
-    goTo((active + 1) % stages.length, "next");
-  }, [active, goTo]);
-
-  const prev = useCallback(() => {
-    goTo((active - 1 + stages.length) % stages.length, "prev");
-  }, [active, goTo]);
-
-  const resetTimers = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    if (progressRef.current) clearInterval(progressRef.current);
-    setProgress(0);
-
-    progressRef.current = setInterval(() => {
-      setProgress((p) => Math.min(p + 100 / (AUTOPLAY_INTERVAL / 50), 100));
-    }, 50);
-
-    timerRef.current = setInterval(() => {
-      setActive((a) => {
-        const next = (a + 1) % stages.length;
-        setDirection("next");
-        setAnimating(true);
-        setTimeout(() => setAnimating(false), 350);
-        setProgress(0);
-        return next;
-      });
-    }, AUTOPLAY_INTERVAL);
-  }, []);
-
-  useEffect(() => {
-    resetTimers();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-      if (progressRef.current) clearInterval(progressRef.current);
-    };
-  }, [resetTimers]);
-
-  const handleStepClick = (i: number) => {
-    goTo(i, i > active ? "next" : "prev");
-    resetTimers();
-  };
-
-  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    dragStartX.current =
-      "touches" in e ? e.touches[0].clientX : e.clientX;
-  };
-
-  const handleDragEnd = (e: React.MouseEvent | React.TouchEvent) => {
-    if (dragStartX.current === null) return;
-    const endX =
-      "changedTouches" in e
-        ? e.changedTouches[0].clientX
-        : e.clientX;
-    const diff = dragStartX.current - endX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) next();
-      else prev();
-      resetTimers();
-    }
-    dragStartX.current = null;
-  };
-
   const stage = stages[active];
   const Icon = stage.icon;
 
   return (
-    <section className="py-28 bg-secondary overflow-hidden relative">
-      {/* Subtle background pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, white 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+    <section className="py-24 bg-[#f8f7fb] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-semibold mb-6 border border-white/10">
+        <div className="mb-14 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/8 text-primary text-xs font-bold uppercase tracking-widest mb-4">
             Our process
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3 leading-tight">
             5 Stages of Exceptional Service
           </h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             From the first conversation to ongoing support — we're with you every step of the way.
           </p>
         </div>
 
-        {/* Step pills */}
-        <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
-          {stages.map((s, i) => (
-            <button
-              key={i}
-              onClick={() => handleStepClick(i)}
-              className={cn(
-                "group relative flex items-center gap-2.5 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
-                i === active
-                  ? "bg-white text-secondary shadow-lg shadow-black/20 scale-105"
-                  : "bg-white/10 text-white/60 hover:bg-white/20 hover:text-white border border-white/10"
-              )}
-            >
-              <span
-                className={cn(
-                  "w-6 h-6 rounded-full flex items-center justify-center text-xs font-black transition-all duration-300",
-                  i === active
-                    ? `bg-gradient-to-br ${s.color} text-white`
-                    : "bg-white/10 text-white/50"
-                )}
-              >
-                {i + 1}
-              </span>
-              <span className="hidden sm:inline">{s.title.split(" ")[0]}</span>
-              {/* Progress bar on active pill */}
-              {i === active && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary to-violet-400 rounded-full transition-all duration-75" style={{ width: `${progress}%`, maxWidth: "80%" }} />
-              )}
-            </button>
-          ))}
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6">
 
-        {/* Main card */}
-        <div
-          className="relative cursor-grab active:cursor-grabbing select-none"
-          onMouseDown={handleDragStart}
-          onMouseUp={handleDragEnd}
-          onTouchStart={handleDragStart}
-          onTouchEnd={handleDragEnd}
-        >
-          <div
-            className={cn(
-              "bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12 transition-all duration-350",
-              animating
-                ? direction === "next"
-                  ? "opacity-0 translate-x-8"
-                  : "opacity-0 -translate-x-8"
-                : "opacity-100 translate-x-0"
-            )}
-            style={{ transition: "opacity 350ms ease, transform 350ms ease" }}
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 items-center">
-
-              {/* Left: stage badge + icon */}
-              <div className="flex flex-col items-center lg:items-start gap-6">
-                <div className={cn("w-24 h-24 rounded-2xl flex items-center justify-center shadow-2xl bg-gradient-to-br", stage.color)}>
-                  <Icon className="w-12 h-12 text-white" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Stage</div>
-                  <div className={cn("text-7xl font-black bg-gradient-to-br bg-clip-text text-transparent leading-none", stage.color)}>
-                    {stage.number}
+          {/* ── LEFT: stage nav ── */}
+          <div className="flex flex-col gap-2">
+            {stages.map((s, i) => {
+              const SIcon = s.icon;
+              const isActive = i === active;
+              return (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={cn(
+                    "group w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl border transition-all duration-200",
+                    isActive
+                      ? "bg-white border-transparent shadow-lg"
+                      : "bg-white/40 border-border/40 hover:bg-white hover:border-border hover:shadow-sm"
+                  )}
+                >
+                  {/* coloured left bar */}
+                  <div
+                    className="w-1 self-stretch rounded-full shrink-0 transition-all duration-200"
+                    style={{ background: isActive ? s.accent : "transparent" }}
+                  />
+                  {/* icon */}
+                  <div
+                    className={cn(
+                      "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-200",
+                      isActive ? s.light : "bg-muted"
+                    )}
+                  >
+                    <SIcon
+                      className={cn("w-5 h-5 transition-colors duration-200", isActive ? s.lightText : "text-muted-foreground")}
+                    />
                   </div>
+                  {/* text */}
+                  <div className="min-w-0">
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-xs font-black text-muted-foreground/60 uppercase tracking-widest">{s.number}</span>
+                      <span className={cn("font-extrabold text-base transition-colors duration-200", isActive ? "text-secondary" : "text-muted-foreground group-hover:text-secondary")}>
+                        {s.word}
+                      </span>
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-0.5 truncate">{s.subtitle}</div>
+                  </div>
+                  {/* active arrow */}
+                  {isActive && (
+                    <ArrowRight className="w-4 h-4 shrink-0 ml-auto" style={{ color: stage.accent }} />
+                  )}
+                </button>
+              );
+            })}
+
+            {/* CTA underneath nav */}
+            <Link
+              href="/contact"
+              className="btn-cta mt-2 flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl"
+            >
+              Start your free review
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* ── RIGHT: content panel ── */}
+          <div className="bg-white rounded-3xl border border-border/40 shadow-lg overflow-hidden">
+
+            {/* coloured top bar */}
+            <div
+              className={cn("h-1.5 w-full bg-gradient-to-r", stage.gradient)}
+            />
+
+            <div className="p-8 md:p-12">
+
+              {/* stage badge + big word */}
+              <div className="flex items-start justify-between mb-8">
+                <div>
+                  <div className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">
+                    Stage {stage.number}
+                  </div>
+                  <h3
+                    className={cn("text-5xl md:text-6xl font-black bg-gradient-to-br bg-clip-text text-transparent leading-none", stage.gradient)}
+                  >
+                    {stage.word}
+                  </h3>
+                  <div className="text-sm font-semibold text-muted-foreground mt-2">{stage.subtitle}</div>
+                </div>
+
+                <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center shadow-md", stage.light)}>
+                  <Icon className={cn("w-8 h-8", stage.lightText)} strokeWidth={1.75} />
                 </div>
               </div>
 
-              {/* Right: content */}
-              <div>
-                <div className="text-white/50 text-sm font-semibold uppercase tracking-wider mb-3">
-                  {stage.subtitle}
-                </div>
-                <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-5 leading-tight">
-                  {stage.title}
-                </h3>
-                <p className="text-white/70 text-lg leading-relaxed mb-8">
-                  {stage.description}
-                </p>
+              {/* description */}
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-10">
+                {stage.description}
+              </p>
 
-                {/* Stage indicators (dots) */}
-                <div className="flex items-center gap-3">
-                  {stages.map((_, i) => (
+              {/* bullets */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+                {stage.bullets.map((b, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle2
+                      className="w-5 h-5 shrink-0 mt-0.5"
+                      style={{ color: stage.accent }}
+                    />
+                    <span className="text-sm text-secondary font-medium">{b}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* step dots + prev/next */}
+              <div className="flex items-center justify-between pt-6 border-t border-border/50">
+                <div className="flex items-center gap-2">
+                  {stages.map((s, i) => (
                     <button
                       key={i}
-                      onClick={() => handleStepClick(i)}
+                      onClick={() => setActive(i)}
                       className={cn(
                         "rounded-full transition-all duration-300",
                         i === active
-                          ? "w-8 h-2.5 bg-white"
-                          : "w-2.5 h-2.5 bg-white/25 hover:bg-white/50"
+                          ? "w-7 h-2.5"
+                          : "w-2.5 h-2.5 bg-border hover:bg-muted-foreground"
                       )}
+                      style={i === active ? { background: stage.accent } : {}}
                     />
                   ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setActive((a) => (a - 1 + stages.length) % stages.length)}
+                    className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/30 transition-all"
+                  >
+                    <ArrowRight className="w-4 h-4 rotate-180" />
+                  </button>
+                  <button
+                    onClick={() => setActive((a) => (a + 1) % stages.length)}
+                    className="w-9 h-9 rounded-xl border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/30 transition-all"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Navigation arrows */}
-          <button
-            onClick={() => { prev(); resetTimers(); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 -translate-x-6 w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-200 shadow-xl backdrop-blur-sm"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => { next(); resetTimers(); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 translate-x-6 w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-200 shadow-xl backdrop-blur-sm"
-          >
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/contact"
-            className="btn-cta inline-flex items-center gap-2 px-8 py-4 rounded-xl"
-          >
-            Start Your Free Market Review
-            <ArrowRight className="w-5 h-5" />
-          </Link>
         </div>
       </div>
     </section>
