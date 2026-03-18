@@ -47,8 +47,8 @@ export function ClientLogos() {
       </div>
 
       <div className="space-y-4">
-        <LogoCloud logos={row1} duration={35} durationOnHover={70} />
-        <LogoCloud logos={row2} duration={40} durationOnHover={80} reverse />
+        <LogoCloud logos={row1} duration={60} durationOnHover={120} />
+        <LogoCloud logos={row2} duration={70} durationOnHover={140} reverse />
       </div>
     </section>
   );
