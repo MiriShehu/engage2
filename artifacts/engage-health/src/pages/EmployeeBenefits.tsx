@@ -523,8 +523,12 @@ export default function EmployeeBenefits() {
               className="rounded-2xl p-6 text-white overflow-hidden relative"
               style={{ background: "linear-gradient(135deg,#003648 0%,#76186f 100%)" }}
             >
-              <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+              <img
+                src="/logomark.png"
+                alt=""
+                aria-hidden="true"
+                className="absolute -bottom-6 -right-6 w-40 h-40 object-contain opacity-[0.08] brightness-0 invert pointer-events-none select-none"
+              />
               <div className="relative">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-semibold mb-4">
                   FREE consultation
