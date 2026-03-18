@@ -33,11 +33,11 @@ const CARD_BG = [
 const getCardState = (index: number, total: number) => {
   const center = (total - 1) / 2;
   const dist = index - center;
-  const spread = Math.min(92, Math.round(580 / total));
+  const spread = Math.min(96, Math.round(800 / total));
   return {
     x: dist * spread,
     y: Math.abs(dist) * -18,
-    rotate: dist * 8,
+    rotate: dist * 7,
   };
 };
 
@@ -59,7 +59,7 @@ export function AnimatedTeamSection({
 
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.07 } },
+    visible: { transition: { staggerChildren: 0.04, delayChildren: 0 } },
   };
 
   const itemVariants = {
@@ -74,7 +74,7 @@ export function AnimatedTeamSection({
 
   return (
     <section className={cn("w-full py-20 overflow-hidden", className)}>
-      <div className="max-w-5xl mx-auto flex flex-col items-center text-center px-4">
+      <div className="max-w-7xl mx-auto flex flex-col items-center text-center px-4">
 
         {/* Header */}
         {title && (
@@ -104,21 +104,28 @@ export function AnimatedTeamSection({
           </motion.p>
         )}
 
-        {/* Fan */}
-        <motion.div
+        {/* Fan — flex row centres a zero-size anchor; cards hang off it absolutely */}
+        <div
           ref={ref}
-          className="relative mt-20 flex items-end justify-center"
-          style={{ minHeight: "260px", width: "100%" }}
-          variants={containerVariants}
-          initial="hidden"
-          animate={controls}
+          className="relative mt-20 w-full flex justify-center items-start"
+          style={{ minHeight: "320px" }}
         >
+          {/* Zero-size anchor — centred by the flex row above */}
+          <motion.div
+            className="relative"
+            style={{ width: 0, height: 0, flexShrink: 0 }}
+            variants={containerVariants}
+            initial="hidden"
+            animate={controls}
+          >
           {members.map((member, index) => (
             /* OUTER: owns fan position (x / y / rotate) via variants — never touched by hover */
             <motion.div
               key={index}
               className="absolute"
               style={{
+                left: "-70px",   /* half of card width = visual centre at anchor */
+                top: 0,
                 zIndex: hoveredIdx === index
                   ? 99
                   : members.length - Math.abs(index - (members.length - 1) / 2),
@@ -132,8 +139,8 @@ export function AnimatedTeamSection({
               <motion.div
                 className="rounded-2xl overflow-hidden border-[3px] border-white shadow-2xl cursor-default"
                 style={{
-                  width: "120px",
-                  height: "160px",
+                  width: "140px",
+                  height: "186px",
                   background: CARD_BG[index % CARD_BG.length],
                 }}
                 whileHover={{
@@ -167,7 +174,8 @@ export function AnimatedTeamSection({
               </motion.div>
             </motion.div>
           ))}
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* Optional CTA */}
         {showLink && (
