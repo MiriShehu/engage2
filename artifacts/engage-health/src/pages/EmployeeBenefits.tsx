@@ -536,7 +536,7 @@ export default function EmployeeBenefits() {
                 <h3 className="text-xl font-extrabold mb-2 leading-snug">
                   Get expert advice today
                 </h3>
-                <p className="text-white/65 text-sm leading-relaxed mb-5">
+                <p className="text-white/85 text-sm leading-relaxed mb-5">
                   No charge, no obligation — just straightforward advice from our team of specialists.
                 </p>
                 <Link
@@ -548,13 +548,13 @@ export default function EmployeeBenefits() {
                 <div className="mt-3 flex flex-col gap-2">
                   <a
                     href="tel:01273974419"
-                    className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
+                    className="flex items-center gap-2 text-sm text-white/85 hover:text-white transition-colors"
                   >
                     <Phone className="w-4 h-4" /> 01273 974419
                   </a>
                   <a
                     href="mailto:enquiries@engagehealthgroup.co.uk"
-                    className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
+                    className="flex items-center gap-2 text-sm text-white/85 hover:text-white transition-colors"
                   >
                     <Mail className="w-4 h-4" /> enquiries@engagehealthgroup.co.uk
                   </a>
