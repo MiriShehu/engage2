@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
+import { ClientLogos } from "@/components/ClientLogos";
 import { ProblemSolution } from "@/components/ProblemSolution";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
@@ -34,6 +35,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TrustBar />
+        <ClientLogos />
         <BenefitsIntro />
         <WhatWeOffer />
         <ServicesGrid />
