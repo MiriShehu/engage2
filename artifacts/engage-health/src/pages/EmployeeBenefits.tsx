@@ -1,6 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import { Link } from "wouter";
 import heroBg from "@assets/Employee-Benefits-main-heading1_1773875144473.jpg";
+import tipBlend from "@assets/Emp-Benefits-blend-your-approach_1773875338242.jpg";
+import tipPromote from "@assets/Emp-Benefits-promote-communicate_1773875338242.jpg";
+import tipManage from "@assets/Emp.-Benefits-manage-in-one-place_1773875338242.jpg";
+import tipMeasure from "@assets/woman-2773007_1280_1773875338243.jpg";
 import { motion } from "framer-motion";
 import {
   Shield, Heart, TrendingUp, AlertCircle, Smile, Activity,
@@ -98,21 +102,29 @@ const tips = [
     n: "1",
     title: "Blend your approach",
     body: "Placing all your focus in just one camp can leave your benefit provision lacking. An insurance-heavy approach is excellent but can leave staff disengaged because these benefits are only realised when things go wrong. A wellness-heavy approach makes staff feel engaged but isn't much use if someone needs physiotherapy. A blended approach delivers the best of both worlds.",
+    img: tipBlend,
+    imgAlt: "Diverse team laughing together",
   },
   {
     n: "2",
     title: "Promote and communicate",
     body: "Once you have decided upon your benefits strategy, it's important to educate your employees. They need to know what they have and how to use it — otherwise the benefits become redundant and unappreciated. A good consultancy will deliver employee presentations, develop bespoke written guidance and spend time at your premises answering questions.",
+    img: tipPromote,
+    imgAlt: "Audience applauding at a presentation",
   },
   {
     n: "3",
     title: "Manage in one place",
     body: "Many organisations make the mistake of managing different types of coverage across separate departments. This compartmentalised approach reduces the opportunity to drive cost efficiencies. Working with multiple providers across different departments means you'll likely pay more overall and find it increasingly difficult to achieve your overall objective.",
+    img: tipManage,
+    imgAlt: "Woman working on laptop in bright office",
   },
   {
     n: "4",
     title: "Measure success",
     body: "Even if you're spending a small percentage of gross payroll on benefits, continuous review should be a priority. An annual review (at minimum) will help avoid stagnation, maintain relevance and ensure businesses get the best possible return on their investment. Key questions: Is it still valued by staff? Are we paying too much? Is it effective?",
+    img: tipMeasure,
+    imgAlt: "Woman reviewing documents at desk",
   },
 ];
 
@@ -421,20 +433,38 @@ export default function EmployeeBenefits() {
                 Each business has its own unique culture, but certain pearls of wisdom apply to all companies whatever the industry, workforce demographics or budget.
               </p>
 
-              <div className="mt-8 space-y-5">
-                {tips.map((tip) => (
-                  <div key={tip.n} className="flex gap-5 p-6 rounded-2xl bg-[#f5f4fa] border border-transparent hover:border-primary/15 transition-all duration-200">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-white font-black text-sm"
-                      style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}
-                    >
-                      {tip.n}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {tips.map((tip, i) => (
+                  <motion.div
+                    key={tip.n}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: i * 0.08 }}
+                    className="group rounded-2xl overflow-hidden border border-border bg-white hover:shadow-lg hover:border-primary/20 transition-all duration-300"
+                  >
+                    {/* Photo */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={tip.img}
+                        alt={tip.imgAlt}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      {/* Dark scrim + number badge */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                      <div
+                        className="absolute top-4 left-4 w-9 h-9 rounded-full flex items-center justify-center text-white font-black text-sm shadow-lg"
+                        style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}
+                      >
+                        {tip.n}
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-secondary mb-2">{tip.title}</h4>
+                    {/* Text */}
+                    <div className="p-5">
+                      <h4 className="font-bold text-secondary mb-2 text-[0.95rem]">{tip.title}</h4>
                       <p className="text-sm text-muted-foreground leading-relaxed">{tip.body}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </section>
