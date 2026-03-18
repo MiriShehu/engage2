@@ -27,7 +27,7 @@ export function BenefitsIntro() {
           </p>
           <p>
             Whether you're a two-person start-up or a global enterprise, we'll deliver tailored health
-            and protection plans that make a real difference to your team — and your bottom line.
+            and protection plans that make a real difference to your team and your bottom line.
           </p>
           <p>
             With a dedicated account manager, you can also offload all the admin at no extra cost,

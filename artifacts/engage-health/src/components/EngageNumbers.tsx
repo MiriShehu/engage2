@@ -36,7 +36,7 @@ const stats = [
     value: 3,
     suffix: "×",
     label: "Award wins",
-    description: "Best International Group Advice Firm — UK H&P Awards 2022, 2023 & 2024.",
+    description: "Best International Group Advice Firm, UK H&P Awards 2022, 2023 & 2024.",
     icon: Trophy,
     accent: T,
     iconAnim: "group-hover:-rotate-12 group-hover:scale-110 group-hover:-translate-y-1 transition-transform duration-300",
@@ -45,7 +45,7 @@ const stats = [
     value: 8,
     suffix: "+",
     label: "Years in business",
-    description: "Founded in 2016 and growing steadily — with a loyal client base that stays.",
+    description: "Founded in 2016 and growing steadily, with a loyal client base that stays.",
     icon: Star,
     accent: P,
     iconAnim: "group-hover:rotate-[72deg] group-hover:scale-110 transition-transform duration-500",
@@ -55,7 +55,7 @@ const stats = [
     prefix: "£",
     suffix: "",
     label: "Cost to your business",
-    description: "Our service is completely free — we're remunerated directly by insurers.",
+    description: "Our service is completely free; we're remunerated directly by insurers.",
     icon: BadgePoundSterling,
     accent: T,
     iconAnim: "group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300",
@@ -176,7 +176,7 @@ export function EngageNumbers() {
             Engage in numbers
           </h2>
           <p className="text-white/55 text-lg max-w-xl mx-auto">
-            Eight years of focused growth — trusted by hundreds of businesses, backed by award-winning expertise.
+            Eight years of focused growth, trusted by hundreds of businesses and backed by award-winning expertise.
           </p>
         </div>
 

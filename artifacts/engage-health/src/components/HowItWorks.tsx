@@ -12,9 +12,9 @@ const stages = [
     word: "Learn",
     subtitle: "Free consultation & discovery",
     description:
-      "We start with a free, no-obligation consultation to understand your business — your workforce size, demographics, existing cover, and ambitions. We listen first, ask the right questions, and build a clear picture of exactly what your people need.",
+      "We start with a free, no-obligation consultation to understand your business: your workforce size, demographics, existing cover, and ambitions. We listen first, ask the right questions, and build a clear picture of exactly what your people need.",
     bullets: [
-      "Free discovery call — no obligation",
+      "Free discovery call, no obligation",
       "Workforce & demographic analysis",
       "Existing policy benchmarking",
       "Coverage gap identification",
@@ -30,12 +30,12 @@ const stages = [
     word: "Source",
     subtitle: "Whole-of-market research",
     description:
-      "With access to every major UK and international insurer, we run a comprehensive market search tailored to your brief. We compare providers on price, quality, and fit — giving you impartial recommendations with no pressure to buy.",
+      "With access to every major UK and international insurer, we run a comprehensive market search tailored to your brief. We compare providers on price, quality, and fit, giving you impartial recommendations with no pressure to buy.",
     bullets: [
       "Access to the whole UK & international market",
       "Multi-provider comparison",
       "Impartial, regulated advice",
-      "Honest recommendations — even if that means no purchase",
+      "Honest recommendations, even if that means no purchase",
     ],
     icon: Search,
     accent: "#003648",
@@ -48,7 +48,7 @@ const stages = [
     word: "Implement",
     subtitle: "We handle everything",
     description:
-      "Once you're happy with our recommendation, we purchase and implement your policies on your behalf. We liaise directly with insurers, handle all paperwork, and ensure every plan is set up correctly — including complex international arrangements.",
+      "Once you're happy with our recommendation, we purchase and implement your policies on your behalf. We liaise directly with insurers, handle all paperwork, and ensure every plan is set up correctly, including complex international arrangements.",
     bullets: [
       "Policy purchase & procurement",
       "Direct insurer liaison",
@@ -66,7 +66,7 @@ const stages = [
     word: "Manage",
     subtitle: "Seamless day-to-day support",
     description:
-      "We introduce the scheme to your workforce and become your long-term partner. Your dedicated account manager handles claims, new joiners, leavers, and policy queries — significantly reducing the burden on your HR team.",
+      "We introduce the scheme to your workforce and become your long-term partner. Your dedicated account manager handles claims, new joiners, leavers, and policy queries, significantly reducing the burden on your HR team.",
     bullets: [
       "Bespoke employee communications",
       "Onsite or virtual benefit presentations",
@@ -84,7 +84,7 @@ const stages = [
     word: "Review",
     subtitle: "Your scheme stays competitive",
     description:
-      "Markets change, and so do your needs. We proactively review your benefits package at each renewal — re-benchmarking the market, identifying improvements, and ensuring your cover evolves with your business. Year after year.",
+      "Markets change, and so do your needs. We proactively review your benefits package at each renewal, re-benchmarking the market, identifying improvements, and ensuring your cover evolves with your business. Year after year.",
     bullets: [
       "Annual market re-benchmark",
       "Renewal negotiation & strategy",
@@ -117,7 +117,7 @@ export function HowItWorks() {
             5 Stages of Exceptional Service
           </h2>
           <p className="text-lg text-muted-foreground">
-            From the first conversation to ongoing support — we're with you every step of the way.
+            From the first conversation to ongoing support, we're with you every step of the way.
           </p>
         </div>
 

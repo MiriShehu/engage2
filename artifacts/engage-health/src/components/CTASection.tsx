@@ -5,7 +5,7 @@ const steps = [
   {
     num: "01",
     title: "Tell us about your business",
-    desc: "A quick form — takes about 60 seconds.",
+    desc: "A quick form, takes about 60 seconds.",
   },
   {
     num: "02",
@@ -71,7 +71,7 @@ export function CTASection() {
             </h2>
 
             <p className="text-lg text-white/65 mb-12 leading-relaxed max-w-lg">
-              Whether you're setting up benefits for the first time or reviewing an existing scheme, we benchmark the whole market and present your best options — at zero cost.
+              Whether you're setting up benefits for the first time or reviewing an existing scheme, we benchmark the whole market and present your best options, at zero cost.
             </p>
 
             {/* numbered steps */}

@@ -26,7 +26,7 @@ const departments = [
       {
         name: "Ian Abbott",
         title: "International Director",
-        bio: "After 8+ years at Bupa Global, Ian co-founded Engage International — the arm dedicated to helping global businesses navigate health and protection across 70+ countries. Multiple award winner.",
+        bio: "After 8+ years at Bupa Global, Ian co-founded Engage International, the arm dedicated to helping global businesses navigate health and protection across 70+ countries. Multiple award winner.",
         img: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png`,
         accent: T,
         tags: ["Bupa Global Alumni", "International", "Award Winner"],
@@ -42,7 +42,7 @@ const departments = [
       {
         name: "Stuart Box",
         title: "Head of Client Services",
-        bio: "With a background spanning account management and financial services, Stuart leads the client services team — ensuring every Engage client relationship is proactive, responsive, and built on trust.",
+        bio: "With a background spanning account management and financial services, Stuart leads the client services team, ensuring every Engage client relationship is proactive, responsive, and built on trust.",
         img: `${BASE}/2023/01/Stuart-Box-copy.png`,
         accent: T,
         tags: ["Account Management", "Client Services"],
@@ -51,7 +51,7 @@ const departments = [
   },
   {
     name: "Employee Benefits Team",
-    description: "Specialists in UK group health, protection and wellbeing — sourcing, implementing and managing policies on your behalf.",
+    description: "Specialists in UK group health, protection and wellbeing, sourcing, implementing and managing policies on your behalf.",
     members: [
       {
         name: "Mike Hesch",
@@ -64,7 +64,7 @@ const departments = [
       {
         name: "Jess Wright",
         title: "Employee Benefits Consultant",
-        bio: "Jess provides wide-ranging employee benefits advice with a partnership-focused approach — working closely with HR teams to build sustainable and valued benefits packages.",
+        bio: "Jess provides wide-ranging employee benefits advice with a partnership-focused approach, working closely with HR teams to build sustainable and valued benefits packages.",
         img: `${BASE}/2023/12/Jess-Wright_.png`,
         accent: T,
         tags: ["Employee Benefits", "HR Partnership"],
@@ -137,7 +137,7 @@ const departments = [
   },
   {
     name: "International Team",
-    description: "Experts in global employee benefits across 70+ countries — handling everything from multi-country policies to compliance and communication.",
+    description: "Experts in global employee benefits across 70+ countries, handling everything from multi-country policies to compliance and communication.",
     members: [
       {
         name: "Eiman Elkhalifa",
@@ -175,7 +175,7 @@ const departments = [
   },
   {
     name: "Operations & Support",
-    description: "The team that keeps everything running smoothly — from finance and compliance to client support.",
+    description: "The team that keeps everything running smoothly, from finance and compliance to client support.",
     members: [
       {
         name: "Adena Stonely",
@@ -196,7 +196,7 @@ const departments = [
       {
         name: "Joanne Lloyd",
         title: "Research & Pricing Analyst",
-        bio: "Tracks the latest data, price-points, and product developments across the market — making sure Engage's advice is always informed by the most current intelligence.",
+        bio: "Tracks the latest data, price-points, and product developments across the market, making sure Engage's advice is always informed by the most current intelligence.",
         img: `${BASE}/2023/01/Joanne-Lloyd-e1674570051794.png`,
         accent: P,
         tags: ["Market Research", "Data"],
@@ -308,7 +308,7 @@ export default function Team() {
               </span>
             </h1>
             <p className="text-white/65 text-xl max-w-2xl mx-auto">
-              Our team brings over 30 years of combined experience from some of the world's leading insurers and benefits consultancies — all dedicated to finding the best outcomes for your business.
+              Our team brings over 30 years of combined experience from some of the world's leading insurers and benefits consultancies, all dedicated to finding the best outcomes for your business.
             </p>
             <div className="mt-12 grid grid-cols-3 gap-6 max-w-xl mx-auto">
               {[
@@ -328,7 +328,7 @@ export default function Team() {
         {/* Animated team fan */}
         <AnimatedTeamSection
           title="24 specialists. One team."
-          description="Drawn from Bupa Global, Aon, Mercer, Vitality, AIG and beyond — every member of our team is here because they genuinely care about getting the best outcome for your people."
+          description="Drawn from Bupa Global, Aon, Mercer, Vitality, AIG and beyond. Every member of our team is here because they genuinely care about getting the best outcome for your people."
           members={[
             { name: "Nick Hale",       title: "Founder & Director",          image: `${BASE}/2023/01/Nick-Hale-e1674569951192.png` },
             { name: "Ian Abbott",      title: "International Director",       image: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png` },

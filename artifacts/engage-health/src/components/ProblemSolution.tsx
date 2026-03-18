@@ -15,7 +15,7 @@ const facts = [
   {
     stat: "90%",
     label: "would trade a 5% pay rise for better benefits",
-    detail: "Salary is no longer the whole picture — benefits are the new battleground for talent.",
+    detail: "Salary is no longer the whole picture. Benefits are the new battleground for talent.",
     source: "QuickBooks",
     size: "small",
     accent: "from-[#003648] to-[#005a78]",
@@ -25,7 +25,7 @@ const facts = [
   {
     stat: "£5",
     label: "returned for every £1 invested in mental health support",
-    detail: "EAPs and wellbeing programmes don't just feel good — they deliver measurable ROI.",
+    detail: "EAPs and wellbeing programmes don't just feel good, the ROI is measurable.",
     source: "Deloitte",
     size: "small",
     accent: "from-[#76186f] to-[#9b2594]",
@@ -34,7 +34,7 @@ const facts = [
   },
   {
     stat: "48%",
-    label: "of workers would stay in their role for better benefits — even over a higher salary",
+    label: "of workers would stay in their role for better benefits, even over a higher salary",
     detail: "Retention is as much about benefits strategy as compensation.",
     source: "QuickBooks",
     size: "wide",
@@ -73,7 +73,7 @@ export function ProblemSolution() {
             </h2>
           </div>
           <p className="text-gray-500 text-lg max-w-xs sm:text-right leading-relaxed">
-            The data is clear — investing in your team's health and wellbeing pays for itself.
+            The data speaks for itself: investing in your team's health and wellbeing pays off.
           </p>
         </div>
 
@@ -119,7 +119,7 @@ export function ProblemSolution() {
         <div className="mt-12 bg-white border border-gray-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
           <div>
             <div className="font-bold text-secondary text-lg">Ready to build a benefits package that actually works?</div>
-            <div className="text-gray-500 text-sm mt-0.5">Free market review — no obligation, no cost to your business.</div>
+            <div className="text-gray-500 text-sm mt-0.5">Free market review, no obligation, no cost to your business.</div>
           </div>
           <Link
             href="/contact"

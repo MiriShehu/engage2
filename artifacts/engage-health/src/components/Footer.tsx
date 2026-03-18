@@ -17,7 +17,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-white/60 max-w-sm mb-8 leading-relaxed">
-              Award-winning independent employee benefits consultancy. Impartial advice for UK businesses — no fees, no tie-ins, whole-of-market access. FCA Authorised No. 812846.
+              Award-winning independent employee benefits consultancy. Impartial advice for UK businesses, no fees, no tie-ins, whole-of-market access. FCA Authorised No. 812846.
             </p>
             <div className="flex items-center gap-4">
               <a href="https://www.linkedin.com/company/engage-health-group/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors">

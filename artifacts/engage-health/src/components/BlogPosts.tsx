@@ -6,7 +6,7 @@ const posts = [
     categoryColor: "bg-sky-100 text-sky-700",
     title: "Peering into the future of healthcare: highlights from Insurtech Insights 2025",
     excerpt:
-      "From Terra API unifying wearable health data to the Anya app used by 7.2m NHS patients — we recap the most important health tech innovations shaping group insurance in 2025 and beyond.",
+      "From Terra API unifying wearable health data to the Anya app used by 7.2m NHS patients. We recap the most important health tech innovations shaping group insurance in 2025 and beyond.",
     date: "1 May 2025",
     readTime: "6 min read",
     author: "Nick Hale",
@@ -21,7 +21,7 @@ const posts = [
     categoryColor: "bg-violet-100 text-violet-700",
     title: "7 company health insurance trends to watch in 2025",
     excerpt:
-      "Preventative care, AI claims processing, gender-specific cover and neurodiversity support — the trends reshaping how businesses think about PMI.",
+      "Preventative care, AI claims processing, gender-specific cover and neurodiversity support: the trends reshaping how businesses think about PMI.",
     date: "12 Dec 2024",
     readTime: "5 min read",
     author: "Mike Hesch",
@@ -36,7 +36,7 @@ const posts = [
     categoryColor: "bg-emerald-100 text-emerald-700",
     title: "Private medical insurance is in high demand. Here's why",
     excerpt:
-      "6.2 million UK employees are now covered by PMI — a 30-year high. We break down what's driving the surge and what it means for your benefits strategy.",
+      "6.2 million UK employees are now covered by PMI, a 30-year high. We break down what's driving the surge and what it means for your benefits strategy.",
     date: "5 Dec 2024",
     readTime: "4 min read",
     author: "Ian Abbott",

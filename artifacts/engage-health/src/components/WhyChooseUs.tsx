@@ -6,7 +6,7 @@ const pillars = [
   {
     number: "01",
     title: "Truly independent advice",
-    desc: "We are not tied to any insurer. As a whole-of-market broker, we search every available option — UK and international — to find the policy that genuinely fits your business, not the one that pays us the most.",
+    desc: "We are not tied to any insurer. As a whole-of-market broker, we search every available option (UK and international) to find the policy that genuinely fits your business, not the one that pays us the most.",
     icon: Search,
     gradient: "from-[#76186f] to-[#9b2594]",
     lightBg: "bg-[#faf0fa]",
@@ -15,7 +15,7 @@ const pillars = [
   {
     number: "02",
     title: "No fees, no contracts, ever",
-    desc: "Our consultancy is completely free to clients. We are remunerated directly by insurers — you pay nothing extra, and there is no contractual obligation to stay. We earn your loyalty through service, not lock-in.",
+    desc: "Our consultancy is completely free to clients. We are remunerated directly by insurers. You pay nothing extra, and there is no contractual obligation to stay. We earn your loyalty through service, not lock-in.",
     icon: FileText,
     gradient: "from-[#003648] to-[#005a78]",
     lightBg: "bg-[#f0f7f9]",
@@ -33,7 +33,7 @@ const pillars = [
   {
     number: "04",
     title: "Award-winning expertise you can trust",
-    desc: "Named Best International Group Advice Firm at the UK Health & Protection Awards in 2023 and 2024. Our team has 30+ years of combined experience from Bupa Global, Aetna, Mercer, Vitality, and AIG — all working for you.",
+    desc: "Named Best International Group Advice Firm at the UK Health & Protection Awards in 2023 and 2024. Our team has 30+ years of combined experience from Bupa Global, Aetna, Mercer, Vitality, and AIG, all working for you.",
     icon: Trophy,
     gradient: "from-[#003648] to-[#005a78]",
     lightBg: "bg-[#f0f7f9]",
@@ -61,7 +61,7 @@ export function WhyChooseUs() {
             </h2>
           </div>
           <p className="text-gray-500 text-lg leading-relaxed lg:max-w-lg self-end pb-1">
-            Since 2016, Engage Health Group has built a reputation as one of the UK's most trusted independent consultancies — with specialists drawn from the world's leading insurers, all dedicated to your outcomes.
+            Since 2016, Engage Health Group has built a reputation as one of the UK's most trusted independent consultancies, with specialists drawn from the world's leading insurers, all dedicated to your outcomes.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ export function WhyChooseUs() {
           <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
           <div className="relative text-center md:text-left">
             <div className="text-white text-xl md:text-2xl font-extrabold mb-1">Start with a free, no-obligation market review</div>
-            <div className="text-white/55 text-sm">We'll assess your current setup and show you what's possible — at zero cost.</div>
+            <div className="text-white/55 text-sm">We'll assess your current setup and show you what's possible, at zero cost.</div>
           </div>
           <Link
             href="/contact"

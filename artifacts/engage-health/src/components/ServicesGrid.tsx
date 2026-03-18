@@ -76,7 +76,7 @@ export function ServicesGrid() {
             UK & Global Coverage
           </div>
           <h2 className="text-3xl md:text-[2.6rem] font-extrabold text-secondary mb-4 leading-tight">
-            From the UK to the world —<br className="hidden md:block" /> we've got you covered
+            From the UK to the world,<br className="hidden md:block" /> we've got you covered
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed">
             From Group Life Insurance in the UK to International Health Cover for global businesses, we navigate the complexities so you don't have to.

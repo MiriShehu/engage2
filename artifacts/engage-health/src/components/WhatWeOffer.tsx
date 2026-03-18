@@ -23,7 +23,7 @@ const offerings = [
   {
     icon: FileCheck2,
     title: "Claims assistance & policy admin",
-    desc: "Hands-on support when your employees need it most — removing complexity from the claims process.",
+    desc: "Hands-on support when your employees need it most, helping remove complexity from the claims process.",
   },
   {
     icon: Users,
@@ -84,7 +84,7 @@ export function WhatWeOffer() {
               More than just a broker
             </h2>
             <p className="text-white/65 text-lg leading-relaxed mb-10">
-              Engage Health Group provides full consultancy and administrative support services — so you get expert advice and ongoing hands-on help, not just a policy.
+              Engage Health Group provides full consultancy and administrative support services, so you get expert advice and ongoing hands-on help, not just a policy.
             </p>
             <Link
               href="/contact"

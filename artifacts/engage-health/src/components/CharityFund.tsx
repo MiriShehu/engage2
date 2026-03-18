@@ -3,7 +3,7 @@ import { Heart, Stethoscope, Eye, Activity, Brain, Video, ArrowUpRight } from "l
 const charities = [
   {
     name: "Rockinghorse Children's Charity",
-    mission: "Fundraising for the Royal Alexandra Children's Hospital in Brighton — funding life-saving equipment for sick children across Sussex.",
+    mission: "Fundraising for the Royal Alexandra Children's Hospital in Brighton, funding life-saving equipment for sick children across Sussex.",
     gradient: "from-rose-400 to-pink-600",
     initial: "RC",
   },
@@ -15,13 +15,13 @@ const charities = [
   },
   {
     name: "Sussex Cancer Fund",
-    mission: "Working with the NHS to improve life for cancer patients in Sussex — funding specialist equipment, patient services, and research.",
+    mission: "Working with the NHS to improve life for cancer patients in Sussex, funding specialist equipment, patient services, and research.",
     gradient: "from-violet-500 to-purple-700",
     initial: "SC",
   },
   {
     name: "Grassroots Suicide Prevention",
-    mission: "Connecting, educating and training people in self-harm and suicide prevention — offering workshops in-person and online.",
+    mission: "Connecting, educating and training people in self-harm and suicide prevention, with workshops available in-person and online.",
     gradient: "from-teal-500 to-emerald-600",
     initial: "GS",
   },
@@ -60,7 +60,7 @@ export function CharityFund() {
               <span className="text-primary">Charity Health Fund</span>
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed">
-              We use our expertise and insurer relationships to provide <strong className="text-secondary font-semibold">free healthcare benefits</strong> to employees of selected small UK charities — removing financial barriers so they can access the care they deserve.
+              We use our expertise and insurer relationships to provide <strong className="text-secondary font-semibold">free healthcare benefits</strong> to employees of selected small UK charities, removing financial barriers so they can access the care they deserve.
             </p>
           </div>
 

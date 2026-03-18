@@ -76,7 +76,7 @@ export function OurExperts() {
           </div>
           <div className="flex flex-col items-start md:items-end gap-3">
             <p className="text-muted-foreground text-base max-w-xs md:text-right">
-              30+ years of combined experience — former Bupa Global, Aon, Mercer &amp; AIG professionals, all working for you.
+              30+ years of combined experience from former Bupa Global, Aon, Mercer &amp; AIG professionals, all working for you.
             </p>
             <div className="flex items-center gap-2">
               <button onClick={prev} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/40 transition-all">

@@ -45,7 +45,7 @@ export default function Home() {
         <HowItWorks />
         <AnimatedTeamSection
           title="The experts working for you"
-          description="Award-winning specialists drawn from Bupa Global, Aon, Mercer, Vitality and AIG — all dedicated to finding the best outcomes for your business."
+          description="Award-winning specialists drawn from Bupa Global, Aon, Mercer, Vitality and AIG, all dedicated to finding the best outcomes for your business."
           members={homeTeam}
           showLink
           className="bg-[#f8f7fb]"
