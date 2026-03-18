@@ -49,13 +49,13 @@ const item = {
 export function WhatWeOffer() {
   return (
     <section className="py-24 bg-[#003648] relative overflow-hidden">
-      {/* logo watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+      {/* logomark watermark */}
+      <div className="absolute inset-0 flex items-center justify-end pr-16 pointer-events-none select-none">
         <img
-          src="/logo.png"
+          src="/logomark.png"
           alt=""
-          className="w-[680px] max-w-[70%] object-contain"
-          style={{ opacity: 0.045, filter: "brightness(10) saturate(0)" }}
+          className="w-[520px] max-w-[55%] object-contain"
+          style={{ opacity: 0.07, filter: "brightness(100) saturate(0)" }}
         />
       </div>
 
