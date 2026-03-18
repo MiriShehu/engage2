@@ -3,7 +3,6 @@ import { Hero } from "@/components/Hero";
 import { TrustBar } from "@/components/TrustBar";
 import { ProblemSolution } from "@/components/ProblemSolution";
 import { ServicesGrid } from "@/components/ServicesGrid";
-import { HowItWorks } from "@/components/HowItWorks";
 import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
 import { EngageNumbers } from "@/components/EngageNumbers";
 import { Testimonials } from "@/components/Testimonials";
@@ -42,7 +41,6 @@ export default function Home() {
         <ServicesGrid />
         <WhyEngageSection />
         <ProblemSolution />
-        <HowItWorks />
         <AnimatedTeamSection
           title="The experts working for you"
           description="Award-winning specialists drawn from Bupa Global, Aon, Mercer, Vitality and AIG, all dedicated to finding the best outcomes for your business."
