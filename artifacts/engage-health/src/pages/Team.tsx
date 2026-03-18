@@ -229,16 +229,16 @@ const departments = [
 function MemberCard({ member }: { member: typeof departments[0]["members"][0] }) {
   return (
     <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-      {/* Photo area */}
+      {/* Photo area — fixed height so all cards are uniform */}
       <div
-        className="relative flex items-end justify-center pt-6 px-6"
+        className="relative h-[240px] overflow-hidden"
         style={{ background: `linear-gradient(160deg, ${member.accent}12 0%, ${member.accent}28 100%)` }}
       >
-        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: member.accent }} />
+        <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: member.accent }} />
         <img
           src={member.img}
           alt={member.name}
-          className="relative z-10 w-full max-h-[220px] object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500 drop-shadow-md"
+          className="absolute inset-0 w-full h-full object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500 drop-shadow-md"
           onError={(e) => {
             const el = e.currentTarget;
             el.style.display = "none";
@@ -247,7 +247,7 @@ function MemberCard({ member }: { member: typeof departments[0]["members"][0] })
           }}
         />
         <div
-          className="hidden w-full h-[180px] items-center justify-center text-white text-4xl font-black rounded-t-xl"
+          className="absolute inset-0 hidden items-center justify-center text-white text-4xl font-black"
           style={{ background: `linear-gradient(135deg, ${member.accent}, ${member.accent}99)` }}
         >
           {member.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
