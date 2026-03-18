@@ -1,126 +1,175 @@
-import { useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import {
-  Heart, Shield, TrendingUp, Smile, Activity, Headphones,
-  AlertCircle, Globe, Plane, Lock, UserCheck, MonitorSmartphone,
-  UserX, Stethoscope, Building2, Users, ArrowRight, MapPin,
-  Briefcase, ShieldCheck, HeartPulse, FileSearch,
+  Heart, Shield, TrendingUp, Smile, Headphones,
+  AlertCircle, Globe, Building2, ArrowRight, Check,
+  HeartPulse,
 } from "lucide-react";
 import { Link } from "wouter";
-import { cn } from "@/lib/utils";
 
-const ukProducts = [
-  { icon: HeartPulse,       title: "Group Health Insurance",           desc: "Create a scheme tailored to your business." },
-  { icon: Shield,           title: "Group Life Insurance",             desc: "Discover the most competitive deals." },
-  { icon: TrendingUp,       title: "Group Income Protection",          desc: "Source the ideal Group Income Protection scheme." },
-  { icon: AlertCircle,      title: "Group Critical Illness",           desc: "Find the best value Critical Illness cover." },
-  { icon: Smile,            title: "Group Dental Insurance",           desc: "Understand your options for Dental insurance." },
-  { icon: Activity,         title: "Corporate Wellness Programmes",    desc: "Plan & launch a Corporate Wellness Programme." },
-  { icon: Headphones,       title: "Employee Assistance Programmes",   desc: "Find the right EAP for your budget." },
-  { icon: Heart,            title: "Group Health Cash Plan",           desc: "Understand how Business Health Cash Plans work." },
-  { icon: UserCheck,        title: "Key Person Insurance",             desc: "Fully grasp how Key Person Insurance works." },
-  { icon: ShieldCheck,      title: "Relevant Life Insurance",          desc: "Set-up the policy & manage the claims process." },
-  { icon: Stethoscope,      title: "Employee Health Screening",        desc: "Protect the future health & wellbeing of your team." },
-  { icon: MonitorSmartphone,title: "Employee Benefits Platforms",      desc: "Centralise and communicate your full benefits package." },
+const ukPolicies = [
+  { icon: HeartPulse,  label: "Group Health Insurance" },
+  { icon: Shield,      label: "Group Life Insurance" },
+  { icon: TrendingUp,  label: "Group Income Protection" },
+  { icon: AlertCircle, label: "Group Critical Illness Cover" },
+  { icon: Heart,       label: "Group Health Cash Plan" },
+  { icon: Headphones,  label: "Employee Assistance Programmes (EAP)" },
+  { icon: Smile,       label: "Group Dental Insurance" },
 ];
 
-const intlProducts = [
-  { icon: Globe,            title: "Int. Business Health Insurance",        desc: "Set up an International Health Insurance scheme." },
-  { icon: Shield,           title: "International Group Life Insurance",     desc: "Design & launch a bespoke global scheme." },
-  { icon: TrendingUp,       title: "International Group Income Protection",  desc: "Manage a scheme for your global workforce." },
-  { icon: AlertCircle,      title: "International Group Critical Illness",   desc: "Design, implement & manage a bespoke policy." },
-  { icon: Plane,            title: "Group Business Travel Insurance",        desc: "Understand Business Travel Insurance policies." },
-  { icon: Lock,             title: "Kidnap and Ransom Insurance",            desc: "Safeguard & support your hard-working teams." },
-  { icon: FileSearch,       title: "Short-Term International Health",        desc: "Source a variety of individually tailored quotes." },
-  { icon: Headphones,       title: "Int. Employee Assistance Programmes",    desc: "Design, launch & manage a tailored policy." },
-  { icon: MapPin,           title: "International Security Services",        desc: "Locate the best International Security Services." },
-  { icon: UserCheck,        title: "Pre-Assignment Screening",               desc: "Learn how to apply Pre-Assignment Screening." },
-  { icon: Building2,        title: "US Company Health Insurance",            desc: "Gain a clear picture of how US healthcare works." },
-  { icon: Briefcase,        title: "Additional International Products",      desc: "Professional advice and guidance." },
+const intlPolicies = [
+  { icon: Globe,       label: "International Health Insurance" },
+  { icon: Shield,      label: "International Life Insurance" },
+  { icon: TrendingUp,  label: "International Income Protection" },
+  { icon: AlertCircle, label: "International Critical Illness Cover" },
+  { icon: Building2,   label: "US Health Insurance" },
+  { icon: Headphones,  label: "International EAP" },
 ];
 
-type Tab = "uk" | "intl";
+function PolicyItem({ icon: Icon, label, accent }: { icon: React.ElementType; label: string; accent: string }) {
+  return (
+    <Link href="/products">
+      <motion.div
+        className="group flex items-center gap-3 py-3 px-4 rounded-xl cursor-pointer transition-colors duration-200 hover:bg-white/10"
+        whileHover={{ x: 4 }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      >
+        <div
+          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+          style={{ background: `${accent}22` }}
+        >
+          <Icon className="w-4 h-4" style={{ color: accent }} />
+        </div>
+        <span className="text-[#1a1a2e] text-sm font-semibold flex-1 leading-snug group-hover:text-[#003648] transition-colors">
+          {label}
+        </span>
+        <ArrowRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-[#003648] group-hover:translate-x-0.5 transition-all duration-200" />
+      </motion.div>
+    </Link>
+  );
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] },
+  }),
+};
 
 export function ServicesGrid() {
-  const [active, setActive] = useState<Tab>("uk");
-  const products = active === "uk" ? ukProducts : intlProducts;
-
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-[#f8f7fb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/8 text-primary text-xs font-bold uppercase tracking-widest mb-4">
-              Our Products
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">
-              Everything Your Team Needs
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Mix and match from the entire market — UK employee benefits or comprehensive international cover.
-            </p>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-5 border border-primary/15">
+            UK & Global Coverage
           </div>
-          <Link href="/products" className="group inline-flex items-center gap-2 font-bold text-primary hover:text-primary/80 transition-colors whitespace-nowrap shrink-0">
-            Explore all products <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
+          <h2 className="text-3xl md:text-[2.6rem] font-extrabold text-secondary mb-4 leading-tight">
+            From the UK to the world —<br className="hidden md:block" /> we've got you covered
+          </h2>
+          <p className="text-gray-500 text-lg leading-relaxed">
+            From Group Life Insurance in the UK to International Health Cover for global businesses, we navigate the complexities so you don't have to.
+          </p>
+        </motion.div>
 
-        {/* tab switcher */}
-        <div className="flex items-center gap-1 p-1 rounded-2xl bg-muted/60 w-fit mb-10 border border-border/60">
-          {([
-            { id: "uk"   as Tab, label: "Employee Benefits",      sub: "UK",     color: "#76186f" },
-            { id: "intl" as Tab, label: "International Benefits", sub: "Global", color: "#003648" },
-          ] as const).map((t) => (
-            <button
-              key={t.id}
-              onClick={() => setActive(t.id)}
-              className={cn(
-                "relative px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 flex items-center gap-2",
-                active === t.id
-                  ? "text-white shadow-md"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {active === t.id && (
-                <span
-                  className="absolute inset-0 rounded-xl"
-                  style={{ background: t.color }}
-                />
-              )}
-              <span className="relative z-10">{t.label}</span>
-              <span className={cn(
-                "relative z-10 text-xs px-2 py-0.5 rounded-full font-semibold",
-                active === t.id ? "bg-white/20 text-white" : "bg-border text-muted-foreground"
-              )}>
-                {t.sub}
-              </span>
-            </button>
-          ))}
-        </div>
+        {/* Two-column panels */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        {/* product grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/40 rounded-2xl overflow-hidden border border-border/40 shadow-sm">
-          {products.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <Link key={`${active}-${i}`} href="/products">
-                <div className="group flex items-start gap-4 p-6 bg-white hover:bg-secondary/[0.03] transition-colors cursor-pointer">
-                  <div className="w-10 h-10 rounded-xl bg-secondary/8 text-secondary flex items-center justify-center shrink-0 group-hover:bg-secondary group-hover:text-white transition-all duration-200">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-bold text-secondary text-sm group-hover:text-primary transition-colors leading-snug mb-1">
-                      {p.title}
-                    </div>
-                    <div className="text-xs text-muted-foreground leading-relaxed">
-                      {p.desc}
-                    </div>
-                  </div>
+          {/* UK Panel */}
+          <motion.div
+            custom={0}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100"
+          >
+            {/* Panel header */}
+            <div className="px-8 py-6" style={{ background: "linear-gradient(135deg, #76186f 0%, #9b2594 100%)" }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">UK Policies</div>
+                  <h3 className="text-white text-xl font-extrabold">Employee Benefits</h3>
                 </div>
-              </Link>
-            );
-          })}
+                <div className="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center">
+                  <Check className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              <p className="text-white/70 text-sm mt-3 leading-relaxed">
+                Comprehensive UK employee benefit schemes sourced from the whole market.
+              </p>
+            </div>
+
+            {/* Policy list */}
+            <div className="p-4">
+              {ukPolicies.map((p, i) => (
+                <PolicyItem key={i} icon={p.icon} label={p.label} accent="#76186f" />
+              ))}
+
+              <div className="mt-4 pt-4 border-t border-gray-100 px-4">
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#76186f] hover:gap-3 transition-all duration-200"
+                >
+                  View all UK products
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* International Panel */}
+          <motion.div
+            custom={1}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100"
+          >
+            {/* Panel header */}
+            <div className="px-8 py-6" style={{ background: "linear-gradient(135deg, #003648 0%, #005a78 100%)" }}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">International Policies</div>
+                  <h3 className="text-white text-xl font-extrabold">Global Coverage</h3>
+                </div>
+                <div className="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center">
+                  <Globe className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              <p className="text-white/70 text-sm mt-3 leading-relaxed">
+                Multi-country health and protection solutions for businesses operating globally.
+              </p>
+            </div>
+
+            {/* Policy list */}
+            <div className="p-4">
+              {intlPolicies.map((p, i) => (
+                <PolicyItem key={i} icon={p.icon} label={p.label} accent="#003648" />
+              ))}
+
+              <div className="mt-4 pt-4 border-t border-gray-100 px-4">
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#003648] hover:gap-3 transition-all duration-200"
+                >
+                  View all international products
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
       </div>
