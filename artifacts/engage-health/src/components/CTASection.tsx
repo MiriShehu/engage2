@@ -1,5 +1,6 @@
 import { Shield, Clock, Award } from "lucide-react";
 import { QuoteForm } from "./QuoteForm";
+import { Sparkles } from "./Sparkles";
 
 const steps = [
   {
@@ -29,21 +30,20 @@ export function CTASection() {
   return (
     <section className="relative overflow-hidden bg-[#001e2b] py-24">
 
-      {/* ── decorative background ── */}
+      {/* ── sparkles background ── */}
+      <Sparkles
+        className="absolute inset-0 w-full h-full"
+        color="#ffffff"
+        size={1.2}
+        density={120}
+        speed={0.4}
+        opacity={0.5}
+        background="transparent"
+      />
+      {/* glow blobs behind sparkles */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* subtle grid */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
-            backgroundSize: "56px 56px",
-          }}
-        />
-        {/* brand-gradient glow blobs */}
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#0dab76]/15 blur-[120px]" />
-        <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] rounded-full bg-[#3568d4]/20 blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] rounded-full bg-primary/10 blur-[100px]" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/20 blur-[120px]" />
+        <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] rounded-full bg-secondary/40 blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
