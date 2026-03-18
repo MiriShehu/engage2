@@ -9,7 +9,6 @@ import { Testimonials } from "@/components/Testimonials";
 import { BenefitsIntro } from "@/components/BenefitsIntro";
 import { WhatWeOffer } from "@/components/WhatWeOffer";
 import { WhyEngageSection } from "@/components/WhyEngageSection";
-import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { BlogPosts } from "@/components/BlogPosts";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
@@ -48,7 +47,6 @@ export default function Home() {
           className="bg-[#f8f7fb]"
         />
         <EngageNumbers />
-        <WhyChooseUs />
         <Testimonials />
         <BlogPosts />
         <CTASection />
