@@ -69,8 +69,8 @@ export function ServicesGrid() {
         {/* tab switcher */}
         <div className="flex items-center gap-1 p-1 rounded-2xl bg-muted/60 w-fit mb-10 border border-border/60">
           {([
-            { id: "uk"   as Tab, label: "Employee Benefits",      sub: "UK",     color: "#1961a5" },
-            { id: "intl" as Tab, label: "International Benefits", sub: "Global", color: "#c0145e" },
+            { id: "uk"   as Tab, label: "Employee Benefits",      sub: "UK",     color: "#76186f" },
+            { id: "intl" as Tab, label: "International Benefits", sub: "Global", color: "#003648" },
           ] as const).map((t) => (
             <button
               key={t.id}

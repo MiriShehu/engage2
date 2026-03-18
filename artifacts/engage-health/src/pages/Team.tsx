@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 
 const BASE = "https://www.engagehealthgroup.co.uk/wp-content/uploads";
 const linkedinUrl = "https://www.linkedin.com/company/engage-health-group/";
+const T = "#003648";
+const P = "#76186f";
 
 const departments = [
   {
@@ -17,7 +19,7 @@ const departments = [
         title: "Founder & Director",
         bio: "Founded Engage Health Group in 2016 with a mission to make outstanding employee benefits accessible to all. CII qualified, Nick leads the UK business channel and is personally committed to the highest level of client service.",
         img: `${BASE}/2023/01/Nick-Hale-e1674569951192.png`,
-        accent: "#76186f",
+        accent: P,
         tags: ["Founder", "CII Qualified", "UK Benefits"],
       },
       {
@@ -25,7 +27,7 @@ const departments = [
         title: "International Director",
         bio: "After 8+ years at Bupa Global, Ian co-founded Engage International — the arm dedicated to helping global businesses navigate health and protection across 70+ countries. Multiple award winner.",
         img: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png`,
-        accent: "#003648",
+        accent: T,
         tags: ["Bupa Global Alumni", "International", "Award Winner"],
       },
       {
@@ -33,7 +35,7 @@ const departments = [
         title: "Director",
         bio: "Founder of Engage's sister brokerage Hooray Health & Protection. Charlie brings deep SME expertise and a wealth of experience helping fast-growing UK businesses build their first benefits packages.",
         img: `${BASE}/2023/01/charlie-e1674569473213.png`,
-        accent: "#7c3aed",
+        accent: P,
         tags: ["SME Specialist", "Director"],
       },
       {
@@ -41,7 +43,7 @@ const departments = [
         title: "Head of Client Services",
         bio: "With a background spanning account management and financial services, Stuart leads the client services team — ensuring every Engage client relationship is proactive, responsive, and built on trust.",
         img: `${BASE}/2023/01/Stuart-Box-copy.png`,
-        accent: "#0d9488",
+        accent: T,
         tags: ["Account Management", "Client Services"],
       },
     ],
@@ -55,7 +57,7 @@ const departments = [
         title: "Employee Benefits Team Lead",
         bio: "Senior roles at Aon, Capita Employee Benefits, and Mercer have given Mike an encyclopaedic knowledge of benefits, wellness, pensions and insurance strategy. He leads the UK employee benefits team.",
         img: `${BASE}/2023/06/Mike-Hesch-Head-Shot-e1723650105906.png`,
-        accent: "#2563eb",
+        accent: P,
         tags: ["Aon", "Mercer", "Capita", "Team Lead"],
       },
       {
@@ -63,7 +65,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "Jess provides wide-ranging employee benefits advice with a partnership-focused approach — working closely with HR teams to build sustainable and valued benefits packages.",
         img: `${BASE}/2023/12/Jess-Wright_.png`,
-        accent: "#e11d48",
+        accent: T,
         tags: ["Employee Benefits", "HR Partnership"],
       },
       {
@@ -71,7 +73,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "Brings experience from AIG and Benefex, giving Ed a strong technical understanding of group insurance products and digital benefits platforms.",
         img: `${BASE}/2023/01/Ed-Bryan-1.png`,
-        accent: "#f59e0b",
+        accent: P,
         tags: ["AIG", "Benefex", "Group Insurance"],
       },
       {
@@ -79,7 +81,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "A Business Management and Marketing graduate who brings fresh thinking to client advisory. Esme helps businesses shape benefits packages that genuinely attract and retain talent.",
         img: `${BASE}/2023/01/Esme-Pearson-1.png`,
-        accent: "#7c3aed",
+        accent: T,
         tags: ["Client Advisory", "Talent Retention"],
       },
       {
@@ -87,7 +89,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "Stuart is dedicated to helping companies build their ideal benefits package, ensuring the process runs as smoothly as possible for every client.",
         img: `${BASE}/2023/05/stuart-isaac.png`,
-        accent: "#1d4ed8",
+        accent: P,
         tags: ["Employee Benefits", "UK Benefits"],
       },
       {
@@ -95,7 +97,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "John relishes the opportunity to nurture new client relationships with sound, impartial advice given in their best interests.",
         img: `${BASE}/2024/02/John-Kavanagh-copy.png`,
-        accent: "#b45309",
+        accent: T,
         tags: ["Client Relationships", "Employee Benefits"],
       },
       {
@@ -103,7 +105,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "Known for her enthusiastic, customer-centred approach, Chloe advises on all things employee benefits and ensures every client gets a clear, helpful answer.",
         img: `${BASE}/2023/05/chloe-e1698242302294.png`,
-        accent: "#db2777",
+        accent: P,
         tags: ["Customer-Centred", "Employee Benefits"],
       },
       {
@@ -111,7 +113,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "Aleen ensures business clients get the very best advice across a wide range of employee health and protection policies.",
         img: `${BASE}/2024/08/Aleen-Solly-e1723469764751.png`,
-        accent: "#dc2626",
+        accent: T,
         tags: ["Health Insurance", "Life Insurance", "Protection"],
       },
       {
@@ -119,7 +121,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "Katie helps connect businesses to the most cost-effective health and protection policies available in the UK market.",
         img: `${BASE}/2025/04/katie-waldren.png`,
-        accent: "#be185d",
+        accent: P,
         tags: ["UK Benefits", "Cost Optimisation"],
       },
       {
@@ -127,7 +129,7 @@ const departments = [
         title: "Employee Benefits Consultant",
         bio: "Matt is determined to do what's right for the client, helping them find the benefits policies that will best support their workforce.",
         img: `${BASE}/2026/02/matt-pennington.png`,
-        accent: "#0d9488",
+        accent: T,
         tags: ["Employee Benefits", "Client-First"],
       },
     ],
@@ -141,7 +143,7 @@ const departments = [
         title: "International Benefits Consultant",
         bio: "Eiman works closely with global clients to ensure consistent, high-quality benefits delivery worldwide. Deep experience navigating the complexity of international insurance markets.",
         img: `${BASE}/2024/02/Eiman-Elkhalifa.png`,
-        accent: "#0891b2",
+        accent: P,
         tags: ["Global Clients", "International Insurance"],
       },
       {
@@ -149,7 +151,7 @@ const departments = [
         title: "International Benefits Consultant",
         bio: "Brings valuable experience from international health insurers Aetna and Bupa Global to advise businesses on the best international health insurance solutions for their teams.",
         img: `${BASE}/2023/01/Bruno-Ferreira-Coelho-e1674568875855.png`,
-        accent: "#0369a1",
+        accent: T,
         tags: ["Aetna", "Bupa Global", "International Health"],
       },
       {
@@ -157,7 +159,7 @@ const departments = [
         title: "International Benefits Consultant",
         bio: "A background in travel insurance informs Ciara's practical and client-friendly approach to supporting internationally mobile employees and their healthcare needs.",
         img: `${BASE}/2024/01/Ciara-Boulton.png`,
-        accent: "#059669",
+        accent: P,
         tags: ["Travel Insurance", "International Support"],
       },
       {
@@ -165,7 +167,7 @@ const departments = [
         title: "International Benefits Consultant",
         bio: "Sophie ensures international clients get all the support they need on their global employee benefits policies.",
         img: `${BASE}/2025/04/sophie-rogers-scaled-e1744810230169.png`,
-        accent: "#0284c7",
+        accent: T,
         tags: ["Global Benefits", "International"],
       },
     ],
@@ -179,7 +181,7 @@ const departments = [
         title: "Finance Manager",
         bio: "Oversees the company's finances, ensuring Engage runs with the rigour and transparency that clients and partners expect from an FCA-regulated firm.",
         img: `${BASE}/2023/05/Adena-Stonely-1.png`,
-        accent: "#d97706",
+        accent: P,
         tags: ["Finance", "FCA Regulated"],
       },
       {
@@ -187,7 +189,7 @@ const departments = [
         title: "Partnerships Manager",
         bio: "Builds and manages the strategic partnerships that extend Engage's reach, enabling even more businesses to access world-class employee benefits advice.",
         img: `${BASE}/2025/04/emma-profile-Edited.png`,
-        accent: "#ec4899",
+        accent: T,
         tags: ["Strategic Partnerships", "Business Development"],
       },
       {
@@ -195,7 +197,7 @@ const departments = [
         title: "Research & Pricing Analyst",
         bio: "Tracks the latest data, price-points, and product developments across the market — making sure Engage's advice is always informed by the most current intelligence.",
         img: `${BASE}/2023/01/Joanne-Lloyd-e1674570051794.png`,
-        accent: "#4f46e5",
+        accent: P,
         tags: ["Market Research", "Data"],
       },
       {
@@ -203,7 +205,7 @@ const departments = [
         title: "Client Services Executive",
         bio: "Often the first port of call for clients seeking support with their policies, Emily helps clients navigate their benefits quickly and confidently.",
         img: `${BASE}/2024/05/Emily-Ager-N0-BG-e1721919350416.png`,
-        accent: "#0d9488",
+        accent: T,
         tags: ["Client Support", "Policy Queries"],
       },
       {
@@ -211,7 +213,7 @@ const departments = [
         title: "Client Services Executive",
         bio: "Steph has returned to the insurance industry to help ensure our clients get the very best support day to day.",
         img: `${BASE}/2024/07/Steph-Lee-e1722247578394.png`,
-        accent: "#9333ea",
+        accent: P,
         tags: ["Client Support", "Insurance"],
       },
       {
@@ -219,7 +221,7 @@ const departments = [
         title: "Client Services Executive",
         bio: "Nadia helps ensure all clients' policies are up-to-date and working as they should, providing smooth and responsive ongoing support.",
         img: `${BASE}/2025/10/nadia-cruz-e1761568726572.png`,
-        accent: "#b45309",
+        accent: T,
         tags: ["Client Support", "Policy Management"],
       },
     ],
