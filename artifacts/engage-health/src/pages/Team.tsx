@@ -4,6 +4,7 @@ import { CTASection } from "@/components/CTASection";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const BASE = "https://www.engagehealthgroup.co.uk/wp-content/uploads";
 const linkedinUrl = "https://www.linkedin.com/company/engage-health-group/";
 
 const departments = [
@@ -12,35 +13,35 @@ const departments = [
     description: "The founders and directors who set the vision and ensure every client gets a best-in-class experience.",
     members: [
       {
-        initials: "NH",
         name: "Nick Hale",
         title: "Founder & Director",
-        bio: "Founded Engage Health Group in 2016 with a mission to make outstanding employee benefits accessible to businesses of all sizes. CII qualified, Nick leads the UK business channel and is personally committed to the highest level of client service.",
-        gradient: "from-[#76186f] to-[#a0249a]",
+        bio: "Founded Engage Health Group in 2016 with a mission to make outstanding employee benefits accessible to all. CII qualified, Nick leads the UK business channel and is personally committed to the highest level of client service.",
+        img: `${BASE}/2023/01/Nick-Hale-e1674569951192.png`,
+        accent: "#76186f",
         tags: ["Founder", "CII Qualified", "UK Benefits"],
       },
       {
-        initials: "IA",
         name: "Ian Abbott",
         title: "International Director",
-        bio: "After 8+ years at Bupa Global, Ian co-founded Engage International — the arm dedicated to helping global businesses navigate health and protection across 70+ countries. Multiple award winner for innovative international solutions.",
-        gradient: "from-[#003648] to-[#005a78]",
+        bio: "After 8+ years at Bupa Global, Ian co-founded Engage International — the arm dedicated to helping global businesses navigate health and protection across 70+ countries. Multiple award winner.",
+        img: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png`,
+        accent: "#003648",
         tags: ["Bupa Global Alumni", "International", "Award Winner"],
       },
       {
-        initials: "CH",
-        name: "Charlie",
+        name: "Charlie Cousins",
         title: "Director",
-        bio: "Founder of Engage's sister brokerage, Hooray Health & Protection. Charlie brings deep SME expertise and a wealth of experience helping fast-growing UK businesses build their first benefits packages.",
-        gradient: "from-violet-600 to-purple-800",
+        bio: "Founder of Engage's sister brokerage Hooray Health & Protection. Charlie brings deep SME expertise and a wealth of experience helping fast-growing UK businesses build their first benefits packages.",
+        img: `${BASE}/2023/01/charlie-e1674569473213.png`,
+        accent: "#7c3aed",
         tags: ["SME Specialist", "Director"],
       },
       {
-        initials: "SB",
         name: "Stuart Box",
         title: "Head of Client Services",
         bio: "With a background spanning account management and financial services, Stuart leads the client services team — ensuring every Engage client relationship is proactive, responsive, and built on trust.",
-        gradient: "from-teal-500 to-emerald-700",
+        img: `${BASE}/2023/01/Stuart-Box-copy.png`,
+        accent: "#0d9488",
         tags: ["Account Management", "Client Services"],
       },
     ],
@@ -50,52 +51,84 @@ const departments = [
     description: "Specialists in UK group health, protection and wellbeing — sourcing, implementing and managing policies on your behalf.",
     members: [
       {
-        initials: "MH",
         name: "Mike Hesch",
         title: "Employee Benefits Team Lead",
-        bio: "Senior roles at Aon, Capita Employee Benefits, and Mercer have given Mike an encyclopaedic knowledge of benefits, wellness, pensions and insurance strategy. He leads our UK employee benefits team.",
-        gradient: "from-indigo-500 to-blue-700",
+        bio: "Senior roles at Aon, Capita Employee Benefits, and Mercer have given Mike an encyclopaedic knowledge of benefits, wellness, pensions and insurance strategy. He leads the UK employee benefits team.",
+        img: `${BASE}/2023/06/Mike-Hesch-Head-Shot-e1723650105906.png`,
+        accent: "#2563eb",
         tags: ["Aon", "Mercer", "Capita", "Team Lead"],
       },
       {
-        initials: "JE",
-        name: "Jess",
+        name: "Jess Wright",
         title: "Employee Benefits Consultant",
         bio: "Jess provides wide-ranging employee benefits advice with a partnership-focused approach — working closely with HR teams to build sustainable and valued benefits packages.",
-        gradient: "from-pink-500 to-rose-600",
+        img: `${BASE}/2023/12/Jess-Wright_.png`,
+        accent: "#e11d48",
         tags: ["Employee Benefits", "HR Partnership"],
       },
       {
-        initials: "ED",
-        name: "Ed",
+        name: "Ed Bryan",
         title: "Employee Benefits Consultant",
         bio: "Brings experience from AIG and Benefex, giving Ed a strong technical understanding of group insurance products and digital benefits platforms.",
-        gradient: "from-amber-500 to-orange-600",
+        img: `${BASE}/2023/01/Ed-Bryan-1.png`,
+        accent: "#f59e0b",
         tags: ["AIG", "Benefex", "Group Insurance"],
       },
       {
-        initials: "ES",
-        name: "Esme",
+        name: "Esme Pearson",
         title: "Employee Benefits Consultant",
         bio: "A Business Management and Marketing graduate who brings fresh thinking to client advisory. Esme helps businesses shape benefits packages that genuinely attract and retain talent.",
-        gradient: "from-emerald-500 to-green-700",
+        img: `${BASE}/2023/01/Esme-Pearson-1.png`,
+        accent: "#7c3aed",
         tags: ["Client Advisory", "Talent Retention"],
       },
       {
-        initials: "CL",
-        name: "Chloe",
+        name: "Stuart Isaac",
         title: "Employee Benefits Consultant",
-        bio: "Known for her enthusiastic, customer-centred approach, Chloe ensures every client interaction is positive and every question gets a clear, helpful answer.",
-        gradient: "from-sky-500 to-cyan-600",
+        bio: "Stuart is dedicated to helping companies build their ideal benefits package, ensuring the process runs as smoothly as possible for every client.",
+        img: `${BASE}/2023/05/stuart-isaac.png`,
+        accent: "#1d4ed8",
+        tags: ["Employee Benefits", "UK Benefits"],
+      },
+      {
+        name: "John Kavanagh",
+        title: "Employee Benefits Consultant",
+        bio: "John relishes the opportunity to nurture new client relationships with sound, impartial advice given in their best interests.",
+        img: `${BASE}/2024/02/John-Kavanagh-copy.png`,
+        accent: "#b45309",
+        tags: ["Client Relationships", "Employee Benefits"],
+      },
+      {
+        name: "Chloe Young",
+        title: "Employee Benefits Consultant",
+        bio: "Known for her enthusiastic, customer-centred approach, Chloe advises on all things employee benefits and ensures every client gets a clear, helpful answer.",
+        img: `${BASE}/2023/05/chloe-e1698242302294.png`,
+        accent: "#db2777",
         tags: ["Customer-Centred", "Employee Benefits"],
       },
       {
-        initials: "AL",
-        name: "Aleen",
+        name: "Aleen Solly",
         title: "Employee Benefits Consultant",
-        bio: "Specialises in health insurance, life insurance, and income protection policies. Aleen helps clients understand the full spectrum of protection available to their workforce.",
-        gradient: "from-violet-500 to-purple-700",
+        bio: "Aleen ensures business clients get the very best advice across a wide range of employee health and protection policies.",
+        img: `${BASE}/2024/08/Aleen-Solly-e1723469764751.png`,
+        accent: "#dc2626",
         tags: ["Health Insurance", "Life Insurance", "Protection"],
+      },
+      {
+        name: "Katie Waldren",
+        title: "Employee Benefits Consultant",
+        bio: "Katie helps connect businesses to the most cost-effective health and protection policies available in the UK market.",
+        img: `${BASE}/2025/04/katie-waldren.png`,
+        accent: "#be185d",
+        tags: ["UK Benefits", "Cost Optimisation"],
+      },
+      {
+        name: "Matt Pennington",
+        title: "Employee Benefits Consultant",
+        bio: "Matt is determined to do what's right for the client, helping them find the benefits policies that will best support their workforce.",
+        img: `${BASE}/2026/02/matt-pennington.png`,
+        accent: "#0d9488",
+        tags: ["Employee Benefits", "Client-First"],
       },
     ],
   },
@@ -104,90 +137,90 @@ const departments = [
     description: "Experts in global employee benefits across 70+ countries — handling everything from multi-country policies to compliance and communication.",
     members: [
       {
-        initials: "PP",
-        name: "Penny Pemberton",
-        title: "International Team Lead",
-        bio: "Creates and delivers global benefits strategies for clients operating across multiple territories. Penny's expertise ensures consistent, compliant, and valued coverage for multinational and remote-first workforces.",
-        gradient: "from-rose-500 to-pink-700",
-        tags: ["Global Strategy", "Team Lead", "Compliance"],
-      },
-      {
-        initials: "EI",
-        name: "Eiman",
-        title: "International Consultant",
-        bio: "Works with global clients to ensure consistent and high-quality benefits delivery worldwide. Eiman has deep experience navigating the complexity of international insurance markets.",
-        gradient: "from-[#003648] to-teal-600",
+        name: "Eiman Elkhalifa",
+        title: "International Benefits Consultant",
+        bio: "Eiman works closely with global clients to ensure consistent, high-quality benefits delivery worldwide. Deep experience navigating the complexity of international insurance markets.",
+        img: `${BASE}/2024/02/Eiman-Elkhalifa.png`,
+        accent: "#0891b2",
         tags: ["Global Clients", "International Insurance"],
       },
       {
-        initials: "BR",
-        name: "Bruno",
-        title: "International Consultant",
-        bio: "Brings valuable experience from Aetna and Bupa Global to advise businesses on the best international health insurance solutions for their teams.",
-        gradient: "from-indigo-500 to-blue-700",
+        name: "Bruno Ferreira Coelho",
+        title: "International Benefits Consultant",
+        bio: "Brings valuable experience from international health insurers Aetna and Bupa Global to advise businesses on the best international health insurance solutions for their teams.",
+        img: `${BASE}/2023/01/Bruno-Ferreira-Coelho-e1674568875855.png`,
+        accent: "#0369a1",
         tags: ["Aetna", "Bupa Global", "International Health"],
       },
       {
-        initials: "CI",
-        name: "Ciara",
-        title: "International Consultant",
+        name: "Ciara Boulton",
+        title: "International Benefits Consultant",
         bio: "A background in travel insurance informs Ciara's practical and client-friendly approach to supporting internationally mobile employees and their healthcare needs.",
-        gradient: "from-emerald-500 to-teal-700",
+        img: `${BASE}/2024/01/Ciara-Boulton.png`,
+        accent: "#059669",
         tags: ["Travel Insurance", "International Support"],
+      },
+      {
+        name: "Sophie Rogers",
+        title: "International Benefits Consultant",
+        bio: "Sophie ensures international clients get all the support they need on their global employee benefits policies.",
+        img: `${BASE}/2025/04/sophie-rogers-scaled-e1744810230169.png`,
+        accent: "#0284c7",
+        tags: ["Global Benefits", "International"],
       },
     ],
   },
   {
     name: "Operations & Support",
-    description: "The team that keeps everything running smoothly — from finance and compliance to client support and marketing.",
+    description: "The team that keeps everything running smoothly — from finance and compliance to client support.",
     members: [
       {
-        initials: "AD",
-        name: "Adena",
-        title: "Finance",
+        name: "Adena Stonely",
+        title: "Finance Manager",
         bio: "Oversees the company's finances, ensuring Engage runs with the rigour and transparency that clients and partners expect from an FCA-regulated firm.",
-        gradient: "from-amber-500 to-yellow-600",
+        img: `${BASE}/2023/05/Adena-Stonely-1.png`,
+        accent: "#d97706",
         tags: ["Finance", "FCA Regulated"],
       },
       {
-        initials: "ML",
-        name: "Mel",
-        title: "Content Marketing Manager",
-        bio: "Experienced in copywriting, PR and SEO, Mel oversees content marketing — making sure Engage's expertise reaches the businesses that need it most.",
-        gradient: "from-pink-500 to-rose-600",
-        tags: ["Copywriting", "SEO", "PR"],
-      },
-      {
-        initials: "EM",
-        name: "Emma",
+        name: "Emma Rose-Angus",
         title: "Partnerships Manager",
         bio: "Builds and manages the strategic partnerships that extend Engage's reach, enabling even more businesses to access world-class employee benefits advice.",
-        gradient: "from-violet-500 to-indigo-600",
+        img: `${BASE}/2025/04/emma-profile-Edited.png`,
+        accent: "#ec4899",
         tags: ["Strategic Partnerships", "Business Development"],
       },
       {
-        initials: "LB",
-        name: "Liberty",
-        title: "Client Support",
-        bio: "Liberty is a vital member of the client support team, fielding queries and ensuring the whole team can deliver fast, accurate answers to clients day-to-day.",
-        gradient: "from-sky-500 to-blue-600",
-        tags: ["Client Support", "Team Support"],
-      },
-      {
-        initials: "JO",
-        name: "Joanne",
-        title: "Research",
+        name: "Joanne Lloyd",
+        title: "Research & Pricing Analyst",
         bio: "Tracks the latest data, price-points, and product developments across the market — making sure Engage's advice is always informed by the most current intelligence.",
-        gradient: "from-emerald-500 to-green-700",
+        img: `${BASE}/2023/01/Joanne-Lloyd-e1674570051794.png`,
+        accent: "#4f46e5",
         tags: ["Market Research", "Data"],
       },
       {
-        initials: "EP",
-        name: "Emily",
-        title: "Client Support",
-        bio: "Often the first point of contact for policy support enquiries, Emily helps clients navigate their benefits quickly and confidently.",
-        gradient: "from-teal-500 to-cyan-600",
+        name: "Emily Ager",
+        title: "Client Services Executive",
+        bio: "Often the first port of call for clients seeking support with their policies, Emily helps clients navigate their benefits quickly and confidently.",
+        img: `${BASE}/2024/05/Emily-Ager-N0-BG-e1721919350416.png`,
+        accent: "#0d9488",
         tags: ["Client Support", "Policy Queries"],
+      },
+      {
+        name: "Steph Lee",
+        title: "Client Services Executive",
+        bio: "Steph has returned to the insurance industry to help ensure our clients get the very best support day to day.",
+        img: `${BASE}/2024/07/Steph-Lee-e1722247578394.png`,
+        accent: "#9333ea",
+        tags: ["Client Support", "Insurance"],
+      },
+      {
+        name: "Nadia Cruz",
+        title: "Client Services Executive",
+        bio: "Nadia helps ensure all clients' policies are up-to-date and working as they should, providing smooth and responsive ongoing support.",
+        img: `${BASE}/2025/10/nadia-cruz-e1761568726572.png`,
+        accent: "#b45309",
+        tags: ["Client Support", "Policy Management"],
       },
     ],
   },
@@ -195,33 +228,51 @@ const departments = [
 
 function MemberCard({ member }: { member: typeof departments[0]["members"][0] }) {
   return (
-    <div className="group bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden relative">
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-        style={{ background: "linear-gradient(135deg, rgba(118,24,111,0.03) 0%, rgba(0,54,72,0.03) 100%)" }}
-      />
-      <div className="relative">
-        <div className="flex items-start justify-between mb-4">
-          <div className={cn(
-            "w-14 h-14 rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg bg-gradient-to-br",
-            member.gradient
-          )}>
-            {member.initials}
-          </div>
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-[#0077b5] hover:border-[#0077b5] transition-colors duration-200"
-          >
-            <Linkedin className="w-3.5 h-3.5" />
-          </a>
+    <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      {/* Photo area */}
+      <div
+        className="relative flex items-end justify-center pt-6 px-6"
+        style={{ background: `linear-gradient(160deg, ${member.accent}12 0%, ${member.accent}28 100%)` }}
+      >
+        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: member.accent }} />
+        <img
+          src={member.img}
+          alt={member.name}
+          className="relative z-10 w-full max-h-[220px] object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500 drop-shadow-md"
+          onError={(e) => {
+            const el = e.currentTarget;
+            el.style.display = "none";
+            const fallback = el.nextElementSibling as HTMLElement | null;
+            if (fallback) fallback.style.display = "flex";
+          }}
+        />
+        <div
+          className="hidden w-full h-[180px] items-center justify-center text-white text-4xl font-black rounded-t-xl"
+          style={{ background: `linear-gradient(135deg, ${member.accent}, ${member.accent}99)` }}
+        >
+          {member.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
         </div>
-        <h3 className="text-lg font-bold text-secondary mb-0.5">{member.name}</h3>
-        <p className="text-sm font-semibold text-primary mb-3">{member.title}</p>
-        <p className="text-gray-500 text-sm leading-relaxed mb-4">{member.bio}</p>
+        <a
+          href={linkedinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0077b5] shadow hover:bg-white transition-colors"
+        >
+          <Linkedin className="w-3.5 h-3.5" />
+        </a>
+      </div>
+
+      {/* Info */}
+      <div className="p-5 flex-1 flex flex-col">
+        <div className="flex items-center gap-1.5 mb-1">
+          <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: member.accent }} />
+          <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">{member.title}</span>
+        </div>
+        <h3 className="text-base font-extrabold text-secondary mb-2 leading-tight">{member.name}</h3>
+        <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{member.bio}</p>
         <div className="flex flex-wrap gap-1.5">
           {member.tags.map((tag, i) => (
-            <span key={i} className="text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
+            <span key={i} className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
               {tag}
             </span>
           ))}
@@ -256,7 +307,6 @@ export default function Team() {
             <p className="text-white/65 text-xl max-w-2xl mx-auto">
               Our team brings over 30 years of combined experience from some of the world's leading insurers and benefits consultancies — all dedicated to finding the best outcomes for your business.
             </p>
-            {/* Stats bar */}
             <div className="mt-12 grid grid-cols-3 gap-6 max-w-xl mx-auto">
               {[
                 { value: "30+", label: "Years combined experience" },
@@ -280,7 +330,7 @@ export default function Team() {
                 <h2 className="text-2xl md:text-4xl font-extrabold text-secondary mb-3">{dept.name}</h2>
                 <p className="text-gray-500 text-lg max-w-2xl">{dept.description}</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {dept.members.map((member, mi) => (
                   <MemberCard key={mi} member={member} />
                 ))}
