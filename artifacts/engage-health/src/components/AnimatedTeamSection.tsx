@@ -33,10 +33,10 @@ const CARD_BG = [
 const getCardState = (index: number, total: number) => {
   const center = (total - 1) / 2;
   const dist = index - center;
-  const spread = Math.min(92, Math.round(580 / total));
+  const spread = Math.min(140, Math.round(950 / total));
   return {
     x: dist * spread,
-    y: Math.abs(dist) * -18,
+    y: Math.abs(dist) * -22,
     rotate: dist * 8,
   };
 };
@@ -74,7 +74,7 @@ export function AnimatedTeamSection({
 
   return (
     <section className={cn("w-full py-20", className)}>
-      <div className="max-w-5xl mx-auto flex flex-col items-center text-center px-4">
+      <div className="max-w-7xl mx-auto flex flex-col items-center text-center px-4">
 
         {/* Header */}
         {title && (
@@ -108,7 +108,7 @@ export function AnimatedTeamSection({
         <motion.div
           ref={ref}
           className="relative mt-20 flex items-end justify-center"
-          style={{ minHeight: "320px", width: "100%", paddingTop: "100px" }}
+          style={{ minHeight: "420px", width: "100%", paddingTop: "140px" }}
           variants={containerVariants}
           initial="hidden"
           animate={controls}
@@ -119,6 +119,7 @@ export function AnimatedTeamSection({
               key={index}
               className="absolute"
               style={{
+                left: "calc(50% - 80px)",
                 zIndex: hoveredIdx === index
                   ? 99
                   : members.length - Math.abs(index - (members.length - 1) / 2),
@@ -132,8 +133,8 @@ export function AnimatedTeamSection({
               <motion.div
                 className="rounded-2xl overflow-hidden border-[3px] border-white shadow-2xl cursor-default"
                 style={{
-                  width: "120px",
-                  height: "160px",
+                  width: "160px",
+                  height: "210px",
                   background: CARD_BG[index % CARD_BG.length],
                 }}
                 whileHover={{
@@ -157,10 +158,10 @@ export function AnimatedTeamSection({
                   animate={{ opacity: hoveredIdx === index ? 1 : 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <p className="text-white text-[10px] font-bold leading-tight truncate">
+                  <p className="text-white text-xs font-bold leading-tight truncate">
                     {member.name}
                   </p>
-                  <p className="text-white/70 text-[9px] leading-tight truncate">
+                  <p className="text-white/70 text-[10px] leading-tight truncate">
                     {member.title}
                   </p>
                 </motion.div>
