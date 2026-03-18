@@ -45,7 +45,7 @@ export function Hero() {
             </ul>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link href="/contact" className="btn-cta inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl group">
+              <Link href="/get-a-quote" className="btn-cta inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl group">
                 Get UK support <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link href="/solutions" className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-secondary bg-white border-2 border-secondary/20 shadow-lg hover:bg-secondary hover:text-white hover:-translate-y-1 transition-all duration-300">

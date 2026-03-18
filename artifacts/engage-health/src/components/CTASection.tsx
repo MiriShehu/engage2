@@ -1,6 +1,6 @@
-import { Shield, Clock, Award } from "lucide-react";
-import { QuoteForm } from "./QuoteForm";
+import { Shield, Clock, Award, ArrowRight, Phone } from "lucide-react";
 import { Sparkles } from "./Sparkles";
+import { Link } from "wouter";
 
 const steps = [
   {
@@ -30,17 +30,16 @@ export function CTASection() {
   return (
     <section className="relative overflow-hidden bg-[#001e2b] py-24">
 
-      {/* ── sparkles background ── */}
+      {/* sparkles background */}
       <Sparkles
         className="absolute inset-0 w-full h-full"
         color="#ffffff"
-        size={1.2}
         density={120}
         speed={0.4}
         opacity={0.5}
-        background="transparent"
       />
-      {/* glow blobs behind sparkles */}
+
+      {/* glow blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/20 blur-[120px]" />
         <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] rounded-full bg-secondary/40 blur-[120px]" />
@@ -49,12 +48,10 @@ export function CTASection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* ── LEFT: copy ── */}
+          {/* LEFT: copy */}
           <div className="text-white">
-
-            {/* eyebrow */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-semibold text-white/70 mb-6 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gradient inline-block"
+              <span className="w-1.5 h-1.5 rounded-full inline-block"
                     style={{ background: "linear-gradient(90deg,#0dab76,#3568d4)" }} />
               Free, no-obligation service
             </div>
@@ -109,15 +106,44 @@ export function CTASection() {
             </div>
           </div>
 
-          {/* ── RIGHT: quote form ── */}
-          <div className="relative">
-            {/* glow ring behind card */}
-            <div
-              className="absolute -inset-px rounded-3xl opacity-60 blur-sm"
-              style={{ background: "linear-gradient(135deg,#0dab76,#3568d4)" }}
-            />
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <QuoteForm />
+          {/* RIGHT: CTA card */}
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-10 text-center shadow-2xl">
+              <div
+                className="w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg"
+                style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}
+              >
+                <ArrowRight className="w-8 h-8 text-white" />
+              </div>
+
+              <h3 className="text-2xl font-extrabold text-white mb-3">
+                Ready to get started?
+              </h3>
+              <p className="text-white/55 text-sm leading-relaxed mb-8">
+                It takes under 60 seconds. We'll handle the rest and come back to you with tailored options from the whole market.
+              </p>
+
+              <div className="space-y-3">
+                <Link
+                  href="/get-a-quote"
+                  className="flex items-center justify-center gap-2 w-full py-4 px-6 rounded-xl font-bold text-white text-base transition-all hover:opacity-90 hover:-translate-y-0.5 shadow-lg"
+                  style={{ background: "linear-gradient(135deg,#76186f,#a0279a)" }}
+                >
+                  Get my free quote <ArrowRight className="w-5 h-5" />
+                </Link>
+
+                <a
+                  href="tel:01273974419"
+                  className="flex items-center justify-center gap-2 w-full py-4 px-6 rounded-xl font-bold text-white text-base border border-white/20 bg-white/5 hover:bg-white/10 transition-all"
+                >
+                  <Phone className="w-5 h-5" />
+                  Call us: 01273 974419
+                </a>
+              </div>
+
+              <p className="text-white/35 text-xs mt-6">
+                No fees. No commitment. Just expert advice.
+              </p>
             </div>
           </div>
 

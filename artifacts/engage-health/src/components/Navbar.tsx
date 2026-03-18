@@ -125,7 +125,7 @@ export function Navbar() {
               <Phone className="w-4 h-4" />
               01273 974419
             </a>
-            <Link href="/contact" className="btn-cta px-6 py-2.5 rounded-full text-sm">
+            <Link href="/get-a-quote" className="btn-cta px-6 py-2.5 rounded-full text-sm">
               Get a Quote
             </Link>
           </div>
@@ -171,7 +171,7 @@ export function Navbar() {
               <Phone className="w-5 h-5" />
               Call us: 01273 974419
             </a>
-            <Link href="/contact" className="btn-cta w-full text-center px-6 py-4 rounded-xl block">
+            <Link href="/get-a-quote" className="btn-cta w-full text-center px-6 py-4 rounded-xl block">
               Get a Free Quote
             </Link>
           </div>
