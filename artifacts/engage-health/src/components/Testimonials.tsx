@@ -1,61 +1,194 @@
-import { Star, Quote } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { Star } from "lucide-react";
+
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  avatar: string;
+  rating: number;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    quote: "Engage found us a better PMI policy at a lower premium in under a week. Their whole-of-market access is the real deal — no fluff, just results.",
+    name: "Sarah Thornton",
+    role: "HR Director",
+    company: "Tessian",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "Managing global health insurance for 300 employees across 12 countries was a nightmare before Engage. Now it's handled. Ian's team is exceptional.",
+    name: "Marcus Webb",
+    role: "Head of People",
+    company: "Phoebe AI",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "They took over our renewal at short notice and negotiated a 14% saving. Our dedicated account manager knows our business inside out.",
+    name: "Claire Osei",
+    role: "Operations Manager",
+    company: "CAE Parc Aviation",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "The fact that there's zero cost to us and no lock-in was hard to believe at first. Now we've been a client for four years and the value is undeniable.",
+    name: "James Ridley",
+    role: "CFO",
+    company: "Zink Commerce",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "Our team had complex pre-existing conditions. Engage navigated the underwriting process with total professionalism and got everyone covered.",
+    name: "Layla Mirza",
+    role: "People Operations Lead",
+    company: "Remote",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "From EAP to group life, Engage structured a complete benefits package that genuinely improved our staff retention. The team's expertise is world-class.",
+    name: "Emily Carr",
+    role: "HR Manager",
+    company: "Brandwatch",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "Switching to Engage from our previous broker was the best HR decision we made. They handle claims, new joiners, and renewals seamlessly.",
+    name: "Tom Fairfax",
+    role: "CEO",
+    company: "SaltPay",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "As a fast-scaling startup, we needed speed and expertise. Engage delivered our first group health scheme in days, not weeks.",
+    name: "Priya Nandakumar",
+    role: "Talent & Culture Director",
+    company: "Codat",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+  {
+    quote: "Their employee communications pack made rollout effortless. Staff actually understood and appreciated their benefits for the first time.",
+    name: "David Mercer",
+    role: "HR Business Partner",
+    company: "Gymshark",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=96&h=96",
+    rating: 5,
+  },
+];
+
+const col1 = testimonials.slice(0, 3);
+const col2 = testimonials.slice(3, 6);
+const col3 = testimonials.slice(6, 9);
+
+function TestimonialCard({ t, dupIndex, cardIndex }: { t: Testimonial; dupIndex: number; cardIndex: number }) {
+  return (
+    <motion.li
+      key={`${dupIndex}-${cardIndex}`}
+      aria-hidden={dupIndex === 1 ? "true" : "false"}
+      whileHover={{
+        scale: 1.03,
+        y: -6,
+        transition: { type: "spring", stiffness: 400, damping: 18 },
+      }}
+      className="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-default select-none"
+    >
+      {/* Stars */}
+      <div className="flex gap-0.5 mb-4">
+        {Array.from({ length: t.rating }).map((_, i) => (
+          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+        ))}
+      </div>
+
+      {/* Quote */}
+      <blockquote className="m-0 p-0">
+        <p className="text-gray-600 text-sm leading-relaxed">"{t.quote}"</p>
+
+        <footer className="flex items-center gap-3 mt-5 pt-5 border-t border-gray-100">
+          <img
+            src={t.avatar}
+            alt={t.name}
+            width={40}
+            height={40}
+            className="w-10 h-10 rounded-full object-cover ring-2 ring-gray-100"
+          />
+          <div>
+            <cite className="not-italic font-semibold text-[#003648] text-sm leading-tight block">
+              {t.name}
+            </cite>
+            <span className="text-xs text-gray-400 mt-0.5 block">
+              {t.role}, {t.company}
+            </span>
+          </div>
+        </footer>
+      </blockquote>
+    </motion.li>
+  );
+}
+
+function ScrollColumn({ items, duration, className }: { items: Testimonial[]; duration: number; className?: string }) {
+  return (
+    <div className={`overflow-hidden ${className ?? ""}`}>
+      <motion.ul
+        animate={{ translateY: "-50%" }}
+        transition={{ duration, repeat: Infinity, ease: "linear", repeatType: "loop" }}
+        className="flex flex-col gap-5 pb-5 list-none m-0 p-0"
+      >
+        {[0, 1].map((dupIdx) => (
+          <React.Fragment key={dupIdx}>
+            {items.map((t, i) => (
+              <TestimonialCard key={`${dupIdx}-${i}`} t={t} dupIndex={dupIdx} cardIndex={i} />
+            ))}
+          </React.Fragment>
+        ))}
+      </motion.ul>
+    </div>
+  );
+}
 
 export function Testimonials() {
-  const testimonials = [
-    {
-      quote: "Engage Health managed our international health insurance across multiple countries seamlessly. They understood the complexities of our globally mobile workforce and delivered quickly.",
-      name: "Client Team",
-      role: "People Operations",
-      company: "Remote"
-    },
-    {
-      quote: "A genuinely professional team who took the time to understand our complex requirements. Quick turnaround and great value — exactly what we needed as a growing company.",
-      name: "Client Team",
-      role: "HR Director",
-      company: "SaltPay"
-    },
-    {
-      quote: "Engage Health handled everything from policy design to employee communications. Their ongoing support means we never have to worry about renewals or claims.",
-      name: "Client Team",
-      role: "Operations Manager",
-      company: "CAE Parc Aviation"
-    }
-  ];
-
   return (
-    <section className="py-24 bg-muted/20">
+    <section className="py-24 bg-[#f8f7fb] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Clients Say</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Trusted by companies across the UK and internationally — from startups to large corporates.
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-14"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-5 border border-primary/15">
+            Client stories
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-secondary mb-4 leading-tight">
+            What our clients say
+          </h2>
+          <p className="text-gray-500 text-lg max-w-xl mx-auto leading-relaxed">
+            Trusted by HR teams, CFOs and People leaders across the UK and beyond.
           </p>
+        </motion.div>
+
+        {/* Scrolling columns */}
+        <div
+          className="flex gap-5 justify-center [mask-image:linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)] max-h-[680px]"
+          aria-label="Scrolling client testimonials"
+        >
+          <ScrollColumn items={col1} duration={22} />
+          <ScrollColumn items={col2} duration={28} className="hidden md:block" />
+          <ScrollColumn items={col3} duration={25} className="hidden lg:block" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-lg border border-border/50 relative">
-              <Quote className="absolute top-6 right-6 w-12 h-12 text-primary/10 rotate-180" />
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-foreground text-lg mb-8 relative z-10 font-medium leading-relaxed">
-                "{t.quote}"
-              </p>
-              <div className="flex items-center gap-4 border-t border-border pt-6">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
-                  {t.name.charAt(0)}
-                </div>
-                <div>
-                  <div className="font-bold text-secondary">{t.name}</div>
-                  <div className="text-sm text-muted-foreground">{t.role}, {t.company}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
