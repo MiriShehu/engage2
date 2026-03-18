@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowRight, Check, Activity, Shield, Users } from "lucide-react";
+import { ArrowRight, Check, Shield, Trophy } from "lucide-react";
 import teamPhoto from "@assets/Image-2_(1)_1773870230383.png";
 
 export function Hero() {
@@ -63,14 +63,14 @@ export function Hero() {
               style={{ maxHeight: "580px" }}
             />
 
-            {/* Floating: Claim Approved */}
+            {/* Floating: Award */}
             <div className="absolute bottom-24 left-0 glass-panel rounded-2xl px-5 py-4 flex items-center gap-4 shadow-xl animate-[bounce_4s_ease-in-out_infinite] z-20">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 border border-green-200 shrink-0">
-                <Check className="w-5 h-5" />
+              <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600 border border-yellow-200 shrink-0">
+                <Trophy className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Claim Approved</div>
-                <div className="text-sm font-bold text-secondary">Within 24 Hours</div>
+                <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Award-Winning Firm</div>
+                <div className="text-sm font-bold text-secondary">Best in UK & Global 2024</div>
               </div>
             </div>
 
