@@ -73,7 +73,7 @@ export function AnimatedTeamSection({
   };
 
   return (
-    <section className={cn("w-full py-20 overflow-hidden", className)}>
+    <section className={cn("w-full py-20", className)}>
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center px-4">
 
         {/* Header */}
@@ -108,7 +108,7 @@ export function AnimatedTeamSection({
         <motion.div
           ref={ref}
           className="relative mt-20 flex items-end justify-center"
-          style={{ minHeight: "260px", width: "100%" }}
+          style={{ minHeight: "320px", width: "100%", paddingTop: "100px" }}
           variants={containerVariants}
           initial="hidden"
           animate={controls}
