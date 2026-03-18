@@ -106,28 +106,26 @@ function MenuHeader({ label, color }: { label: string; color: string }) {
   );
 }
 
+// ─── Shared hover helpers (delay-close so fixed panels don't flicker) ─────────
+function useMenuHover(delay = 120) {
+  const [open, setOpen] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+
+  const enter = () => { clearTimeout(timer.current); setOpen(true); };
+  const leave = () => { timer.current = setTimeout(() => setOpen(false), delay); };
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  return { open, enter, leave };
+}
+
 // ─── Small dropdown (About / Xcelerate) ──────────────────────────────────────
 function SmallDropdown({
   label, color, items, headerLabel,
 }: { label: string; color: string; items: NavItem[]; headerLabel: string }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  const { open, enter, leave } = useMenuHover();
 
   return (
-    <div
-      ref={ref}
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
       <button
         className="flex items-center gap-1 font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2"
         aria-expanded={open}
@@ -139,7 +137,10 @@ function SmallDropdown({
       <div className={cn(
         "absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 z-50",
         open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1 pointer-events-none"
-      )}>
+      )}
+        onMouseEnter={enter}
+        onMouseLeave={leave}
+      >
         <div className="bg-white rounded-xl shadow-2xl border border-gray-100 w-72 p-2 overflow-hidden">
           <MenuHeader label={headerLabel} color={color} />
           {items.map((item) => (
@@ -155,24 +156,10 @@ function SmallDropdown({
 function MegaDropdown({
   label, color, items, headerLabel, cols = 3,
 }: { label: string; color: string; items: NavItem[]; headerLabel: string; cols?: number }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  const { open, enter, leave } = useMenuHover();
 
   return (
-    <div
-      ref={ref}
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
       <button
         className="flex items-center gap-1 font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2"
         aria-expanded={open}
@@ -181,12 +168,15 @@ function MegaDropdown({
         <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", open && "rotate-180")} />
       </button>
 
-      {/* Mega panel — positioned fixed so it can break out of header overflow */}
-      <div className={cn(
-        "fixed left-0 right-0 transition-all duration-200 z-50",
-        open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1 pointer-events-none"
-      )}
+      {/* Mega panel — fixed so it breaks out of header; panel also carries enter/leave handlers */}
+      <div
+        className={cn(
+          "fixed left-0 right-0 transition-all duration-200 z-50",
+          open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1 pointer-events-none"
+        )}
         style={{ top: "64px" }}
+        onMouseEnter={enter}
+        onMouseLeave={leave}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-5 overflow-hidden">
@@ -205,16 +195,7 @@ function MegaDropdown({
 
 // ─── Knowledge Hub dropdown ───────────────────────────────────────────────────
 function KnowledgeDropdown() {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  const { open, enter, leave } = useMenuHover();
 
   const gradients = [
     "linear-gradient(135deg,#76186f,#003648)",
@@ -224,12 +205,7 @@ function KnowledgeDropdown() {
   ];
 
   return (
-    <div
-      ref={ref}
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
       <button
         className="flex items-center gap-1 font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2"
         aria-expanded={open}
@@ -244,6 +220,8 @@ function KnowledgeDropdown() {
           open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1 pointer-events-none"
         )}
         style={{ top: "64px" }}
+        onMouseEnter={enter}
+        onMouseLeave={leave}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-5 overflow-hidden">
