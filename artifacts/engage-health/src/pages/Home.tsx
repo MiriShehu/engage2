@@ -33,9 +33,9 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <ServicesGrid />
         <TrustBar />
         <ProblemSolution />
-        <ServicesGrid />
         <HowItWorks />
         <AnimatedTeamSection
           title="The experts working for you"
