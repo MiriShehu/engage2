@@ -195,7 +195,7 @@ export default function EmployeeBenefits() {
       <section className="relative pt-16 overflow-hidden bg-secondary">
         {/* Background image */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-top bg-no-repeat"
           style={{ backgroundImage: `url(${heroBg})` }}
         />
         {/* Dark gradient overlay — left side opaque for text, right side lighter to reveal image */}
