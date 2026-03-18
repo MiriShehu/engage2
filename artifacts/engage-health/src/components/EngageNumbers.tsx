@@ -42,7 +42,7 @@ const stats = [
     iconAnim: "group-hover:-rotate-12 group-hover:scale-110 group-hover:-translate-y-1 transition-transform duration-300",
   },
   {
-    value: 8,
+    value: 10,
     suffix: "+",
     label: "Years in business",
     description: "Founded in 2016 and growing steadily, with a loyal client base that stays.",
