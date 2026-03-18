@@ -114,7 +114,7 @@ export function OurExperts() {
         <div className="mt-12 text-center">
           <Link
             href="/team"
-            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-bold text-secondary border-2 border-secondary hover:bg-secondary hover:text-white transition-all duration-300 group"
+            className="btn-cta inline-flex items-center gap-2.5 px-8 py-4 rounded-xl group"
           >
             Meet the full team
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />

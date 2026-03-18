@@ -107,7 +107,7 @@ export function QuoteForm() {
             type="button"
             disabled={!formData.size}
             onClick={() => setStep(2)}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white bg-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors"
+            className="btn-cta w-full flex items-center justify-center gap-2 py-4 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Continue <ArrowRight className="w-5 h-5" />
           </button>
@@ -142,7 +142,7 @@ export function QuoteForm() {
             type="button"
             disabled={formData.products.length === 0}
             onClick={() => setStep(3)}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white bg-primary disabled:opacity-50 disabled:cursor-not-allowed hover:bg-primary/90 transition-colors"
+            className="btn-cta w-full flex items-center justify-center gap-2 py-4 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Continue <ArrowRight className="w-5 h-5" />
           </button>
@@ -205,7 +205,7 @@ export function QuoteForm() {
           <button
             type="submit"
             disabled={isSubmitting || !formData.name || !formData.email}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-white bg-primary shadow-lg shadow-primary/25 disabled:opacity-50 disabled:transform-none hover:shadow-xl hover:-translate-y-0.5 transition-all"
+            className="btn-cta w-full flex items-center justify-center gap-2 py-4 rounded-xl disabled:opacity-50 disabled:transform-none"
           >
             {isSubmitting ? "Processing..." : "Get My Free Quote"} 
             {!isSubmitting && <ArrowRight className="w-5 h-5" />}

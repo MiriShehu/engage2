@@ -133,7 +133,7 @@ export function ProblemSolution() {
           </div>
           <Link
             href="/contact"
-            className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 hover:-translate-y-0.5 transition-all duration-200"
+            className="btn-cta shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl"
           >
             Start your free review
             <ArrowRight className="w-4 h-4" />

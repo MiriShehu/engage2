@@ -134,4 +134,33 @@
   .glass-panel {
     @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
   }
+
+  /* ── Brand gradient (emerald → blue) used site-wide on primary CTAs ── */
+  .btn-cta {
+    background: linear-gradient(to right, #0dab76, #3568d4);
+    color: white;
+    font-weight: 700;
+    transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 18px rgba(13,171,118,0.3);
+  }
+  .btn-cta:hover {
+    opacity: 0.92;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(13,171,118,0.38);
+  }
+  .btn-cta:active {
+    transform: translateY(0);
+  }
+
+  .bg-brand-gradient {
+    background: linear-gradient(135deg, #0dab76 0%, #3568d4 100%);
+  }
+
+  .text-brand-gradient {
+    background: linear-gradient(to right, #0dab76, #3568d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }

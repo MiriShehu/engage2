@@ -307,7 +307,7 @@ export function HowItWorks() {
         <div className="mt-12 text-center">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-primary shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300"
+            className="btn-cta inline-flex items-center gap-2 px-8 py-4 rounded-xl"
           >
             Start Your Free Market Review
             <ArrowRight className="w-5 h-5" />

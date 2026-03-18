@@ -129,7 +129,7 @@ export function WhyChooseUs() {
           </div>
           <Link
             href="/contact"
-            className="relative shrink-0 inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-white font-bold shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
+            className="btn-cta relative shrink-0 inline-flex items-center gap-2 px-8 py-4 rounded-xl"
           >
             Get my free review
             <ArrowUpRight className="w-4 h-4" />
