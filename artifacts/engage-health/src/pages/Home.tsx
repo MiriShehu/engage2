@@ -7,6 +7,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
 import { EngageNumbers } from "@/components/EngageNumbers";
 import { Testimonials } from "@/components/Testimonials";
+import { WhatWeOffer } from "@/components/WhatWeOffer";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { CharityFund } from "@/components/CharityFund";
 import { BlogPosts } from "@/components/BlogPosts";
@@ -34,6 +35,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TrustBar />
+        <WhatWeOffer />
         <ServicesGrid />
         <ProblemSolution />
         <HowItWorks />
