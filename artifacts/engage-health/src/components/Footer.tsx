@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Heart, Linkedin, Twitter, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, Twitter, Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,13 +9,12 @@ export function Footer() {
           
           {/* Brand Col */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 group mb-6 w-fit">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
-                <Heart className="w-5 h-5 fill-white/20" />
-              </div>
-              <span className="font-bold text-xl tracking-tight text-white">
-                Engage Health<span className="text-primary">.</span>
-              </span>
+            <Link href="/" className="flex items-center mb-6 w-fit">
+              <img
+                src="/logo.png"
+                alt="Engage Health Group"
+                className="h-9 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="text-white/60 max-w-sm mb-8 leading-relaxed">
               Award-winning independent employee benefits consultancy. Impartial advice for UK businesses — no fees, no tie-ins, whole-of-market access. FCA Authorised No. 812846.
