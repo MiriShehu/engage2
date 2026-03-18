@@ -59,7 +59,7 @@ export function CTASection() {
               Free, no-obligation service
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-white">
               Get a free market<br />
               review{" "}
               <span
