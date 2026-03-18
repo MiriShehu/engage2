@@ -337,6 +337,10 @@ export default function Team() {
             { name: "Mike Hesch",      title: "EB Team Lead",                 image: `${BASE}/2023/06/Mike-Hesch-Head-Shot-e1723650105906.png` },
             { name: "Jess Wright",     title: "EB Consultant",                image: `${BASE}/2023/12/Jess-Wright_.png` },
             { name: "Ed Bryan",        title: "EB Consultant",                image: `${BASE}/2023/01/Ed-Bryan-1.png` },
+            { name: "Esme Pearson",    title: "EB Consultant",                image: `${BASE}/2023/01/Esme-Pearson-1.png` },
+            { name: "Stuart Isaac",    title: "EB Consultant",                image: `${BASE}/2023/05/stuart-isaac.png` },
+            { name: "John Kavanagh",   title: "EB Consultant",                image: `${BASE}/2024/02/John-Kavanagh-copy.png` },
+            { name: "Chloe Young",     title: "EB Consultant",                image: `${BASE}/2023/05/chloe-e1698242302294.png` },
           ]}
           className="bg-white"
         />

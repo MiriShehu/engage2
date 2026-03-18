@@ -33,10 +33,11 @@ const CARD_BG = [
 const getCardState = (index: number, total: number) => {
   const center = (total - 1) / 2;
   const dist = index - center;
+  const spread = Math.min(92, Math.round(580 / total));
   return {
-    x: dist * 92,
-    y: Math.abs(dist) * -28,
-    rotate: dist * 11,
+    x: dist * spread,
+    y: Math.abs(dist) * -18,
+    rotate: dist * 8,
   };
 };
 
@@ -167,19 +168,6 @@ export function AnimatedTeamSection({
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Name pills below the fan */}
-        <div className="mt-36 flex flex-wrap justify-center gap-2">
-          {members.map((m, i) => (
-            <span
-              key={i}
-              className="text-xs font-semibold px-3 py-1 rounded-full text-white"
-              style={{ background: i % 2 === 0 ? "#003648" : "#76186f" }}
-            >
-              {m.name}
-            </span>
-          ))}
-        </div>
 
         {/* Optional CTA */}
         {showLink && (

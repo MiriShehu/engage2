@@ -23,6 +23,10 @@ const homeTeam = [
   { name: "Stuart Box",      title: "Head of Client Services",       image: `${BASE}/2023/01/Stuart-Box-copy.png` },
   { name: "Jess Wright",     title: "Employee Benefits Consultant",  image: `${BASE}/2023/12/Jess-Wright_.png` },
   { name: "Ed Bryan",        title: "Employee Benefits Consultant",  image: `${BASE}/2023/01/Ed-Bryan-1.png` },
+  { name: "Esme Pearson",    title: "Employee Benefits Consultant",  image: `${BASE}/2023/01/Esme-Pearson-1.png` },
+  { name: "Stuart Isaac",    title: "Employee Benefits Consultant",  image: `${BASE}/2023/05/stuart-isaac.png` },
+  { name: "John Kavanagh",   title: "Employee Benefits Consultant",  image: `${BASE}/2024/02/John-Kavanagh-copy.png` },
+  { name: "Chloe Young",     title: "Employee Benefits Consultant",  image: `${BASE}/2023/05/chloe-e1698242302294.png` },
 ];
 
 export default function Home() {
