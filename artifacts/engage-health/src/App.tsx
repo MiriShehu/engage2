@@ -10,6 +10,7 @@ import Products from "@/pages/Products";
 import Contact from "@/pages/Contact";
 import GetAQuote from "@/pages/GetAQuote";
 import Team from "@/pages/Team";
+import EmployeeBenefits from "@/pages/EmployeeBenefits";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/get-a-quote" component={GetAQuote} />
       <Route path="/team" component={Team} />
+      <Route path="/employee-benefits" component={EmployeeBenefits} />
       <Route component={NotFound} />
     </Switch>
   );
