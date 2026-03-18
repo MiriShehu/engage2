@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Zap, ShieldCheck, UserCircle2, Trophy, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import award2024 from "@assets/HPA24-Best-Group-International-Advice-Firm-yellow_1773869302815.jpg";
+import award2023 from "@assets/HPA_Winner-Badges_0219_1773869302816.jpg";
+import award2022 from "@assets/HPA10_WIN_YELLOW_1773869302815.jpg";
 
 const reasons = [
   { icon: Zap,          text: "Fast, expert problem-solving" },
@@ -10,9 +13,9 @@ const reasons = [
 ];
 
 const awards = [
-  { src: "/award-2024.jpg", label: "Best Group International Advice Firm 2024" },
-  { src: "/award-2023.jpg", label: "Best International Group Advice Firm 2023" },
-  { src: "/award-2022.jpg", label: "Best Group Healthcare Adviser 2022" },
+  { src: award2024, label: "Best Group International Advice Firm 2024" },
+  { src: award2023, label: "Best International Group Advice Firm 2023" },
+  { src: award2022, label: "Best Group Healthcare Adviser 2022" },
 ];
 
 const listVariants = {

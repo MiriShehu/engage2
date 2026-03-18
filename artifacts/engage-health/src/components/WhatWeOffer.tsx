@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import logomarkPlain from "@assets/Engage_Health_Group_-_Logomark_Plain_Wealth_1773869130398.png";
 import {
   SearchCheck,
   LayoutPanelTop,
@@ -52,7 +53,7 @@ export function WhatWeOffer() {
       {/* logomark watermark */}
       <div className="absolute inset-0 flex items-center justify-start pl-16 pointer-events-none select-none">
         <img
-          src="/logomark-plain.png"
+          src={logomarkPlain}
           alt=""
           className="w-[520px] max-w-[55%] object-contain"
           style={{ opacity: 0.07, filter: "brightness(100) saturate(0)" }}
