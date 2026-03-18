@@ -45,10 +45,10 @@ export function Hero() {
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link href="/contact" className="btn-cta inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl">
-                I need UK employee benefits
+                Get UK support &raquo;
               </Link>
               <Link href="/solutions" className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-secondary bg-white border-2 border-secondary/20 shadow-lg hover:bg-secondary hover:text-white hover:-translate-y-1 transition-all duration-300">
-                I need International benefits
+                Get global support &raquo;
               </Link>
             </div>
           </div>
