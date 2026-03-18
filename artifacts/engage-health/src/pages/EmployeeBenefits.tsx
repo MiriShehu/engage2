@@ -504,14 +504,49 @@ export default function EmployeeBenefits() {
                 ))}
               </div>
 
-              <p className="mt-5 text-sm text-muted-foreground">
-                Contact our expert team to learn the most effective methods for implementing employee benefits policies into your business.{" "}
-                <a href="mailto:enquiries@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">
-                  enquiries@engagehealthgroup.co.uk
-                </a>{" "}
-                or call{" "}
-                <a href="tel:01273974419" className="text-primary font-medium hover:underline">01273 974419</a>.
-              </p>
+              {/* CTA block */}
+              <div
+                className="mt-8 rounded-2xl overflow-hidden relative"
+                style={{ background: "linear-gradient(135deg,#003648 0%,#76186f 100%)" }}
+              >
+                <img
+                  src="/logomark.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute -bottom-8 -right-8 w-48 h-48 object-contain opacity-[0.07] brightness-0 invert pointer-events-none select-none"
+                />
+                <div className="relative p-7 flex flex-col sm:flex-row sm:items-center gap-6">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/50 mb-2">Speak to a specialist</p>
+                    <h4 className="text-lg font-extrabold text-white leading-snug mb-1">
+                      Not sure which benefits are right for you?
+                    </h4>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      Our advisers provide impartial, whole-of-market guidance — free of charge, with no obligation.
+                    </p>
+                    <div className="flex flex-wrap gap-4 mt-4">
+                      <a
+                        href="tel:01273974419"
+                        className="flex items-center gap-2 text-sm font-semibold text-white/85 hover:text-white transition-colors"
+                      >
+                        <Phone className="w-4 h-4 flex-shrink-0" /> 01273 974419
+                      </a>
+                      <a
+                        href="mailto:enquiries@engagehealthgroup.co.uk"
+                        className="flex items-center gap-2 text-sm font-semibold text-white/85 hover:text-white transition-colors"
+                      >
+                        <Mail className="w-4 h-4 flex-shrink-0" /> enquiries@engagehealthgroup.co.uk
+                      </a>
+                    </div>
+                  </div>
+                  <Link
+                    href="/get-a-quote"
+                    className="flex-shrink-0 flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-white text-secondary hover:bg-white/90 transition-colors whitespace-nowrap"
+                  >
+                    Get a free quote <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
             </section>
           </main>
 
