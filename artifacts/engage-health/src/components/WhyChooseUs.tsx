@@ -8,8 +8,8 @@ const pillars = [
     title: "Truly independent advice",
     desc: "We are not tied to any insurer. As a whole-of-market broker, we search every available option — UK and international — to find the policy that genuinely fits your business, not the one that pays us the most.",
     icon: Search,
-    gradient: "from-[#76186f] to-violet-500",
-    lightBg: "bg-violet-50",
+    gradient: "from-[#76186f] to-[#9b2594]",
+    lightBg: "bg-[#faf0fa]",
     tag: "Whole-of-market",
   },
   {
@@ -17,8 +17,8 @@ const pillars = [
     title: "No fees, no contracts, ever",
     desc: "Our consultancy is completely free to clients. We are remunerated directly by insurers — you pay nothing extra, and there is no contractual obligation to stay. We earn your loyalty through service, not lock-in.",
     icon: FileText,
-    gradient: "from-emerald-500 to-teal-600",
-    lightBg: "bg-emerald-50",
+    gradient: "from-[#003648] to-[#005a78]",
+    lightBg: "bg-[#f0f7f9]",
     tag: "No cost to you",
   },
   {
@@ -26,8 +26,8 @@ const pillars = [
     title: "A dedicated account manager who knows your business",
     desc: "One named person. Always reachable by phone. No call centres, no ticket queues, no being passed around. Your account manager handles everything from renewals to new joiner enrolments to claims support.",
     icon: Headset,
-    gradient: "from-sky-500 to-blue-600",
-    lightBg: "bg-sky-50",
+    gradient: "from-[#76186f] to-[#9b2594]",
+    lightBg: "bg-[#faf0fa]",
     tag: "Dedicated support",
   },
   {
@@ -35,8 +35,8 @@ const pillars = [
     title: "Award-winning expertise you can trust",
     desc: "Named Best International Group Advice Firm at the UK Health & Protection Awards in 2023 and 2024. Our team has 30+ years of combined experience from Bupa Global, Aetna, Mercer, Vitality, and AIG — all working for you.",
     icon: Trophy,
-    gradient: "from-amber-400 to-orange-500",
-    lightBg: "bg-amber-50",
+    gradient: "from-[#003648] to-[#005a78]",
+    lightBg: "bg-[#f0f7f9]",
     tag: "Industry recognised",
   },
 ];

@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Building2, Globe2, Trophy, Users, Star, BadgePoundSterling } from "lucide-react";
 
-const P_GRAD = "from-[#e095d8] to-[#76186f]";
-const T_GRAD = "from-[#7adbe8] to-[#00a8c8]";
-const P_BG   = "from-[#76186f] to-[#9b2594]";
-const T_BG   = "from-[#003648] to-[#005a78]";
+const P = "#76186f";
+const T = "#003648";
 
 const stats = [
   {
@@ -13,8 +11,8 @@ const stats = [
     label: "Businesses supported",
     description: "From fast-growing start-ups to established corporates across the UK and beyond.",
     icon: Building2,
-    numGrad: P_GRAD,
-    iconBg: P_BG,
+    accent: P,
+    iconAnim: "group-hover:scale-110 group-hover:-translate-y-1 transition-transform duration-300",
   },
   {
     value: 70,
@@ -22,8 +20,8 @@ const stats = [
     label: "Countries covered",
     description: "Global reach for internationally mobile and remote-first workforces.",
     icon: Globe2,
-    numGrad: T_GRAD,
-    iconBg: T_BG,
+    accent: T,
+    iconAnim: "group-hover:rotate-[30deg] group-hover:scale-110 transition-transform duration-500",
   },
   {
     value: 30,
@@ -31,8 +29,8 @@ const stats = [
     label: "Years combined expertise",
     description: "Ex-Bupa Global, Aon, Mercer, Vitality and AIG professionals on your side.",
     icon: Users,
-    numGrad: P_GRAD,
-    iconBg: P_BG,
+    accent: P,
+    iconAnim: "group-hover:scale-125 group-hover:-translate-y-1 transition-transform duration-300",
   },
   {
     value: 3,
@@ -40,8 +38,8 @@ const stats = [
     label: "Award wins",
     description: "Best International Group Advice Firm — UK H&P Awards 2022, 2023 & 2024.",
     icon: Trophy,
-    numGrad: T_GRAD,
-    iconBg: T_BG,
+    accent: T,
+    iconAnim: "group-hover:-rotate-12 group-hover:scale-110 group-hover:-translate-y-1 transition-transform duration-300",
   },
   {
     value: 8,
@@ -49,8 +47,8 @@ const stats = [
     label: "Years in business",
     description: "Founded in 2016 and growing steadily — with a loyal client base that stays.",
     icon: Star,
-    numGrad: P_GRAD,
-    iconBg: P_BG,
+    accent: P,
+    iconAnim: "group-hover:rotate-[72deg] group-hover:scale-110 transition-transform duration-500",
   },
   {
     value: 0,
@@ -59,8 +57,8 @@ const stats = [
     label: "Cost to your business",
     description: "Our service is completely free — we're remunerated directly by insurers.",
     icon: BadgePoundSterling,
-    numGrad: T_GRAD,
-    iconBg: T_BG,
+    accent: T,
+    iconAnim: "group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300",
   },
 ];
 
@@ -85,22 +83,49 @@ function StatCard({ stat, trigger }: { stat: typeof stats[0]; trigger: boolean }
   const count = useCountUp(stat.value, 1400, trigger);
   const Icon = stat.icon;
 
+  const isPurple = stat.accent === P;
+  const accentLight = isPurple ? "rgba(118,24,111,0.18)" : "rgba(0,54,72,0.25)";
+  const accentGlow  = isPurple ? "rgba(224,149,216,0.12)" : "rgba(122,219,232,0.10)";
+
   return (
     <div className="group relative bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-2xl p-8 transition-all duration-300 overflow-hidden cursor-default">
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-[0.14] transition-opacity duration-500 pointer-events-none rounded-2xl bg-gradient-to-br ${stat.numGrad}`}
-        style={{ filter: "blur(28px)", transform: "scale(0.85)" }}
+      {/* Subtle accent glow on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+        style={{ background: `radial-gradient(ellipse at 20% 30%, ${accentGlow} 0%, transparent 70%)` }}
       />
 
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-gradient-to-br ${stat.iconBg} shadow-lg`}>
-        <Icon className="w-6 h-6 text-white" strokeWidth={1.8} />
+      {/* Icon with animated inner symbol */}
+      <div
+        className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-lg"
+        style={{ background: `linear-gradient(135deg, ${stat.accent}, ${isPurple ? "#9b2594" : "#005a78"})` }}
+      >
+        <Icon
+          className={`w-6 h-6 text-white ${stat.iconAnim}`}
+          strokeWidth={1.8}
+        />
       </div>
 
-      <div className={`text-5xl xl:text-6xl font-black mb-3 bg-gradient-to-r bg-clip-text text-transparent leading-none ${stat.numGrad}`}>
-        {stat.prefix ?? ""}{count}{stat.suffix}
+      {/* Number — white, bold, with a small accent underbar */}
+      <div className="mb-3">
+        <span className="text-5xl xl:text-6xl font-black text-white leading-none tracking-tight">
+          {stat.prefix ?? ""}{count}{stat.suffix}
+        </span>
+        {/* Accent underbar */}
+        <div
+          className="mt-2 h-[3px] w-10 rounded-full"
+          style={{ background: `linear-gradient(90deg, ${stat.accent}, transparent)` }}
+        />
       </div>
 
       <div className="text-white font-bold text-lg mb-2">{stat.label}</div>
       <p className="text-white/55 text-sm leading-relaxed">{stat.description}</p>
+
+      {/* Bottom-left accent dot */}
+      <div
+        className="absolute bottom-4 right-4 w-16 h-16 rounded-full opacity-[0.06] pointer-events-none"
+        style={{ background: stat.accent }}
+      />
     </div>
   );
 }
@@ -126,12 +151,11 @@ export function EngageNumbers() {
         style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "30px 30px" }}
       />
 
-      {/* Purple glow — bottom left */}
+      {/* Purple glows */}
       <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
-      {/* Purple glow — top right */}
       <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* E logo watermark — large, gradient-masked */}
+      {/* Logo watermark */}
       <div
         className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 w-[520px] h-[520px] pointer-events-none select-none"
         style={{
@@ -140,12 +164,7 @@ export function EngageNumbers() {
           opacity: 0.07,
         }}
       >
-        <img
-          src="/logo.png"
-          alt=""
-          className="w-full h-full object-contain"
-          style={{ filter: "brightness(10)" }}
-        />
+        <img src="/logo.png" alt="" className="w-full h-full object-contain" style={{ filter: "brightness(10)" }} />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
