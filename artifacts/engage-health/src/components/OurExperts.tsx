@@ -202,11 +202,11 @@ export function OurExperts() {
   }, [emblaApi]);
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-[#f8f7fb]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/8 text-primary text-xs font-bold uppercase tracking-widest mb-4">
               Our experts
@@ -220,90 +220,106 @@ export function OurExperts() {
             <p className="text-muted-foreground text-base max-w-xs md:text-right">
               30+ years of combined experience — former Bupa Global, Aon, Mercer &amp; AIG professionals, all working for you.
             </p>
-            {/* nav arrows */}
             <div className="flex items-center gap-2">
-              <button onClick={prev} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/40 transition-all">
+              <button onClick={prev} className="w-10 h-10 rounded-full border-2 border-secondary/30 flex items-center justify-center text-secondary hover:border-secondary hover:bg-secondary hover:text-white transition-all">
                 <ChevronLeft className="w-5 h-5" />
               </button>
-              <button onClick={next} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/40 transition-all">
+              <button onClick={next} className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white hover:bg-primary transition-colors">
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Full-width carousel — exactly 5 cards */}
-      <div ref={emblaRef} className="overflow-hidden w-full">
-        <div className="flex">
-          {team.map((person, i) => (
-            <div
-              key={i}
-              className="group"
-              style={{ flex: "0 0 20%", padding: "0 8px" }}
-            >
-              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-shadow duration-300 bg-white h-full flex flex-col">
-                {/* Photo area — full natural size, transparent PNG cutout */}
-                <div
-                  className="relative flex items-end justify-center pt-6 px-4"
-                  style={{ background: `linear-gradient(160deg, ${person.accent}15 0%, ${person.accent}30 100%)` }}
-                >
-                  <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: person.accent }} />
+        {/* Boxed carousel container */}
+        <div className="bg-white rounded-3xl shadow-xl border border-border/60 overflow-hidden">
+          {/* Rainbow top bar */}
+          <div className="h-1.5 w-full" style={{ background: "linear-gradient(90deg, #76186f, #003648, #7c3aed, #2563eb)" }} />
 
-                  <img
-                    src={person.img}
-                    alt={person.name}
-                    className="relative z-10 w-full max-h-[320px] object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500 drop-shadow-md"
-                    onError={(e) => {
-                      const el = e.currentTarget;
-                      el.style.display = "none";
-                      const fallback = el.nextElementSibling as HTMLElement | null;
-                      if (fallback) fallback.style.display = "flex";
-                    }}
-                  />
-                  {/* initials fallback */}
+          <div className="p-6 md:p-8">
+            <div ref={emblaRef} className="overflow-hidden">
+              <div className="flex gap-5">
+                {team.map((person, i) => (
                   <div
-                    className="hidden w-full h-[280px] items-center justify-center text-white text-4xl font-black"
-                    style={{ background: `linear-gradient(135deg, ${person.accent}, ${person.accent}99)` }}
+                    key={i}
+                    className="group"
+                    style={{ flex: "0 0 calc(33.333% - 14px)", minWidth: 0 }}
                   >
-                    {person.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                    <div className="rounded-2xl overflow-hidden border border-border/40 hover:shadow-md transition-shadow duration-300 bg-white h-full flex flex-col">
+                      {/* Photo */}
+                      <div
+                        className="relative flex items-end justify-center pt-6 px-4"
+                        style={{ background: `linear-gradient(160deg, ${person.accent}12 0%, ${person.accent}28 100%)` }}
+                      >
+                        <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: person.accent }} />
+                        <img
+                          src={person.img}
+                          alt={person.name}
+                          className="relative z-10 w-full max-h-[260px] object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500 drop-shadow-md"
+                          onError={(e) => {
+                            const el = e.currentTarget;
+                            el.style.display = "none";
+                            const fallback = el.nextElementSibling as HTMLElement | null;
+                            if (fallback) fallback.style.display = "flex";
+                          }}
+                        />
+                        <div
+                          className="hidden w-full h-[240px] items-center justify-center text-white text-4xl font-black"
+                          style={{ background: `linear-gradient(135deg, ${person.accent}, ${person.accent}99)` }}
+                        >
+                          {person.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                        </div>
+                        <a
+                          href="https://www.linkedin.com/company/engage-health-group/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={e => e.stopPropagation()}
+                          className="absolute top-3 right-3 z-20 w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0077b5] shadow hover:bg-white transition-colors"
+                        >
+                          <Linkedin className="w-3 h-3" />
+                        </a>
+                      </div>
+                      {/* Info */}
+                      <div className="p-4 flex-1">
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: person.accent }} />
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground truncate">{person.title}</span>
+                        </div>
+                        <h3 className="text-base font-extrabold text-secondary mb-1.5 leading-tight">{person.name}</h3>
+                        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{person.bio}</p>
+                      </div>
+                    </div>
                   </div>
-
-                  <a
-                    href="https://www.linkedin.com/company/engage-health-group/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
-                    className="absolute top-3 right-3 z-20 w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0077b5] shadow hover:bg-white transition-colors"
-                  >
-                    <Linkedin className="w-3 h-3" />
-                  </a>
-                </div>
-
-                {/* Info */}
-                <div className="p-4">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: person.accent }} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground truncate">{person.title}</span>
-                  </div>
-                  <h3 className="text-base font-extrabold text-secondary mb-1.5 leading-tight">{person.name}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{person.bio}</p>
-                </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Bottom CTA */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex justify-end">
-        <Link
-          href="/team"
-          className="btn-cta inline-flex items-center gap-2 px-7 py-3 rounded-xl text-sm"
-        >
-          Meet the full team
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+            {/* Pagination dots */}
+            <div className="flex justify-center gap-1.5 mt-6">
+              {team.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => emblaApi?.scrollTo(i)}
+                  className="h-1.5 rounded-full transition-all duration-300 bg-border hover:bg-primary/40"
+                  style={{ width: "6px" }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Footer strip */}
+          <div className="px-8 py-4 border-t border-border/40 bg-muted/30 flex items-center justify-between">
+            <p className="text-xs text-muted-foreground">30+ years of combined experience across the UK &amp; global markets</p>
+            <Link
+              href="/team"
+              className="btn-cta inline-flex items-center gap-2 px-5 py-2 rounded-lg text-xs"
+            >
+              Meet the full team
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
       </div>
     </section>
   );
