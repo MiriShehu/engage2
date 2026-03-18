@@ -11,8 +11,6 @@ import { BenefitsIntro } from "@/components/BenefitsIntro";
 import { WhatWeOffer } from "@/components/WhatWeOffer";
 import { WhyEngageSection } from "@/components/WhyEngageSection";
 import { BlogPosts } from "@/components/BlogPosts";
-import { CTASection } from "@/components/CTASection";
-import { Footer } from "@/components/Footer";
 
 const BASE = "https://www.engagehealthgroup.co.uk/wp-content/uploads";
 
@@ -51,9 +49,7 @@ export default function Home() {
         <EngageNumbers />
         <Testimonials />
         <BlogPosts />
-        <CTASection />
       </main>
-      <Footer />
     </div>
   );
 }

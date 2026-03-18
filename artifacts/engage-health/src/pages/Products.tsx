@@ -1,8 +1,6 @@
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { Testimonials } from "@/components/Testimonials";
-import { CTASection } from "@/components/CTASection";
 
 export default function Products() {
   return (
@@ -47,9 +45,7 @@ export default function Products() {
         </section>
 
         <Testimonials />
-        <CTASection />
       </main>
-      <Footer />
     </div>
   );
 }

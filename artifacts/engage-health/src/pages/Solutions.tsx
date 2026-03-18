@@ -1,7 +1,5 @@
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
-import { CTASection } from "@/components/CTASection";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function Solutions() {
@@ -65,9 +63,7 @@ export default function Solutions() {
         </section>
 
         <WhyChooseUs />
-        <CTASection />
       </main>
-      <Footer />
     </div>
   );
 }

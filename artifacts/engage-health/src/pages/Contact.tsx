@@ -1,5 +1,4 @@
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
@@ -84,7 +83,6 @@ export default function Contact() {
 
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

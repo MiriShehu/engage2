@@ -1,6 +1,4 @@
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { CTASection } from "@/components/CTASection";
 import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -362,9 +360,7 @@ export default function Team() {
           </section>
         ))}
 
-        <CTASection />
       </main>
-      <Footer />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Shield, Clock, Award, CheckCircle2 } from "lucide-react";
 
@@ -76,8 +75,6 @@ export default function GetAQuote() {
           <QuoteForm />
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
