@@ -58,12 +58,12 @@ function LogoRow({
         {[...logos, ...logos, ...logos].map((logo, i) => (
           <div
             key={i}
-            className="flex items-center justify-center px-8 py-5 rounded-2xl bg-white/8 border border-white/10 hover:bg-white/15 hover:border-white/25 transition-all duration-300 shrink-0 backdrop-blur-sm group/card"
+            className="flex items-center justify-center px-8 py-5 rounded-2xl bg-white/90 border border-white/20 hover:bg-white hover:scale-105 transition-all duration-300 shrink-0 shadow-lg group/card"
           >
             <img
               src={logo.src}
               alt={logo.alt}
-              className={`${logo.h} w-auto object-contain brightness-0 invert opacity-70 group-hover/card:opacity-100 transition-opacity duration-300`}
+              className={`${logo.h} w-auto object-contain grayscale opacity-70 group-hover/card:grayscale-0 group-hover/card:opacity-100 transition-all duration-300`}
             />
           </div>
         ))}
