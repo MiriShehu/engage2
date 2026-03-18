@@ -52,16 +52,6 @@ const facts = [
     bg: "bg-rose-50",
     textLight: false,
   },
-  {
-    stat: "15yr",
-    label: "high in talent shortage — benefits matter more than ever",
-    detail: "In a competitive market, a strong benefits package is a decisive recruitment differentiator.",
-    source: "ManpowerGroup",
-    size: "small",
-    accent: "from-violet-400 to-indigo-600",
-    bg: "bg-violet-50",
-    textLight: false,
-  },
 ];
 
 export function ProblemSolution() {
