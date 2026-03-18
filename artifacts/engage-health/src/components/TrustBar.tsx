@@ -6,12 +6,12 @@ import reuters from "@assets/reuters_1773869703157.png";
 import telegraph from "@assets/The-Telegraph-Logo-Grey_1773869703165.png";
 
 const logos = [
-  { src: bloomberg,         alt: "Bloomberg",           h: "h-6" },
-  { src: corporateAdviser,  alt: "Corporate Adviser",   h: "h-8" },
-  { src: cover,             alt: "COVER",               h: "h-6" },
-  { src: healthAndProtection, alt: "Health & Protection", h: "h-7" },
-  { src: reuters,           alt: "Reuters",             h: "h-7" },
-  { src: telegraph,         alt: "The Telegraph",       h: "h-6" },
+  { src: bloomberg,         alt: "Bloomberg",           h: "h-9" },
+  { src: corporateAdviser,  alt: "Corporate Adviser",   h: "h-11" },
+  { src: cover,             alt: "COVER",               h: "h-9" },
+  { src: healthAndProtection, alt: "Health & Protection", h: "h-10" },
+  { src: reuters,           alt: "Reuters",             h: "h-10" },
+  { src: telegraph,         alt: "The Telegraph",       h: "h-9" },
 ];
 
 export function TrustBar() {
