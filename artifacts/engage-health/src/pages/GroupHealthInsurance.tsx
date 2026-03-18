@@ -227,14 +227,16 @@ export default function GroupHealthInsurance() {
         className="relative overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        {/* Left-to-right teal gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#003648]/95 via-[#003648]/80 to-transparent" />
+        {/* Base dark overlay for mobile (full coverage) */}
+        <div className="absolute inset-0 bg-[#003648]/70 lg:hidden" />
+        {/* Left-to-right teal gradient overlay for desktop */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#003648]/95 via-[#003648]/80 to-transparent hidden lg:block" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-white/40 text-sm mb-8">
-            <Link href="/" className="hover:text-white/70 transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
+          <nav className="flex items-center gap-2 text-white/40 text-sm mb-8 flex-wrap">
+            <Link href="/" className="hover:text-white/70 transition-colors hidden sm:inline">Home</Link>
+            <ChevronRight className="w-3.5 h-3.5 hidden sm:inline" />
             <Link href="/employee-benefits" className="hover:text-white/70 transition-colors">Employee Benefits</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-white/70">Group Health Insurance</span>
@@ -277,7 +279,7 @@ export default function GroupHealthInsurance() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
           >
             {[
               { icon: Building2, val: "500+", label: "Businesses supported" },
@@ -285,13 +287,13 @@ export default function GroupHealthInsurance() {
               { icon: Users,     val: "30+",  label: "Years combined expertise" },
               { icon: Trophy,    val: "3×",   label: "UK award wins" },
             ].map((s) => (
-              <div key={s.label} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <s.icon className="w-5 h-5 text-white/70" />
+              <div key={s.label} className="flex items-center gap-2 md:gap-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                  <s.icon className="w-4 h-4 md:w-5 md:h-5 text-white/70" />
                 </div>
-                <div>
-                  <div className="text-2xl font-black text-white leading-none">{s.val}</div>
-                  <div className="text-white/45 text-xs mt-0.5">{s.label}</div>
+                <div className="min-w-0">
+                  <div className="text-xl md:text-2xl font-black text-white leading-none">{s.val}</div>
+                  <div className="text-white/45 text-[10px] md:text-xs mt-0.5 leading-tight">{s.label}</div>
                 </div>
               </div>
             ))}
