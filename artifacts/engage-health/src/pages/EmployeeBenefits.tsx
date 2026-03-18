@@ -583,14 +583,14 @@ export default function EmployeeBenefits() {
             </div>
 
             {/* Award badge */}
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}>
                   <Trophy className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-amber-900 text-sm leading-snug">Award-winning consultancy</h4>
-                  <p className="text-amber-700/80 text-xs mt-1 leading-relaxed">
+                  <h4 className="font-bold text-secondary text-sm leading-snug">Award-winning consultancy</h4>
+                  <p className="text-muted-foreground text-xs mt-1 leading-relaxed">
                     Best International Group Advice Firm — UK Health & Protection Awards 2022, 2023 & 2024.
                   </p>
                 </div>
