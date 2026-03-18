@@ -8,6 +8,7 @@ import { OurExperts } from "@/components/OurExperts";
 import { EngageNumbers } from "@/components/EngageNumbers";
 import { Testimonials } from "@/components/Testimonials";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
+import { CharityFund } from "@/components/CharityFund";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 
@@ -25,6 +26,7 @@ export default function Home() {
         <EngageNumbers />
         <WhyChooseUs />
         <Testimonials />
+        <CharityFund />
         <CTASection />
       </main>
       <Footer />
