@@ -24,10 +24,10 @@ export function LogoCloud({ className, logos, reverse, duration = 30, durationOn
         className
       )}
     >
-      <InfiniteSlider gap={48} reverse={reverse} duration={duration} durationOnHover={durationOnHover}>
-        {logos.map((logo) => (
+      <InfiniteSlider gap={32} reverse={reverse} duration={duration} durationOnHover={durationOnHover}>
+        {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
           <div
-            key={`logo-${logo.alt}`}
+            key={`logo-${logo.alt}-${i}`}
             className="flex items-center justify-center px-6 py-4 rounded-xl bg-white border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-200 group"
           >
             <img
