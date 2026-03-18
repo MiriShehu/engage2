@@ -2,6 +2,9 @@ import { Navbar } from "@/components/Navbar";
 import { TrustBar } from "@/components/TrustBar";
 import { Link } from "wouter";
 import heroBg from "@assets/Employee-Benefits-main-heading1_1773875144473.jpg";
+import award2024 from "@assets/HPA24-Best-Group-International-Advice-Firm-yellow_1773869302815.jpg";
+import award2023 from "@assets/HPA_Winner-Badges_0219_1773869302816.jpg";
+import award2022 from "@assets/HPA10_WIN_YELLOW_1773869302815.jpg";
 import tipBlend from "@assets/Emp-Benefits-blend-your-approach_1773875338242.jpg";
 import tipPromote from "@assets/Emp-Benefits-promote-communicate_1773875338242.jpg";
 import tipManage from "@assets/Emp.-Benefits-manage-in-one-place_1773875338242.jpg";
@@ -265,24 +268,48 @@ export default function EmployeeBenefits() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="mt-14 pt-8 border-t border-white/10"
           >
-            {[
-              { icon: Building2, val: "500+", label: "Businesses supported" },
-              { icon: Globe2,    val: "70+",  label: "Countries covered" },
-              { icon: Users,     val: "30+",  label: "Years combined expertise" },
-              { icon: Trophy,    val: "3×",   label: "UK award wins" },
-            ].map((s) => (
-              <div key={s.label} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
-                  <s.icon className="w-5 h-5 text-white/70" />
+            {/* Stat numbers */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { icon: Building2, val: "500+", label: "Businesses supported" },
+                { icon: Globe2,    val: "70+",  label: "Countries covered" },
+                { icon: Users,     val: "30+",  label: "Years combined expertise" },
+                { icon: Trophy,    val: "3×",   label: "UK award wins" },
+              ].map((s) => (
+                <div key={s.label} className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <s.icon className="w-5 h-5 text-white/70" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-black text-white leading-none">{s.val}</div>
+                    <div className="text-white/45 text-xs mt-0.5">{s.label}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-2xl font-black text-white leading-none">{s.val}</div>
-                  <div className="text-white/45 text-xs mt-0.5">{s.label}</div>
-                </div>
+              ))}
+            </div>
+
+            {/* Award badges */}
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 whitespace-nowrap flex-shrink-0">
+                Recognised Industry Leaders
+              </span>
+              <div className="flex items-center gap-5">
+                {[
+                  { src: award2024, label: "Best Group International Advice Firm 2024" },
+                  { src: award2023, label: "Best International Group Advice Firm 2023" },
+                  { src: award2022, label: "Best Group Healthcare Adviser 2022" },
+                ].map((a) => (
+                  <img
+                    key={a.label}
+                    src={a.src}
+                    alt={a.label}
+                    className="h-14 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity duration-200"
+                  />
+                ))}
               </div>
-            ))}
+            </div>
           </motion.div>
         </div>
       </section>
