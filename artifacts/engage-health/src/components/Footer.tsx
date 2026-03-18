@@ -1,10 +1,37 @@
 import { Link } from "wouter";
 import { Linkedin, Twitter, Mail, MapPin, Phone } from "lucide-react";
+import award2024 from "@assets/HPA24-Best-Group-International-Advice-Firm-yellow_1773869302815.jpg";
+import award2023 from "@assets/HPA_Winner-Badges_0219_1773869302816.jpg";
+import award2022 from "@assets/HPA10_WIN_YELLOW_1773869302815.jpg";
+
+const awards = [
+  { src: award2024, label: "Best Group International Advice Firm 2024" },
+  { src: award2023, label: "Best International Group Advice Firm 2023" },
+  { src: award2022, label: "Best Group Healthcare Adviser 2022" },
+];
 
 export function Footer() {
   return (
-    <footer className="bg-[#002230] text-white/80 pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-[#002230] text-white/80 pt-12 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* ── Award strip ───────────────────────────────────────────── */}
+        <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 pb-10 mb-10 border-b border-white/10">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/35 whitespace-nowrap flex-shrink-0">
+            Recognised Industry Leaders
+          </p>
+          <div className="flex items-center gap-6 sm:gap-8">
+            {awards.map((a) => (
+              <img
+                key={a.label}
+                src={a.src}
+                alt={a.label}
+                className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-200"
+              />
+            ))}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           
           {/* Brand Col */}
