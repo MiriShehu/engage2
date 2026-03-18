@@ -378,35 +378,34 @@ export function QuoteForm() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-semibold text-secondary mb-1.5">Telephone <span className="text-red-500">*</span></label>
-                <div className="flex gap-2">
-                  <DialCodePicker
-                    value={formData.dialCode}
-                    onChange={(v) => set("dialCode", v)}
-                  />
-                  <input
-                    required
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => set("phone", e.target.value)}
-                    className="flex-1 p-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                    placeholder="7700 900000"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-secondary mb-1.5">Email Address <span className="text-red-500">*</span></label>
+            <div>
+              <label className="block text-sm font-semibold text-secondary mb-1.5">Telephone <span className="text-red-500">*</span></label>
+              <div className="flex gap-2">
+                <DialCodePicker
+                  value={formData.dialCode}
+                  onChange={(v) => set("dialCode", v)}
+                />
                 <input
                   required
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => set("email", e.target.value)}
-                  className="w-full p-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                  placeholder="jane@company.com"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => set("phone", e.target.value)}
+                  className="flex-1 p-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                  placeholder="7700 900000"
                 />
               </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-secondary mb-1.5">Email Address <span className="text-red-500">*</span></label>
+              <input
+                required
+                type="email"
+                value={formData.email}
+                onChange={(e) => set("email", e.target.value)}
+                className="w-full p-3 rounded-xl border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                placeholder="jane@company.com"
+              />
             </div>
 
             <div>
