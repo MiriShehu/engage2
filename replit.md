@@ -91,6 +91,27 @@ Generated Zod schemas from the OpenAPI spec (e.g. `HealthCheckResponse`). Used b
 
 Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHealthCheck`, `healthCheck`).
 
+### `artifacts/engage-health` (`@workspace/engage-health`)
+
+Premium SaaS-style marketing website for Engage Health Group — UK employee benefits & health insurance consultancy.
+
+- **Stack**: React + Vite, Tailwind CSS, Framer Motion, Wouter routing, shadcn/ui
+- **Brand colors**: Purple `#76186f` (primary), Dark teal `#003648` (secondary)
+- **Assets alias**: `@assets` → `../../attached_assets/`
+- **Global layout**: `CTASection` + `Footer` rendered in `App.tsx` (not per-page)
+
+**Routes**:
+- `/` — Home
+- `/solutions` — Solutions
+- `/products` — Products
+- `/contact` — Contact
+- `/get-a-quote` — Get a Quote
+- `/team` — Team
+- `/employee-benefits` — Employee Benefits hub page
+- `/employee-benefits/group-health-insurance` — Group Health Insurance subpage
+
+**Key components**: `Navbar`, `Footer`, `CTASection`, `TrustBar`, `WhyEngageSection`, `AnimatedTeamSection`
+
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.

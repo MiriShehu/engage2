@@ -13,6 +13,7 @@ import Contact from "@/pages/Contact";
 import GetAQuote from "@/pages/GetAQuote";
 import Team from "@/pages/Team";
 import EmployeeBenefits from "@/pages/EmployeeBenefits";
+import GroupHealthInsurance from "@/pages/GroupHealthInsurance";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/get-a-quote" component={GetAQuote} />
       <Route path="/team" component={Team} />
       <Route path="/employee-benefits" component={EmployeeBenefits} />
+      <Route path="/employee-benefits/group-health-insurance" component={GroupHealthInsurance} />
       <Route component={NotFound} />
     </Switch>
   );
