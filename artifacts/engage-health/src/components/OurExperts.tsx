@@ -1,9 +1,8 @@
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { useCallback, useEffect, useState } from "react";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { useCallback, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Linkedin, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
-import { cn } from "@/lib/utils";
 
 const BASE = "https://www.engagehealthgroup.co.uk/wp-content/uploads";
 
@@ -179,29 +178,28 @@ const team = [
 ];
 
 export function OurExperts() {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: "start", slidesToScroll: 1 },
-    [Autoplay({ delay: 3500, stopOnInteraction: true, stopOnMouseEnter: true })]
-  );
-  const [selected, setSelected] = useState(0);
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
+  const autoScrollRef = useRef(AutoScroll({ speed: 1.2, stopOnInteraction: false, stopOnMouseEnter: true }));
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelected(emblaApi.selectedScrollSnap());
-    setCanPrev(emblaApi.canScrollPrev());
-    setCanNext(emblaApi.canScrollNext());
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, dragFree: true, align: "start", watchDrag: true },
+    [autoScrollRef.current]
+  );
+
+  const prev = useCallback(() => {
+    emblaApi?.scrollPrev();
   }, [emblaApi]);
 
+  const next = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
+  // Restart auto-scroll after drag ends
   useEffect(() => {
     if (!emblaApi) return;
-    emblaApi.on("select", onSelect);
-    onSelect();
-  }, [emblaApi, onSelect]);
-
-  const prev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const next = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+    const onSettle = () => autoScrollRef.current.play();
+    emblaApi.on("settle", onSettle);
+    return () => { emblaApi.off("settle", onSettle); };
+  }, [emblaApi]);
 
   return (
     <section className="py-24 bg-white overflow-hidden">
@@ -224,18 +222,10 @@ export function OurExperts() {
             </p>
             {/* nav arrows */}
             <div className="flex items-center gap-2">
-              <button
-                onClick={prev}
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/40 transition-all disabled:opacity-30"
-                disabled={!canPrev}
-              >
+              <button onClick={prev} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/40 transition-all">
                 <ChevronLeft className="w-5 h-5" />
               </button>
-              <button
-                onClick={next}
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/40 transition-all disabled:opacity-30"
-                disabled={!canNext}
-              >
+              <button onClick={next} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-secondary hover:border-secondary/40 transition-all">
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
@@ -243,83 +233,69 @@ export function OurExperts() {
         </div>
       </div>
 
-      {/* Full-width carousel */}
-      <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex gap-5 pl-4 sm:pl-8 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))]">
+      {/* Full-width carousel — exactly 5 cards */}
+      <div ref={emblaRef} className="overflow-hidden w-full">
+        <div className="flex">
           {team.map((person, i) => (
             <div
               key={i}
-              className="shrink-0 w-[260px] sm:w-[280px] rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-shadow duration-300 group bg-white"
+              className="group"
+              style={{ flex: "0 0 20%", padding: "0 8px" }}
             >
-              {/* Photo area */}
-              <div
-                className="relative h-[300px] flex items-end justify-center overflow-hidden"
-                style={{ background: `linear-gradient(160deg, ${person.accent}18 0%, ${person.accent}35 100%)` }}
-              >
-                {/* accent top bar */}
-                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: person.accent }} />
-
-                <img
-                  src={person.img}
-                  alt={person.name}
-                  className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  onError={(e) => {
-                    const el = e.currentTarget;
-                    el.style.display = "none";
-                    const fallback = el.nextElementSibling as HTMLElement | null;
-                    if (fallback) fallback.style.display = "flex";
-                  }}
-                />
-                {/* initials fallback */}
+              <div className="rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-shadow duration-300 bg-white h-full">
+                {/* Photo area */}
                 <div
-                  className="absolute inset-0 hidden items-center justify-center text-white text-4xl font-black"
-                  style={{ background: `linear-gradient(135deg, ${person.accent}, ${person.accent}aa)` }}
+                  className="relative h-[280px] overflow-hidden"
+                  style={{ background: `linear-gradient(160deg, ${person.accent}18 0%, ${person.accent}35 100%)` }}
                 >
-                  {person.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                  <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: person.accent }} />
+
+                  <img
+                    src={person.img}
+                    alt={person.name}
+                    className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      const el = e.currentTarget;
+                      el.style.display = "none";
+                      const fallback = el.nextElementSibling as HTMLElement | null;
+                      if (fallback) fallback.style.display = "flex";
+                    }}
+                  />
+                  <div
+                    className="absolute inset-0 hidden items-center justify-center text-white text-4xl font-black"
+                    style={{ background: `linear-gradient(135deg, ${person.accent}, ${person.accent}aa)` }}
+                  >
+                    {person.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+                  </div>
+
+                  <a
+                    href="https://www.linkedin.com/company/engage-health-group/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0077b5] shadow hover:bg-white transition-colors"
+                  >
+                    <Linkedin className="w-3 h-3" />
+                  </a>
                 </div>
 
-                {/* LinkedIn badge */}
-                <a
-                  href="https://www.linkedin.com/company/engage-health-group/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={e => e.stopPropagation()}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#0077b5] shadow hover:bg-white transition-colors"
-                >
-                  <Linkedin className="w-3.5 h-3.5" />
-                </a>
-              </div>
-
-              {/* Info */}
-              <div className="p-5">
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-2 h-2 rounded-full shrink-0" style={{ background: person.accent }} />
-                  <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{person.title}</span>
+                {/* Info */}
+                <div className="p-4">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: person.accent }} />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground truncate">{person.title}</span>
+                  </div>
+                  <h3 className="text-base font-extrabold text-secondary mb-1.5 leading-tight">{person.name}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{person.bio}</p>
                 </div>
-                <h3 className="text-lg font-extrabold text-secondary mb-2 leading-tight">{person.name}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{person.bio}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Bottom: dots + CTA */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* dot indicators (grouped) */}
-        <div className="flex items-center gap-1.5 flex-wrap justify-center">
-          {team.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => emblaApi?.scrollTo(i)}
-              className={cn(
-                "rounded-full transition-all duration-300",
-                i === selected ? "w-6 h-2 bg-primary" : "w-2 h-2 bg-border hover:bg-muted-foreground"
-              )}
-            />
-          ))}
-        </div>
-
+      {/* Bottom CTA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex justify-end">
         <Link
           href="/team"
           className="btn-cta inline-flex items-center gap-2 px-7 py-3 rounded-xl text-sm"
