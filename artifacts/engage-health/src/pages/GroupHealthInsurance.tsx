@@ -3,6 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { TrustBar } from "@/components/TrustBar";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import heroBg from "@assets/Group-Health-Insurance_1773877221793.jpg";
 import { cn } from "@/lib/utils";
 import {
   Shield, CheckCircle2, ChevronRight, ArrowRight, Phone, Mail,
@@ -222,19 +223,12 @@ export default function GroupHealthInsurance() {
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg,#003648 0%,#001e2a 55%,#3d0c3a 100%)" }}>
-        {/* Decorative blobs */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-[0.06]" style={{ background: "radial-gradient(circle,#76186f,transparent 70%)", transform: "translate(30%,-30%)" }} />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-[0.05]" style={{ background: "radial-gradient(circle,#003648,transparent 70%)", transform: "translate(-30%,30%)" }} />
-        </div>
-        {/* Logomark watermark */}
-        <img
-          src="/logomark.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute right-16 top-1/2 -translate-y-1/2 w-80 h-80 object-contain opacity-[0.06] brightness-0 invert pointer-events-none select-none hidden lg:block"
-        />
+      <section
+        className="relative overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        {/* Left-to-right teal gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#003648]/95 via-[#003648]/80 to-transparent" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           {/* Breadcrumb */}
