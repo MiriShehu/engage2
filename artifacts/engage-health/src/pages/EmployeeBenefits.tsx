@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Link } from "wouter";
+import heroBg from "@assets/Employee-Benefits-main-heading1_1773875144473.jpg";
 import { motion } from "framer-motion";
 import {
   Shield, Heart, TrendingUp, AlertCircle, Smile, Activity,
@@ -192,14 +193,18 @@ export default function EmployeeBenefits() {
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative pt-16 overflow-hidden bg-secondary">
-        {/* Dot grid */}
+        {/* Background image */}
         <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBg})` }}
         />
-        {/* Glow */}
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary/25 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute -top-20 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
+        {/* Dark gradient overlay — left side opaque for text, right side lighter to reveal image */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(105deg, rgba(0,54,72,0.96) 0%, rgba(0,54,72,0.88) 45%, rgba(0,54,72,0.55) 70%, rgba(0,54,72,0.2) 100%)",
+          }}
+        />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           {/* Breadcrumb */}
