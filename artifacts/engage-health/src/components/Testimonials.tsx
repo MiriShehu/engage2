@@ -1,13 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, UserRound } from "lucide-react";
 
 interface Testimonial {
   quote: string;
   name: string;
   role: string;
   company: string;
-  avatar: string;
   rating: number;
 }
 
@@ -17,7 +16,6 @@ const testimonials: Testimonial[] = [
     name: "Sarah Thornton",
     role: "HR Director",
     company: "Tessian",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -25,7 +23,6 @@ const testimonials: Testimonial[] = [
     name: "Marcus Webb",
     role: "Head of People",
     company: "Phoebe AI",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -33,7 +30,6 @@ const testimonials: Testimonial[] = [
     name: "Claire Osei",
     role: "Operations Manager",
     company: "CAE Parc Aviation",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -41,7 +37,6 @@ const testimonials: Testimonial[] = [
     name: "James Ridley",
     role: "CFO",
     company: "Zink Commerce",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -49,7 +44,6 @@ const testimonials: Testimonial[] = [
     name: "Layla Mirza",
     role: "People Operations Lead",
     company: "Remote",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -57,7 +51,6 @@ const testimonials: Testimonial[] = [
     name: "Emily Carr",
     role: "HR Manager",
     company: "Brandwatch",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -65,7 +58,6 @@ const testimonials: Testimonial[] = [
     name: "Tom Fairfax",
     role: "CEO",
     company: "SaltPay",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -73,7 +65,6 @@ const testimonials: Testimonial[] = [
     name: "Priya Nandakumar",
     role: "Talent & Culture Director",
     company: "Codat",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
   {
@@ -81,7 +72,6 @@ const testimonials: Testimonial[] = [
     name: "David Mercer",
     role: "HR Business Partner",
     company: "Gymshark",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=96&h=96",
     rating: 5,
   },
 ];
@@ -114,13 +104,9 @@ function TestimonialCard({ t, dupIndex, cardIndex }: { t: Testimonial; dupIndex:
         <p className="text-gray-600 text-sm leading-relaxed">"{t.quote}"</p>
 
         <footer className="flex items-center gap-3 mt-5 pt-5 border-t border-gray-100">
-          <img
-            src={t.avatar}
-            alt={t.name}
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-full object-cover ring-2 ring-gray-100"
-          />
+          <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "#003648" }}>
+            <UserRound className="w-5 h-5 text-white" />
+          </div>
           <div>
             <cite className="not-italic font-semibold text-[#003648] text-sm leading-tight block">
               {t.name}
