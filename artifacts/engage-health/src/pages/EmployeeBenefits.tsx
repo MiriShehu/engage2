@@ -289,28 +289,39 @@ export default function EmployeeBenefits() {
                 Here's a snapshot of employee benefits for you to consider — most of which we can help you with. Click any product to learn more.
               </p>
 
-              <div className="mt-8 flex flex-col gap-4">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {products.map((p, i) => (
                   <motion.div
                     key={p.name}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.04 }}
-                    className="group flex gap-4 p-5 rounded-2xl border border-border hover:border-primary/25 hover:shadow-md bg-white hover:bg-primary/[0.02] transition-all duration-200 cursor-default"
+                    transition={{ duration: 0.4, delay: i * 0.05 }}
+                    className="group relative flex flex-col p-5 rounded-2xl border border-border bg-white hover:shadow-lg hover:border-primary/20 transition-all duration-300 cursor-default overflow-hidden"
                   >
+                    {/* Accent bar top */}
                     <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-primary"
-                      style={{ background: "rgba(118,24,111,0.1)" }}
+                      className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: "linear-gradient(90deg,#76186f,#003648)" }}
+                    />
+                    {/* Icon */}
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
+                      style={{ background: "linear-gradient(135deg,rgba(118,24,111,0.12),rgba(0,54,72,0.08))" }}
                     >
-                      <p.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
+                      <p.icon className="w-5 h-5 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-secondary text-[0.95rem] leading-snug">
-                        {p.name}
-                        {p.subName && <span className="font-normal text-muted-foreground text-sm ml-1">{p.subName}</span>}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                    {/* Text */}
+                    <h3 className="font-bold text-secondary text-[0.9rem] leading-snug mb-1">
+                      {p.name}
+                      {p.subName && (
+                        <span className="block font-normal text-muted-foreground text-xs mt-0.5">{p.subName}</span>
+                      )}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                    {/* Learn more link */}
+                    <div className="mt-auto pt-4 flex items-center gap-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                      Learn more <ChevronRight className="w-3.5 h-3.5" />
                     </div>
                   </motion.div>
                 ))}
