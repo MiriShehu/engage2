@@ -49,6 +49,16 @@ const item = {
 export function WhatWeOffer() {
   return (
     <section className="py-24 bg-[#003648] relative overflow-hidden">
+      {/* logo watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+        <img
+          src="/logo.png"
+          alt=""
+          className="w-[680px] max-w-[70%] object-contain"
+          style={{ opacity: 0.045, filter: "brightness(10) saturate(0)" }}
+        />
+      </div>
+
       {/* decorative blobs */}
       <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-[0.06]"
         style={{ background: "#76186f" }} />
