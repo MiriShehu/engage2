@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import {
   Heart, Shield, TrendingUp, Smile, Headphones,
   AlertCircle, Globe, Building2, ArrowRight, Check,
-  HeartPulse,
+  HeartPulse, Lock,
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -24,6 +24,7 @@ const intlPolicies = [
   { icon: AlertCircle, label: "International Critical Illness Cover" },
   { icon: Building2,   label: "US Company Health Insurance" },
   { icon: Headphones,  label: "International EAP" },
+  { icon: Lock,        label: "Kidnap and Ransom Insurance" },
 ];
 
 function PolicyItem({ icon: Icon, label, accent }: { icon: React.ElementType; label: string; accent: string }) {
