@@ -533,7 +533,7 @@ export default function EmployeeBenefits() {
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-semibold mb-4">
                   FREE consultation
                 </div>
-                <h3 className="text-xl font-extrabold mb-2 leading-snug">
+                <h3 className="text-xl font-extrabold mb-2 leading-snug text-white">
                   Get expert advice today
                 </h3>
                 <p className="text-white/85 text-sm leading-relaxed mb-5">
