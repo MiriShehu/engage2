@@ -340,11 +340,7 @@ export default function Team() {
             { name: "Esme Pearson",    title: "EB Consultant",                image: `${BASE}/2023/01/Esme-Pearson-1.png` },
             { name: "Stuart Isaac",    title: "EB Consultant",                image: `${BASE}/2023/05/stuart-isaac.png` },
             { name: "John Kavanagh",   title: "EB Consultant",                image: `${BASE}/2024/02/John-Kavanagh-copy.png` },
-            { name: "Chloe Young",           title: "EB Consultant",                     image: `${BASE}/2023/05/chloe-e1698242302294.png` },
-            { name: "Aleen Solly",           title: "EB Consultant",                     image: `${BASE}/2024/08/Aleen-Solly-e1723469764751.png` },
-            { name: "Eiman Elkhalifa",        title: "International Benefits Consultant", image: `${BASE}/2024/02/Eiman-Elkhalifa.png` },
-            { name: "Bruno Ferreira Coelho", title: "International Benefits Consultant", image: `${BASE}/2023/01/Bruno-Ferreira-Coelho-e1674568875855.png` },
-            { name: "Ciara Boulton",         title: "International Benefits Consultant", image: `${BASE}/2024/01/Ciara-Boulton.png` },
+            { name: "Chloe Young",     title: "EB Consultant",                image: `${BASE}/2023/05/chloe-e1698242302294.png` },
           ]}
           className="bg-white"
         />
