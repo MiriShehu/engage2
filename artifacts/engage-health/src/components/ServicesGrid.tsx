@@ -22,7 +22,7 @@ const intlPolicies = [
   { icon: Shield,      label: "International Life Insurance" },
   { icon: TrendingUp,  label: "International Income Protection" },
   { icon: AlertCircle, label: "International Critical Illness Cover" },
-  { icon: Building2,   label: "US Health Insurance" },
+  { icon: Building2,   label: "US Company Health Insurance" },
   { icon: Headphones,  label: "International EAP" },
 ];
 
