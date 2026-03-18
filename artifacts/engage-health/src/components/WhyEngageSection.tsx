@@ -127,18 +127,9 @@ export function WhyEngageSection() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-3 gap-4"
             >
-              {/* 2024 — spans full width */}
-              <motion.div variants={badge} className="col-span-2">
-                <img
-                  src={awards[0].src}
-                  alt={awards[0].label}
-                  className="w-full rounded-2xl shadow-md object-cover"
-                />
-              </motion.div>
-              {/* 2023 & 2022 side by side */}
-              {awards.slice(1).map((a, i) => (
+              {awards.map((a, i) => (
                 <motion.div key={i} variants={badge}>
                   <img
                     src={a.src}
