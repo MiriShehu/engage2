@@ -205,7 +205,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-2xl font-extrabold text-secondary leading-snug">{children}</h2>
+    <h2 className="text-xl sm:text-2xl font-extrabold text-secondary leading-snug">{children}</h2>
   );
 }
 
@@ -219,7 +219,7 @@ export default function GroupHealthInsurance() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f8f8f9]">
+    <div className="flex flex-col min-h-screen bg-[#f8f8f9] overflow-x-hidden">
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
@@ -304,11 +304,11 @@ export default function GroupHealthInsurance() {
       <TrustBar />
 
       {/* ── Body ─────────────────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
-        <div className="flex flex-col lg:flex-row gap-10 xl:gap-16 items-start">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 overflow-x-hidden">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-10 xl:gap-16">
 
           {/* ── MAIN CONTENT ─────────────────────────────────────────────── */}
-          <main className="flex-1 min-w-0">
+          <main className="flex-1 min-w-0 w-full">
 
             {/* 1 — How can Engage help? */}
             <section>
@@ -555,7 +555,7 @@ export default function GroupHealthInsurance() {
               </div>
 
               {/* Comparison table */}
-              <div className="mt-8 overflow-x-auto rounded-2xl border border-border">
+              <div className="mt-8 overflow-x-auto max-w-full rounded-2xl border border-border">
                 <table className="w-full text-sm min-w-[640px]">
                   <thead>
                     <tr className="border-b border-border">
