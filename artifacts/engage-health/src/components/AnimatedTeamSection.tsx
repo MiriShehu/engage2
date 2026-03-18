@@ -113,13 +113,11 @@ export function AnimatedTeamSection({
           animate={controls}
         >
           {members.map((member, index) => (
+            /* OUTER: owns fan position (x / y / rotate) via variants — never touched by hover */
             <motion.div
               key={index}
-              className="absolute rounded-2xl overflow-hidden border-[3px] border-white shadow-2xl cursor-default"
+              className="absolute"
               style={{
-                width: "120px",
-                height: "160px",
-                background: CARD_BG[index % CARD_BG.length],
                 zIndex: hoveredIdx === index
                   ? 99
                   : members.length - Math.abs(index - (members.length - 1) / 2),
@@ -128,34 +126,43 @@ export function AnimatedTeamSection({
               variants={itemVariants}
               onHoverStart={() => setHoveredIdx(index)}
               onHoverEnd={() => setHoveredIdx(null)}
-              whileHover={{
-                scale: 1.15,
-                rotate: 0,
-                y: getCardState(index, members.length).y - 18,
-                transition: { type: "spring", stiffness: 320, damping: 22 },
-              }}
             >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-contain object-bottom"
-              />
-              {/* Name tooltip on hover */}
+              {/* INNER: owns hover scale/lift only — isolated from variant position */}
               <motion.div
-                className="absolute bottom-0 left-0 right-0 px-2 py-1.5 text-center"
+                className="rounded-2xl overflow-hidden border-[3px] border-white shadow-2xl cursor-default"
                 style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)",
+                  width: "120px",
+                  height: "160px",
+                  background: CARD_BG[index % CARD_BG.length],
                 }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: hoveredIdx === index ? 1 : 0 }}
-                transition={{ duration: 0.2 }}
+                whileHover={{
+                  scale: 1.15,
+                  y: -18,
+                  transition: { type: "spring", stiffness: 320, damping: 22 },
+                }}
               >
-                <p className="text-white text-[10px] font-bold leading-tight truncate">
-                  {member.name}
-                </p>
-                <p className="text-white/70 text-[9px] leading-tight truncate">
-                  {member.title}
-                </p>
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-contain object-bottom"
+                />
+                {/* Name tooltip on hover */}
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 px-2 py-1.5 text-center"
+                  style={{
+                    background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)",
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: hoveredIdx === index ? 1 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <p className="text-white text-[10px] font-bold leading-tight truncate">
+                    {member.name}
+                  </p>
+                  <p className="text-white/70 text-[9px] leading-tight truncate">
+                    {member.title}
+                  </p>
+                </motion.div>
               </motion.div>
             </motion.div>
           ))}
