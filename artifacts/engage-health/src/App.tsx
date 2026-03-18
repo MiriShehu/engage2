@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import Solutions from "@/pages/Solutions";
 import Products from "@/pages/Products";
 import Contact from "@/pages/Contact";
+import Team from "@/pages/Team";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/solutions" component={Solutions} />
       <Route path="/products" component={Products} />
       <Route path="/contact" component={Contact} />
+      <Route path="/team" component={Team} />
       <Route component={NotFound} />
     </Switch>
   );

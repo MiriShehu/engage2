@@ -112,8 +112,9 @@ export function Navbar() {
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="bg-white rounded-2xl shadow-xl border border-border p-3 w-48 flex flex-col gap-1 relative before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:border-8 before:border-transparent before:border-b-white">
                   <Link href="/" className="px-4 py-2 hover:bg-muted rounded-xl transition-colors text-sm font-medium">About Us</Link>
+                  <Link href="/team" className="px-4 py-2 hover:bg-muted rounded-xl transition-colors text-sm font-medium">Meet the Team</Link>
                   <Link href="/" className="px-4 py-2 hover:bg-muted rounded-xl transition-colors text-sm font-medium">Testimonials</Link>
-                  <Link href="/" className="px-4 py-2 hover:bg-muted rounded-xl transition-colors text-sm font-medium">Contact Support</Link>
+                  <Link href="/contact" className="px-4 py-2 hover:bg-muted rounded-xl transition-colors text-sm font-medium">Contact Support</Link>
                 </div>
               </div>
             </div>

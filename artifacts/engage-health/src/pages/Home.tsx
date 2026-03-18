@@ -4,6 +4,7 @@ import { TrustBar } from "@/components/TrustBar";
 import { ProblemSolution } from "@/components/ProblemSolution";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { HowItWorks } from "@/components/HowItWorks";
+import { OurExperts } from "@/components/OurExperts";
 import { Testimonials } from "@/components/Testimonials";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { CTASection } from "@/components/CTASection";
@@ -19,6 +20,7 @@ export default function Home() {
         <ProblemSolution />
         <ServicesGrid />
         <HowItWorks />
+        <OurExperts />
         <WhyChooseUs />
         <Testimonials />
         <CTASection />
