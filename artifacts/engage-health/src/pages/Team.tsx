@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CTASection } from "@/components/CTASection";
+import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -323,6 +324,22 @@ export default function Team() {
             </div>
           </div>
         </section>
+
+        {/* Animated team fan */}
+        <AnimatedTeamSection
+          title="24 specialists. One team."
+          description="Drawn from Bupa Global, Aon, Mercer, Vitality, AIG and beyond — every member of our team is here because they genuinely care about getting the best outcome for your people."
+          members={[
+            { name: "Nick Hale",             image: `${BASE}/2023/01/Nick-Hale-e1674569951192.png` },
+            { name: "Ian Abbott",            image: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png` },
+            { name: "Charlie Cousins",       image: `${BASE}/2023/01/charlie-e1674569473213.png` },
+            { name: "Stuart Box",            image: `${BASE}/2023/01/Stuart-Box-copy.png` },
+            { name: "Mike Hesch",            image: `${BASE}/2023/06/Mike-Hesch-Head-Shot-e1723650105906.png` },
+            { name: "Jess Wright",           image: `${BASE}/2023/12/Jess-Wright_.png` },
+            { name: "Ed Bryan",              image: `${BASE}/2023/01/Ed-Bryan-1.png` },
+          ]}
+          className="bg-white"
+        />
 
         {/* Departments */}
         {departments.map((dept, di) => (
