@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { TrustBar } from "@/components/TrustBar";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { Testimonials } from "@/components/Testimonials";
 
@@ -17,6 +18,8 @@ export default function Products() {
             </p>
           </div>
         </div>
+
+        <TrustBar />
 
         <ServicesGrid />
         

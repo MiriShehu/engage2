@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { TrustBar } from "@/components/TrustBar";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Shield, Clock, Award, CheckCircle2 } from "lucide-react";
 
@@ -68,6 +69,8 @@ export default function GetAQuote() {
           </div>
         </div>
       </div>
+
+      <TrustBar />
 
       {/* Form section */}
       <main className="flex-1 bg-muted/30 py-16">

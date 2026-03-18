@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { TrustBar } from "@/components/TrustBar";
 import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -322,6 +323,8 @@ export default function Team() {
             </div>
           </div>
         </section>
+
+        <TrustBar />
 
         {/* Animated team fan */}
         <AnimatedTeamSection

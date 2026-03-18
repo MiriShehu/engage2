@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { TrustBar } from "@/components/TrustBar";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
@@ -6,10 +7,11 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 bg-muted/20">
-        <div className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="max-w-3xl mb-16">
+      {/* Hero / page header */}
+      <div className="pt-32 pb-10 bg-muted/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-extrabold text-secondary mb-4">
               Get in touch
             </h1>
@@ -17,6 +19,13 @@ export default function Contact() {
               Our team of expert advisers is here to help. Reach out by phone, email, or use the form to get a free market comparison.
             </p>
           </div>
+        </div>
+      </div>
+
+      <TrustBar />
+
+      <main className="flex-1 bg-muted/20">
+        <div className="pt-10 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
             <a

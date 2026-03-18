@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { TrustBar } from "@/components/TrustBar";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -18,6 +19,8 @@ export default function Solutions() {
             </p>
           </div>
         </div>
+
+        <TrustBar />
 
         {/* Feature blocks */}
         <section className="py-20 bg-white">

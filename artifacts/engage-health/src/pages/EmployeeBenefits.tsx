@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { TrustBar } from "@/components/TrustBar";
 import { Link } from "wouter";
 import heroBg from "@assets/Employee-Benefits-main-heading1_1773875144473.jpg";
 import tipBlend from "@assets/Emp-Benefits-blend-your-approach_1773875338242.jpg";
@@ -285,6 +286,8 @@ export default function EmployeeBenefits() {
           </motion.div>
         </div>
       </section>
+
+      <TrustBar />
 
       {/* ── Body: main + sidebar ─────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
