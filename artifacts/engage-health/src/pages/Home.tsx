@@ -35,7 +35,6 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <TrustBar />
-        <ClientLogos />
         <BenefitsIntro />
         <WhatWeOffer />
         <ServicesGrid />
@@ -48,6 +47,7 @@ export default function Home() {
           showLink
           className="bg-[#f8f7fb]"
         />
+        <ClientLogos />
         <EngageNumbers />
         <Testimonials />
         <BlogPosts />
