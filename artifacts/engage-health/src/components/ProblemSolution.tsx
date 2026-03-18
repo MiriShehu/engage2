@@ -1,85 +1,145 @@
-import { XCircle, CheckCircle2, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
+import { ArrowRight, Lightbulb } from "lucide-react";
+
+const facts = [
+  {
+    stat: "9 in 10",
+    label: "employees rank health as their top life priority",
+    detail: "Yet most receive no employer support for it. A good benefits package changes that.",
+    source: "CIPD",
+    size: "large",
+    accent: "from-[#76186f] to-violet-500",
+    bg: "bg-secondary",
+    textLight: true,
+  },
+  {
+    stat: "90%",
+    label: "would trade a 5% pay rise for better benefits",
+    detail: "Salary is no longer the whole picture — benefits are the new battleground for talent.",
+    source: "QuickBooks",
+    size: "small",
+    accent: "from-amber-400 to-orange-500",
+    bg: "bg-amber-50",
+    textLight: false,
+  },
+  {
+    stat: "£5",
+    label: "returned for every £1 invested in mental health support",
+    detail: "EAPs and wellbeing programmes don't just feel good — they deliver measurable ROI.",
+    source: "Deloitte",
+    size: "small",
+    accent: "from-emerald-400 to-teal-600",
+    bg: "bg-emerald-50",
+    textLight: false,
+  },
+  {
+    stat: "48%",
+    label: "of workers would stay in their role for better benefits — even over a higher salary",
+    detail: "Retention is as much about benefits strategy as compensation.",
+    source: "QuickBooks",
+    size: "wide",
+    accent: "from-sky-400 to-blue-600",
+    bg: "bg-sky-50",
+    textLight: false,
+  },
+  {
+    stat: "74%",
+    label: "of UK companies now use Employee Assistance Programmes",
+    detail: "Up from just 52% in 2016. Wellbeing support is now a baseline expectation.",
+    source: "CIPD 2023",
+    size: "small",
+    accent: "from-rose-400 to-pink-600",
+    bg: "bg-rose-50",
+    textLight: false,
+  },
+  {
+    stat: "15yr",
+    label: "high in talent shortage — benefits matter more than ever",
+    detail: "In a competitive market, a strong benefits package is a decisive recruitment differentiator.",
+    source: "ManpowerGroup",
+    size: "small",
+    accent: "from-violet-400 to-indigo-600",
+    bg: "bg-violet-50",
+    textLight: false,
+  },
+];
 
 export function ProblemSolution() {
   return (
-    <section className="py-24 bg-muted/30">
+    <section className="py-28 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 max-w-3xl mx-auto animate-in slide-in-up">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-            The Problem with Traditional Benefits
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Most businesses overpay for generic policies their team never uses. It shouldn't be this hard.
+
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4 border border-primary/15">
+              <Lightbulb className="w-3.5 h-3.5" />
+              Did you know?
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-secondary leading-tight">
+              The case for better
+              <br />
+              <span className="text-primary">employee benefits</span>
+            </h2>
+          </div>
+          <p className="text-gray-500 text-lg max-w-xs sm:text-right leading-relaxed">
+            The data is clear — investing in your team's health and wellbeing pays for itself.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 items-center relative">
-          
-          {/* The Problem */}
-          <div className="flex flex-col gap-4">
-            <div className="bg-white p-6 rounded-2xl shadow-md border border-border/50 flex items-start gap-4 transform transition-transform hover:-translate-y-1">
-              <XCircle className="w-6 h-6 text-destructive shrink-0 mt-1" />
-              <div>
-                <h4 className="font-bold text-foreground mb-1">Wasted Budget</h4>
-                <p className="text-sm text-muted-foreground">Paying for generic plans with features your specific demographic doesn't care about.</p>
+        {/* Bento grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-5">
+
+          {/* Card 1 — large, dark, spans 2 rows on lg */}
+          <div className={`relative overflow-hidden rounded-3xl p-8 lg:row-span-2 flex flex-col justify-between min-h-[280px] ${facts[0].bg} group`}>
+            <div className={`absolute inset-0 opacity-[0.12] bg-gradient-to-br ${facts[0].accent}`} />
+            <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
+            <div className="relative">
+              <div className="text-white/50 text-xs font-bold uppercase tracking-widest mb-6">Source: {facts[0].source}</div>
+              <div className={`text-6xl lg:text-7xl font-black mb-4 bg-gradient-to-br bg-clip-text text-transparent ${facts[0].accent}`}>
+                {facts[0].stat}
               </div>
+              <h3 className="text-xl font-bold text-white mb-3 leading-snug">{facts[0].label}</h3>
+              <p className="text-white/60 text-sm leading-relaxed">{facts[0].detail}</p>
             </div>
-            <div className="bg-white p-6 rounded-2xl shadow-md border border-border/50 flex items-start gap-4 transform transition-transform hover:-translate-y-1">
-              <XCircle className="w-6 h-6 text-destructive shrink-0 mt-1" />
-              <div>
-                <h4 className="font-bold text-foreground mb-1">Admin Nightmare</h4>
-                <p className="text-sm text-muted-foreground">Hours lost managing renewals, adding/removing staff, and handling employee claims.</p>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-md border border-border/50 flex items-start gap-4 transform transition-transform hover:-translate-y-1">
-              <XCircle className="w-6 h-6 text-destructive shrink-0 mt-1" />
-              <div>
-                <h4 className="font-bold text-foreground mb-1">Poor Communication</h4>
-                <p className="text-sm text-muted-foreground">Employees don't know what they're entitled to, leading to zero engagement.</p>
-              </div>
-            </div>
+            <Link href="/contact" className="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-white transition-colors group/link">
+              Get a free review
+              <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+            </Link>
           </div>
 
-          {/* Divider/Arrow */}
-          <div className="hidden lg:flex flex-col items-center justify-center text-primary/30">
-            <div className="w-px h-24 bg-gradient-to-b from-transparent to-primary/30"></div>
-            <div className="w-12 h-12 rounded-full border-2 border-primary/30 flex items-center justify-center bg-white z-10">
-               <ArrowRight className="w-5 h-5 text-primary" />
-            </div>
-            <div className="w-px h-24 bg-gradient-to-t from-transparent to-primary/30"></div>
-          </div>
-
-          <div className="flex lg:hidden justify-center text-primary/30 py-4">
-            <ArrowRight className="w-8 h-8 text-primary rotate-90" />
-          </div>
-
-          {/* The Solution */}
-          <div className="flex flex-col gap-4 relative">
-            <div className="absolute -inset-4 bg-primary/5 rounded-[2rem] -z-10 border border-primary/10"></div>
-            <div className="bg-white p-6 rounded-2xl shadow-xl shadow-primary/5 border border-primary/20 flex items-start gap-4 transform transition-transform hover:-translate-y-1">
-              <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0 mt-1" />
-              <div>
-                <h4 className="font-bold text-foreground mb-1">Tailored Packages</h4>
-                <p className="text-sm text-muted-foreground">Bespoke plans built around your team's exact needs, saving up to 20% on premiums.</p>
+          {/* Cards 2–6 — smaller */}
+          {facts.slice(1).map((fact, i) => (
+            <div
+              key={i}
+              className={`relative overflow-hidden rounded-3xl p-7 ${fact.bg} group hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${fact.size === "wide" ? "sm:col-span-2 lg:col-span-1" : ""}`}
+            >
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${fact.accent}`} />
+              <div className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-4">Source: {fact.source}</div>
+              <div className={`text-5xl font-black mb-3 bg-gradient-to-br bg-clip-text text-transparent ${fact.accent}`}>
+                {fact.stat}
               </div>
+              <h3 className="text-base font-bold text-secondary mb-2 leading-snug">{fact.label}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{fact.detail}</p>
             </div>
-            <div className="bg-white p-6 rounded-2xl shadow-xl shadow-primary/5 border border-primary/20 flex items-start gap-4 transform transition-transform hover:-translate-y-1">
-              <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0 mt-1" />
-              <div>
-                <h4 className="font-bold text-foreground mb-1">Zero Admin Burden</h4>
-                <p className="text-sm text-muted-foreground">We handle the entire process—from initial setup to ongoing claims support.</p>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-xl shadow-primary/5 border border-primary/20 flex items-start gap-4 transform transition-transform hover:-translate-y-1">
-              <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0 mt-1" />
-              <div>
-                <h4 className="font-bold text-foreground mb-1">Engaged Teams</h4>
-                <p className="text-sm text-muted-foreground">Clear communication and digital tools so your team actually values their benefits.</p>
-              </div>
-            </div>
-          </div>
-
+          ))}
         </div>
+
+        {/* Bottom CTA strip */}
+        <div className="mt-12 bg-white border border-gray-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+          <div>
+            <div className="font-bold text-secondary text-lg">Ready to build a benefits package that actually works?</div>
+            <div className="text-gray-500 text-sm mt-0.5">Free market review — no obligation, no cost to your business.</div>
+          </div>
+          <Link
+            href="/contact"
+            className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 hover:-translate-y-0.5 transition-all duration-200"
+          >
+            Start your free review
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
       </div>
     </section>
   );
