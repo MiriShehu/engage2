@@ -1,8 +1,9 @@
 import * as React from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
+import useEmblaCarousel from "embla-carousel-react";
 
 interface TeamMember {
   name: string;
@@ -40,6 +41,89 @@ const getCardState = (index: number, total: number) => {
     rotate: dist * 8,
   };
 };
+
+function MobileCarousel({ members }: { members: TeamMember[] }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" });
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi]);
+
+  return (
+    <div className="w-full mt-10">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {members.map((member, index) => (
+            <div
+              key={index}
+              className="flex-none w-[72vw] max-w-[260px] mx-3"
+            >
+              <div
+                className="rounded-2xl overflow-hidden border-[3px] border-white shadow-2xl relative"
+                style={{
+                  height: "280px",
+                  background: CARD_BG[index % CARD_BG.length],
+                }}
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-contain object-bottom"
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 px-3 py-2 text-center"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%)" }}
+                >
+                  <p className="text-white text-sm font-bold leading-tight">{member.name}</p>
+                  <p className="text-white/75 text-xs leading-tight mt-0.5">{member.title}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-4 mt-6">
+        <button
+          onClick={() => emblaApi?.scrollPrev()}
+          className="w-9 h-9 rounded-full flex items-center justify-center border border-secondary/20 bg-white shadow-sm hover:bg-secondary hover:text-white transition-colors"
+          aria-label="Previous"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+
+        <div className="flex gap-1.5">
+          {members.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => emblaApi?.scrollTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={cn(
+                "rounded-full transition-all duration-300",
+                i === selectedIndex
+                  ? "w-5 h-2 bg-primary"
+                  : "w-2 h-2 bg-secondary/20"
+              )}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => emblaApi?.scrollNext()}
+          className="w-9 h-9 rounded-full flex items-center justify-center border border-secondary/20 bg-white shadow-sm hover:bg-secondary hover:text-white transition-colors"
+          aria-label="Next"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function AnimatedTeamSection({
   title,
@@ -104,17 +188,21 @@ export function AnimatedTeamSection({
           </motion.p>
         )}
 
-        {/* Fan */}
+        {/* Mobile: Embla carousel */}
+        <div className="w-full md:hidden">
+          <MobileCarousel members={members} />
+        </div>
+
+        {/* Desktop: Fan layout */}
         <motion.div
           ref={ref}
-          className="relative mt-20 flex items-end justify-center"
+          className="relative mt-20 hidden md:flex items-end justify-center"
           style={{ minHeight: "420px", width: "100%", paddingTop: "140px" }}
           variants={containerVariants}
           initial="hidden"
           animate={controls}
         >
           {members.map((member, index) => (
-            /* OUTER: owns fan position (x / y / rotate) via variants — never touched by hover */
             <motion.div
               key={index}
               className="absolute"
@@ -129,7 +217,6 @@ export function AnimatedTeamSection({
               onHoverStart={() => setHoveredIdx(index)}
               onHoverEnd={() => setHoveredIdx(null)}
             >
-              {/* INNER: owns hover scale/lift only — isolated from variant position */}
               <motion.div
                 className="rounded-2xl overflow-hidden border-[3px] border-white shadow-2xl cursor-default"
                 style={{
@@ -148,7 +235,6 @@ export function AnimatedTeamSection({
                   alt={member.name}
                   className="w-full h-full object-contain object-bottom"
                 />
-                {/* Name tooltip on hover */}
                 <motion.div
                   className="absolute bottom-0 left-0 right-0 px-2 py-1.5 text-center"
                   style={{
@@ -170,7 +256,7 @@ export function AnimatedTeamSection({
           ))}
         </motion.div>
 
-        {/* Optional CTA */}
+        {/* CTA */}
         {showLink && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
