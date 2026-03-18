@@ -224,7 +224,7 @@ export default function GroupHealthInsurance() {
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section
-        className="relative overflow-hidden bg-cover bg-center"
+        className="relative overflow-hidden bg-cover bg-top"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
         {/* Left-to-right teal gradient overlay */}
