@@ -50,7 +50,7 @@ export function WhatWeOffer() {
   return (
     <section className="py-24 bg-[#003648] relative overflow-hidden">
       {/* logomark watermark */}
-      <div className="absolute inset-0 flex items-center justify-end pr-16 pointer-events-none select-none">
+      <div className="absolute inset-0 flex items-center justify-start pl-16 pointer-events-none select-none">
         <img
           src="/logomark.png"
           alt=""
