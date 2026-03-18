@@ -33,15 +33,15 @@ const row2 = [
 
 export function ClientLogos() {
   return (
-    <section className="bg-secondary py-20 overflow-hidden">
+    <section className="bg-[#f5f4fa] py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-        <p className="text-xs font-bold tracking-widest uppercase text-white/35 mb-3">
+        <p className="text-xs font-bold tracking-widest uppercase text-primary/50 mb-3">
           Trusted by
         </p>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary leading-tight">
           Companies that trust Engage Health
         </h2>
-        <p className="mt-3 text-white/50 text-base max-w-xl mx-auto">
+        <p className="mt-3 text-muted-foreground text-base max-w-xl mx-auto">
           From fast-growing start-ups to global enterprises — we look after the teams behind the brands.
         </p>
       </div>

@@ -20,7 +20,7 @@ export function LogoCloud({ className, logos, reverse, duration = 30, durationOn
     <div
       {...props}
       className={cn(
-        "overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]",
+        "overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]",
         className
       )}
     >
@@ -28,7 +28,7 @@ export function LogoCloud({ className, logos, reverse, duration = 30, durationOn
         {logos.map((logo) => (
           <div
             key={`logo-${logo.alt}`}
-            className="flex items-center justify-center px-6 py-4 rounded-xl bg-white/90 border border-white/20 shadow-sm hover:bg-white hover:shadow-md transition-all duration-200 group"
+            className="flex items-center justify-center px-6 py-4 rounded-xl bg-white border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-200 group"
           >
             <img
               alt={logo.alt}
