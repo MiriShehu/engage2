@@ -15,6 +15,7 @@ import GroupHealthInsurance from "@/pages/GroupHealthInsurance";
 import ServicePage from "@/pages/ServicePage";
 import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
 import { internationalBenefitsServices } from "@/data/internationalBenefitsServices";
+import BlogPost from "@/pages/BlogPost";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/international-benefits/:slug">
         {() => <ServicePage category="international-benefits" services={internationalBenefitsServices} />}
       </Route>
+      <Route path="/blog/insurtech-insights-2025" component={BlogPost} />
       <Route component={NotFound} />
     </Switch>
   );
