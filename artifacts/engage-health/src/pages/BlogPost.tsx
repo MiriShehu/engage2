@@ -232,10 +232,8 @@ export default function BlogPost() {
 
                 {/* Author row */}
                 <div className="flex items-center gap-3 mb-7 pb-7 border-b border-border">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-black flex-shrink-0"
-                    style={{ background: 'linear-gradient(135deg,#76186f,#003648)' }}>
-                    MD
-                  </div>
+                  <img src="https://secure.gravatar.com/avatar/8675797f4efbab66341170349ac946ca849ecb48e9a42a6d2dafbf055dc59e23?s=300&d=mm&r=g"
+                    alt="Mel Dixon" className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
                   <div>
                     <p className="text-sm font-semibold text-secondary leading-none">Mel Dixon</p>
                     <p className="text-xs text-muted-foreground mt-0.5">
@@ -463,10 +461,8 @@ export default function BlogPost() {
                 {/* Accent banner */}
                 <div className="h-14" style={{ background: 'linear-gradient(135deg,#003648,#76186f)' }} />
                 <div className="px-5 pb-5 -mt-7">
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center text-white text-base font-black mb-3 ring-4 ring-white"
-                    style={{ background: 'linear-gradient(135deg,#76186f,#003648)' }}>
-                    MD
-                  </div>
+                  <img src="https://secure.gravatar.com/avatar/8675797f4efbab66341170349ac946ca849ecb48e9a42a6d2dafbf055dc59e23?s=300&d=mm&r=g"
+                    alt="Mel Dixon" className="w-14 h-14 rounded-full object-cover ring-4 ring-white mb-3" />
                   <p className="font-extrabold text-secondary text-sm">Mel Dixon</p>
                   <p className="text-xs text-muted-foreground mt-0.5">Staff Writer</p>
 
