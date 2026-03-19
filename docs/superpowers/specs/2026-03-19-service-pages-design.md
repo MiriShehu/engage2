@@ -230,7 +230,7 @@ Component references are assigned directly in the entry objects. No string names
 
 ```ts
 type Props = {
-  entry: Pick<ServiceEntry, 'title' | 'tagline' | 'subtitle' | 'heroImage' | 'colorScheme' | 'stats' | 'sidebarTestimonial'>
+  entry: Pick<ServiceEntry, 'title' | 'titleAccent' | 'tagline' | 'subtitle' | 'heroImage' | 'colorScheme' | 'stats' | 'sidebarTestimonial'>
   category: 'employee-benefits' | 'international-benefits'
   currentSlug: string           // used to highlight the active link in the sidebar
   allServices: ServiceEntry[]   // drives sidebar service links
