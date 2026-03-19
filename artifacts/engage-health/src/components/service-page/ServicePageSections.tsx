@@ -161,24 +161,25 @@ function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-blo
 }
 
 function FaqsRenderer({ s }: { s: Extract<ServiceSection, { type: 'faqs' }> }) {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
   return (
     <section>
       <SectionLabel>FAQs</SectionLabel>
       <SectionHeading>Frequently Asked Questions</SectionHeading>
       <div className="mt-6 divide-y divide-border rounded-2xl border border-border overflow-hidden bg-white">
-        {s.items.map((faq, i) => (
-          <div key={i}>
+        {s.items.map((faq) => (
+          <div key={faq.q}>
             <button
               className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#f8f8f9] transition-colors gap-4"
-              onClick={() => setOpen(open === i ? null : i)}
+              onClick={() => setOpen(open === faq.q ? null : faq.q)}
+              aria-expanded={open === faq.q}
             >
               <span className="text-sm font-semibold text-secondary pr-4">{faq.q}</span>
               <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center bg-primary/8">
-                {open === i ? <Minus className="w-3.5 h-3.5 text-primary" /> : <Plus className="w-3.5 h-3.5 text-primary" />}
+                {open === faq.q ? <Minus className="w-3.5 h-3.5 text-primary" /> : <Plus className="w-3.5 h-3.5 text-primary" />}
               </span>
             </button>
-            {open === i && (
+            {open === faq.q && (
               <div className="px-5 pb-5 pt-1">
                 <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
               </div>
