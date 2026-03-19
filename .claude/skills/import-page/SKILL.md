@@ -44,15 +44,20 @@ From the output, extract the following **verbatim**:
 - **H1** — the main page heading
 - **Tagline / badge text** — small label above the H1 (pill/badge element)
 - **Subtitle / strapline** — paragraph immediately below the H1
-- **Hero background image URL** — look for `background-image: url(...)` or an `<img>` in the hero/banner area in the raw HTML. Run a second curl piped to a grep for it if needed:
+- **Hero background image URL** — search the raw HTML for `background-image: url(...)` in the hero/banner area first, then fall back to all `<img>` src tags. Run both passes:
   ```bash
   curl -s "$ARGUMENTS" | node -e "
   const c=[];process.stdin.on('data',d=>c.push(d));process.stdin.on('end',()=>{
     const h=c.join('');
-    const imgs=[...h.matchAll(/uploads\/[^\"'\s)]+\.(jpg|jpeg|png|webp)/gi)].map(m=>m[0]);
-    console.log([...new Set(imgs)].join('\n'));
+    // 1. background-image: url(...) — most likely to be the hero
+    const bgImgs=[...h.matchAll(/background-image\s*:\s*url\(['\"]?(https?:\/\/[^'\"\)]+|\/wp-content\/uploads\/[^'\"\)]+)['\"]?\)/gi)].map(m=>m[1]);
+    // 2. all wp-content/uploads images
+    const allImgs=[...h.matchAll(/uploads\/[^\"'\s)]+\.(jpg|jpeg|png|webp)/gi)].map(m=>m[0]);
+    const combined=[...new Set([...bgImgs,...allImgs.map(i=>'https://www.engagehealthgroup.co.uk/wp-content/'+i)])];
+    console.log(combined.join('\n'));
   });"
   ```
+  The first URL in the output that looks like a page-specific hero image (not a logo, badge, or media logo) is the one to download.
 - **Stats strip** — numbered/highlighted figures and their labels
 - **All body sections in order**, capturing:
   - Section label pills (small uppercase text like "OUR SERVICE", "THE BASICS", "FAQS")
@@ -139,11 +144,26 @@ Use these section types (defined in `types.ts`) to map the page content in the o
 |------|-------------|
 | `service-list` | "How we help / Our service" block with bullet items. Add inline client quote to `testimonial` field if present. |
 | `intro` | "What is X?" / "How does X work?" — explanatory paragraphs (2–4 per block). |
-| `coverage` | A grid/list of covered items or included features. Put optional extras in `addOns`. |
+| `coverage` | A standalone list of covered items, included features, or factors. Renders as a **2-column card grid** — use whenever the content is purely a list with no surrounding prose. Put optional extras in `addOns`. |
 | `why-buy` | A clear employer-benefits / employee-benefits two-column split. |
-| `text-block` | Any other labelled section with paragraph text (advantages, disadvantages, cost, etc.). |
+| `text-block` | Any other labelled section with mixed prose + optional list items. Supports both `paragraphs` (plain text) and `items` (styled checkmark bullets). |
 | `testimonial` | A standalone client quote block — verbatim quote + attribution. |
 | `faqs` | Any Q&A / FAQ section. Include **every** question and its **complete** answer verbatim. |
+
+### Recognising list-like content — use cards/bullets, not flat paragraphs
+
+When content on the page is list-like, **do not flatten it into `paragraphs`**. Instead:
+
+| Pattern on source page | How to map it |
+|------------------------|---------------|
+| Short standalone items with no surrounding prose (e.g. "Age of insured", "Destination country") | `coverage` section — renders as 2-col card grid |
+| Items with a **"Label: explanation"** format (e.g. "Cost-efficiency: Purchase coverage for…") | `text-block` with `items` array — each item is the full "Label: explanation" string |
+| A bulleted or numbered list inside a prose section (e.g. "The following factors affect the premium: …") | Split: intro sentence(s) → `paragraphs`, list items → `items` array in the same `text-block` |
+| "Advantages" / "Disadvantages" / "Benefits" section that is purely a list | `coverage` section |
+| Mixed content: one or two intro sentences followed by a list | `text-block` with both `paragraphs` (the intro) and `items` (the list) |
+| Prose → list → closing prose (e.g. intro sentence, bullet factors, then "contact us" paragraph) | `text-block` with `paragraphs` (intro), `items` (list), and `footerParagraphs` (trailing prose) |
+
+**Never** put a list of short factors or reasons as separate strings in `paragraphs` — that renders as plain prose with no visual distinction.
 
 ---
 

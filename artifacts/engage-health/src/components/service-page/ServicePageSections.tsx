@@ -156,6 +156,21 @@ function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-blo
       <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
         {s.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
       </div>
+      {s.items && s.items.length > 0 && (
+        <ul className="mt-6 space-y-3">
+          {s.items.map((item) => (
+            <li key={item} className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+              <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {s.footerParagraphs && s.footerParagraphs.length > 0 && (
+        <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+          {s.footerParagraphs.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
+      )}
     </section>
   );
 }

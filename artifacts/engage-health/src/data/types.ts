@@ -39,6 +39,8 @@ export type TextBlockSection = {
   label: string
   title: string
   paragraphs: string[]
+  items?: string[]
+  footerParagraphs?: string[]
 }
 
 export type FaqsSection = {
@@ -83,6 +85,7 @@ export type ServiceEntry = {
   tagline: string
   subtitle: string
   heroImage?: string
+  heroImagePosition?: string
   icon: LucideIcon
   colorScheme: 'purple' | 'teal'
   stats: ServiceStat[]

@@ -593,11 +593,15 @@ export const internationalBenefitsServices: ServiceEntry[] = [
         title: 'Why offer Short-Term International Health Insurance?',
         paragraphs: [
           'There are several reasons why businesses should contemplate offering Short-Term International Health Insurance:',
+        ],
+        items: [
           'Cost-efficiency: Purchase coverage for the price period you require it for, rather than invest in an annual policy which runs beyond the time its needed.',
           'Streamlined benefits: A narrower set of health benefits helps reduce the cost of the scheme substantially too. However, some insurers do offer schemes which provide more extensive services, should they be required.',
           'Country-specific: Ensures that your employee gets the support they need, where they need it – and, importantly, knows how to get it.',
           'Emergencies & general health: Unlike Travel Insurance, employees can receive coverage for both emergency and general health needs (inclusions will vary from policy to policy).',
           'Flexibility: All the above points outline the fact that Short-Term International Health Insurance is a flexible option.',
+        ],
+        footerParagraphs: [
           'These points outline the business angle, but the benefits go deeper than that. An employee working abroad on a short-term assignment and contract will be, most likely, journeying into the unknown. It\'s both an exciting opportunity and a potential source of heightened anxiety. In such circumstances an employer has a duty of care to ensure they get the support they need. An employee\'s health and wellbeing should always be the priority. This makes access to healthcare particularly important. If your employee becomes ill or suffers an accident, will they be looked after? Or will they be left to fend for themselves?',
           'It\'s important to note that health insurance is only part of the support process. Other elements include pre-assignment screening, cultural training and risk assessments.',
         ],
@@ -608,9 +612,13 @@ export const internationalBenefitsServices: ServiceEntry[] = [
         title: 'Can I get medical cover with travel insurance instead?',
         paragraphs: [
           'Yes, but there are important differences.',
+        ],
+        items: [
           '1. Coverage limitations: Travel insurance is designed to provide short-term emergency treatment while travelling abroad, alongside other travel benefits such as cancelled flights, lost luggage etc. International Short-Term Medical Insurance (like other dedicated private health insurance schemes) covers emergency AND routine treatment. Plus, if longer-term treatment is needed that can be covered too.',
           '2. Time limitations: Travel insurance generally covers a shorter period. This is often up to three months and may only be applicable for single trips. International Short-Term Health Insurance can go up to 12 months and cover multiple trips.',
           '3. Added extras: International Health Insurance will usually offer additional benefits beyond its core offering, including: 24-hour medical help lines, wellness checks & support, medical second opinions, access to discounted pharmacy rates, assistance finding reputable medical professionals & facilities, access to specific hospital networks which allow direct settlement between the provider and insurer meaning you don\'t need to pay and claim back.',
+        ],
+        footerParagraphs: [
           'For very short-term trips of one to three months, or for specific single or multi-trip cover, Travel Insurance should be considered, please review our Group Travel Insurance page for further details.',
         ],
       },
@@ -620,12 +628,16 @@ export const internationalBenefitsServices: ServiceEntry[] = [
         title: 'How much does International Short-Term Health Insurance cost?',
         paragraphs: [
           'Less than typical International Health Insurance cover. However, as with any medical, insurance, costs will vary widely. The following factors will affect the premium:',
+        ],
+        items: [
           'Age of insured person(s)',
           'Previous health issues/health profile',
           'Type of work performed',
           'Destination country & locale',
           'Specific features included within the policy',
           'Coverage limit (total value of services claimable)',
+        ],
+        footerParagraphs: [
           'Many of the major health insurance companies provide short-term international cover, including AXA, Allianz Care and Cigna. However, if you require a list of quotes from across the industry, then contact us for a free consultation and we\'ll deliver what you need.',
         ],
       },
