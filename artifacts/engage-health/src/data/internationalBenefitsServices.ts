@@ -830,11 +830,54 @@ export const internationalBenefitsServices: ServiceEntry[] = [
         title: 'What types of Pre-Assignment Screening are available?',
         paragraphs: [
           "Both physical and psychological factors need to be considered when preparing an employee for an expat assignment overseas. It's a huge transition for a person to start living and working in a new country with different customs, and to be away from home comforts and the support of friends and family. Without the right preparation, the potential for the assignment to fail is high. However, the following Pre-Assignment Screening services are designed to minimise the risk and maximise the chances of a successful outcome.",
-          "International Health Screening: Expatriates frequently suffer health-related problems while on assignment overseas. This sometimes leads to the failure of the assignment, an expensive medical evacuation or staff absence which are entirely predictable and preventable. Sometimes an employee can have an unknown or undiagnosed condition. However, most issues arise when an expat with a pre-existing condition goes on an overseas assignment with little or no knowledge of how these conditions can be handled in their destination country. Before an employee leaves for the work placement, they need to understand how to integrate with the local healthcare system. Seemingly trivial information can be important, such as whether the pharmaceutical drugs they require are under the same brand name or whether they are even legal in their destination country. Knowing where to get hold of certain drugs or access specific medical interventions can be crucial.",
-          "International health screening is generally conducted via an online system which includes a review of: the employee's health; availability and quality of local healthcare; type of work performed; and length of assignment. When you incorporate an international health screening into your pre-assignment process, you are better prepared to predict, prevent, and reduce risk for your expatriate employee and their family. It also provides you with an audit trail, demonstrating proactive duty of care and helps you drive savings both before and during the assignment.",
-          "Pre-departure preparation and evaluation: Each employee brings a unique set of skills and character traits to an organisation. But how do you know which team member will thrive in an overseas assignment? Without a thorough evaluation it's impossible to know. Consequently, many businesses choose to include a 'management selection tool' which screens shortlisted candidates providing written recommendations and in-depth suitability analysis. Conducted by an experienced counsellor, a pre-departure evaluation can last up to 10 hours. It identifies personal risk factors as well as business risk. Preparation modules can include coaching and skill building designed to give employees the tools and coping strategies required to prosper in the assignment.",
-          "Pre-departure family preparation: These sessions are designed to support expat assignees, and their families, to prepare fully prior to assignment. The session is counsellor-led and can last up to six hours, delivering intensive preparation and consultation. Awareness-building and skills coaching are among its key components. The counsellor's core duty is to help participants identify vulnerabilities and strategies for success, focused around the challenges of re-location and cross-cultural adaption.",
-          "Destination Services: There are a lot of practical concerns that come with relocating for an expat assignment, particularly if moving with family. The Destination Services programme provides customised support for expats and their families with logistical hands-on support to facilitate a successful move and integration into a new host city and country. This programme can provide up to six days support, depending on the needs of the employee and be offered in almost every major city in the world. The programme looks to facilitate a hassle-free move and is provided by a dedicated Destination Services consultant. The consultant will have extensive international knowledge and understand the complexities of living and working in different cultures. Destination Services may include:",
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'International Health Screening',
+        title: 'International Health Screening',
+        paragraphs: [
+          "Expatriates frequently suffer health-related problems while on assignment overseas. This sometimes leads to the failure of the assignment, an expensive medical evacuation or staff absence which are entirely predictable and preventable. Sometimes an employee can have an unknown or undiagnosed condition. However, most issues arise when an expat with a pre-existing condition goes on an overseas assignment with little or no knowledge of how these conditions can be handled in their destination country. Before an employee leaves for the work placement, they need to understand how to integrate with the local healthcare system. Seemingly trivial information can be important, such as whether the pharmaceutical drugs they require are under the same brand name or whether they are even legal in their destination country. Knowing where to get hold of certain drugs or access specific medical interventions can be crucial.",
+          "International health screening is generally conducted via an online system which includes a review of:",
+        ],
+        items: [
+          "The employee's health",
+          'Availability and quality of local healthcare',
+          'Type of work performed',
+          'Length of assignment',
+        ],
+        footerParagraphs: [
+          'When you incorporate an international health screening into your pre-assignment process, you are better prepared to predict, prevent, and reduce risk for your expatriate employee and their family. It also provides you with an audit trail, demonstrating proactive duty of care and helps you drive savings both before and during the assignment.',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Pre-departure Preparation',
+        title: 'Pre-departure preparation and evaluation',
+        paragraphs: [
+          "Each employee brings a unique set of skills and character traits to an organisation. But how do you know which team member will thrive in an overseas assignment? Without a thorough evaluation it's impossible to know. Consequently, many businesses choose to include a 'management selection tool' which screens shortlisted candidates providing written recommendations and in-depth suitability analysis. Conducted by an experienced counsellor, a pre-departure evaluation can last up to 10 hours. It identifies personal risk factors as well as business risk. Preparation modules can include coaching and skill building designed to give employees the tools and coping strategies required to prosper in the assignment.",
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Family Preparation',
+        title: 'Pre-departure family preparation',
+        paragraphs: [
+          "These sessions are designed to support expat assignees, and their families, to prepare fully prior to assignment. The session is counsellor-led and can last up to six hours, delivering intensive preparation and consultation. Awareness-building and skills coaching are among its key components. The counsellor's core duty is to help participants identify vulnerabilities and strategies for success, focused around the challenges of re-location and cross-cultural adaption.",
+          'The counsellor will seek answers to the following:',
+        ],
+        items: [
+          'What are the potential strengths and weaknesses the family possesses (individually and collectively) for the experience that lies ahead?',
+          'What are the potential problems that could arise?',
+          'What are the key skills required to prosper?',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Destination Services',
+        title: 'Destination Services',
+        paragraphs: [
+          'There are a lot of practical concerns that come with relocating for an expat assignment, particularly if moving with family. The Destination Services programme provides customised support for expats and their families with logistical hands-on support to facilitate a successful move and integration into a new host city and country. This programme can provide up to six days support, depending on the needs of the employee and be offered in almost every major city in the world. The programme looks to facilitate a hassle-free move and is provided by a dedicated Destination Services consultant. The consultant will have extensive international knowledge and understand the complexities of living and working in different cultures. Destination Services may include:',
         ],
         items: [
           'Area orientation of a preview trip to the host city, including booking hotels and providing information.',
