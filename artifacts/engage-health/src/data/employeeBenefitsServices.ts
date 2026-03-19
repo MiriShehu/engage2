@@ -10,6 +10,7 @@ import canadalifeLogo from '@assets/insurers/canadalifeLogo.png';
 import avivaLogo from '@assets/insurers/avivaLogo.png';
 import zurichLogo from '@assets/insurers/zurichLogo.png';
 import legalLogo from '@assets/insurers/legalLogo.png';
+import relevantLifeHero from '@assets/hero/relevant-life.jpg';
 
 export const employeeBenefitsServices: ServiceEntry[] = [
   // ── GHI stub (sidebar only — page is served by GroupHealthInsurance.tsx) ──
@@ -1006,8 +1007,9 @@ export const employeeBenefitsServices: ServiceEntry[] = [
     slug: 'relevant-life-insurance',
     title: 'Relevant Life Insurance',
     titleAccent: 'Life Insurance',
-    tagline: 'Relevant Life Cover',
+    tagline: 'Engage Relevant Life Insurance',
     subtitle: 'Life insurance, the tax-efficient way.',
+    heroImage: relevantLifeHero,
     icon: FileText,
     colorScheme: 'purple',
     stats: [
@@ -1020,14 +1022,12 @@ export const employeeBenefitsServices: ServiceEntry[] = [
       {
         type: 'service-list',
         label: 'Our service',
-        title: 'How can Engage help your business?',
-        intro: 'We advise business owners and HR teams on Relevant Life policies — a highly tax-efficient alternative to group life insurance for smaller businesses and company directors.',
+        title: 'Our team of independent experts are ready to help your business:',
+        intro: 'Our team of independent experts are ready to help your business:',
         items: [
-          'Clear explanation of tax efficiency and suitability for your situation',
-          'Whole-of-market quotations from all leading insurers',
-          'Support with trust arrangements and policy documentation',
-          'Guidance on appropriate benefit levels (typically 2–15× salary)',
-          'Annual reviews and ongoing policy management',
+          'Discover whether Relevant Life Insurance is the best option',
+          'Set-up the policy & manage the claims process',
+          'Get a better deal than available on the market',
         ],
         testimonial: 'Engage have provided us with an exceptional service, everything is explained in a very clear, concise and informative manner allowing us to make the right decisions.',
       },
@@ -1036,55 +1036,96 @@ export const employeeBenefitsServices: ServiceEntry[] = [
         label: 'The basics',
         title: 'What is Relevant Life Insurance?',
         paragraphs: [
-          'Relevant Life cover is a tax-efficient form of life insurance that employers take out on behalf of a single employee. Unlike regular life protection policies, it is only available to businesses. Once an employer decides on the coverage amount — typically 2×, 4×, or up to 15× salary — if the employee passes away, designated recipients receive a tax-free lump sum.',
-          'The scheme is placed into a Trust to help beneficiaries avoid inheritance tax bills. According to AIG figures, Relevant Life Insurance can save approximately £40/month compared to a Personal Life Insurance policy, because premiums count as business expenses and no National Insurance Contributions are required.',
-          'It is particularly suitable for small businesses covering a single person, company directors wanting individual coverage, and businesses unable to qualify for Group Life Insurance.',
+          'Relevant Life cover is a tax-efficient form of life insurance which employers take out on behalf of a single employee. Unlike a regular life protection policy, it is only available to businesses.  If the employee covered by the policy is to sadly pass away, their family is supported with a lump sum payment. The insurance was introduced as a means of offering small businesses a way of accessing cost-effective life cover. Companies who wish to cover multiple employees are better off choosing a Group Life scheme.',
         ],
       },
       {
-        type: 'why-buy',
-        label: 'The tax case',
-        title: 'Why choose Relevant Life Insurance?',
-        intro: 'The combined tax advantages make Relevant Life Insurance significantly cheaper than a personal life policy, while providing equivalent — or superior — protection.',
-        employerBenefits: [
-          'Premiums are deductible as a business expense',
-          'No Employer National Insurance Contributions on premiums',
-          'Suitable for director-only companies and small businesses',
-          'Can be set up quickly via a short phone call',
-          'Cover starts from approximately £5.31/month',
-          'Cover available up to age 75',
+        type: 'intro',
+        label: 'The basics',
+        title: 'How does a Relevant Life plan work?',
+        paragraphs: [
+          'Once the employer identifies which worker they\'d like to insure, they need to decide how much coverage they\'d like to offer. Employers will usually offer coverage based on a multiple of the person\'s salary. For example, if the employee is earning £40,000 a year, the company may choose to offer 2x, 4x – or even up to 15x their salary. If you\'ve opted to offer 2x the salary then the employee\'s designated recipients, will stand to receive £80,000 as a tax-free lump sum should the employee pass away.',
+          'A business can take out Relevant Life Insurance in two ways: Go direct to the insurance provider\'s sales team or employ the services of a health insurance broker. Many of the major insurance providers now offer Relevant Life Insurance, but terms will vary as will the premium (the price of the insurance policy). This makes it important to source a range of quotes and sift through the details of each policy on offer.  A professional health insurance broker will have expertise across the whole employee benefits marketplace – and can explain policy terms in easy-to-follow language.',
+          'Once the Relevant Life policy has been purchased, the scheme is placed into a Trust – which means the employee\'s loved-ones avoid a hefty tax bill in the event of a payout. (Once the money is placed into a trust the employee technically no longer owns the money if they die – so it\'s not counted towards inheritance tax.)',
         ],
-        employeeBenefits: [
-          'No Benefit in Kind tax — won\'t appear on P11D',
-          'Benefit paid via discretionary trust — free of inheritance tax',
-          'Tax-free lump sum for nominated beneficiaries',
-          'Does not count towards pension lifetime allowance',
-          'Optional critical illness coverage available',
-          'Terminal illness benefit typically included as standard',
+      },
+      {
+        type: 'text-block',
+        label: 'Why offer',
+        title: 'Why offer Relevant Life cover?',
+        paragraphs: [
+          'The businesses which stand to benefit most from Relevant Life Insurance are those wishing to cover a single person, which usually means small businesses. It\'s likely to be a cost-effective option if:',
+        ],
+        items: [
+          'You have a small business but not enough employees to qualify for Group Life Insurance.',
+          'You\'re a company director (but still technically an employee) wishing to offer coverage to a single person – or yourself.',
+        ],
+        footerParagraphs: [
+          'According to AIG\'s figures, Relevant Life Insurance can save £40/month compared to a Personal Life Insurance policy. This is because: The premium will usually count as a business expense, reducing a company\'s corporation tax. National Insurance does not need to be paid by employee or employer on the premium.',
+          'If life insurance is instead taken out as a personal plan, the individual will be paying for it from their net income, after tax and National Insurance has already been paid by employee and employer.',
+          'Relevant Life Insurance demonstrates that you genuinely care about your employee. Like any life insurance scheme it provides piece-of-mind that an individual\'s loved-ones are financially supported should the worst happen.',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Cost',
+        title: 'How much does Relevant Life cover cost?',
+        paragraphs: [
+          'There are several factors which affect the premium.',
+          'From the employer\'s side:',
+        ],
+        items: [
+          'How much cover you wish to offer – will you offer two-times, four-times their salary, or more?',
+          'How long a time period it covers – cover can be provided up to retirement age.',
+        ],
+        footerParagraphs: [
+          'From the individual\'s side: Age, Health status, Smoker/non-smoker, Family history, Lifestyle – do you/they perform risky activities in or out of the workplace?',
+          'Clearly, due to all these variables, the cost of taking out Relevant Life can vary markedly. For example, it can start from as little as £5.31/month for a young healthy person with minimal coverage. To get a customised Relevant Life Insurance quote use the form on the right or click the Quote button at the top of the page.',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Best deal',
+        title: 'How do businesses find the best deal?',
+        paragraphs: [
+          'There are two general ways you can go about purchasing an insurance product: Employ an insurance broker or go straight to the seller. It\'s usually advised that you employ the services of an independent insurance broker like Engage because we can provide an insider\'s perspective on how it works from purchase to claim. Plus, a consultant like Engage will have your best interests at heart, unlike an insurance provider who will have a vested interest in promoting a deal which suits their commercial needs.',
+        ],
+        items: [
+          'Independent advice (as long they are not tied to a small group of insurers)',
+          'Get superior deals than available to the general public',
+          'Save time and hassle of researching the market yourself',
+          'Safeguards the business from the persuasive sales pitch of a sales agent',
+          'Avoid investing in an inadequate policy',
+          'Get advice on the claims process',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Providers',
+        title: 'Who are the main UK Relevant Life Insurance providers?',
+        paragraphs: [
+          'Many of the major insurance companies provide Relevant Life Insurance policies, including AXA, Aviva, Legal & General, Zurich, and others.',
+          'Each will offer different price points and features, such as funeral services, online GP services, counselling support and more.',
         ],
       },
       {
         type: 'faqs',
         items: [
           {
-            q: 'Who is Relevant Life Insurance suitable for?',
-            a: 'It is particularly well suited to company directors with no other employees, small businesses that don\'t meet minimum group life requirements, and high earners with large pension pots who want additional death benefit outside the lifetime pension allowance.',
+            q: 'Are Relevant Life Policies a benefit in kind?',
+            a: 'It certainly shouldn\'t be. Assuming the policy is implemented in the right way, it will not count as a P11D benefit. Consequently, there will be no additional tax to pay.',
           },
           {
-            q: 'Is a Relevant Life policy a Benefit in Kind?',
-            a: 'No — when properly implemented, it won\'t count as a P11D benefit, so no additional tax applies to the employee. This is one of its key advantages over other life insurance arrangements.',
+            q: 'What age can a relevant life policy run to?',
+            a: 'A policy can last up until the employee is 75 years-old.',
           },
           {
-            q: 'What is the maximum age for Relevant Life cover?',
-            a: 'Policies can run until the insured person reaches age 75, making it suitable for both younger employees and more senior directors.',
+            q: 'Can Relevant Life cover include critical illness?',
+            a: 'Yes it can. Many insurance providers will give you an option to include coverage for serious illnesses. The definition of what constitutes a critical illness will vary from provider to provider. It\'s worth noting too, that most insurers will include cover for a terminal illness where the employee has a life expectancy of less than 12 months.',
           },
           {
-            q: 'Can it include critical illness coverage?',
-            a: 'Yes — optional serious illness coverage can be added to a Relevant Life policy. Terminal illness coverage (with less than 12 months\' life expectancy) is typically included as standard.',
-          },
-          {
-            q: 'Does Relevant Life count towards the pension lifetime allowance?',
-            a: 'No — Relevant Life Insurance does not count towards the pension lifetime allowance, making it a valuable option for high earners who have maximised their pension provisions.',
+            q: 'Relevant Life Insurance vs Life Insurance: What\'s the difference?',
+            a: 'A Relevant Life policy is specifically designed for small businesses, enabling them to take out life insurance for an employee through the business, thereby making it more tax efficient. As mentioned above, AIG estimate that you can save £40/month compared to a regular personal plan by avoiding NI contributions and being able to claim back the cost as a business expense. A regular Life Insurance policy works out costing more as its purchased by a private individual. Another option is to take out a Group Life policy which can cover two or more employees.',
           },
         ],
       },
