@@ -12,6 +12,9 @@ import GetAQuote from "@/pages/GetAQuote";
 import Team from "@/pages/Team";
 import EmployeeBenefits from "@/pages/EmployeeBenefits";
 import GroupHealthInsurance from "@/pages/GroupHealthInsurance";
+import ServicePage from "@/pages/ServicePage";
+import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
+import { internationalBenefitsServices } from "@/data/internationalBenefitsServices";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -27,6 +30,12 @@ function Router() {
       <Route path="/team" component={Team} />
       <Route path="/employee-benefits" component={EmployeeBenefits} />
       <Route path="/employee-benefits/group-health-insurance" component={GroupHealthInsurance} />
+      <Route path="/employee-benefits/:slug">
+        {() => <ServicePage category="employee-benefits" services={employeeBenefitsServices} />}
+      </Route>
+      <Route path="/international-benefits/:slug">
+        {() => <ServicePage category="international-benefits" services={internationalBenefitsServices} />}
+      </Route>
       <Route component={NotFound} />
     </Switch>
   );
