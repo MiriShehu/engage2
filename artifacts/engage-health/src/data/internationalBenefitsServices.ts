@@ -3,6 +3,7 @@ import {
   Clock, Users, ShieldCheck, ClipboardList, Building2, Trophy, Package,
 } from 'lucide-react';
 import type { ServiceEntry } from './types';
+import groupBusinessTravelHero from '@/assets/hero/group-business-travel.jpg';
 
 export const internationalBenefitsServices: ServiceEntry[] = [
 
@@ -270,6 +271,7 @@ export const internationalBenefitsServices: ServiceEntry[] = [
     titleAccent: 'Travel Insurance',
     tagline: 'Support & protection for business travellers.',
     subtitle: 'Our independent consultants are ready to help your company understand Business Travel Insurance policies, get a great value deal on bespoke cover, and protect employees and alleviate the strain on HR.',
+    heroImage: groupBusinessTravelHero,
     icon: Plane,
     colorScheme: 'teal',
     stats: [
