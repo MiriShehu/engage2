@@ -506,7 +506,7 @@ export default function EmployeeBenefits() {
 
               {/* CTA block */}
               <div
-                className="mt-8 rounded-2xl overflow-hidden relative"
+                className="hidden sm:block mt-8 rounded-2xl overflow-hidden relative"
                 style={{ background: "linear-gradient(135deg,#003648 0%,#76186f 100%)" }}
               >
                 <img
