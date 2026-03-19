@@ -35,7 +35,7 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
   const titleBefore = entry.titleAccent ? entry.title.replace(entry.titleAccent, '').trim() : entry.title;
 
   return (
-    <PageLayout className="bg-[#f8f8f9] overflow-x-hidden">
+    <PageLayout className="bg-[#f8f8f9]">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section
@@ -120,7 +120,7 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
       <TrustBar />
 
       {/* ── Body ─────────────────────────────────────────────────────── */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 overflow-x-hidden">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
         <div className="flex flex-col lg:flex-row lg:items-start gap-10 xl:gap-16">
 
           {/* Main content */}
