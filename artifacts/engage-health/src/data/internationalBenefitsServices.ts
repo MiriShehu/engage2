@@ -4,6 +4,7 @@ import {
 } from 'lucide-react';
 import type { ServiceEntry } from './types';
 import groupBusinessTravelHero from '@/assets/hero/group-business-travel.jpg';
+import intCriticalIllnessHero from '@/assets/hero/int-critical-illness.jpg';
 
 export const internationalBenefitsServices: ServiceEntry[] = [
 
@@ -212,6 +213,8 @@ export const internationalBenefitsServices: ServiceEntry[] = [
     titleAccent: 'Critical Illness',
     tagline: 'Safeguard your global employees from the financial impact of serious illness.',
     subtitle: 'Our independent consultants are ready to help your business grasp the detail of International Group Critical cover, design, implement & manage a bespoke policy, and provide meaningful support to your globe-trotting team.',
+    heroImage: intCriticalIllnessHero,
+    heroImagePosition: 'top center',
     icon: AlertCircle,
     colorScheme: 'teal',
     stats: [
@@ -545,8 +548,8 @@ export const internationalBenefitsServices: ServiceEntry[] = [
     slug: 'short-term-int-health-insurance',
     title: 'Short-Term International Health Insurance',
     titleAccent: 'Health Insurance',
-    tagline: 'Short-Term International Cover',
-    subtitle: 'Source a variety of individually tailored short-term international health insurance quotes for temporary assignments abroad.',
+    tagline: 'Engage Short-Term International Health Insurance',
+    subtitle: 'Protect your employees on short-term contracts abroad.',
     icon: Clock,
     colorScheme: 'teal',
     stats: [
@@ -559,42 +562,90 @@ export const internationalBenefitsServices: ServiceEntry[] = [
       {
         type: 'service-list',
         label: 'Our service',
-        title: 'How can Engage help your business?',
-        intro: 'We source short-term international health insurance for employees on temporary overseas assignments — from a few months to two years.',
+        title: 'Our independent consultants are ready to help your business:',
+        intro: 'Our independent consultants are ready to help your business:',
         items: [
-          'Rapid quotations from specialist short-term international health insurers',
-          'Advice on appropriate benefit levels for the destination country',
-          'Cover for individuals and accompanying family members',
-          'Simple online or telephone application process',
-          'Claims support for the duration of the assignment',
+          'Understand global health insurance policies',
+          'Source a variety of individually tailored quotes',
+          'Support the wellbeing of your overseas employee',
         ],
       },
       {
         type: 'intro',
         label: 'The basics',
-        title: 'What is Short-Term International Health Insurance?',
+        title: 'What is Short-term International Health Insurance?',
         paragraphs: [
-          'Short-Term International Health Insurance provides private medical cover for employees going on a temporary overseas assignment, typically lasting between one month and two years. It bridges the gap between the employee\'s home country health coverage and local healthcare provision in the destination country.',
-          'It is particularly useful for project-based assignments, secondments, and employees who are not yet eligible for a full expatriate health plan.',
+          'It\'s a specific variety of International Health Insurance designed for employees working abroad on short-term assignments or fixed-term contracts. Companies can select a scheme which covers their employees from between one to 12 months, whereas a regular international policy would be designed for a longer-term trip.',
+        ],
+      },
+      {
+        type: 'intro',
+        label: 'The basics',
+        title: 'How does Short-Term International Health Insurance work?',
+        paragraphs: [
+          'As mentioned, employers can select a choice of term from one to 12 months allowing them to provide medical coverage over a specific period of time. Unlike a standard international health policy, it\'s not renewable beyond 12 months should you decide that coverage is required beyond that point. However, if you do require an extension from say, three to six months, then that can be arranged.',
+          'The type of treatments offered under Short-Term International Health Insurance are also more limited. This takes into account the fact that most people would head back home should they require more serious, longer-term treatment. While, this means more limited coverage, it also means it comes at a significantly lower price point than standard International Health Insurance.',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Why offer',
+        title: 'Why offer Short-Term International Health Insurance?',
+        paragraphs: [
+          'There are several reasons why businesses should contemplate offering Short-Term International Health Insurance:',
+          'Cost-efficiency: Purchase coverage for the price period you require it for, rather than invest in an annual policy which runs beyond the time its needed.',
+          'Streamlined benefits: A narrower set of health benefits helps reduce the cost of the scheme substantially too. However, some insurers do offer schemes which provide more extensive services, should they be required.',
+          'Country-specific: Ensures that your employee gets the support they need, where they need it – and, importantly, knows how to get it.',
+          'Emergencies & general health: Unlike Travel Insurance, employees can receive coverage for both emergency and general health needs (inclusions will vary from policy to policy).',
+          'Flexibility: All the above points outline the fact that Short-Term International Health Insurance is a flexible option.',
+          'These points outline the business angle, but the benefits go deeper than that. An employee working abroad on a short-term assignment and contract will be, most likely, journeying into the unknown. It\'s both an exciting opportunity and a potential source of heightened anxiety. In such circumstances an employer has a duty of care to ensure they get the support they need. An employee\'s health and wellbeing should always be the priority. This makes access to healthcare particularly important. If your employee becomes ill or suffers an accident, will they be looked after? Or will they be left to fend for themselves?',
+          'It\'s important to note that health insurance is only part of the support process. Other elements include pre-assignment screening, cultural training and risk assessments.',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Travel insurance',
+        title: 'Can I get medical cover with travel insurance instead?',
+        paragraphs: [
+          'Yes, but there are important differences.',
+          '1. Coverage limitations: Travel insurance is designed to provide short-term emergency treatment while travelling abroad, alongside other travel benefits such as cancelled flights, lost luggage etc. International Short-Term Medical Insurance (like other dedicated private health insurance schemes) covers emergency AND routine treatment. Plus, if longer-term treatment is needed that can be covered too.',
+          '2. Time limitations: Travel insurance generally covers a shorter period. This is often up to three months and may only be applicable for single trips. International Short-Term Health Insurance can go up to 12 months and cover multiple trips.',
+          '3. Added extras: International Health Insurance will usually offer additional benefits beyond its core offering, including: 24-hour medical help lines, wellness checks & support, medical second opinions, access to discounted pharmacy rates, assistance finding reputable medical professionals & facilities, access to specific hospital networks which allow direct settlement between the provider and insurer meaning you don\'t need to pay and claim back.',
+          'For very short-term trips of one to three months, or for specific single or multi-trip cover, Travel Insurance should be considered, please review our Group Travel Insurance page for further details.',
+        ],
+      },
+      {
+        type: 'text-block',
+        label: 'Cost',
+        title: 'How much does International Short-Term Health Insurance cost?',
+        paragraphs: [
+          'Less than typical International Health Insurance cover. However, as with any medical, insurance, costs will vary widely. The following factors will affect the premium:',
+          'Age of insured person(s)',
+          'Previous health issues/health profile',
+          'Type of work performed',
+          'Destination country & locale',
+          'Specific features included within the policy',
+          'Coverage limit (total value of services claimable)',
+          'Many of the major health insurance companies provide short-term international cover, including AXA, Allianz Care and Cigna. However, if you require a list of quotes from across the industry, then contact us for a free consultation and we\'ll deliver what you need.',
         ],
       },
       {
         type: 'faqs',
         items: [
           {
-            q: 'How is short-term different from full expatriate health insurance?',
-            a: 'Short-term policies are designed for assignments of up to 1–2 years and are typically simpler and lower cost than full IPMI policies. They are ideal for temporary or project-based assignments.',
+            q: 'Can I get health insurance for 6 months?',
+            a: 'Yes, absolutely. In fact, International Short-Term Health Insurance can be accessed for any period between one and 12 months. If you take out a 6-month policy and need to extend, you can only extend it only to the maximum 12-month period. If you\'d like to talk to an independent professional, then contact the team at Engage Health Group.',
           },
           {
-            q: 'Can cover be extended if the assignment is extended?',
-            a: 'In most cases, yes — short-term policies can be extended up to the insurer\'s maximum period. If the assignment becomes longer term, a full IPMI policy may be more appropriate.',
+            q: 'Is International Health Insurance the same as Travel Insurance?',
+            a: 'No. While there is some crossover, there are important differences. International Short-Term Medical coverage can provide a far greater range of medical support, while Travel Insurance is somewhat limited in what it can provide form a health standpoint. More information is available in the section further up entitled: \'Can I get medical cover with travel insurance instead?\'.',
           },
         ],
       },
     ],
     sidebarTestimonial: {
-      quote: 'Short-term cover was exactly what our assignee needed for a 6-month project abroad. Engage arranged it quickly and at a fair price.',
-      author: 'Construction company · UK-based, project in Southeast Asia',
+      quote: 'Managing our health and life insurance schemes used to be a headache but it is great to know that Engage are on the ball. I would highly recommend them to take the stress away.',
+      author: 'Accountancy Firm, Sussex',
     },
   },
 
