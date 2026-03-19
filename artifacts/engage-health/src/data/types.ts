@@ -46,6 +46,12 @@ export type FaqsSection = {
   items: { q: string; a: string }[]
 }
 
+export type TestimonialSection = {
+  type: 'testimonial'
+  quote: string
+  author: string
+}
+
 export type ServiceSection =
   | ServiceListSection
   | IntroSection
@@ -53,6 +59,7 @@ export type ServiceSection =
   | WhyBuySection
   | TextBlockSection
   | FaqsSection
+  | TestimonialSection
 
 export type ServiceStat = {
   icon: LucideIcon

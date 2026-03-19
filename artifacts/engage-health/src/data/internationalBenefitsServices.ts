@@ -289,7 +289,6 @@ export const internationalBenefitsServices: ServiceEntry[] = [
           'Get a great value deal on bespoke cover',
           'Protect employees and alleviate the strain on HR',
         ],
-        testimonial: 'They took the stress out of the whole process, no question is ever a problem for them and they always respond quickly and happily.',
       },
       {
         type: 'intro',
@@ -329,6 +328,11 @@ export const internationalBenefitsServices: ServiceEntry[] = [
           'The right Group Travel Insurance provider should offer a 24-hour medical helpline for medical emergencies and provide initial advice to employees feeling unwell, or who have been in an accident. The provider should also be able to help employees on the ground find appropriate medical facilities local to them and work with that facility to provide a Guarantee of Payment (GoP), or confirm with the employee that costs incurred within the facility will be reimbursed quickly.',
           'In a more serious emergency, the right Business Travel insurance provider should, with our assistance, be able to work with the employee, employer and medical facilities on the ground, to agree the appropriate medical treatment quickly and/or organise medical transportation, if required. All of the insurers we work with on Group Business Travel Insurance meet these important requirements.',
         ],
+      },
+      {
+        type: 'testimonial',
+        quote: 'They took the stress out of the whole process, no question is ever a problem for them and they always respond quickly and happily.',
+        author: 'Estate Agency, Sussex',
       },
       {
         type: 'coverage',

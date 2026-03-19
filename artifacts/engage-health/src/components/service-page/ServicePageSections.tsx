@@ -160,6 +160,15 @@ function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-blo
   );
 }
 
+function TestimonialRenderer({ s }: { s: Extract<ServiceSection, { type: 'testimonial' }> }) {
+  return (
+    <div className="rounded-2xl bg-primary/5 border-l-4 border-primary px-8 py-7">
+      <p className="text-secondary font-medium italic leading-relaxed text-base">"{s.quote}"</p>
+      <p className="mt-4 text-xs font-semibold uppercase tracking-widest text-primary">{s.author}</p>
+    </div>
+  );
+}
+
 function FaqsRenderer({ s }: { s: Extract<ServiceSection, { type: 'faqs' }> }) {
   const [open, setOpen] = useState<string | null>(null);
   return (
@@ -209,6 +218,7 @@ export default function ServicePageSections({ sections, colorScheme }: Props) {
           {s.type === 'coverage'     && <CoverageRenderer s={s} />}
           {s.type === 'why-buy'      && <WhyBuyRenderer s={s} colorScheme={colorScheme} />}
           {s.type === 'text-block'   && <TextBlockRenderer s={s} />}
+          {s.type === 'testimonial'  && <TestimonialRenderer s={s} />}
           {s.type === 'faqs'         && <FaqsRenderer s={s} />}
         </div>
       ))}
