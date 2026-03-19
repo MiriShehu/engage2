@@ -210,7 +210,7 @@ export default function BlogPost() {
                 src={heroBanner}
                 alt="Insurtech Insights 2025"
                 className="w-full object-cover block"
-                style={{ maxHeight: 320 }}
+                style={{ maxHeight: 420 }}
               />
 
               <div className="p-6 md:p-8">
@@ -470,16 +470,10 @@ export default function BlogPost() {
                   <p className="font-extrabold text-secondary text-sm">Mel Dixon</p>
                   <p className="text-xs text-muted-foreground mt-0.5">Staff Writer</p>
 
-                  <div className="flex gap-5 mt-4 mb-4">
-                    <div>
-                      <p className="text-sm font-black text-secondary">2.1k</p>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Followers</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-secondary">Jan, 2022</p>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Joined</p>
-                    </div>
-                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed mt-3 mb-4">
+                    Experienced writer on employee benefits and workplace trends, with a background
+                    in journalism and PR.
+                  </p>
 
                   <button className="w-full py-2 rounded-lg font-bold text-sm text-white transition-opacity hover:opacity-90"
                     style={{ background: 'linear-gradient(135deg,#76186f,#003648)' }}>
