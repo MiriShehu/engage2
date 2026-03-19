@@ -26,33 +26,33 @@ const aboutItems: NavItem[] = [
 ];
 
 const employeeItems: NavItem[] = [
-  { icon: Shield,       label: "Group Health Insurance",          desc: "Create a scheme tailored to your business" },
-  { icon: Heart,        label: "Group Life Insurance",             desc: "Discover the most competitive deals" },
-  { icon: TrendingUp,   label: "Group Income Protection",          desc: "Source the ideal Group Income Protection scheme" },
-  { icon: AlertCircle,  label: "Group Critical Illness",           desc: "Find the best value Critical Illness cover" },
-  { icon: Smile,        label: "Group Dental Insurance",           desc: "Understand your options for Dental insurance" },
-  { icon: Activity,     label: "Corporate Wellness Programmes",    desc: "Plan & launch a Corporate Wellness Programme" },
-  { icon: HeartPulse,   label: "Employee Assistance Programmes",   desc: "Find the right EAP for your budget" },
-  { icon: DollarSign,   label: "Group Health Cash Plan",           desc: "Understand how Business Health Cash Plans work" },
-  { icon: Key,          label: "Key Person Insurance",             desc: "Fully grasp how Key Person Insurance works" },
-  { icon: UserCheck,    label: "Relevant Life Insurance",          desc: "Set-up the policy & manage the claims process" },
-  { icon: Stethoscope,  label: "Employee Health Screening",        desc: "Protect the future health & wellbeing of your team" },
-  { icon: MonitorDot,   label: "Employee Benefits Platforms",      desc: "Protect the future health & wellbeing of your team" },
+  { icon: Shield,       label: "Group Health Insurance",          desc: "Create a scheme tailored to your business",           href: "/employee-benefits/group-health-insurance" },
+  { icon: Heart,        label: "Group Life Insurance",             desc: "Discover the most competitive deals",                 href: "/employee-benefits/group-life-insurance" },
+  { icon: TrendingUp,   label: "Group Income Protection",          desc: "Source the ideal Group Income Protection scheme",     href: "/employee-benefits/group-income-protection" },
+  { icon: AlertCircle,  label: "Group Critical Illness",           desc: "Find the best value Critical Illness cover",          href: "/employee-benefits/group-critical-illness" },
+  { icon: Smile,        label: "Group Dental Insurance",           desc: "Understand your options for Dental insurance",        href: "/employee-benefits/group-dental-insurance" },
+  { icon: Activity,     label: "Corporate Wellness Programmes",    desc: "Plan & launch a Corporate Wellness Programme",        href: "/employee-benefits/corporate-wellness-programmes" },
+  { icon: HeartPulse,   label: "Employee Assistance Programmes",   desc: "Find the right EAP for your budget",                  href: "/employee-benefits/employee-assistance-programmes" },
+  { icon: DollarSign,   label: "Group Health Cash Plan",           desc: "Understand how Business Health Cash Plans work",      href: "/employee-benefits/group-health-cash-plan" },
+  { icon: Key,          label: "Key Person Insurance",             desc: "Fully grasp how Key Person Insurance works",          href: "/employee-benefits/key-person-insurance" },
+  { icon: UserCheck,    label: "Relevant Life Insurance",          desc: "Set-up the policy & manage the claims process",       href: "/employee-benefits/relevant-life-insurance" },
+  { icon: Stethoscope,  label: "Employee Health Screening",        desc: "Protect the future health & wellbeing of your team",  href: "/employee-benefits/employee-health-screening" },
+  { icon: MonitorDot,   label: "Employee Benefits Platforms",      desc: "Find the right benefits platform for your business",  href: "/employee-benefits/employee-benefits-platforms" },
 ];
 
 const intlItems: NavItem[] = [
-  { icon: Globe,        label: "Int Business Health Insurance",         desc: "Set up an International Health Insurance scheme" },
-  { icon: Globe2,       label: "International Group Life Insurance",    desc: "Design & launch a bespoke global scheme" },
-  { icon: TrendingUp,   label: "International Group Income Protection", desc: "Manage a scheme for your global workforce" },
-  { icon: AlertCircle,  label: "International Group Critical Illness",  desc: "Design, implement & manage a bespoke policy" },
-  { icon: Plane,        label: "Group Business Travel Insurance",       desc: "Understand Business Travel Insurance policies" },
-  { icon: Lock,         label: "Kidnap and Ransom Insurance",           desc: "Safeguard & support your hard-working teams" },
-  { icon: Clock,        label: "Short-Term Int Health Insurance",       desc: "Source a variety of individually tailored quotes" },
-  { icon: Users,        label: "Int Employee Assistance Programmes",    desc: "Design, launch & manage a tailored policy" },
-  { icon: ShieldAlert,  label: "International Security Services",       desc: "Locate the best International Security Services" },
-  { icon: MapPin,       label: "Pre-Assignment Screening",              desc: "Learn how to apply Pre-Assignment Screening" },
-  { icon: Flag,         label: "US Company Health Insurance",           desc: "Gain a clear picture of how US healthcare works" },
-  { icon: Briefcase,    label: "Additional International Products",     desc: "Professional advice and guidance" },
+  { icon: Globe,        label: "Int Business Health Insurance",         desc: "Set up an International Health Insurance scheme",   href: "/international-benefits/int-business-health-insurance" },
+  { icon: Globe2,       label: "International Group Life Insurance",    desc: "Design & launch a bespoke global scheme",           href: "/international-benefits/international-group-life-insurance" },
+  { icon: TrendingUp,   label: "International Group Income Protection", desc: "Manage a scheme for your global workforce",         href: "/international-benefits/international-group-income-protection" },
+  { icon: AlertCircle,  label: "International Group Critical Illness",  desc: "Design, implement & manage a bespoke policy",      href: "/international-benefits/international-group-critical-illness" },
+  { icon: Plane,        label: "Group Business Travel Insurance",       desc: "Understand Business Travel Insurance policies",     href: "/international-benefits/group-business-travel-insurance" },
+  { icon: Lock,         label: "Kidnap and Ransom Insurance",           desc: "Safeguard & support your hard-working teams",       href: "/international-benefits/kidnap-and-ransom-insurance" },
+  { icon: Clock,        label: "Short-Term Int Health Insurance",       desc: "Source a variety of individually tailored quotes",  href: "/international-benefits/short-term-int-health-insurance" },
+  { icon: Users,        label: "Int Employee Assistance Programmes",    desc: "Design, launch & manage a tailored policy",         href: "/international-benefits/int-employee-assistance-programmes" },
+  { icon: ShieldAlert,  label: "International Security Services",       desc: "Locate the best International Security Services",   href: "/international-benefits/international-security-services" },
+  { icon: MapPin,       label: "Pre-Assignment Screening",              desc: "Learn how to apply Pre-Assignment Screening",       href: "/international-benefits/pre-assignment-screening" },
+  { icon: Flag,         label: "US Company Health Insurance",           desc: "Gain a clear picture of how US healthcare works",   href: "/international-benefits/us-company-health-insurance" },
+  { icon: Briefcase,    label: "Additional International Products",     desc: "Professional advice and guidance",                  href: "/international-benefits/additional-international-products" },
 ];
 
 const xcelerateItems: NavItem[] = [
@@ -80,7 +80,7 @@ function ItemIcon({ icon: Icon, color }: { icon: React.ElementType; color: strin
 
 function DropdownItem({ item, color }: { item: NavItem; color: string }) {
   return (
-    <a
+    <Link
       href={item.href ?? "#"}
       className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors group/item"
     >
@@ -91,7 +91,7 @@ function DropdownItem({ item, color }: { item: NavItem; color: string }) {
         </p>
         <p className="text-xs text-gray-400 leading-snug mt-0.5 truncate">{item.desc}</p>
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -269,14 +269,14 @@ function MobileSection({
       {open && (
         <div className="pb-4 pl-2 flex flex-col gap-0.5">
           {items.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href ?? "#"}
               className="flex items-center gap-3 px-2 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <ItemIcon icon={item.icon} color={color} />
               <span className="text-sm font-medium text-gray-700">{item.label}</span>
-            </a>
+            </Link>
           ))}
         </div>
       )}
