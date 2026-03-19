@@ -44,9 +44,9 @@ A `/international-benefits` parent landing page is **out of scope**. IB page bre
 
 ## Services & Slugs
 
-### Employee Benefits data file — 12 entries (includes GHI for sidebar purposes)
+### Employee Benefits data file — 12 entries (11 new services + 1 GHI stub)
 
-`GroupHealthInsurance.tsx` keeps its own explicit route and bespoke content, but a minimal `ServiceEntry` for GHI **is** included in `employeeBenefitsServices.ts` so it appears correctly in the sidebar "Our Services" list on all EB pages. When `GroupHealthInsurance.tsx` renders, it passes `allServices={employeeBenefitsServices}` and `currentSlug="group-health-insurance"` to `ServicePageLayout` so the GHI link is highlighted. The `sections` field of the GHI data entry is an empty array (never rendered, since GHI supplies its own JSX children).
+`employeeBenefitsServices.ts` exports **12** `ServiceEntry` objects: the 11 new services listed below, plus one stub entry for `group-health-insurance`. The stub has `sections: []` (never rendered via the data path) and exists solely so GHI appears in the sidebar "Our Services" list on all EB pages. When `GroupHealthInsurance.tsx` renders, it passes `allServices={employeeBenefitsServices}` and `currentSlug="group-health-insurance"` to highlight the correct link.
 
 | Service | Slug |
 |---|---|
@@ -183,6 +183,10 @@ export type ServiceStat = {
 export type ServiceEntry = {
   slug: string
   title: string
+  titleAccent?: string    // optional substring of title rendered in accent colour span
+                          // e.g. title="Group Life Insurance", titleAccent="Life Insurance"
+                          // renders: "Group <span style={accentColour}>Life Insurance</span>"
+                          // if absent, the full title renders in plain white with no accent span
   tagline: string         // hero badge text, e.g. "UK Group Health Insurance"
   subtitle: string        // hero paragraph below h1
   heroImage?: string      // optional imported asset; absent → solid gradient from colorScheme
@@ -203,14 +207,14 @@ export type ServiceEntry = {
 | UI element | `'purple'` (Employee Benefits) | `'teal'` (International Benefits) |
 |---|---|---|
 | Hero dark overlay | `#003648` at 70–95% | same |
-| h1 accent span colour | `#be59b8` | `#4aaed6` |
+| h1 `titleAccent` span colour | `#be59b8` | `#4aaed6` |
 | Hero primary CTA | gradient `#76186f → #5a1254` | gradient `#003648 → #004d6b` |
 | Sidebar CTA card | gradient `#003648 → #76186f` | gradient `#003648 → #00607a` |
 | Bottom CTA banner | gradient `#003648 → #76186f` | gradient `#003648 → #00607a` |
 | Why-buy employer header | gradient `#003648 → #004d6b` | same |
 | Why-buy employee header | gradient `#76186f → #5a1254` | gradient `#003648 → #004d6b` |
 
-**`heroImage` fallback:** When absent, the hero renders a solid background using the first gradient stop of the colorScheme (`#003648` for both) with the full gradient overlay applied over it — visually identical to image pages but without a photo.
+**`heroImage` fallback:** When absent, the hero `section` element has no `backgroundImage` style — instead the existing dark overlay `div` (which is always rendered on top of any image) provides the full background by using `bg-[#003648]` as its base colour at 100% opacity. The overlay gradient `div` is also rendered as normal. Result: a solid dark teal background with gradient, visually identical to image pages but without a photo.
 
 **Icons in data files:** Each data file imports Lucide icons at the top:
 ```ts
