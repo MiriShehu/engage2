@@ -2,7 +2,7 @@ import { useState } from "react";
 import ServicePageLayout from "@/components/service-page/ServicePageLayout";
 import { SectionLabel, SectionHeading, Divider } from "@/components/service-page/ServicePageSections";
 import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
-import { Building2, Globe2, Users, Trophy, Stethoscope } from "lucide-react";
+import { Building2, Globe2, Users, Trophy } from "lucide-react";
 import heroBg from "@assets/Group-Health-Insurance_1773877221793.jpg";
 import { cn } from "@/lib/utils";
 import {
