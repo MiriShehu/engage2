@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/Navbar";
-import { TrustBar } from "@/components/TrustBar";
+import { PageLayout } from "@/components/layout";
+import { TrustBar } from "@/components/sections/trust";
 import { Link } from "wouter";
 import heroBg from "@assets/Employee-Benefits-main-heading1_1773875144473.jpg";
 import tipBlend from "@assets/Emp-Benefits-blend-your-approach_1773875338242.jpg";
@@ -201,9 +201,7 @@ function Divider() {
 
 export default function EmployeeBenefits() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Navbar />
-
+    <PageLayout className="bg-white">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative pt-16 overflow-hidden bg-secondary">
         {/* Background image */}
@@ -652,6 +650,6 @@ export default function EmployeeBenefits() {
           </aside>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }

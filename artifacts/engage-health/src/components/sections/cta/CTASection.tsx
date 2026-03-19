@@ -1,5 +1,5 @@
 import { Shield, Clock, Award, ArrowRight, Phone } from "lucide-react";
-import { Sparkles } from "./Sparkles";
+import { Sparkles } from "@/components/sections/shared/Sparkles";
 import { Link } from "wouter";
 
 const steps = [

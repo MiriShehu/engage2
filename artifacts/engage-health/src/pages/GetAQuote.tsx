@@ -1,6 +1,6 @@
-import { Navbar } from "@/components/Navbar";
-import { TrustBar } from "@/components/TrustBar";
-import { QuoteForm } from "@/components/QuoteForm";
+import { PageLayout } from "@/components/layout";
+import { TrustBar } from "@/components/sections/trust";
+import { QuoteForm } from "@/components/sections/shared";
 import { Shield, Clock, Award, CheckCircle2 } from "lucide-react";
 
 const trust = [
@@ -18,9 +18,7 @@ const promises = [
 
 export default function GetAQuote() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
+    <PageLayout>
       {/* Hero band */}
       <div className="bg-secondary pt-32 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -73,11 +71,11 @@ export default function GetAQuote() {
       <TrustBar />
 
       {/* Form section */}
-      <main className="flex-1 bg-muted/30 py-16">
+      <div className="bg-muted/30 py-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <QuoteForm />
         </div>
-      </main>
-    </div>
+      </div>
+    </PageLayout>
   );
 }

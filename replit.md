@@ -110,7 +110,16 @@ Premium SaaS-style marketing website for Engage Health Group — UK employee ben
 - `/employee-benefits` — Employee Benefits hub page
 - `/employee-benefits/group-health-insurance` — Group Health Insurance subpage
 
-**Key components**: `Navbar`, `Footer`, `CTASection`, `TrustBar`, `WhyEngageSection`, `AnimatedTeamSection`
+**Component structure** (organized into a section library):
+- `components/layout/` — `Navbar`, `Footer`, `PageLayout` (wrapper with Navbar)
+- `components/sections/hero/` — `Hero`
+- `components/sections/trust/` — `TrustBar`, `ClientLogos`, `WhyChooseUs`, `EngageNumbers`, `Testimonials`
+- `components/sections/services/` — `ServicesGrid`, `WhatWeOffer`, `HowItWorks`
+- `components/sections/team/` — `AnimatedTeamSection`, `OurExperts`
+- `components/sections/cta/` — `CTASection`
+- `components/sections/shared/` — `BlogPosts`, `CharityFund`, `ProblemSolution`, `QuoteForm`, `BenefitsIntro`, `WhyEngageSection`, `Sparkles`
+
+Each subfolder has an `index.ts` barrel export. `PageLayout` wraps children with `Navbar`, `CTASection`, and `Footer` — all pages use it. New pages follow the pattern in `pages/_PageTemplate.tsx`.
 
 ### `scripts` (`@workspace/scripts`)
 

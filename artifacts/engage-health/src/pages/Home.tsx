@@ -1,16 +1,10 @@
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
-import { TrustBar } from "@/components/TrustBar";
-import { ClientLogos } from "@/components/ClientLogos";
-import { ProblemSolution } from "@/components/ProblemSolution";
-import { ServicesGrid } from "@/components/ServicesGrid";
-import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
-import { EngageNumbers } from "@/components/EngageNumbers";
-import { Testimonials } from "@/components/Testimonials";
-import { BenefitsIntro } from "@/components/BenefitsIntro";
-import { WhatWeOffer } from "@/components/WhatWeOffer";
-import { WhyEngageSection } from "@/components/WhyEngageSection";
-import { BlogPosts } from "@/components/BlogPosts";
+import { PageLayout } from "@/components/layout";
+import { Hero } from "@/components/sections/hero";
+import { TrustBar, ClientLogos, EngageNumbers, Testimonials } from "@/components/sections/trust";
+import { ServicesGrid } from "@/components/sections/services";
+import { AnimatedTeamSection } from "@/components/sections/team";
+import { BenefitsIntro, ProblemSolution, WhyEngageSection, BlogPosts } from "@/components/sections/shared";
+import { WhatWeOffer } from "@/components/sections/services";
 
 const BASE = "https://www.engagehealthgroup.co.uk/wp-content/uploads";
 
@@ -28,28 +22,25 @@ const homeTeam = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <TrustBar />
-        <BenefitsIntro />
-        <WhatWeOffer />
-        <ServicesGrid />
-        <WhyEngageSection />
-        <ProblemSolution />
-        <AnimatedTeamSection
-          title="The experts working for you"
-          description="Award-winning specialists drawn from Bupa Global, Aon, Mercer, Vitality and AIG, all dedicated to finding the best outcomes for your business."
-          members={homeTeam}
-          showLink
-          className="bg-[#f8f7fb]"
-        />
-        <ClientLogos />
-        <EngageNumbers />
-        <Testimonials />
-        <BlogPosts />
-      </main>
-    </div>
+    <PageLayout>
+      <Hero />
+      <TrustBar />
+      <BenefitsIntro />
+      <WhatWeOffer />
+      <ServicesGrid />
+      <WhyEngageSection />
+      <ProblemSolution />
+      <AnimatedTeamSection
+        title="The experts working for you"
+        description="Award-winning specialists drawn from Bupa Global, Aon, Mercer, Vitality and AIG, all dedicated to finding the best outcomes for your business."
+        members={homeTeam}
+        showLink
+        className="bg-[#f8f7fb]"
+      />
+      <ClientLogos />
+      <EngageNumbers />
+      <Testimonials />
+      <BlogPosts />
+    </PageLayout>
   );
 }

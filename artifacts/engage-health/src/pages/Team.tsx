@@ -1,6 +1,6 @@
-import { Navbar } from "@/components/Navbar";
-import { TrustBar } from "@/components/TrustBar";
-import { AnimatedTeamSection } from "@/components/AnimatedTeamSection";
+import { PageLayout } from "@/components/layout";
+import { TrustBar } from "@/components/sections/trust";
+import { AnimatedTeamSection } from "@/components/sections/team";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -286,84 +286,80 @@ function MemberCard({ member }: { member: typeof departments[0]["members"][0] })
 
 export default function Team() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar />
-      <main className="flex-1">
-        {/* Hero */}
-        <section className="bg-secondary py-24 relative overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "28px 28px" }}
-          />
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-semibold mb-6 border border-white/10">
-              The Engage Health Group team
+    <PageLayout className="bg-gray-50">
+      {/* Hero */}
+      <section className="bg-secondary py-24 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "28px 28px" }}
+        />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-semibold mb-6 border border-white/10">
+            The Engage Health Group team
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+            Meet the people who{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">
+              work for you
+            </span>
+          </h1>
+          <p className="text-white/65 text-xl max-w-2xl mx-auto">
+            Our team brings over 30 years of combined experience from some of the world's leading insurers and benefits consultancies, all dedicated to finding the best outcomes for your business.
+          </p>
+          <div className="mt-12 grid grid-cols-3 gap-6 max-w-xl mx-auto">
+            {[
+              { value: "30+", label: "Years combined experience" },
+              { value: "70+", label: "Countries covered" },
+              { value: "3×", label: "Award winners" },
+            ].map((stat, i) => (
+              <div key={i} className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+                <div className="text-3xl font-extrabold text-white">{stat.value}</div>
+                <div className="text-white/60 text-xs font-medium mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <TrustBar />
+
+      {/* Animated team fan */}
+      <AnimatedTeamSection
+        title="24 specialists. One team."
+        description="Drawn from Bupa Global, Aon, Mercer, Vitality, AIG and beyond. Every member of our team is here because they genuinely care about getting the best outcome for your people."
+        members={[
+          { name: "Nick Hale",       title: "Founder & Director",          image: `${BASE}/2023/01/Nick-Hale-e1674569951192.png` },
+          { name: "Ian Abbott",      title: "International Director",       image: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png` },
+          { name: "Charlie Cousins", title: "Director",                     image: `${BASE}/2023/01/charlie-e1674569473213.png` },
+          { name: "Stuart Box",      title: "Head of Client Services",      image: `${BASE}/2023/01/Stuart-Box-copy.png` },
+          { name: "Mike Hesch",      title: "EB Team Lead",                 image: `${BASE}/2023/06/Mike-Hesch-Head-Shot-e1723650105906.png` },
+          { name: "Jess Wright",     title: "EB Consultant",                image: `${BASE}/2023/12/Jess-Wright_.png` },
+          { name: "Ed Bryan",        title: "EB Consultant",                image: `${BASE}/2023/01/Ed-Bryan-1.png` },
+          { name: "Esme Pearson",    title: "EB Consultant",                image: `${BASE}/2023/01/Esme-Pearson-1.png` },
+          { name: "Stuart Isaac",    title: "EB Consultant",                image: `${BASE}/2023/05/stuart-isaac.png` },
+          { name: "John Kavanagh",   title: "EB Consultant",                image: `${BASE}/2024/02/John-Kavanagh-copy.png` },
+          { name: "Chloe Young",     title: "EB Consultant",                image: `${BASE}/2023/05/chloe-e1698242302294.png` },
+        ]}
+        className="bg-white"
+      />
+
+      {/* Departments */}
+      {departments.map((dept, di) => (
+        <section key={di} className={cn("py-20", di % 2 === 0 ? "bg-gray-50" : "bg-white")}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12">
+              <h2 className="text-2xl md:text-4xl font-extrabold text-secondary mb-3">{dept.name}</h2>
+              <p className="text-gray-500 text-lg max-w-2xl">{dept.description}</p>
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-              Meet the people who{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">
-                work for you
-              </span>
-            </h1>
-            <p className="text-white/65 text-xl max-w-2xl mx-auto">
-              Our team brings over 30 years of combined experience from some of the world's leading insurers and benefits consultancies, all dedicated to finding the best outcomes for your business.
-            </p>
-            <div className="mt-12 grid grid-cols-3 gap-6 max-w-xl mx-auto">
-              {[
-                { value: "30+", label: "Years combined experience" },
-                { value: "70+", label: "Countries covered" },
-                { value: "3×", label: "Award winners" },
-              ].map((stat, i) => (
-                <div key={i} className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4">
-                  <div className="text-3xl font-extrabold text-white">{stat.value}</div>
-                  <div className="text-white/60 text-xs font-medium mt-1">{stat.label}</div>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {dept.members.map((member, mi) => (
+                <MemberCard key={mi} member={member} />
               ))}
             </div>
           </div>
         </section>
-
-        <TrustBar />
-
-        {/* Animated team fan */}
-        <AnimatedTeamSection
-          title="24 specialists. One team."
-          description="Drawn from Bupa Global, Aon, Mercer, Vitality, AIG and beyond. Every member of our team is here because they genuinely care about getting the best outcome for your people."
-          members={[
-            { name: "Nick Hale",       title: "Founder & Director",          image: `${BASE}/2023/01/Nick-Hale-e1674569951192.png` },
-            { name: "Ian Abbott",      title: "International Director",       image: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png` },
-            { name: "Charlie Cousins", title: "Director",                     image: `${BASE}/2023/01/charlie-e1674569473213.png` },
-            { name: "Stuart Box",      title: "Head of Client Services",      image: `${BASE}/2023/01/Stuart-Box-copy.png` },
-            { name: "Mike Hesch",      title: "EB Team Lead",                 image: `${BASE}/2023/06/Mike-Hesch-Head-Shot-e1723650105906.png` },
-            { name: "Jess Wright",     title: "EB Consultant",                image: `${BASE}/2023/12/Jess-Wright_.png` },
-            { name: "Ed Bryan",        title: "EB Consultant",                image: `${BASE}/2023/01/Ed-Bryan-1.png` },
-            { name: "Esme Pearson",    title: "EB Consultant",                image: `${BASE}/2023/01/Esme-Pearson-1.png` },
-            { name: "Stuart Isaac",    title: "EB Consultant",                image: `${BASE}/2023/05/stuart-isaac.png` },
-            { name: "John Kavanagh",   title: "EB Consultant",                image: `${BASE}/2024/02/John-Kavanagh-copy.png` },
-            { name: "Chloe Young",     title: "EB Consultant",                image: `${BASE}/2023/05/chloe-e1698242302294.png` },
-          ]}
-          className="bg-white"
-        />
-
-        {/* Departments */}
-        {departments.map((dept, di) => (
-          <section key={di} className={cn("py-20", di % 2 === 0 ? "bg-gray-50" : "bg-white")}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-4xl font-extrabold text-secondary mb-3">{dept.name}</h2>
-                <p className="text-gray-500 text-lg max-w-2xl">{dept.description}</p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {dept.members.map((member, mi) => (
-                  <MemberCard key={mi} member={member} />
-                ))}
-              </div>
-            </div>
-          </section>
-        ))}
-
-      </main>
-    </div>
+      ))}
+    </PageLayout>
   );
 }

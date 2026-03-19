@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Navbar } from "@/components/Navbar";
-import { TrustBar } from "@/components/TrustBar";
+import { PageLayout } from "@/components/layout";
+import { TrustBar } from "@/components/sections/trust";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import heroBg from "@assets/Group-Health-Insurance_1773877221793.jpg";
@@ -219,9 +219,7 @@ export default function GroupHealthInsurance() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f8f8f9] overflow-x-hidden">
-      <Navbar />
-
+    <PageLayout className="bg-[#f8f8f9] overflow-x-hidden">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-cover bg-center"
@@ -773,6 +771,6 @@ export default function GroupHealthInsurance() {
           </aside>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }
