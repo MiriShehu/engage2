@@ -2,13 +2,9 @@ import { useState } from "react";
 import ServicePageLayout from "@/components/service-page/ServicePageLayout";
 import { SectionLabel, SectionHeading, Divider } from "@/components/service-page/ServicePageSections";
 import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
-import { Building2, Globe2, Users, Trophy } from "lucide-react";
+import { Building2, Globe2, Users, Trophy, CheckCircle2, Plus, Minus, Check, X } from "lucide-react";
 import heroBg from "@assets/Group-Health-Insurance_1773877221793.jpg";
 import { cn } from "@/lib/utils";
-import {
-  CheckCircle2,
-  Plus, Minus, Check, X,
-} from "lucide-react";
 
 // ─── Data ──────────────────────────────────────────────────────────────────
 
@@ -185,27 +181,27 @@ const faqs = [
 
 // ─── Page ────────────────────────────────────────────────────────────────────
 
+const entry = {
+  title: 'Group Health Insurance',
+  titleAccent: 'Health Insurance',
+  tagline: 'UK Group Health Insurance',
+  subtitle: 'Build a scheme tailored to your business. Whole-of-market comparisons, personalised advice, and no broker fees — ever.',
+  heroImage: heroBg,
+  colorScheme: 'purple' as const,
+  stats: [
+    { icon: Building2, val: '500+', label: 'Businesses supported' },
+    { icon: Globe2,    val: '70+',  label: 'Countries covered' },
+    { icon: Users,     val: '30+',  label: 'Years combined expertise' },
+    { icon: Trophy,    val: '3×',   label: 'UK award wins' },
+  ],
+  sidebarTestimonial: {
+    quote: 'We received great customer service and a competitive quotation when searching for a health scheme for our business. It was then a simple process to activate the scheme.',
+    author: 'Technology company, London · 12 employees',
+  },
+};
+
 export default function GroupHealthInsurance() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const entry = {
-    title: 'Group Health Insurance',
-    titleAccent: 'Health Insurance',
-    tagline: 'UK Group Health Insurance',
-    subtitle: 'Build a scheme tailored to your business. Whole-of-market comparisons, personalised advice, and no broker fees — ever.',
-    heroImage: heroBg,
-    colorScheme: 'purple' as const,
-    stats: [
-      { icon: Building2, val: '500+', label: 'Businesses supported' },
-      { icon: Globe2,    val: '70+',  label: 'Countries covered' },
-      { icon: Users,     val: '30+',  label: 'Years combined expertise' },
-      { icon: Trophy,    val: '3×',   label: 'UK award wins' },
-    ],
-    sidebarTestimonial: {
-      quote: 'We received great customer service and a competitive quotation when searching for a health scheme for our business.',
-      author: 'Technology company, London · 12 employees',
-    },
-  };
 
   return (
     <ServicePageLayout
