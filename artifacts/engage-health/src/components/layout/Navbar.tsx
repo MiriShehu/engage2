@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import {
-  Menu, X, ChevronDown, Phone,
+  Menu, X, ChevronDown, Phone, Mail, ArrowRight,
   Globe, Shield, Users, Heart, Activity, Smile, TrendingUp,
   Building2, Star, AlertCircle, Plane, Lock, MapPin, Flag,
   Zap, BookOpen, Clock, UserCircle, Quote, Briefcase, Key,
@@ -9,6 +9,7 @@ import {
   Globe2, Siren, ShieldAlert, UserCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import menuBg from "@assets/woman-2773007_1280_1773877207726.jpg";
 
 // ─── Brand colours ────────────────────────────────────────────────────────────
 const TEAL   = "#003648";
@@ -67,30 +68,21 @@ const knowledgePosts = [
 ];
 
 // ─── Shared components ────────────────────────────────────────────────────────
-function ItemIcon({ icon: Icon, color }: { icon: React.ElementType; color: string }) {
-  return (
-    <span
-      className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
-      style={{ background: color + "18" }}
-    >
-      <Icon className="w-4 h-4" style={{ color }} />
-    </span>
-  );
-}
-
 function DropdownItem({ item, color }: { item: NavItem; color: string }) {
   return (
     <Link
       href={item.href ?? "#"}
-      className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors group/item"
+      className="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 group/item hover:bg-[#003648]"
     >
-      <ItemIcon icon={item.icon} color={color} />
-      <div className="min-w-0">
-        <p className="text-sm font-semibold text-gray-800 group-hover/item:text-[#003648] leading-snug">
-          {item.label}
-        </p>
-        <p className="text-xs text-gray-400 leading-snug mt-0.5 truncate">{item.desc}</p>
-      </div>
+      <span
+        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150"
+        style={{ background: color + "18" }}
+      >
+        <item.icon className="w-4 h-4 transition-colors duration-150 group-hover/item:text-white" style={{ color }} />
+      </span>
+      <p className="text-sm font-semibold text-gray-800 group-hover/item:text-white leading-snug transition-colors duration-150">
+        {item.label}
+      </p>
     </Link>
   );
 }
@@ -142,7 +134,6 @@ function SmallDropdown({
         onMouseLeave={leave}
       >
         <div className="bg-white rounded-xl shadow-2xl border border-gray-100 w-72 p-2 overflow-hidden">
-          <MenuHeader label={headerLabel} color={color} />
           {items.map((item) => (
             <DropdownItem key={item.label} item={item} color={color} />
           ))}
@@ -154,9 +145,12 @@ function SmallDropdown({
 
 // ─── Mega dropdown (Employee Benefits / International) ────────────────────────
 function MegaDropdown({
-  label, color, items, headerLabel, cols = 3,
-}: { label: string; color: string; items: NavItem[]; headerLabel: string; cols?: number }) {
+  label, color, items,
+}: { label: string; color: string; items: NavItem[]; headerLabel?: string; cols?: number }) {
   const { open, enter, leave } = useMenuHover();
+  const half = Math.ceil(items.length / 2);
+  const col1 = items.slice(0, half);
+  const col2 = items.slice(half);
 
   return (
     <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
@@ -168,7 +162,6 @@ function MegaDropdown({
         <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", open && "rotate-180")} />
       </button>
 
-      {/* Mega panel — fixed so it breaks out of header; panel also carries enter/leave handlers */}
       <div
         className={cn(
           "fixed left-0 right-0 transition-all duration-200 z-50",
@@ -179,12 +172,56 @@ function MegaDropdown({
         onMouseLeave={leave}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-5 overflow-hidden">
-            <MenuHeader label={headerLabel} color={color} />
-            <div className={cn("grid gap-1", cols === 3 ? "grid-cols-3" : "grid-cols-2")}>
-              {items.map((item) => (
-                <DropdownItem key={item.label} item={item} color={color} />
-              ))}
+          <div className="bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden grid grid-cols-[1fr_1fr_280px]">
+            {/* Column 1 */}
+            <div className="p-4 flex flex-col gap-0.5 border-r border-gray-100">
+              {col1.map((item) => <DropdownItem key={item.label} item={item} color={color} />)}
+            </div>
+            {/* Column 2 */}
+            <div className="p-4 flex flex-col gap-0.5 border-r border-gray-100">
+              {col2.map((item) => <DropdownItem key={item.label} item={item} color={color} />)}
+            </div>
+            {/* Info panel */}
+            <div
+              className="relative flex flex-col justify-end p-6 overflow-hidden"
+              style={{ backgroundImage: `url(${menuBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
+            >
+              {/* dark overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#003648]/90 via-[#003648]/60 to-[#003648]/30" />
+              <div className="relative z-10 flex flex-col gap-4">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Get in touch</p>
+                  <p className="text-lg font-extrabold text-white leading-snug">Talk to an expert</p>
+                  <p className="text-sm text-white/70 mt-1 leading-snug">Free, impartial advice with no obligation.</p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="tel:01273974419"
+                    className="flex items-center gap-2.5 text-sm font-semibold text-white hover:text-white/80 transition-colors"
+                  >
+                    <span className="flex items-center justify-center w-7 h-7 rounded-full bg-white/15">
+                      <Phone className="w-3.5 h-3.5 text-white" />
+                    </span>
+                    01273 974419
+                  </a>
+                  <a
+                    href="mailto:info@engagehealthgroup.co.uk"
+                    className="flex items-center gap-2.5 text-sm font-semibold text-white hover:text-white/80 transition-colors"
+                  >
+                    <span className="flex items-center justify-center w-7 h-7 rounded-full bg-white/15">
+                      <Mail className="w-3.5 h-3.5 text-white" />
+                    </span>
+                    info@engagehealthgroup.co.uk
+                  </a>
+                </div>
+                <Link
+                  href="/get-a-quote"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white text-[#003648] text-sm font-bold hover:bg-white/90 transition-colors"
+                >
+                  Get a free quote
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -225,7 +262,6 @@ function KnowledgeDropdown() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-2xl border border-gray-100 p-5 overflow-hidden">
-            <MenuHeader label="Knowledge Hub" color={TEAL} />
             <div className="grid grid-cols-4 gap-4">
               {knowledgePosts.map((post, i) => (
                 <a key={i} href="#" className="group/post block">
@@ -274,7 +310,12 @@ function MobileSection({
               href={item.href ?? "#"}
               className="flex items-center gap-3 px-2 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <ItemIcon icon={item.icon} color={color} />
+              <span
+                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ background: color + "18" }}
+              >
+                <item.icon className="w-4 h-4" style={{ color }} />
+              </span>
               <span className="text-sm font-medium text-gray-700">{item.label}</span>
             </Link>
           ))}
@@ -325,17 +366,13 @@ export function Navbar() {
             />
             <MegaDropdown
               label="Employee Benefits"
-              headerLabel="Employee Benefits"
               color={TEAL}
               items={employeeItems}
-              cols={3}
             />
             <MegaDropdown
               label="International Benefits"
-              headerLabel="International Benefits"
               color={PURPLE}
               items={intlItems}
-              cols={3}
             />
             <SmallDropdown
               label="Xcelerate"
@@ -360,14 +397,32 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            className="lg:hidden p-2 text-foreground z-50"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile controls */}
+          <div className="lg:hidden flex items-center gap-1 z-50">
+            <a
+              href="tel:01273974419"
+              aria-label="Call us"
+              className="flex items-center justify-center w-9 h-9 rounded-full text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
+            >
+              <Phone className="w-5 h-5" />
+            </a>
+            <button
+              className="flex items-center justify-center w-9 h-9 rounded-full text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen
+                ? <X className="w-5 h-5" />
+                : (
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+                    <line x1="3" y1="6" x2="17" y2="6" />
+                    <line x1="6" y1="11" x2="17" y2="11" />
+                    <line x1="9" y1="16" x2="17" y2="16" />
+                  </svg>
+                )
+              }
+            </button>
+          </div>
         </div>
       </header>
 

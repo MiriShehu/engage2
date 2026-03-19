@@ -6,6 +6,9 @@ import tipBlend from "@assets/Emp-Benefits-blend-your-approach_1773875338242.jpg
 import tipPromote from "@assets/Emp-Benefits-promote-communicate_1773875338242.jpg";
 import tipManage from "@assets/Emp.-Benefits-manage-in-one-place_1773875338242.jpg";
 import tipMeasure from "@assets/woman-2773007_1280_1773875338243.jpg";
+import award2024 from "@assets/HPA24-Best-Group-International-Advice-Firm-yellow_1773869302815.jpg";
+import award2023 from "@assets/HPA_Winner-Badges_0219_1773869302816.jpg";
+import award2022 from "@assets/HPA10_WIN_YELLOW_1773869302815.jpg";
 import { motion } from "framer-motion";
 import {
   Shield, Heart, TrendingUp, AlertCircle, Smile, Activity,
@@ -621,7 +624,7 @@ export default function EmployeeBenefits() {
 
             {/* Award badge */}
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}>
                   <Trophy className="w-5 h-5 text-white" />
                 </div>
@@ -631,6 +634,11 @@ export default function EmployeeBenefits() {
                     Best International Group Advice Firm — UK Health & Protection Awards 2022, 2023 & 2024.
                   </p>
                 </div>
+              </div>
+              <img src={award2023} alt="Best International Group Advice Firm 2023" className="w-full rounded-xl object-contain mb-2" />
+              <div className="grid grid-cols-2 gap-2">
+                <img src={award2024} alt="Best Group International Advice Firm 2024" className="w-full rounded-xl object-contain" />
+                <img src={award2022} alt="Best Group Healthcare Adviser 2022" className="w-full rounded-xl object-contain" />
               </div>
             </div>
 

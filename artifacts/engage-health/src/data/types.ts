@@ -52,6 +52,14 @@ export type TestimonialSection = {
   author: string
 }
 
+export type InsurersSection = {
+  type: 'insurers'
+  label: string
+  title: string
+  intro: string
+  items: { name: string; logo: string; quote: string }[]
+}
+
 export type ServiceSection =
   | ServiceListSection
   | IntroSection
@@ -60,6 +68,7 @@ export type ServiceSection =
   | TextBlockSection
   | FaqsSection
   | TestimonialSection
+  | InsurersSection
 
 export type ServiceStat = {
   icon: LucideIcon

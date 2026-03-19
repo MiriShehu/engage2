@@ -28,7 +28,7 @@ const trust = [
 
 export function CTASection() {
   return (
-    <section className="relative overflow-hidden bg-[#001e2b] py-24">
+    <section className="relative overflow-hidden py-24" style={{ background: "linear-gradient(135deg,#003648 0%,#1a0a19 100%)" }}>
 
       {/* sparkles background */}
       <Sparkles
@@ -41,8 +41,8 @@ export function CTASection() {
 
       {/* glow blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-primary/20 blur-[120px]" />
-        <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] rounded-full bg-secondary/40 blur-[120px]" />
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full blur-[120px]" style={{ background: "rgba(118,24,111,0.25)" }} />
+        <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] rounded-full blur-[120px]" style={{ background: "rgba(0,54,72,0.6)" }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export function CTASection() {
           <div className="text-white">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-semibold text-white/70 mb-6 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full inline-block"
-                    style={{ background: "linear-gradient(90deg,#0dab76,#3568d4)" }} />
+                    style={{ background: "linear-gradient(90deg,#be59b8,#4aaed6)" }} />
               Free, no-obligation service
             </div>
 
@@ -61,7 +61,7 @@ export function CTASection() {
               review{" "}
               <span
                 className="text-transparent bg-clip-text"
-                style={{ backgroundImage: "linear-gradient(90deg,#0dab76,#3568d4)" }}
+                style={{ backgroundImage: "linear-gradient(90deg,#be59b8,#4aaed6)" }}
               >
                 today.
               </span>
@@ -77,7 +77,7 @@ export function CTASection() {
                 <div key={s.num} className="flex items-start gap-5">
                   <div
                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 font-black text-sm text-white shadow-lg"
-                    style={{ background: "linear-gradient(135deg,#0dab76,#3568d4)" }}
+                    style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}
                   >
                     {s.num}
                   </div>
@@ -96,7 +96,7 @@ export function CTASection() {
                   key={t.label}
                   className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm"
                 >
-                  <t.icon className="w-4 h-4 text-[#0dab76] shrink-0" />
+                  <t.icon className="w-4 h-4 text-[#be59b8] shrink-0" />
                   <div>
                     <div className="text-xs font-bold text-white leading-none">{t.label}</div>
                     <div className="text-xs text-white/45 leading-none mt-0.5">{t.sub}</div>

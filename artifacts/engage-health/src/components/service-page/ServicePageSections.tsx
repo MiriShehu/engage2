@@ -169,6 +169,33 @@ function TestimonialRenderer({ s }: { s: Extract<ServiceSection, { type: 'testim
   );
 }
 
+function InsurersRenderer({ s }: { s: Extract<ServiceSection, { type: 'insurers' }> }) {
+  return (
+    <section>
+      <SectionLabel>{s.label}</SectionLabel>
+      <SectionHeading>{s.title}</SectionHeading>
+      <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {s.items.map((insurer) => (
+          <div key={insurer.name} className="flex flex-col rounded-2xl border border-border bg-white overflow-hidden">
+            <div className="flex items-center justify-center h-28 px-6 border-b border-border bg-white">
+              <img
+                src={insurer.logo}
+                alt={insurer.name}
+                className="max-h-16 max-w-[160px] w-auto object-contain"
+              />
+            </div>
+            <div className="p-5 flex-1 flex flex-col justify-between">
+              <p className="text-sm text-muted-foreground leading-relaxed italic">"{insurer.quote}"</p>
+              <p className="mt-3 text-xs font-bold text-primary">{insurer.name}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function FaqsRenderer({ s }: { s: Extract<ServiceSection, { type: 'faqs' }> }) {
   const [open, setOpen] = useState<string | null>(null);
   return (
@@ -219,6 +246,7 @@ export default function ServicePageSections({ sections, colorScheme }: Props) {
           {s.type === 'why-buy'      && <WhyBuyRenderer s={s} colorScheme={colorScheme} />}
           {s.type === 'text-block'   && <TextBlockRenderer s={s} />}
           {s.type === 'testimonial'  && <TestimonialRenderer s={s} />}
+          {s.type === 'insurers'     && <InsurersRenderer s={s} />}
           {s.type === 'faqs'         && <FaqsRenderer s={s} />}
         </div>
       ))}

@@ -12,9 +12,9 @@ const reasons = [
   { icon: Trophy,       text: "Award-winning UK and international expertise" },
 ];
 
-const awards = [
+const awardTop = { src: award2023, label: "Best International Group Advice Firm 2023" };
+const awardsBottom = [
   { src: award2024, label: "Best Group International Advice Firm 2024" },
-  { src: award2023, label: "Best International Group Advice Firm 2023" },
   { src: award2022, label: "Best Group Healthcare Adviser 2022" },
 ];
 
@@ -130,17 +130,26 @@ export function WhyEngageSection() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-3 gap-4"
+              className="flex flex-col gap-4"
             >
-              {awards.map((a, i) => (
-                <motion.div key={i} variants={badge}>
-                  <img
-                    src={a.src}
-                    alt={a.label}
-                    className="w-full rounded-2xl shadow-md object-cover"
-                  />
-                </motion.div>
-              ))}
+              <motion.div variants={badge}>
+                <img
+                  src={awardTop.src}
+                  alt={awardTop.label}
+                  className="w-full rounded-2xl shadow-md object-contain"
+                />
+              </motion.div>
+              <div className="grid grid-cols-2 gap-4">
+                {awardsBottom.map((a, i) => (
+                  <motion.div key={i} variants={badge}>
+                    <img
+                      src={a.src}
+                      alt={a.label}
+                      className="w-full rounded-2xl shadow-md object-contain"
+                    />
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           </div>
 

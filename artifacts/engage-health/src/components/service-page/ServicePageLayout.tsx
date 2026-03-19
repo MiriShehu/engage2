@@ -199,14 +199,10 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
                   </p>
                 </div>
               </div>
-              <div className="flex items-center justify-between gap-2">
-                {[
-                  { src: award2024, alt: 'Best Group International Advice Firm 2024' },
-                  { src: award2023, alt: 'Best International Group Advice Firm 2023' },
-                  { src: award2022, alt: 'Best Group Healthcare Adviser 2022' },
-                ].map((a) => (
-                  <img key={a.alt} src={a.src} alt={a.alt} className="h-16 w-auto object-contain" />
-                ))}
+              <img src={award2023} alt="Best International Group Advice Firm 2023" className="w-full rounded-xl object-contain mb-2" />
+              <div className="grid grid-cols-2 gap-2">
+                <img src={award2024} alt="Best Group International Advice Firm 2024" className="w-full rounded-xl object-contain" />
+                <img src={award2022} alt="Best Group Healthcare Adviser 2022" className="w-full rounded-xl object-contain" />
               </div>
             </div>
 
