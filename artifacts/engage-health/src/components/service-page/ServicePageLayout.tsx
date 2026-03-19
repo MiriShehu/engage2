@@ -32,7 +32,7 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
   const parentHref  = category === 'employee-benefits' ? '/employee-benefits' : null;
 
   // Build h1: split on titleAccent substring
-  const titleBefore = entry.titleAccent ? entry.title.replace(entry.titleAccent, '').trimEnd() : entry.title;
+  const titleBefore = entry.titleAccent ? entry.title.replace(entry.titleAccent, '').trim() : entry.title;
 
   return (
     <PageLayout className="bg-[#f8f8f9] overflow-x-hidden">
@@ -124,9 +124,9 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
         <div className="flex flex-col lg:flex-row lg:items-start gap-10 xl:gap-16">
 
           {/* Main content */}
-          <main className="flex-1 min-w-0 w-full">
+          <div className="flex-1 min-w-0 w-full">
             {children}
-          </main>
+          </div>
 
           {/* Sidebar */}
           <aside className="w-full lg:w-80 xl:w-[340px] flex-shrink-0 space-y-5 lg:sticky lg:top-24 self-start">
@@ -186,7 +186,7 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
             {/* Award badge */}
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'linear-gradient(135deg,#76186f,#003648)' }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: scheme.ctaGradient }}>
                   <Trophy className="w-5 h-5 text-white" />
                 </div>
                 <div>
