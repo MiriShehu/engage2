@@ -4,6 +4,9 @@ import { Phone, Mail, ArrowRight, ChevronRight, Trophy, Star } from 'lucide-reac
 import { PageLayout } from '@/components/layout';
 import { TrustBar } from '@/components/sections/trust';
 import type { ServiceEntry } from '@/data/types';
+import award2024 from '@assets/HPA24-Best-Group-International-Advice-Firm-yellow_1773869302815.jpg';
+import award2023 from '@assets/HPA_Winner-Badges_0219_1773869302816.jpg';
+import award2022 from '@assets/HPA10_WIN_YELLOW_1773869302815.jpg';
 
 const SCHEME = {
   purple: {
@@ -185,7 +188,7 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
 
             {/* Award badge */}
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: scheme.ctaGradient }}>
                   <Trophy className="w-5 h-5 text-white" />
                 </div>
@@ -195,6 +198,15 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
                     Best International Group Advice Firm — UK Health &amp; Protection Awards 2022, 2023 &amp; 2024.
                   </p>
                 </div>
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                {[
+                  { src: award2024, alt: 'Best Group International Advice Firm 2024' },
+                  { src: award2023, alt: 'Best International Group Advice Firm 2023' },
+                  { src: award2022, alt: 'Best Group Healthcare Adviser 2022' },
+                ].map((a) => (
+                  <img key={a.alt} src={a.src} alt={a.alt} className="h-16 w-auto object-contain" />
+                ))}
               </div>
             </div>
 
