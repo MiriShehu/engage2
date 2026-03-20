@@ -57,7 +57,7 @@ const intlItems: NavItem[] = [
 ];
 
 const xcelerateItems: NavItem[] = [
-  { icon: Zap, label: "Xcelerate", desc: "Global health insurance for fast-growing businesses" },
+  { icon: Zap, label: "Xcelerate", desc: "Global health insurance for fast-growing businesses", href: "/xcelerate" },
 ];
 
 const knowledgePosts = [
@@ -348,16 +348,16 @@ export function Navbar() {
             ? "bg-white/97 backdrop-blur-md border-border/50 shadow-sm"
             : "bg-white/97 backdrop-blur-md border-border/30 shadow-sm"
         )}
-        style={{ height: "64px" }}
+        style={{ height: "64px", fontFamily: "'Inter', sans-serif" }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-          {/* Logo */}
+        <div className="w-full px-4 sm:px-6 lg:px-8 h-full hidden lg:grid lg:grid-cols-[1fr_auto_1fr] items-center gap-4">
+          {/* Logo — left */}
           <Link href="/" className="flex items-center z-50 flex-shrink-0">
             <img src="/logo.png" alt="Engage Health Group" className="h-9 w-auto" />
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          {/* Desktop nav — truly centered */}
+          <nav className="flex items-center gap-6 xl:gap-8">
             <SmallDropdown
               label="About us"
               headerLabel="About Us"
@@ -380,11 +380,13 @@ export function Navbar() {
               color={GREEN}
               items={xcelerateItems}
             />
-            <KnowledgeDropdown />
+            <Link href="/knowledge-hub" className="font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2">
+              Knowledge Hub
+            </Link>
           </nav>
 
-          {/* CTA group */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* CTA group — right */}
+          <div className="flex items-center gap-4 justify-end">
             <a
               href="tel:01273974419"
               className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -396,6 +398,13 @@ export function Navbar() {
               Get a Quote
             </Link>
           </div>
+        </div>
+
+        {/* Mobile header row */}
+        <div className="w-full px-4 sm:px-6 h-full lg:hidden flex items-center justify-between">
+          <Link href="/" className="flex items-center z-50 flex-shrink-0">
+            <img src="/logo.png" alt="Engage Health Group" className="h-9 w-auto" />
+          </Link>
 
           {/* Mobile controls */}
           <div className="lg:hidden flex items-center gap-1 z-50">

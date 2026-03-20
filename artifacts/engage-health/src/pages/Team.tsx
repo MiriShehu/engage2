@@ -1,6 +1,5 @@
 import { PageLayout } from "@/components/layout";
 import { TrustBar } from "@/components/sections/trust";
-import { AnimatedTeamSection } from "@/components/sections/team";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -37,14 +36,6 @@ const departments = [
         img: `${BASE}/2023/01/charlie-e1674569473213.png`,
         accent: P,
         tags: ["SME Specialist", "Director"],
-      },
-      {
-        name: "Stuart Box",
-        title: "Head of Client Services",
-        bio: "With a background spanning account management and financial services, Stuart leads the client services team, ensuring every Engage client relationship is proactive, responsive, and built on trust.",
-        img: `${BASE}/2023/01/Stuart-Box-copy.png`,
-        accent: T,
-        tags: ["Account Management", "Client Services"],
       },
     ],
   },
@@ -177,6 +168,14 @@ const departments = [
     description: "The team that keeps everything running smoothly, from finance and compliance to client support.",
     members: [
       {
+        name: "Stuart Box",
+        title: "Head of Client Services",
+        bio: "With a background spanning account management and financial services, Stuart leads the client services team, ensuring every Engage client relationship is proactive, responsive, and built on trust.",
+        img: `${BASE}/2023/01/Stuart-Box-copy.png`,
+        accent: T,
+        tags: ["Account Management", "Client Services"],
+      },
+      {
         name: "Adena Stonely",
         title: "Finance Manager",
         bio: "Oversees the company's finances, ensuring Engage runs with the rigour and transparency that clients and partners expect from an FCA-regulated firm.",
@@ -231,16 +230,16 @@ const departments = [
 function MemberCard({ member }: { member: typeof departments[0]["members"][0] }) {
   return (
     <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-      {/* Photo area — fixed height so all cards are uniform */}
+      {/* Photo area — full height */}
       <div
-        className="relative h-[240px] overflow-hidden"
+        className="relative aspect-[3/4] overflow-hidden"
         style={{ background: `linear-gradient(160deg, ${member.accent}12 0%, ${member.accent}28 100%)` }}
       >
         <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: member.accent }} />
         <img
           src={member.img}
           alt={member.name}
-          className="absolute inset-0 w-full h-full object-contain object-bottom group-hover:scale-[1.03] transition-transform duration-500 drop-shadow-md"
+          className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
           onError={(e) => {
             const el = e.currentTarget;
             el.style.display = "none";
@@ -324,26 +323,6 @@ export default function Team() {
 
       <TrustBar />
 
-      {/* Animated team fan */}
-      <AnimatedTeamSection
-        title="24 specialists. One team."
-        description="Drawn from Bupa Global, Aon, Mercer, Vitality, AIG and beyond. Every member of our team is here because they genuinely care about getting the best outcome for your people."
-        members={[
-          { name: "Nick Hale",       title: "Founder & Director",          image: `${BASE}/2023/01/Nick-Hale-e1674569951192.png` },
-          { name: "Ian Abbott",      title: "International Director",       image: `${BASE}/2023/01/IAN-ABBOTT-1-e1675073149526.png` },
-          { name: "Charlie Cousins", title: "Director",                     image: `${BASE}/2023/01/charlie-e1674569473213.png` },
-          { name: "Stuart Box",      title: "Head of Client Services",      image: `${BASE}/2023/01/Stuart-Box-copy.png` },
-          { name: "Mike Hesch",      title: "EB Team Lead",                 image: `${BASE}/2023/06/Mike-Hesch-Head-Shot-e1723650105906.png` },
-          { name: "Jess Wright",     title: "EB Consultant",                image: `${BASE}/2023/12/Jess-Wright_.png` },
-          { name: "Ed Bryan",        title: "EB Consultant",                image: `${BASE}/2023/01/Ed-Bryan-1.png` },
-          { name: "Esme Pearson",    title: "EB Consultant",                image: `${BASE}/2023/01/Esme-Pearson-1.png` },
-          { name: "Stuart Isaac",    title: "EB Consultant",                image: `${BASE}/2023/05/stuart-isaac.png` },
-          { name: "John Kavanagh",   title: "EB Consultant",                image: `${BASE}/2024/02/John-Kavanagh-copy.png` },
-          { name: "Chloe Young",     title: "EB Consultant",                image: `${BASE}/2023/05/chloe-e1698242302294.png` },
-        ]}
-        className="bg-white"
-      />
-
       {/* Departments */}
       {departments.map((dept, di) => (
         <section key={di} className={cn("py-20", di % 2 === 0 ? "bg-gray-50" : "bg-white")}>
@@ -352,7 +331,7 @@ export default function Team() {
               <h2 className="text-2xl md:text-4xl font-extrabold text-secondary mb-3">{dept.name}</h2>
               <p className="text-gray-500 text-lg max-w-2xl">{dept.description}</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {dept.members.map((member, mi) => (
                 <MemberCard key={mi} member={member} />
               ))}

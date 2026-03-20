@@ -37,7 +37,7 @@ function ReadingProgress() {
 
 function PullQuote({ children }: { children: string }) {
   return (
-    <blockquote className="my-7 bg-[#f5f4fa] rounded-xl px-6 py-5 border-l-[3px] border-primary">
+    <blockquote className="my-7 bg-[#f5f4fa] rounded-md px-6 py-5 border-l-[3px] border-primary">
       <p className="text-[15px] font-semibold text-secondary italic leading-relaxed">{children}</p>
     </blockquote>
   );
@@ -49,7 +49,7 @@ function ArticleImage({ src, alt, caption }: { src: string; alt: string; caption
   return (
     <figure className="my-8">
       <img src={src} alt={alt}
-        className="w-full rounded-xl object-cover"
+        className="w-full rounded-md object-cover"
         style={{ maxHeight: 380 }} />
       {caption && (
         <figcaption className="mt-2 text-xs text-muted-foreground text-center">{caption}</figcaption>
@@ -88,7 +88,7 @@ function ActionBar() {
   }
 
   return (
-    <div className="hidden lg:flex flex-col items-center gap-5 sticky top-28 self-start pt-2">
+    <div className="hidden lg:flex flex-col items-center gap-5 sticky top-[88px] self-start">
 
       {/* Like */}
       <div className="flex flex-col items-center gap-1">
@@ -136,7 +136,7 @@ function ActionBar() {
 
         {/* Share popover */}
         {showShare && (
-          <div className="absolute left-12 top-0 bg-white border border-border rounded-xl shadow-lg p-2 flex flex-col gap-1 z-20 w-36">
+          <div className="absolute left-12 top-0 bg-white border border-border rounded-md shadow-lg p-2 flex flex-col gap-1 z-20 w-36">
             {[
               { id: 'linkedin', label: 'LinkedIn', bg: '#0077b5', Icon: Linkedin },
               { id: 'twitter',  label: 'Twitter',  bg: '#1da1f2', Icon: Twitter  },
@@ -183,7 +183,7 @@ export default function BlogPost() {
       <ReadingProgress />
 
       <PageLayout className="bg-[#f0f0f0]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
@@ -195,7 +195,7 @@ export default function BlogPost() {
           </nav>
 
           {/* Three-column grid: action | article | sidebar */}
-          <div className="flex gap-5 items-start">
+          <div className="flex gap-6 items-start">
 
             {/* ── Left action bar ──────────────────────────────────────── */}
             <div className="w-12 flex-shrink-0">
@@ -203,7 +203,7 @@ export default function BlogPost() {
             </div>
 
             {/* ── Article card ─────────────────────────────────────────── */}
-            <article className="flex-1 min-w-0 bg-white rounded-2xl border border-border overflow-hidden">
+            <article className="flex-1 min-w-0 bg-white rounded-lg border border-border overflow-hidden">
 
               {/* Featured image — flush to top */}
               <img
@@ -403,7 +403,7 @@ export default function BlogPost() {
                 </p>
 
                 {/* CTA */}
-                <div className="rounded-xl p-6 text-white relative overflow-hidden"
+                <div className="rounded-md p-6 text-white relative overflow-hidden"
                   style={{ background: 'linear-gradient(135deg,#003648 0%,#76186f 100%)' }}>
                   <img src="/logomark.png" alt="" aria-hidden="true"
                     className="absolute -bottom-4 -right-4 w-24 h-24 object-contain opacity-[0.08] brightness-0 invert pointer-events-none select-none" />
@@ -454,10 +454,10 @@ export default function BlogPost() {
             </article>
 
             {/* ── Right sidebar ─────────────────────────────────────────── */}
-            <aside className="hidden lg:flex flex-col gap-4 w-64 xl:w-72 flex-shrink-0 sticky top-24 self-start">
+            <aside className="hidden lg:flex flex-col gap-4 w-60 xl:w-64 flex-shrink-0 sticky top-[88px] self-start">
 
               {/* Author card */}
-              <div className="bg-white rounded-2xl border border-border overflow-hidden">
+              <div className="bg-white rounded-lg border border-border overflow-hidden">
                 {/* Accent banner */}
                 <div className="h-14" style={{ background: 'linear-gradient(135deg,#003648,#76186f)' }} />
                 <div className="px-5 pb-5 -mt-7">
@@ -479,7 +479,7 @@ export default function BlogPost() {
               </div>
 
               {/* More from author */}
-              <div className="bg-white rounded-2xl border border-border p-5">
+              <div className="bg-white rounded-lg border border-border p-5">
                 <p className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-4">
                   More from <span className="text-primary">Mel Dixon</span>
                 </p>
@@ -502,7 +502,7 @@ export default function BlogPost() {
               </div>
 
               {/* CTA card */}
-              <div className="bg-white rounded-2xl border border-border p-5">
+              <div className="bg-white rounded-lg border border-border p-5">
                 <p className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-2">
                   Free consultation
                 </p>
