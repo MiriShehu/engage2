@@ -8,28 +8,28 @@ import {
 import { Link } from "wouter";
 
 const ukPolicies = [
-  { icon: HeartPulse,  label: "Group Health Insurance" },
-  { icon: Shield,      label: "Group Life Insurance" },
-  { icon: TrendingUp,  label: "Group Income Protection" },
-  { icon: AlertCircle, label: "Group Critical Illness Cover" },
-  { icon: Heart,       label: "Group Health Cash Plan" },
-  { icon: Headphones,  label: "Employee Assistance Programmes (EAP)" },
-  { icon: Smile,       label: "Group Dental Insurance" },
+  { icon: HeartPulse,  label: "Group Health Insurance",             href: "/employee-benefits/group-health-insurance" },
+  { icon: Shield,      label: "Group Life Insurance",               href: "/employee-benefits/group-life-insurance" },
+  { icon: TrendingUp,  label: "Group Income Protection",            href: "/employee-benefits/group-income-protection" },
+  { icon: AlertCircle, label: "Group Critical Illness Cover",       href: "/employee-benefits/group-critical-illness" },
+  { icon: Heart,       label: "Group Health Cash Plan",             href: "/employee-benefits/group-health-cash-plan" },
+  { icon: Headphones,  label: "Employee Assistance Programmes (EAP)", href: "/employee-benefits/employee-assistance-programmes" },
+  { icon: Smile,       label: "Group Dental Insurance",             href: "/employee-benefits/group-dental-insurance" },
 ];
 
 const intlPolicies = [
-  { icon: Globe,       label: "International Health Insurance" },
-  { icon: Shield,      label: "International Life Insurance" },
-  { icon: TrendingUp,  label: "International Income Protection" },
-  { icon: AlertCircle, label: "International Critical Illness Cover" },
-  { icon: Building2,   label: "US Company Health Insurance" },
-  { icon: Headphones,  label: "International EAP" },
-  { icon: Lock,        label: "Kidnap and Ransom Insurance" },
+  { icon: Globe,       label: "International Health Insurance",     href: "/international-benefits/int-business-health-insurance" },
+  { icon: Shield,      label: "International Life Insurance",       href: "/international-benefits/international-group-life-insurance" },
+  { icon: TrendingUp,  label: "International Income Protection",    href: "/international-benefits/international-group-income-protection" },
+  { icon: AlertCircle, label: "International Critical Illness Cover", href: "/international-benefits/international-group-critical-illness" },
+  { icon: Building2,   label: "US Company Health Insurance",        href: "/international-benefits/us-company-health-insurance" },
+  { icon: Headphones,  label: "International EAP",                  href: "/international-benefits/int-employee-assistance-programmes" },
+  { icon: Lock,        label: "Kidnap and Ransom Insurance",        href: "/international-benefits/kidnap-and-ransom-insurance" },
 ];
 
-function PolicyItem({ icon: Icon, label, accent }: { icon: React.ElementType; label: string; accent: string }) {
+function PolicyItem({ icon: Icon, label, accent, href }: { icon: React.ElementType; label: string; accent: string; href: string }) {
   return (
-    <Link href="/products">
+    <Link href={href}>
       <motion.div
         className="group flex items-center gap-3 py-3 px-4 rounded-xl cursor-pointer transition-colors duration-200 hover:bg-white/10"
         whileHover={{ x: 4 }}
@@ -114,7 +114,7 @@ export function ServicesGrid() {
             {/* Policy list */}
             <div className="p-4">
               {ukPolicies.map((p, i) => (
-                <PolicyItem key={i} icon={p.icon} label={p.label} accent="#76186f" />
+                <PolicyItem key={i} icon={p.icon} label={p.label} accent="#76186f" href={p.href} />
               ))}
 
               <div className="mt-4 pt-4 border-t border-gray-100 px-4">
@@ -157,7 +157,7 @@ export function ServicesGrid() {
             {/* Policy list */}
             <div className="p-4">
               {intlPolicies.map((p, i) => (
-                <PolicyItem key={i} icon={p.icon} label={p.label} accent="#003648" />
+                <PolicyItem key={i} icon={p.icon} label={p.label} accent="#003648" href={p.href} />
               ))}
 
               <div className="mt-4 pt-4 border-t border-gray-100 px-4">

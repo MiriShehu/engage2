@@ -22,7 +22,7 @@ type NavItem = { icon: React.ElementType; label: string; desc: string; href?: st
 // ─── Menu data ────────────────────────────────────────────────────────────────
 const aboutItems: NavItem[] = [
   { icon: UserCircle,  label: "Who we are",    desc: "Engage Health Group" },
-  { icon: Users,       label: "Meet the team", desc: "50 years combined experience" },
+  { icon: Users,       label: "Meet the team", desc: "50 years combined experience", href: "/team" },
   { icon: Quote,       label: "Testimonials",  desc: "What they say about us" },
 ];
 
@@ -101,7 +101,7 @@ function MenuHeader({ label, color }: { label: string; color: string }) {
 // ─── Shared hover helpers (delay-close so fixed panels don't flicker) ─────────
 function useMenuHover(delay = 120) {
   const [open, setOpen] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const enter = () => { clearTimeout(timer.current); setOpen(true); };
   const leave = () => { timer.current = setTimeout(() => setOpen(false), delay); };

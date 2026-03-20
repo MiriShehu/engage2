@@ -11,6 +11,7 @@ import Products from "@/pages/Products";
 import Contact from "@/pages/Contact";
 import GetAQuote from "@/pages/GetAQuote";
 import Team from "@/pages/Team";
+import TeamMemberProfile from "@/pages/TeamMemberProfile";
 import EmployeeBenefits from "@/pages/EmployeeBenefits";
 import GroupHealthInsurance from "@/pages/GroupHealthInsurance";
 import ServicePage from "@/pages/ServicePage";
@@ -40,6 +41,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/get-a-quote" component={GetAQuote} />
       <Route path="/team" component={Team} />
+      <Route path="/team/:slug" component={TeamMemberProfile} />
       <Route path="/employee-benefits" component={EmployeeBenefits} />
       <Route path="/employee-benefits/group-health-insurance" component={GroupHealthInsurance} />
       <Route path="/employee-benefits/:slug">

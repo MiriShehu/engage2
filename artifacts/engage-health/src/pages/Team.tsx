@@ -3,6 +3,7 @@ import { TrustBar } from "@/components/sections/trust";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTeamMembers } from "@/hooks/useWordPress";
+import { Link } from "wouter";
 
 const BASE = "https://www.engagehealthgroup.co.uk/wp-content/uploads";
 const linkedinUrl = "https://www.linkedin.com/company/engage-health-group/";
@@ -228,9 +229,9 @@ const departments = [
   },
 ];
 
-function MemberCard({ member }: { member: typeof departments[0]["members"][0] }) {
-  return (
-    <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+function MemberCard({ member }: { member: any }) {
+  const CardContent = (
+    <div className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full cursor-pointer">
       {/* Photo area — full height */}
       <div
         className="relative aspect-[3/4] overflow-hidden"
@@ -252,7 +253,7 @@ function MemberCard({ member }: { member: typeof departments[0]["members"][0] })
           className="absolute inset-0 hidden items-center justify-center text-white text-4xl font-black"
           style={{ background: `linear-gradient(135deg, ${member.accent}, ${member.accent}99)` }}
         >
-          {member.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+          {member.name.split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
         </div>
         <a
           href={linkedinUrl}
@@ -273,7 +274,7 @@ function MemberCard({ member }: { member: typeof departments[0]["members"][0] })
         <h3 className="text-base font-extrabold text-secondary mb-2 leading-tight">{member.name}</h3>
         <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{member.bio}</p>
         <div className="flex flex-wrap gap-1.5">
-          {member.tags.map((tag, i) => (
+          {member.tags.map((tag: string, i: number) => (
             <span key={i} className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
               {tag}
             </span>
@@ -281,6 +282,12 @@ function MemberCard({ member }: { member: typeof departments[0]["members"][0] })
         </div>
       </div>
     </div>
+  );
+
+  return member.slug ? (
+    <Link href={`/team/${member.slug}`}>{CardContent}</Link>
+  ) : (
+    CardContent
   );
 }
 
@@ -292,12 +299,22 @@ export default function Team() {
   if (!isError && data?.teamMembers?.nodes?.length > 0) {
     const wpMembers = data.teamMembers.nodes.map((node: any) => ({
       name: node.title,
-      title: "Team Member", // Default fallback if ACF 'role' field isn't added yet
-      bio: (node.content || "").replace(/(<([^>]+)>)/gi, ""),
+      slug: node.slug,
+      title: node.staffMemberFields?.positionTitle || "Team Member",
+      bio: (node.excerpt || node.content || "").replace(/(<([^>]+)>)/gi, ""),
       img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
       accent: "#003648", // Default brand color
-      tags: ["Engage Health"], // Default tag
+      tags: ["Engage Health"] as const, // Default tag
     }));
+
+    // Prioritize Directors to the top
+    wpMembers.sort((a: any, b: any) => {
+      const aIsDirector = a.title.toLowerCase().includes("director");
+      const bIsDirector = b.title.toLowerCase().includes("director");
+      if (aIsDirector && !bIsDirector) return -1;
+      if (!aIsDirector && bIsDirector) return 1;
+      return 0; // maintain original query order
+    });
 
     // For now, group all WP members into a single "Our Team" department
     dynamicDepartments = [
@@ -322,16 +339,24 @@ export default function Team() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-sm font-semibold mb-6 border border-white/10">
             The Engage Health Group team
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-            Meet the people who{" "}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-tight tracking-tight">
+            Meet the people who <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-400">
               work for you
             </span>
           </h1>
-          <p className="text-white/65 text-xl max-w-2xl mx-auto">
+          <p className="text-white/65 text-xl max-w-2xl mx-auto mb-10">
             Our team brings over 30 years of combined experience from some of the world's leading insurers and benefits consultancies, all dedicated to finding the best outcomes for your business.
           </p>
-          <div className="mt-12 grid grid-cols-3 gap-6 max-w-xl mx-auto">
+          <div className="flex justify-center mb-12">
+            <Link 
+              href="/get-a-quote" 
+              className="inline-flex items-center justify-center bg-primary hover:bg-[#5e1258] text-white px-8 py-3.5 rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              Get a Free Quote
+            </Link>
+          </div>
+          <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto">
             {[
               { value: "30+", label: "Years combined experience" },
               { value: "70+", label: "Countries covered" },
