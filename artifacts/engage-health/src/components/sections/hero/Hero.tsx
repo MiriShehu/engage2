@@ -19,7 +19,7 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              Best International Group Advice Firm, UK Health &amp; Protection Awards 2024
+              Award-Winning Health &amp; Protection Experts — UK's Most Trusted 2024
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight text-secondary leading-[1.15]">
