@@ -24,8 +24,7 @@ jobs:
           version: 9
 
       - name: Install dependencies
-        run: pnpm install
-        working-directory: artifacts/engage-health
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         run: pnpm run build
