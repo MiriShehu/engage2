@@ -10,16 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: artifacts/engage-health
+
+      - name: Build
+        run: npm run build
+        working-directory: artifacts/engage-health
+
+      - name: Deploy dist to server
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd /home/${{ secrets.SSH_USER }}/htdocs
-            git pull origin master
-            npm install
-            npm run build
-            echo "Deployed at $(date)"
+          source: "artifacts/engage-health/dist/*"
+          target: "/home/fatmirshehu-engagehealthgroup/htdocs/engagehealthgroup.fatmirshehu.com"
+          strip_components: 3
