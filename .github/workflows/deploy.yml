@@ -42,4 +42,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "artifacts/engage-health/dist/public/*"
           target: "/home/fatmirshehu-engagehealthgroup/htdocs/engagehealthgroup.fatmirshehu.com"
-          strip_components: 3
+          strip_components: 4
