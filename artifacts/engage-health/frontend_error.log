@@ -1,0 +1,111 @@
+﻿
+> @workspace/engage-health@0.0.0 dev C:\Users\86mir\OneDrive\Desktop\engageHeatlh\artifacts\engage-health
+> vite --config vite.config.ts --host 0.0.0.0
+
+node.exe : [31mfailed 
+to load config from C:\
+Users\86mir\OneDrive\De
+sktop\engageHeatlh\arti
+facts\engage-health\vit
+e.config.ts[39m
+At C:\Users\86mir\AppDa
+ta\Roaming\npm\pnpm.ps1
+:24 char:5
++     & "node$exe"  "$b
+asedir/node_modules/pnp
+m/bin/pnpm.cjs" $args
++     ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: ([31mfailed t   
+ o ....config.ts[3    
+9m:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+[31merror when 
+starting dev server:
+Error: PORT 
+environment variable 
+is required but was 
+not provided.
+    at file:///C:/Users
+/86mir/OneDrive/Desktop
+/engageHeatlh/artifacts
+/engage-health/node_mod
+ules/.vite-temp/vite.co
+nfig.ts.timestamp-17739
+23235229-a16b479504df7.
+mjs:10:9
+    at ModuleJob.run (n
+ode:internal/modules/es
+m/module_job:430:25)
+    at async onImport.t
+racePromise.__proto__ (
+node:internal/modules/e
+sm/loader:655:26)
+    at async loadConfig
+FromBundledFile (file:/
+//C:/Users/86mir/OneDri
+ve/Desktop/engageHeatlh
+/node_modules/.pnpm/vit
+e@7.3.1_@types+node@25.
+3_847d3f1dfd8a5a4dca3b4
+0dafc2c9d32/node_module
+s/vite/dist/node/chunks
+/config.js:35909:12)
+    at async bundleAndL
+oadConfigFile (file:///
+C:/Users/86mir/OneDrive
+/Desktop/engageHeatlh/n
+ode_modules/.pnpm/vite@
+7.3.1_@types+node@25.3_
+847d3f1dfd8a5a4dca3b40d
+afc2c9d32/node_modules/
+vite/dist/node/chunks/c
+onfig.js:35797:17)
+    at async 
+loadConfigFromFile (fil
+e:///C:/Users/86mir/One
+Drive/Desktop/engageHea
+tlh/node_modules/.pnpm/
+vite@7.3.1_@types+node@
+25.3_847d3f1dfd8a5a4dca
+3b40dafc2c9d32/node_mod
+ules/vite/dist/node/chu
+nks/config.js:35764:42)
+    at async 
+resolveConfig (file:///
+C:/Users/86mir/OneDrive
+/Desktop/engageHeatlh/n
+ode_modules/.pnpm/vite@
+7.3.1_@types+node@25.3_
+847d3f1dfd8a5a4dca3b40d
+afc2c9d32/node_modules/
+vite/dist/node/chunks/c
+onfig.js:35413:22)
+    at async 
+_createServer (file:///
+C:/Users/86mir/OneDrive
+/Desktop/engageHeatlh/n
+ode_modules/.pnpm/vite@
+7.3.1_@types+node@25.3_
+847d3f1dfd8a5a4dca3b40d
+afc2c9d32/node_modules/
+vite/dist/node/chunks/c
+onfig.js:25362:67)
+    at async 
+CAC.<anonymous> (file:/
+//C:/Users/86mir/OneDri
+ve/Desktop/engageHeatlh
+/node_modules/.pnpm/vit
+e@7.3.1_@types+node@25.
+3_847d3f1dfd8a5a4dca3b4
+0dafc2c9d32/node_module
+s/vite/dist/node/cli.js
+:572:18)[39m
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

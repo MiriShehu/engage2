@@ -1,19 +1,67 @@
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { Zap, Clock, CalendarDays, BookOpen } from "lucide-react";
 
-const BUDGETS = ["< £5k", "£5k–£20k", "£20k–£50k", "£50k+", "Not sure"];
-const TIMELINES = ["ASAP", "1–3 months", "3–6 months", "Just researching"];
+const TIMELINES = [
+  { value: "ASAP",             icon: Zap,         label: "ASAP",            desc: "Need cover urgently" },
+  { value: "1–3 months",       icon: Clock,       label: "1–3 months",      desc: "Short-term window" },
+  { value: "3–6 months",       icon: CalendarDays, label: "3–6 months",     desc: "Planning ahead" },
+  { value: "Just researching", icon: BookOpen,    label: "Just researching", desc: "Early-stage exploration" },
+];
 
 interface Props {
-  budget: string;
   timeline: string;
-  notes: string;
   onChange: (field: string, value: string) => void;
 }
 
-export default function Step3Needs({ budget, timeline, notes, onChange }: Props) {
+function OptionCard({
+  value, icon: Icon, label, desc, selected, onClick,
+}: { value: string; icon: React.ElementType; label: string; desc: string; selected: boolean; onClick: () => void }) {
   return (
-    <div className="flex flex-col flex-1 items-center px-8">
-      <div className="w-full max-w-[460px] flex flex-col flex-1 justify-center py-7">
+    <motion.button
+      type="button"
+      onClick={onClick}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      className={cn(
+        "flex items-center gap-5 px-5 py-5 rounded-[16px] border-2 text-left transition-all duration-150 w-full",
+        selected
+          ? "border-primary bg-primary/5"
+          : "border-border bg-white hover:border-primary/40 hover:bg-primary/[0.02]"
+      )}
+    >
+      <div className={cn(
+        "rounded-[12px] flex items-center justify-center flex-shrink-0 transition-colors",
+        selected ? "bg-primary/12" : "bg-muted"
+      )} style={{ width: 52, height: 52 }}>
+        <Icon className={cn("w-6 h-6 transition-colors", selected ? "text-primary" : "text-muted-foreground")} />
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className={cn("text-[16px] font-extrabold leading-tight transition-colors", selected ? "text-primary" : "text-foreground")}>
+          {label}
+        </div>
+        <div className="text-[13px] text-muted-foreground mt-0.5">{desc}</div>
+      </div>
+      {selected && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 500, damping: 20 }}
+          className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0"
+        >
+          <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </motion.div>
+      )}
+    </motion.button>
+  );
+}
+
+export default function Step3Needs({ timeline, onChange }: Props) {
+  return (
+    <div className="flex flex-col flex-1 items-center px-8 overflow-y-auto">
+      <div className="w-full max-w-[480px] flex flex-col py-7">
 
         {/* Brand icon */}
         <div className="w-12 h-12 rounded-[13px] flex items-center justify-center mb-7 flex-shrink-0"
@@ -26,67 +74,24 @@ export default function Step3Needs({ budget, timeline, notes, onChange }: Props)
         <h1 className="text-[32px] font-extrabold text-foreground tracking-tight leading-[1.15] mb-2">
           What are you<br /><span className="text-primary">looking for?</span>
         </h1>
-        <p className="text-[13px] text-muted-foreground mb-7 leading-relaxed">
+        <p className="text-[14px] text-muted-foreground mb-8 leading-relaxed">
           This helps our advisors prepare the most relevant options.
         </p>
 
-        {/* Budget */}
-        <div className="text-[13px] font-semibold text-foreground mb-3">
-          What's your approximate annual budget?
-        </div>
-        <div className="flex flex-wrap gap-2 mb-7">
-          {BUDGETS.map((b) => (
-            <button
-              key={b}
-              type="button"
-              onClick={() => onChange("budget", b)}
-              className={cn(
-                "px-4 py-2.5 rounded-full border-[1.5px] text-[13px] font-semibold transition-all duration-150",
-                budget === b
-                  ? "border-primary bg-primary text-white"
-                  : "border-border bg-white text-foreground hover:border-primary/50 hover:text-primary"
-              )}
-            >
-              {b}
-            </button>
-          ))}
-        </div>
-
-        {/* Timeline */}
-        <div className="text-[13px] font-semibold text-foreground mb-3">
+        <div className="text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted-foreground mb-3">
           How soon do you need cover?
         </div>
-        <div className="flex flex-wrap gap-2 mb-7">
+        <div className="flex flex-col gap-2.5">
           {TIMELINES.map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => onChange("timeline", t)}
-              className={cn(
-                "px-4 py-2.5 rounded-full border-[1.5px] text-[13px] font-semibold transition-all duration-150",
-                timeline === t
-                  ? "border-primary bg-primary text-white"
-                  : "border-border bg-white text-foreground hover:border-primary/50 hover:text-primary"
-              )}
-            >
-              {t}
-            </button>
+            <OptionCard
+              key={t.value}
+              {...t}
+              selected={timeline === t.value}
+              onClick={() => onChange("timeline", t.value)}
+            />
           ))}
         </div>
 
-        {/* Notes */}
-        <div>
-          <div className="text-[10px] font-bold uppercase tracking-[0.07em] text-muted-foreground mb-1.5">
-            Anything else we should know? <span className="font-normal normal-case">(optional)</span>
-          </div>
-          <textarea
-            value={notes}
-            onChange={(e) => onChange("notes", e.target.value)}
-            rows={3}
-            placeholder="Current provider, specific requirements, renewal date…"
-            className="w-full px-3.5 py-2.5 rounded-[10px] border-[1.5px] border-border bg-muted/30 text-[13px] text-foreground outline-none resize-none transition-all focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(118,24,111,0.08)]"
-          />
-        </div>
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ const SCHEME = {
 } as const;
 
 type Props = {
-  entry: Pick<ServiceEntry, 'title' | 'titleAccent' | 'tagline' | 'subtitle' | 'heroImage' | 'colorScheme' | 'stats' | 'sidebarTestimonial'>
+  entry: Pick<ServiceEntry, 'title' | 'titleAccent' | 'tagline' | 'subtitle' | 'heroImage' | 'heroImagePosition' | 'colorScheme' | 'stats' | 'sidebarTestimonial'>
   category: 'employee-benefits' | 'international-benefits'
   currentSlug: string
   allServices: ServiceEntry[]
@@ -42,8 +42,8 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section
-        className="relative overflow-hidden bg-cover bg-center"
-        style={entry.heroImage ? { backgroundImage: `url(${entry.heroImage})` } : undefined}
+        className="relative overflow-hidden bg-cover"
+        style={entry.heroImage ? { backgroundImage: `url(${entry.heroImage})`, backgroundPosition: entry.heroImagePosition ?? 'center' } : undefined}
       >
         {/* Fallback solid bg when no heroImage */}
         {!entry.heroImage && <div className="absolute inset-0 bg-[#003648]" />}

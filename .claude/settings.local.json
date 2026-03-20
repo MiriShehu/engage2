@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(node -e \":*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)",
+      "Bash(cross-env PORT=5173 npx vite build --config vite.config.ts)",
+      "Bash(PORT=5173 npx vite build --config vite.config.ts)",
+      "Bash(PORT=5173 BASE_PATH=/ npx vite build --config vite.config.ts)",
+      "WebFetch(domain:www.engagehealthgroup.co.uk)",
+      "Bash(mkdir -p /c/Users/86mir/OneDrive/Desktop/engageHeatlh/artifacts/engage-health/src/assets/hero)",
+      "Bash(curl -L -o /c/Users/86mir/OneDrive/Desktop/engageHeatlh/artifacts/engage-health/src/assets/hero/group-business-travel.jpg \"https://www.engagehealthgroup.co.uk/wp-content/uploads/2023/09/group-business-travel.jpg\")",
+      "Bash(curl -s \"https://www.engagehealthgroup.co.uk/international-group-critical-illness-insurance/\")",
+      "Bash(curl -L \"https://www.engagehealthgroup.co.uk/wp-content/uploads/2023/09/Int.-Critical-Illlness.jpg\" -o \"C:/Users/86mir/OneDrive/Desktop/engageHeatlh/artifacts/engage-health/src/assets/hero/int-critical-illness.jpg\")",
+      "Bash(curl -s \"https://www.engagehealthgroup.co.uk/short-term-international-health-insurance/\")",
+      "Bash(curl -s \"https://www.engagehealthgroup.co.uk/relevant-life-insurance/\")",
+      "Bash(curl -s \"https://www.engagehealthgroup.co.uk/pre-assignment-screening/\")",
+      "Bash(curl -L -o \"C:/Users/86mir/OneDrive/Desktop/engageHeatlh/attached_assets/quote-design-ref.jpg\" \"https://cdn.dribbble.com/userupload/14827588/file/original-ccd92a63a3d03019eb352be89f5f3a07.jpg?resize=1905x1429&vertical=center\")"
+    ]
+  }
+}

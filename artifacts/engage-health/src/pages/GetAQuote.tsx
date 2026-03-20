@@ -8,7 +8,7 @@ const DEFAULT_FORM: FormData = {
   employeeRange: "",
   company: "",
   industry: "",
-  country: "",
+  country: "United Kingdom",
   budget: "",
   timeline: "",
   notes: "",
@@ -32,7 +32,7 @@ export default function GetAQuote() {
 
   const handleNext = () => {
     setDirection(1);
-    setStep((s) => Math.min(s + 1, 4));
+    setStep((s) => Math.min(s + 1, 6));
   };
 
   const handleBack = () => {

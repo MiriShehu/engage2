@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Quote — Full Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: #f1f5f9; color: #1e293b; }
+
+  /* ── NAV ── */
+  .nav {
+    background: #003648;
+    padding: 0 32px;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { color: white; font-weight: 800; font-size: 15px; letter-spacing: -0.3px; }
+  .nav-logo span { color: #0dab76; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-link { color: rgba(255,255,255,0.65); font-size: 13px; text-decoration: none; }
+  .nav-cta { background: linear-gradient(90deg, #0dab76, #3568d4); color: white; font-size: 12px; font-weight: 700; padding: 7px 16px; border-radius: 8px; text-decoration: none; }
+
+  /* ── HERO STRIP ── */
+  .hero-strip {
+    background: linear-gradient(135deg, #003648 0%, #76186f 100%);
+    padding: 22px 32px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .hero-strip-left { display: flex; flex-direction: column; gap: 4px; }
+  .hero-strip-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.85); font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 99px; letter-spacing: 0.08em; text-transform: uppercase;
+    width: fit-content; margin-bottom: 4px;
+  }
+  .hero-strip-badge::before { content: ''; width: 6px; height: 6px; background: #0dab76; border-radius: 50%; display: inline-block; }
+  .hero-strip h1 { color: white; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .hero-strip h1 span { background: linear-gradient(90deg, #0dab76, #4aaed6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-strip p { color: rgba(255,255,255,0.65); font-size: 13px; margin-top: 2px; }
+  .trust-pills { display: flex; gap: 10px; }
+  .trust-pill {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 600;
+    padding: 5px 12px; border-radius: 8px; display: flex; align-items: center; gap: 5px;
+  }
+  .trust-pill .icon { color: #0dab76; font-size: 13px; }
+
+  /* ── MAIN BODY ── */
+  .body-wrap {
+    max-width: 1160px; margin: 0 auto; padding: 32px 24px;
+    display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: start;
+  }
+
+  /* ── LEFT: FORM PANEL ── */
+  .form-panel {
+    background: white; border-radius: 18px; border: 1px solid #e2e8f0;
+    overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  /* Progress header */
+  .progress-header {
+    padding: 20px 28px 16px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .step-track {
+    display: flex; align-items: center; gap: 0; margin-bottom: 14px;
+  }
+  .step-item { display: flex; align-items: center; gap: 8px; flex: 1; }
+  .step-circle {
+    width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .step-circle.done { background: #0dab76; color: white; }
+  .step-circle.active { background: #76186f; color: white; box-shadow: 0 0 0 4px rgba(118,24,111,0.15); }
+  .step-circle.todo { background: #f1f5f9; color: #94a3b8; border: 2px solid #e2e8f0; }
+  .step-line { flex: 1; height: 2px; background: #e2e8f0; margin: 0 4px; }
+  .step-line.done { background: #0dab76; }
+  .step-info { display: flex; justify-content: space-between; }
+  .step-name { font-size: 11px; font-weight: 600; color: #64748b; }
+  .step-name.active { color: #76186f; }
+  .step-counter { font-size: 11px; color: #94a3b8; }
+
+  /* Form body */
+  .form-body { padding: 24px 28px; }
+  .form-heading { font-size: 18px; font-weight: 800; color: #0f172a; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .form-subheading { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+
+  /* Cover type cards */
+  .cover-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  .cover-card {
+    border: 2px solid #e2e8f0; border-radius: 12px; padding: 14px;
+    cursor: pointer; transition: all 0.2s; background: white;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .cover-card:hover { border-color: #76186f; background: #fdf8fd; }
+  .cover-card.selected { border-color: #76186f; background: rgba(118,24,111,0.04); }
+  .cover-icon { width: 32px; height: 32px; border-radius: 8px; background: #f8f0f8; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .cover-card.selected .cover-icon { background: rgba(118,24,111,0.12); }
+  .cover-name { font-size: 12px; font-weight: 700; color: #1e293b; }
+  .cover-desc { font-size: 11px; color: #94a3b8; line-height: 1.4; }
+
+  /* Fields */
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .field-full { margin-bottom: 14px; }
+  .field-label { font-size: 11px; font-weight: 700; color: #374151; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 5px; }
+  .field-input {
+    width: 100%; padding: 10px 12px; border: 1.5px solid #e2e8f0; border-radius: 10px;
+    font-size: 13px; color: #1e293b; background: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field-input:focus { outline: none; border-color: #76186f; background: white; box-shadow: 0 0 0 3px rgba(118,24,111,0.08); }
+  .field-input.active-demo { border-color: #76186f; background: white; box-shadow: 0 0 0 3px rgba(118,24,111,0.08); }
+
+  /* Employee range */
+  .range-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+  .range-btn {
+    padding: 9px 6px; border: 1.5px solid #e2e8f0; border-radius: 9px;
+    text-align: center; font-size: 12px; font-weight: 600; color: #475569;
+    cursor: pointer; transition: all 0.2s; background: white;
+  }
+  .range-btn:hover { border-color: #76186f; color: #76186f; }
+  .range-btn.selected { background: #76186f; border-color: #76186f; color: white; }
+
+  /* Form footer */
+  .form-footer {
+    padding: 16px 28px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid #f1f5f9;
+  }
+  .btn-back {
+    padding: 10px 18px; border: 1.5px solid #e2e8f0; border-radius: 10px;
+    font-size: 13px; font-weight: 600; color: #64748b; background: white;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+  }
+  .btn-next {
+    padding: 11px 24px; border-radius: 10px; font-size: 13px; font-weight: 700;
+    color: white; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, #76186f, #5a1254);
+    box-shadow: 0 4px 12px rgba(118,24,111,0.3);
+  }
+  .btn-next .arrow { font-size: 15px; }
+
+  /* ── RIGHT: INFO PANEL ── */
+  .info-panel { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Why Engage card */
+  .info-card {
+    background: white; border-radius: 16px; border: 1px solid #e2e8f0;
+    overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .info-card-header {
+    background: linear-gradient(135deg, #003648, #004d6b);
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .info-card-header h3 { color: white; font-size: 14px; font-weight: 800; }
+  .info-card-header p { color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 1px; }
+  .info-card-body { padding: 16px 20px; }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .stat-box {
+    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+    padding: 10px 12px; text-align: center;
+  }
+  .stat-val { font-size: 20px; font-weight: 800; color: #003648; letter-spacing: -0.5px; }
+  .stat-val span { color: #76186f; }
+  .stat-label { font-size: 10px; color: #94a3b8; font-weight: 600; margin-top: 2px; }
+
+  .promise-list { display: flex; flex-direction: column; gap: 8px; }
+  .promise-item { display: flex; align-items: flex-start; gap: 8px; }
+  .promise-check { color: #0dab76; font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .promise-text { font-size: 12px; color: #475569; line-height: 1.4; }
+  .promise-text strong { color: #1e293b; }
+
+  /* Testimonial carousel */
+  .testimonial-card {
+    background: white; border-radius: 16px; border: 1px solid #e2e8f0;
+    overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .testimonial-header {
+    background: linear-gradient(135deg, #76186f, #5a1254);
+    padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .testimonial-header h3 { color: white; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+  .stars-white { color: #fbbf24; font-size: 12px; letter-spacing: 2px; }
+  .testimonial-body { padding: 18px 20px; }
+  .quote-mark { font-size: 42px; color: rgba(118,24,111,0.12); line-height: 1; margin-bottom: -8px; font-family: Georgia, serif; }
+  .testimonial-text { font-size: 13px; color: #374151; line-height: 1.6; font-style: italic; margin-bottom: 14px; }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .author-avatar {
+    width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #76186f, #003648);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .author-name { font-size: 12px; font-weight: 700; color: #1e293b; }
+  .author-role { font-size: 11px; color: #94a3b8; }
+  .carousel-dots {
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    padding: 10px 20px 16px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #e2e8f0; transition: all 0.3s; }
+  .dot.active { width: 20px; border-radius: 99px; background: #76186f; }
+
+  /* Contact card */
+  .contact-card {
+    background: #f8fafc; border-radius: 14px; border: 1px solid #e2e8f0;
+    padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .contact-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569; }
+  .contact-icon { font-size: 14px; }
+
+  /* Footer */
+  .footer {
+    background: #003648; padding: 20px 32px;
+    display: flex; align-items: center; justify-content: space-between; margin-top: 24px;
+  }
+  .footer-text { color: rgba(255,255,255,0.4); font-size: 11px; }
+  .footer-links { display: flex; gap: 16px; }
+  .footer-link { color: rgba(255,255,255,0.4); font-size: 11px; text-decoration: none; }
+
+  /* Annotation overlay */
+  .annotations { max-width: 1160px; margin: 0 auto; padding: 0 24px 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .annotation {
+    background: white; border: 1px solid #e2e8f0; border-radius: 10px;
+    padding: 8px 12px; font-size: 11px; color: #475569;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .annotation-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Engage<span>Health</span></div>
+  <div class="nav-links">
+    <a href="#" class="nav-link">Employee Benefits</a>
+    <a href="#" class="nav-link">International</a>
+    <a href="#" class="nav-link">About</a>
+  </div>
+  <a href="#" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <div class="hero-strip-left">
+    <div class="hero-strip-badge">Free · No obligation</div>
+    <h1>Get your <span>tailored quote</span></h1>
+    <p>Tell us about your business and we'll do the rest — usually within 2 hours.</p>
+  </div>
+  <div class="trust-pills">
+    <div class="trust-pill"><span class="icon">🛡</span> FCA Regulated</div>
+    <div class="trust-pill"><span class="icon">⚡</span> Reply in 2hrs</div>
+    <div class="trust-pill"><span class="icon">🏆</span> Award Winning</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body-wrap">
+
+  <!-- LEFT: FORM PANEL -->
+  <div class="form-panel">
+    <!-- Progress -->
+    <div class="progress-header">
+      <div class="step-track">
+        <div class="step-item">
+          <div class="step-circle done">✓</div>
+          <div class="step-line done"></div>
+        </div>
+        <div class="step-item">
+          <div class="step-circle active">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-item">
+          <div class="step-circle todo">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-circle todo">4</div>
+      </div>
+      <div class="step-info">
+        <div>
+          <span class="step-name active">Your Business</span>
+        </div>
+        <span class="step-counter">Step 2 of 4</span>
+      </div>
+    </div>
+
+    <!-- Form content (showing step 2 as example) -->
+    <div class="form-body">
+      <div class="form-heading">Tell us about your business</div>
+      <div class="form-subheading">This helps us find the most relevant quotes for your situation.</div>
+
+      <div class="field-row">
+        <div>
+          <div class="field-label">Company name</div>
+          <input class="field-input active-demo" value="Acme Ltd" style="pointer-events:none">
+        </div>
+        <div>
+          <div class="field-label">Industry</div>
+          <input class="field-input" placeholder="e.g. Technology" style="pointer-events:none">
+        </div>
+      </div>
+
+      <div class="field-full">
+        <div class="field-label">How many employees?</div>
+        <div class="range-grid">
+          <div class="range-btn">1–10</div>
+          <div class="range-btn selected">11–50</div>
+          <div class="range-btn">51–250</div>
+          <div class="range-btn">250+</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div>
+          <div class="field-label">Country / HQ</div>
+          <input class="field-input" placeholder="United Kingdom" style="pointer-events:none">
+        </div>
+        <div>
+          <div class="field-label">Start date</div>
+          <input class="field-input" placeholder="ASAP / mm/yyyy" style="pointer-events:none">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-back">← Back</button>
+      <button class="btn-next">Continue <span class="arrow">→</span></button>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="info-panel">
+
+    <!-- Why Engage -->
+    <div class="info-card">
+      <div class="info-card-header">
+        <div>
+          <h3>Why choose Engage?</h3>
+          <p>Trusted by 500+ businesses across the UK & globally</p>
+        </div>
+      </div>
+      <div class="info-card-body">
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="stat-val">500<span>+</span></div>
+            <div class="stat-label">Businesses served</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val">50<span>yrs</span></div>
+            <div class="stat-label">Combined expertise</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val">70<span>+</span></div>
+            <div class="stat-label">Countries covered</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val">3<span>×</span></div>
+            <div class="stat-label">Industry award wins</div>
+          </div>
+        </div>
+        <div class="promise-list">
+          <div class="promise-item">
+            <span class="promise-check">✓</span>
+            <span class="promise-text"><strong>Free service</strong> — No broker fees, ever</span>
+          </div>
+          <div class="promise-item">
+            <span class="promise-check">✓</span>
+            <span class="promise-text"><strong>No obligation</strong> — Quotes with zero pressure</span>
+          </div>
+          <div class="promise-item">
+            <span class="promise-check">✓</span>
+            <span class="promise-text"><strong>Fast response</strong> — Usually within 2 working hours</span>
+          </div>
+          <div class="promise-item">
+            <span class="promise-check">✓</span>
+            <span class="promise-text"><strong>FCA regulated</strong> — Your interests are protected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Carousel -->
+    <div class="testimonial-card">
+      <div class="testimonial-header">
+        <h3>Client stories</h3>
+        <div class="stars-white">★★★★★</div>
+      </div>
+      <div class="testimonial-body">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Engage made the whole process completely seamless. We had quotes from multiple insurers within a day and the team was incredibly knowledgeable throughout.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SK</div>
+          <div>
+            <div class="author-name">Stephanie Knap</div>
+            <div class="author-role">Senior Manager · Couchbase</div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:4px;">Prefer to speak to someone?</div>
+      <div class="contact-item"><span class="contact-icon">📞</span> 01273 974419</div>
+      <div class="contact-item"><span class="contact-icon">✉️</span> enquiries@engagehealthgroup.co.uk</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-text">© Engage Health Group 2025 · FCA Regulated · No. 812846</div>
+  <div class="footer-links">
+    <a href="#" class="footer-link">Privacy Policy</a>
+    <a href="#" class="footer-link">Terms</a>
+    <a href="#" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+<!-- ANNOTATIONS -->
+<div style="background:#f8fafc;padding:16px 32px;border-top:1px solid #e2e8f0;">
+  <div style="max-width:1160px;margin:0 auto;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;margin-bottom:10px;">Design notes</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;">
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:11px;color:#475569;display:flex;align-items:center;gap:6px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#76186f;flex-shrink:0;display:inline-block;"></span>
+        Step tracker animates between steps with slide transitions
+      </div>
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:11px;color:#475569;display:flex;align-items:center;gap:6px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#0dab76;flex-shrink:0;display:inline-block;"></span>
+        Cover type cards on step 1 — click to select with animated checkmark
+      </div>
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:11px;color:#475569;display:flex;align-items:center;gap:6px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#3568d4;flex-shrink:0;display:inline-block;"></span>
+        Testimonial carousel auto-rotates every 5s with fade animation
+      </div>
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:11px;color:#475569;display:flex;align-items:center;gap:6px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#f59e0b;flex-shrink:0;display:inline-block;"></span>
+        Step 4 shows success screen with confetti + summary of choices
+      </div>
+      <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:11px;color:#475569;display:flex;align-items:center;gap:6px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#e11d48;flex-shrink:0;display:inline-block;"></span>
+        Framer Motion: step panels slide in from right, slide out to left
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

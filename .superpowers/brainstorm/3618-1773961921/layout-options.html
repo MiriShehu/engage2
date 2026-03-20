@@ -1,0 +1,188 @@
+<h2>Get a Quote — Layout Options</h2>
+<p class="subtitle">Which two-column layout feels right for the page? Click to select.</p>
+
+<style>
+  .layout-cards { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 24px; }
+  .layout-card {
+    flex: 1; min-width: 260px; border: 2px solid #e2e8f0; border-radius: 14px;
+    overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
+  }
+  .layout-card:hover { border-color: #76186f; box-shadow: 0 4px 24px rgba(118,24,111,0.12); }
+  .layout-card.selected { border-color: #76186f; box-shadow: 0 0 0 3px rgba(118,24,111,0.18); }
+  .card-label {
+    padding: 10px 14px; background: #f8fafc; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #64748b;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .card-preview { display: flex; height: 220px; }
+
+  /* Option A: Form left (white), Brand panel right (dark teal) */
+  .a-left { flex: 1.1; background: #fff; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .a-right { flex: 0.9; background: #003648; display: flex; flex-direction: column; padding: 14px; gap: 8px; }
+
+  /* Option B: Brand gradient left, white right */
+  .b-left { flex: 0.85; background: linear-gradient(160deg,#003648,#76186f); padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .b-right { flex: 1.15; background: #f8fafc; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+
+  /* Option C: Both light, header gradient strip */
+  .c-wrap { display: flex; flex-direction: column; width: 100%; }
+  .c-header { background: linear-gradient(135deg,#003648,#76186f); height: 32px; display: flex; align-items: center; padding: 0 14px; }
+  .c-body { display: flex; flex: 1; }
+  .c-left { flex: 1; background: #fff; padding: 12px; display: flex; flex-direction: column; gap: 7px; }
+  .c-right { flex: 0.85; background: #f0faf8; padding: 12px; display: flex; flex-direction: column; gap: 7px; border-left: 1px solid #e2e8f0; }
+
+  /* Shared mock elements */
+  .step-bar { display: flex; gap: 4px; margin-bottom: 4px; }
+  .step-dot { width: 20px; height: 4px; border-radius: 99px; }
+  .step-active { background: #76186f; }
+  .step-done { background: #0dab76; }
+  .step-todo { background: #e2e8f0; }
+  .mock-field { height: 18px; background: #f1f5f9; border-radius: 5px; border: 1px solid #e2e8f0; }
+  .mock-field-white { height: 18px; background: rgba(255,255,255,0.12); border-radius: 5px; }
+  .mock-btn { height: 24px; border-radius: 6px; background: linear-gradient(90deg,#0dab76,#3568d4); margin-top: 4px; }
+  .mock-btn-outline { height: 24px; border-radius: 6px; background: rgba(255,255,255,0.15); margin-top: 4px; }
+  .mock-text-white { height: 8px; background: rgba(255,255,255,0.35); border-radius: 4px; }
+  .mock-text-white-sm { height: 6px; background: rgba(255,255,255,0.2); border-radius: 4px; width: 70%; }
+  .mock-testimonial { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 5px; }
+  .mock-stat-row { display: flex; gap: 6px; }
+  .mock-stat { flex: 1; background: rgba(255,255,255,0.1); border-radius: 6px; height: 28px; }
+  .mock-text { height: 7px; background: #e2e8f0; border-radius: 4px; }
+  .mock-text-sm { height: 6px; background: #e2e8f0; border-radius: 4px; width: 65%; }
+  .mock-heading { height: 11px; background: #cbd5e1; border-radius: 4px; width: 60%; }
+  .mock-logo { height: 14px; background: rgba(255,255,255,0.8); border-radius: 3px; width: 55%; }
+  .section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .form-section-label { color: #94a3b8; }
+  .brand-section-label { color: rgba(255,255,255,0.5); }
+  .tag { display: inline-block; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 9px; padding: 2px 7px; border-radius: 99px; font-weight: 600; margin-bottom: 3px; }
+  .green-tag { background: rgba(13,171,118,0.2); color: #0dab76; }
+  .stars { color: #f59e0b; font-size: 9px; letter-spacing: 1px; }
+</style>
+
+<div class="layout-cards">
+
+  <!-- Option A -->
+  <div class="layout-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-label">Option A — Clean Split (recommended)</div>
+    <div class="card-preview">
+      <div class="a-left">
+        <div class="section-label form-section-label">Step 2 of 3</div>
+        <div class="step-bar">
+          <div class="step-dot step-done"></div>
+          <div class="step-dot step-active"></div>
+          <div class="step-dot step-todo"></div>
+        </div>
+        <div class="mock-heading" style="margin: 4px 0 6px;"></div>
+        <div class="mock-field"></div>
+        <div class="mock-field"></div>
+        <div style="display:flex;gap:5px;"><div class="mock-field" style="flex:1"></div><div class="mock-field" style="flex:1"></div></div>
+        <div class="mock-btn"></div>
+      </div>
+      <div class="a-right">
+        <div class="mock-logo"></div>
+        <div class="mock-text-white" style="margin-top:4px;"></div>
+        <div class="mock-text-white-sm"></div>
+        <div class="mock-stat-row" style="margin-top:4px;">
+          <div class="mock-stat"></div>
+          <div class="mock-stat"></div>
+        </div>
+        <div class="mock-testimonial" style="margin-top:4px;">
+          <div class="stars">★★★★★</div>
+          <div class="mock-text-white" style="width:90%"></div>
+          <div class="mock-text-white-sm"></div>
+          <div class="mock-text-white" style="width:50%"></div>
+        </div>
+        <div style="display:flex;gap:4px;margin-top:4px;">
+          <div style="width:28px;height:5px;border-radius:99px;background:#0dab76;"></div>
+          <div style="width:8px;height:5px;border-radius:99px;background:rgba(255,255,255,0.25);"></div>
+          <div style="width:8px;height:5px;border-radius:99px;background:rgba(255,255,255,0.25);"></div>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 10px 14px; background: #fafafa; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
+      <strong>White form + Dark teal info panel.</strong> Form feels open and focused. Brand panel anchors trust on the right with stats + testimonial carousel.
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="layout-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-label">Option B — Immersive Dark Form</div>
+    <div class="card-preview">
+      <div class="b-left">
+        <span class="tag">Get a Quote</span>
+        <div class="step-bar" style="margin-top:2px;">
+          <div class="step-dot step-done"></div>
+          <div class="step-dot step-active"></div>
+          <div class="step-dot step-todo"></div>
+        </div>
+        <div class="mock-text-white" style="width:70%;margin:4px 0 6px;"></div>
+        <div class="mock-field-white"></div>
+        <div class="mock-field-white"></div>
+        <div style="display:flex;gap:5px;"><div class="mock-field-white" style="flex:1"></div><div class="mock-field-white" style="flex:1"></div></div>
+        <div class="mock-btn-outline" style="margin-top:6px;"></div>
+      </div>
+      <div class="b-right">
+        <div class="mock-heading"></div>
+        <div class="mock-text" style="margin-bottom:4px;"></div>
+        <div style="background:#e8f5e9;border-radius:7px;padding:8px;display:flex;flex-direction:column;gap:5px;">
+          <div class="stars" style="color:#0dab76;">★★★★★</div>
+          <div class="mock-text"></div>
+          <div class="mock-text-sm"></div>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:4px;">
+          <div style="flex:1;background:#f1f5f9;border-radius:6px;height:28px;"></div>
+          <div style="flex:1;background:#f1f5f9;border-radius:6px;height:28px;"></div>
+          <div style="flex:1;background:#f1f5f9;border-radius:6px;height:28px;"></div>
+        </div>
+        <div class="mock-text" style="margin-top:6px;"></div>
+        <div class="mock-text-sm"></div>
+      </div>
+    </div>
+    <div style="padding: 10px 14px; background: #fafafa; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
+      <strong>Gradient dark form + Light info panel.</strong> Dramatic and immersive. Form stands out with dark treatment, testimonials on white right panel.
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="layout-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-label">Option C — Branded Header Strip</div>
+    <div class="card-preview c-wrap">
+      <div class="c-header">
+        <div style="height:8px;width:50px;background:rgba(255,255,255,0.7);border-radius:3px;"></div>
+        <div style="flex:1;"></div>
+        <div style="height:8px;width:30px;background:rgba(255,255,255,0.4);border-radius:3px;"></div>
+      </div>
+      <div class="c-body">
+        <div class="c-left">
+          <div class="section-label form-section-label">Coverage Type</div>
+          <div class="step-bar">
+            <div class="step-dot step-active"></div>
+            <div class="step-dot step-todo"></div>
+            <div class="step-dot step-todo"></div>
+          </div>
+          <div class="mock-field" style="margin-top:4px;"></div>
+          <div class="mock-field"></div>
+          <div class="mock-field"></div>
+          <div class="mock-btn" style="width:60%;"></div>
+        </div>
+        <div class="c-right">
+          <div class="section-label" style="color:#003648;">Why Engage?</div>
+          <div class="mock-text"></div>
+          <div class="mock-text-sm"></div>
+          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:7px;margin-top:4px;display:flex;flex-direction:column;gap:4px;">
+            <div class="stars" style="font-size:9px;color:#f59e0b;">★★★★★</div>
+            <div class="mock-text"></div>
+            <div class="mock-text-sm"></div>
+          </div>
+          <div class="mock-text" style="margin-top:4px;"></div>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 10px 14px; background: #fafafa; border-top: 1px solid #e2e8f0; font-size: 12px; color: #475569;">
+      <strong>Both panels light + gradient header bar.</strong> Softer, airy feel. More traditional SaaS look — clean across both columns with brand in the header strip.
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:20px; font-size:12px; color:#94a3b8; text-align:center;">Click a layout to select it, then let me know in the terminal.</p>

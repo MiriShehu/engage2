@@ -1,0 +1,164 @@
+<h2>Form Step Flow</h2>
+<p class="subtitle">How should the multi-step form be structured? Click to select.</p>
+
+<style>
+  .flow-cards { display: flex; flex-direction: column; gap: 18px; margin-top: 20px; }
+  .flow-card {
+    border: 2px solid #e2e8f0; border-radius: 14px; overflow: hidden;
+    cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; background: #fff;
+  }
+  .flow-card:hover { border-color: #76186f; box-shadow: 0 4px 20px rgba(118,24,111,0.1); }
+  .flow-card.selected { border-color: #76186f; box-shadow: 0 0 0 3px rgba(118,24,111,0.15); }
+  .card-label {
+    padding: 10px 16px; background: #f8fafc; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #64748b;
+    border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between;
+  }
+  .steps-row {
+    display: flex; align-items: center; gap: 0; padding: 18px 20px;
+  }
+  .step-box {
+    flex: 1; text-align: center; padding: 10px 8px; position: relative;
+  }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 13px; font-weight: 700; margin: 0 auto 6px;
+  }
+  .step-active .step-num { background: #76186f; color: white; }
+  .step-todo .step-num { background: #f1f5f9; color: #94a3b8; border: 2px solid #e2e8f0; }
+  .step-done .step-num { background: #0dab76; color: white; }
+  .step-title { font-size: 11px; font-weight: 600; color: #475569; }
+  .step-sub { font-size: 10px; color: #94a3b8; margin-top: 2px; }
+  .step-arrow { color: #cbd5e1; font-size: 18px; flex-shrink: 0; margin: 0 -4px; }
+  .desc-box {
+    padding: 10px 20px 14px; font-size: 12px; color: #475569;
+    border-top: 1px solid #f1f5f9; background: #fafafa;
+  }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 10px; font-weight: 700; margin-left: 8px; }
+  .badge-recommended { background: rgba(118,24,111,0.1); color: #76186f; }
+  .badge-simple { background: rgba(13,171,118,0.1); color: #0dab76; }
+  .fields-preview {
+    display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px;
+  }
+  .field-tag {
+    background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 5px;
+    padding: 2px 7px; font-size: 10px; color: #64748b;
+  }
+</style>
+
+<div class="flow-cards">
+
+  <!-- Option A: 3 steps (keep existing) -->
+  <div class="flow-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-label">
+      Option A — 3 Steps (existing flow, redesigned)
+      <span class="badge badge-simple">SIMPLE</span>
+    </div>
+    <div class="steps-row">
+      <div class="step-box step-done">
+        <div class="step-num">1</div>
+        <div class="step-title">Cover Type</div>
+        <div class="step-sub">What do you need?</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-box step-active">
+        <div class="step-num">2</div>
+        <div class="step-title">Your Business</div>
+        <div class="step-sub">Company details</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-box step-todo">
+        <div class="step-num">3</div>
+        <div class="step-title">Contact</div>
+        <div class="step-sub">How to reach you</div>
+      </div>
+    </div>
+    <div class="desc-box">
+      Keep the existing 3-step structure but redesign every screen from scratch with animations, better input styling, cover type cards with icons, and polished transitions. Familiar to returning visitors.
+      <div class="fields-preview" style="margin-top:8px;">
+        <span class="field-tag">📋 Cover type cards</span>
+        <span class="field-tag">🏢 Company name + size</span>
+        <span class="field-tag">📍 Location</span>
+        <span class="field-tag">📞 Contact details</span>
+        <span class="field-tag">✅ GDPR consent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option B: 4 steps (expanded) -->
+  <div class="flow-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-label">
+      Option B — 4 Steps (richer qualification)
+      <span class="badge badge-recommended">RECOMMENDED</span>
+    </div>
+    <div class="steps-row">
+      <div class="step-box step-done">
+        <div class="step-num">1</div>
+        <div class="step-title">Cover Type</div>
+        <div class="step-sub">Employee / International</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-box step-active">
+        <div class="step-num">2</div>
+        <div class="step-title">Your Business</div>
+        <div class="step-sub">Size & location</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-box step-todo">
+        <div class="step-num">3</div>
+        <div class="step-title">Your Needs</div>
+        <div class="step-sub">Budget & timeline</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-box step-todo">
+        <div class="step-num">4</div>
+        <div class="step-title">Contact</div>
+        <div class="step-sub">How to reach you</div>
+      </div>
+    </div>
+    <div class="desc-box">
+      Adds a dedicated "Your Needs" step for budget range, current provider (if any), and urgency. Gives advisors better context before calling. Feels like a premium SaaS onboarding flow — each step is short and light.
+      <div class="fields-preview" style="margin-top:8px;">
+        <span class="field-tag">📋 Cover type cards</span>
+        <span class="field-tag">🏢 Company + headcount</span>
+        <span class="field-tag">📍 HQ country</span>
+        <span class="field-tag">💰 Budget range</span>
+        <span class="field-tag">⏱ Urgency / timeline</span>
+        <span class="field-tag">📞 Contact details</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option C: 2 steps (minimal) -->
+  <div class="flow-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-label">
+      Option C — 2 Steps (minimal friction)
+      <span class="badge" style="background:#fff3cd;color:#856404;">FASTEST</span>
+    </div>
+    <div class="steps-row">
+      <div class="step-box step-active">
+        <div class="step-num">1</div>
+        <div class="step-title">Coverage & Business</div>
+        <div class="step-sub">All details in one</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-box step-todo">
+        <div class="step-num">2</div>
+        <div class="step-title">Contact + Submit</div>
+        <div class="step-sub">Name, email, phone</div>
+      </div>
+    </div>
+    <div class="desc-box">
+      Fewest steps. Step 1 combines cover type selection + company details in a scrollable single page. Step 2 is contact info + consent. Maximum conversion rate for quick visitors — minimal commitment before submit.
+      <div class="fields-preview" style="margin-top:8px;">
+        <span class="field-tag">📋 Cover type picker</span>
+        <span class="field-tag">🏢 Company + size</span>
+        <span class="field-tag">📞 Contact details</span>
+        <span class="field-tag">✅ GDPR consent</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:18px; font-size:12px; color:#94a3b8; text-align:center;">Click to select, then confirm in the terminal.</p>

@@ -1,6 +1,64 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import marshmallow  from "@assets/0x0_1773872351104.png";
+import oyster       from "@assets/6201434ebeae0fd1206873cb_Vector12_1773872351104.png";
+import boohoo       from "@assets/boohoo_1773872351104.png";
+import breathe      from "@assets/breathe_1773872351105.png";
+import cae          from "@assets/image2_1773872351105.png";
+import klarna       from "@assets/klarna-logo_1773872351106.png";
+import pleo         from "@assets/p_1773872351106.png";
+import seedcamp     from "@assets/seedcamp_1773872351106.png";
+import superscript  from "@assets/superscript_1773872351107.jpg";
+import teladoc      from "@assets/teledoc-1_1773872351107.png";
+import unmind       from "@assets/unmind_1773872351107.png";
+import vayner       from "@assets/vayner-media-logo-e1741707986477_1773872351107.png";
+
+const LOGOS = [
+  { src: marshmallow, alt: "Marshmallow" },
+  { src: klarna,      alt: "Klarna" },
+  { src: vayner,      alt: "VaynerMedia" },
+  { src: cae,         alt: "CAE" },
+  { src: boohoo,      alt: "boohoo" },
+  { src: unmind,      alt: "Unmind" },
+  { src: oyster,      alt: "Oyster" },
+  { src: breathe,     alt: "Breathe" },
+  { src: seedcamp,    alt: "Seedcamp" },
+  { src: teladoc,     alt: "Teladoc" },
+  { src: superscript, alt: "Superscript" },
+  { src: pleo,        alt: "Pleo" },
+];
+
+function LogoMarquee() {
+  const track = [...LOGOS, ...LOGOS];
+  return (
+    <div className="w-full overflow-hidden">
+      <div
+        className="flex gap-8 items-center"
+        style={{
+          animation: "marquee 28s linear infinite",
+          width: "max-content",
+        }}
+      >
+        {track.map((logo, i) => (
+          <img
+            key={i}
+            src={logo.src}
+            alt={logo.alt}
+            className="h-6 w-auto object-contain opacity-40 grayscale brightness-[10]"
+          />
+        ))}
+      </div>
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 const TESTIMONIALS = [
   { quote: "Engage made the whole process completely seamless. We had competitive quotes from multiple insurers within a day and the team was incredibly knowledgeable throughout.", name: "Stephanie Knap", role: "Senior Manager", company: "Couchbase" },
   { quote: "From initial enquiry through to policy setup, the team was professional, responsive and thorough. Highly recommend to any business looking for group health cover.", name: "Stamatios Andreou", role: "Procurement Analyst", company: "Teya (formerly SaltPay)" },
@@ -40,7 +98,7 @@ export default function TestimonialCarousel() {
 
   return (
     <div
-      className="flex-1 flex flex-col items-center justify-center px-14 py-12 relative overflow-hidden"
+      className="hidden md:flex flex-1 flex-col items-center justify-center px-14 py-12 relative overflow-hidden"
       style={{ background: "#01232f" }}
     >
       {/* background radial glows */}
@@ -48,10 +106,10 @@ export default function TestimonialCarousel() {
         background: "radial-gradient(ellipse 65% 55% at 75% 25%, rgba(118,24,111,0.2) 0%, transparent 65%), radial-gradient(ellipse 45% 45% at 25% 85%, rgba(13,171,118,0.08) 0%, transparent 60%)"
       }} />
 
-      <div className="relative z-10 w-full max-w-[400px] flex flex-col items-center text-center">
+      <div className="relative z-10 w-full max-w-[460px] flex flex-col items-center text-center">
 
         {/* Animated card */}
-        <div className="w-full mb-8" style={{ minHeight: 200 }}>
+        <div className="w-full mb-8" style={{ minHeight: 260 }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={index}
@@ -65,7 +123,7 @@ export default function TestimonialCarousel() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="w-full rounded-[20px] p-7 text-left relative overflow-hidden"
+              className="w-full rounded-[24px] p-9 text-left relative overflow-hidden"
               style={{
                 background: "rgba(255,255,255,0.07)",
                 border: "1px solid rgba(255,255,255,0.11)",
@@ -86,7 +144,7 @@ export default function TestimonialCarousel() {
               </div>
 
               {/* quote */}
-              <p className="text-[14px] leading-[1.65] italic mb-5"
+              <p className="text-[15px] leading-[1.7] italic mb-6"
                  style={{ color: "rgba(255,255,255,0.85)" }}>
                 "{t.quote}"
               </p>
@@ -103,8 +161,8 @@ export default function TestimonialCarousel() {
                   {getInitials(t.name)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[13px] font-bold text-white truncate">{t.name}</div>
-                  <div className="text-[11px] truncate" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <div className="text-[15px] font-bold text-white truncate">{t.name}</div>
+                  <div className="text-[12px] truncate" style={{ color: "rgba(255,255,255,0.4)" }}>
                     {t.role} · {t.company}
                   </div>
                 </div>
@@ -124,10 +182,10 @@ export default function TestimonialCarousel() {
         </div>
 
         {/* Heading + subtitle */}
-        <div className="text-[19px] font-extrabold text-white tracking-tight mb-2">
+        <div className="text-[22px] font-extrabold text-white tracking-tight mb-2">
           Trusted by 500+ businesses
         </div>
-        <p className="text-[12px] leading-relaxed mb-4 max-w-[280px]"
+        <p className="text-[13px] leading-relaxed mb-4 max-w-[300px]"
            style={{ color: "rgba(255,255,255,0.4)" }}>
           Award-winning advice from specialists with 50 years' combined experience.
         </p>
@@ -176,6 +234,16 @@ export default function TestimonialCarousel() {
           ))}
         </div>
 
+      </div>
+
+      {/* ── Client logos strip ── */}
+      <div className="absolute bottom-0 left-0 right-0 px-0 pb-6 pt-4"
+           style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+        <p className="text-center text-[10px] font-bold uppercase tracking-[0.12em] mb-3"
+           style={{ color: "rgba(255,255,255,0.25)" }}>
+          Companies that trust Engage Health
+        </p>
+        <LogoMarquee />
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ import canadalifeLogo from '@assets/insurers/canadalifeLogo.png';
 import avivaLogo from '@assets/insurers/avivaLogo.png';
 import zurichLogo from '@assets/insurers/zurichLogo.png';
 import legalLogo from '@assets/insurers/legalLogo.png';
-import relevantLifeHero from '@assets/hero/relevant-life.jpg';
 
 export const employeeBenefitsServices: ServiceEntry[] = [
   // ── GHI stub (sidebar only — page is served by GroupHealthInsurance.tsx) ──
@@ -1009,7 +1008,6 @@ export const employeeBenefitsServices: ServiceEntry[] = [
     titleAccent: 'Life Insurance',
     tagline: 'Engage Relevant Life Insurance',
     subtitle: 'Life insurance, the tax-efficient way.',
-    heroImage: relevantLifeHero,
     icon: FileText,
     colorScheme: 'purple',
     stats: [

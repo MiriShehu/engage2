@@ -1,6 +1,77 @@
 import { cn } from "@/lib/utils";
 import { DialCodePicker } from "@/components/ui/DialCodePicker";
 
+// Phone metadata keyed by dial code: [placeholder, minDigits, maxDigits]
+const PHONE_META: Record<string, [string, number, number]> = {
+  "+44":  ["7700 900000",     10, 11],
+  "+1":   ["(555) 123-4567", 10, 10],
+  "+61":  ["412 345 678",     9,  9],
+  "+64":  ["21 123 4567",     8,  10],
+  "+353": ["87 123 4567",     9,  9],
+  "+49":  ["151 23456789",    10, 12],
+  "+33":  ["6 12 34 56 78",  10, 10],
+  "+34":  ["612 345 678",     9,  9],
+  "+39":  ["312 345 6789",   10, 11],
+  "+31":  ["6 12345678",      9,  9],
+  "+32":  ["470 12 34 56",    9,  9],
+  "+41":  ["78 123 45 67",    9,  9],
+  "+46":  ["70 123 45 67",    9,  9],
+  "+47":  ["987 65 432",      8,  8],
+  "+45":  ["20 12 34 56",     8,  8],
+  "+358": ["41 2345678",      9,  9],
+  "+43":  ["664 123456",      9, 10],
+  "+351": ["912 345 678",     9,  9],
+  "+48":  ["512 345 678",     9,  9],
+  "+420": ["601 234 567",     9,  9],
+  "+40":  ["712 345 678",     9,  9],
+  "+7":   ["912 345-67-89",  10, 10],
+  "+91":  ["98765 43210",    10, 10],
+  "+86":  ["131 2345 6789",  11, 11],
+  "+81":  ["90-1234-5678",   10, 10],
+  "+82":  ["10-1234-5678",   10, 11],
+  "+65":  ["8123 4567",       8,  8],
+  "+60":  ["12-345 6789",     9, 10],
+  "+852": ["5123 4567",       8,  8],
+  "+63":  ["917 123 4567",   10, 10],
+  "+66":  ["81 234 5678",     9,  9],
+  "+62":  ["812-3456-7890",  10, 12],
+  "+971": ["50 123 4567",     9,  9],
+  "+966": ["51 234 5678",     9,  9],
+  "+974": ["5512 3456",       8,  8],
+  "+965": ["5012 3456",       8,  8],
+  "+973": ["3600 1234",       8,  8],
+  "+968": ["9212 3456",       8,  8],
+  "+972": ["52-234-5678",     9,  9],
+  "+27":  ["71 123 4567",     9,  9],
+  "+234": ["802 123 4567",   10, 11],
+  "+254": ["712 345 678",     9,  9],
+  "+233": ["24 123 4567",     9,  9],
+  "+55":  ["11 91234-5678",  11, 11],
+  "+52":  ["55 1234 5678",   10, 10],
+  "+54":  ["11 1234-5678",   10, 10],
+  "+56":  ["9 1234 5678",     9,  9],
+  "+57":  ["310 123 4567",   10, 10],
+  "+92":  ["301 234 5678",   10, 10],
+  "+880": ["1712-345678",    10, 10],
+  "+94":  ["71 234 5678",     9,  9],
+};
+
+function getPhoneMeta(dialCode: string): [string, number, number] {
+  // Strip flag characters — dialCode is like "🇬🇧+44"
+  const code = dialCode.replace(/[^\d+]/g, "").replace(/^\d/, "+$&").replace(/^([^+])/, "+$1");
+  const stripped = "+" + dialCode.replace(/[^0-9]/g, "");
+  return PHONE_META[stripped] ?? ["Phone number", 6, 15];
+}
+
+function validatePhone(phone: string, dialCode: string): string | null {
+  const digits = phone.replace(/\D/g, "");
+  if (!digits) return null;
+  const [, min, max] = getPhoneMeta(dialCode);
+  if (digits.length < min) return `Too short — expected at least ${min} digits`;
+  if (digits.length > max) return `Too long — expected at most ${max} digits`;
+  return null;
+}
+
 interface Props {
   firstName: string;
   lastName: string;
@@ -17,13 +88,18 @@ export default function Step4Contact({
   firstName, lastName, email, phone, dialCode, gdprConsent,
   submitting, onChange, onSubmit,
 }: Props) {
-  const valid = firstName.trim() && lastName.trim() && email.trim() && phone.trim() && gdprConsent;
+  const phoneError = validatePhone(phone, dialCode);
+  const phoneValid = phone.trim() && !phoneError;
+  const valid = firstName.trim() && lastName.trim() && email.trim() && phoneValid && gdprConsent;
 
-  const inputClass = "w-full px-3.5 py-2.5 rounded-[10px] border-[1.5px] border-border bg-muted/30 text-[13px] text-foreground outline-none transition-all focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(118,24,111,0.08)]";
+  const inputClass = "w-full px-5 py-3.5 rounded-[12px] border-[1.5px] border-border bg-muted/30 text-[15px] font-medium text-foreground outline-none transition-all focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(118,24,111,0.08)] placeholder:text-muted-foreground/60";
+  const labelClass = "text-[11px] font-extrabold uppercase tracking-[0.09em] text-muted-foreground mb-2 block";
+
+  const [placeholder] = getPhoneMeta(dialCode);
 
   return (
-    <div className="flex flex-col flex-1 items-center px-8">
-      <div className="w-full max-w-[460px] flex flex-col flex-1 justify-center py-7">
+    <div className="flex flex-col flex-1 items-center px-6">
+      <div className="w-full max-w-[520px] flex flex-col flex-1 justify-center py-8">
 
         {/* Brand icon */}
         <div className="w-12 h-12 rounded-[13px] flex items-center justify-center mb-7 flex-shrink-0"
@@ -33,47 +109,57 @@ export default function Step4Contact({
           </svg>
         </div>
 
-        <h1 className="text-[32px] font-extrabold text-foreground tracking-tight leading-[1.15] mb-2">
+        <h1 className="text-[34px] font-extrabold text-foreground tracking-tight leading-[1.15] mb-2">
           Almost there — how do<br />we <span className="text-primary">reach you?</span>
         </h1>
-        <p className="text-[13px] text-muted-foreground mb-7 leading-relaxed">
+        <p className="text-[15px] text-muted-foreground mb-7 leading-relaxed">
           A specialist will be in touch within 2 working hours.
         </p>
 
         {/* Name row */}
-        <div className="grid grid-cols-2 gap-3 mb-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-[0.07em] text-muted-foreground mb-1.5">First name</div>
+            <label className={labelClass}>First name</label>
             <input value={firstName} onChange={(e) => onChange("firstName", e.target.value)}
               placeholder="Jane" className={inputClass} />
           </div>
           <div>
-            <div className="text-[10px] font-bold uppercase tracking-[0.07em] text-muted-foreground mb-1.5">Last name</div>
+            <label className={labelClass}>Last name</label>
             <input value={lastName} onChange={(e) => onChange("lastName", e.target.value)}
               placeholder="Smith" className={inputClass} />
           </div>
         </div>
 
         {/* Email */}
-        <div className="mb-3">
-          <div className="text-[10px] font-bold uppercase tracking-[0.07em] text-muted-foreground mb-1.5">Email address</div>
+        <div className="mb-4">
+          <label className={labelClass}>Email address</label>
           <input type="email" value={email} onChange={(e) => onChange("email", e.target.value)}
             placeholder="jane@company.com" className={inputClass} />
         </div>
 
-        {/* Phone */}
-        <div className="mb-5">
-          <div className="text-[10px] font-bold uppercase tracking-[0.07em] text-muted-foreground mb-1.5">Phone number</div>
-          <div className="flex rounded-[10px] border-[1.5px] border-border bg-muted/30 overflow-hidden focus-within:border-primary focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(118,24,111,0.08)] transition-all">
-            <DialCodePicker value={dialCode} onChange={(v) => onChange("dialCode", v)} className="border-r border-border" />
-            <input type="tel" value={phone} onChange={(e) => onChange("phone", e.target.value)}
-              placeholder="07700 900000"
-              className="flex-1 px-3.5 py-2.5 text-[13px] text-foreground bg-transparent outline-none" />
+        {/* Phone — no overflow-hidden so dropdown isn't clipped */}
+        <div className="mb-6">
+          <label className={labelClass}>Phone number</label>
+          <div className={cn(
+            "flex rounded-[12px] border-[1.5px] bg-muted/30 transition-all",
+            phoneError && phone ? "border-red-400 focus-within:border-red-400 focus-within:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]" : "border-border focus-within:border-primary focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(118,24,111,0.08)]"
+          )}>
+            <DialCodePicker value={dialCode} onChange={(v) => { onChange("dialCode", v); onChange("phone", ""); }} className="border-r border-border" />
+            <input
+              type="tel"
+              value={phone}
+              onChange={(e) => onChange("phone", e.target.value)}
+              placeholder={placeholder}
+              className="flex-1 px-5 py-3.5 text-[15px] font-medium text-foreground bg-transparent outline-none placeholder:text-muted-foreground/60 min-w-0"
+            />
           </div>
+          {phoneError && phone && (
+            <p className="text-[12px] text-red-500 font-medium mt-1.5">{phoneError}</p>
+          )}
         </div>
 
         {/* GDPR */}
-        <label className="flex items-start gap-3 cursor-pointer group mb-6">
+        <label className="flex items-start gap-3.5 cursor-pointer group mb-7">
           <div className="mt-0.5 flex-shrink-0">
             <input
               type="checkbox"
@@ -92,7 +178,7 @@ export default function Step4Contact({
               )}
             </div>
           </div>
-          <span className="text-[12px] text-muted-foreground leading-relaxed">
+          <span className="text-[13px] text-muted-foreground leading-relaxed">
             I agree to be contacted by Engage Health Group regarding my quote request. We'll never share your data with third parties. View our{" "}
             <a href="/privacy" className="text-primary underline-offset-2 hover:underline">Privacy Policy</a>.
           </span>
@@ -104,7 +190,7 @@ export default function Step4Contact({
           onClick={onSubmit}
           disabled={!valid || submitting}
           className={cn(
-            "w-full py-3.5 rounded-[12px] text-[14px] font-bold text-white flex items-center justify-center gap-2 transition-all",
+            "w-full py-4 rounded-[12px] text-[16px] font-extrabold text-white flex items-center justify-center gap-2 transition-all",
             valid && !submitting
               ? "opacity-100 hover:opacity-90 hover:-translate-y-px"
               : "opacity-50 cursor-not-allowed"

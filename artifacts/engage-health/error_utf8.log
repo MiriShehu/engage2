@@ -1,0 +1,158 @@
+﻿
+> @workspace/engage-health@0.0.0 dev C:\Users\86mir\OneDrive\Desktop\engageHeatlh\artifacts\engage-health
+> vite --config vite.config.ts --host 0.0.0.0
+
+node.exe : C:\Users\86m
+ir\OneDrive\Desktop\eng
+ageHeatlh\node_modules\
+.pnpm\rollup@4.59.0\nod
+e_modules\rollup\dist\n
+ative.js:115
+At C:\Users\86mir\AppDa
+ta\Roaming\npm\pnpm.ps1
+:24 char:5
++     & "node$exe"  "$b
+asedir/node_modules/pnp
+m/bin/pnpm.cjs" $args
++     ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : 
+NotSpecified:     
+(C:\Users\86mir\...t   
+ \native.js:115:Strin  
+  g) [], RemoteExcepti 
+   on
+    + 
+FullyQualifiedErro    
+rId : NativeCommandE   
+ rror
+ 
+		throw new Error(
+		      ^
+
+Error: Cannot find 
+module @rollup/rollup-w
+in32-x64-msvc. npm has 
+a bug related to 
+optional dependencies (
+https://github.com/npm/
+cli/issues/4828). 
+Please try `npm i` 
+again after removing 
+both package-lock.json 
+and node_modules 
+directory.
+    at requireWithFrien
+dlyError (C:\Users\86mi
+r\OneDrive\Desktop\enga
+geHeatlh\node_modules\.
+pnpm\rollup@4.59.0\node
+_modules\rollup\dist\na
+tive.js:115:9)
+    at 
+Object.<anonymous> (C:\
+Users\86mir\OneDrive\De
+sktop\engageHeatlh\node
+_modules\.pnpm\rollup@4
+.59.0\node_modules\roll
+up\dist\native.js:124:7
+6)
+    at Module._compile 
+(node:internal/modules/
+cjs/loader:1811:14)
+    at Object..js (node
+:internal/modules/cjs/l
+oader:1942:10)
+    at Module.load (nod
+e:internal/modules/cjs/
+loader:1532:32)
+    at Module._load (no
+de:internal/modules/cjs
+/loader:1334:12)
+    at wrapModuleLoad (
+node:internal/modules/c
+js/loader:255:19)
+    at loadCJSModuleWit
+hModuleLoad (node:inter
+nal/modules/esm/transla
+tors:327:3)
+    at 
+ModuleWrap.<anonymous> 
+(node:internal/modules/
+esm/translators:232:7)
+    at ModuleJob.run (n
+ode:internal/modules/es
+m/module_job:430:25) {
+  [cause]: Error: 
+Cannot find module '@ro
+llup/rollup-win32-x64-m
+svc'
+  Require stack:
+  - C:\Users\86mir\OneD
+rive\Desktop\engageHeat
+lh\node_modules\.pnpm\r
+ollup@4.59.0\node_modul
+es\rollup\dist\native.j
+s
+      at Module._resolv
+eFilename (node:interna
+l/modules/cjs/loader:14
+55:15)
+      at 
+defaultResolveImpl (nod
+e:internal/modules/cjs/
+loader:1065:19)
+      at 
+resolveForCJSWithHooks 
+(node:internal/modules/
+cjs/loader:1070:22)
+      at Module._load (
+node:internal/modules/c
+js/loader:1241:25)
+      at 
+wrapModuleLoad (node:in
+ternal/modules/cjs/load
+er:255:19)
+      at 
+Module.require (node:in
+ternal/modules/cjs/load
+er:1555:12)
+      at require (node:
+internal/modules/helper
+s:152:16)
+      at requireWithFri
+endlyError (C:\Users\86
+mir\OneDrive\Desktop\en
+gageHeatlh\node_modules
+\.pnpm\rollup@4.59.0\no
+de_modules\rollup\dist\
+native.js:97:10)
+      at 
+Object.<anonymous> (C:\
+Users\86mir\OneDrive\De
+sktop\engageHeatlh\node
+_modules\.pnpm\rollup@4
+.59.0\node_modules\roll
+up\dist\native.js:124:7
+6)
+      at 
+Module._compile (node:i
+nternal/modules/cjs/loa
+der:1811:14) {
+    code: 
+'MODULE_NOT_FOUND',
+    requireStack: [
+      'C:\\Users\\86mir
+\\OneDrive\\Desktop\\en
+gageHeatlh\\node_module
+s\\.pnpm\\rollup@4.59.0
+\\node_modules\\rollup\
+\dist\\native.js'
+    ]
+  }
+}
+
+Node.js v25.6.1
+ÔÇëELIFECYCLEÔÇë Command failed with exit code 1.

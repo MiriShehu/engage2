@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Step1CoverType from "./steps/Step1CoverType";
 import Step2Business from "./steps/Step2Business";
-import Step3Needs from "./steps/Step3Needs";
-import Step4Contact from "./steps/Step4Contact";
+import Step3Company from "./steps/Step3Company";
+import Step4Needs from "./steps/Step3Needs";
+import Step5Notes from "./steps/Step5Notes";
+import Step6Contact from "./steps/Step4Contact";
 import StepSuccess from "./steps/StepSuccess";
 
 export interface FormData {
@@ -23,7 +25,7 @@ export interface FormData {
 }
 
 interface Props {
-  step: number;       // 1–4, or 0 for success
+  step: number;       // 1–6, or 0 for success
   direction: number;  // 1 = forward, -1 = back
   formData: FormData;
   submitting: boolean;
@@ -39,19 +41,19 @@ const variants = {
   exit: (d: number) => ({ x: d * -24, opacity: 0 }),
 };
 
-// Per-step validation
 function isStepValid(step: number, f: FormData): boolean {
   if (step === 1) return f.coverTypes.length > 0;
-  if (step === 2) return !!f.employeeRange && f.company.trim().length > 0;
-  if (step === 3) return !!f.budget && !!f.timeline;
-  return true;
+  if (step === 2) return !!f.employeeRange;
+  if (step === 3) return f.company.trim().length > 0;
+  if (step === 4) return !!f.timeline;
+  return true; // step 5 (notes) is optional
 }
 
 export default function QuoteFormSteps({ step, direction, formData, submitting, onChange, onNext, onBack, onSubmit }: Props) {
   const valid = isStepValid(step, formData);
 
   return (
-    <div className="w-[52%] flex flex-col bg-white overflow-hidden">
+    <div className="w-full md:w-[52%] flex flex-col bg-white overflow-hidden">
       <div className="flex-1 overflow-y-auto relative">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
@@ -75,27 +77,38 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
               <Step1CoverType
                 selected={formData.coverTypes}
                 onChange={(v) => onChange("coverTypes", v)}
+                onNext={onNext}
               />
             )}
             {step === 2 && (
               <Step2Business
                 employeeRange={formData.employeeRange}
+                onChange={(field, value) => onChange(field as keyof FormData, value)}
+                onNext={onNext}
+              />
+            )}
+            {step === 3 && (
+              <Step3Company
                 company={formData.company}
                 industry={formData.industry}
                 country={formData.country}
                 onChange={(field, value) => onChange(field as keyof FormData, value)}
               />
             )}
-            {step === 3 && (
-              <Step3Needs
-                budget={formData.budget}
+            {step === 4 && (
+              <Step4Needs
                 timeline={formData.timeline}
+                onChange={(field, value) => onChange(field as keyof FormData, value)}
+              />
+            )}
+            {step === 5 && (
+              <Step5Notes
                 notes={formData.notes}
                 onChange={(field, value) => onChange(field as keyof FormData, value)}
               />
             )}
-            {step === 4 && (
-              <Step4Contact
+            {step === 6 && (
+              <Step6Contact
                 firstName={formData.firstName}
                 lastName={formData.lastName}
                 email={formData.email}
@@ -111,11 +124,9 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
         </AnimatePresence>
       </div>
 
-      {/* Footer nav — hidden on success and step 4 (has its own submit) */}
-      {step >= 1 && step <= 3 && (
-        <div className="flex items-center justify-between px-8 py-4 border-t border-border flex-shrink-0"
-             style={{ maxWidth: "unset" }}>
-          {/* Left: Back or spacer */}
+      {/* Footer nav — steps 1–5 show Continue */}
+      {step >= 1 && step <= 5 && (
+        <div className="flex items-center justify-between px-8 py-4 border-t border-border flex-shrink-0">
           <div className="w-[92px]">
             {step > 1 ? (
               <button onClick={onBack} className="flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors">
@@ -123,13 +134,9 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
               </button>
             ) : null}
           </div>
-
-          {/* Center: step counter */}
           <span className="text-[13px] text-muted-foreground font-semibold">
-            <strong className="text-foreground">{step}</strong>/4
+            <strong className="text-foreground">{step}</strong>/6
           </span>
-
-          {/* Right: Continue */}
           <button
             onClick={onNext}
             disabled={!valid}
@@ -141,14 +148,14 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
         </div>
       )}
 
-      {/* Footer nav for step 4: only Back + counter */}
-      {step === 4 && (
+      {/* Footer nav for step 6: Back + counter only */}
+      {step === 6 && (
         <div className="flex items-center justify-between px-8 py-4 border-t border-border flex-shrink-0">
           <button onClick={onBack} className="flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors">
             ← Go Back
           </button>
           <span className="text-[13px] text-muted-foreground font-semibold">
-            <strong className="text-foreground">4</strong>/4
+            <strong className="text-foreground">6</strong>/6
           </span>
           <div className="w-[92px]" />
         </div>
