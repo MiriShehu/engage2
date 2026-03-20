@@ -21,7 +21,7 @@ export function BlogPosts() {
     date: new Date(node.date).toLocaleDateString("en-GB", { day: 'numeric', month: 'short', year: 'numeric' }),
     author: "Editor",
     img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-    href: `/blog/${node.slug}`
+    href: `/knowledge-hub/${node.slug}`
   })) || [];
 
   const previewPosts = wpPosts.slice(0, 3);

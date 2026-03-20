@@ -50,7 +50,7 @@ function Router() {
       </Route>
       <Route path="/xcelerate" component={Xcelerate} />
       <Route path="/knowledge-hub" component={KnowledgeHub} />
-      <Route path="/blog/:slug">
+      <Route path="/knowledge-hub/:slug">
         {(params) => <BlogPost slug={params.slug} />}
       </Route>
       <Route component={NotFound} />
