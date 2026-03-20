@@ -198,7 +198,7 @@ export default function BlogPost() {
           <div className="flex gap-6 items-start">
 
             {/* ── Left action bar ──────────────────────────────────────── */}
-            <div className="w-12 flex-shrink-0">
+            <div className="hidden lg:block w-12 flex-shrink-0">
               <ActionBar />
             </div>
 
@@ -213,7 +213,7 @@ export default function BlogPost() {
                 style={{ maxHeight: 420 }}
               />
 
-              <div className="p-6 md:p-8">
+              <div className="p-4 md:p-8">
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -412,13 +412,13 @@ export default function BlogPost() {
                       Need help arranging health insurance or other employee benefits? Contact our
                       award-winning team for personalised advice and market-wide quotes.
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                       <Link href="/get-a-quote"
-                        className="flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-sm bg-white text-secondary hover:bg-white/90 transition-colors">
+                        className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg font-bold text-sm bg-white text-secondary hover:bg-white/90 transition-colors">
                         Get a free quote <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                       <a href="tel:01273974419"
-                        className="flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-sm border border-white/25 text-white hover:bg-white/10 transition-colors">
+                        className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg font-bold text-sm border border-white/25 text-white hover:bg-white/10 transition-colors">
                         01273 974419
                       </a>
                     </div>

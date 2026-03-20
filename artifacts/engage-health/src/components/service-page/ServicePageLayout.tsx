@@ -82,17 +82,17 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
           <p className="text-white/75 text-lg leading-relaxed max-w-xl mb-8">{entry.subtitle}</p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-3 mb-14">
+          <div className="flex flex-col sm:flex-row gap-3 mb-14">
             <Link
               href="/get-a-quote"
-              className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90 hover:scale-[1.02]"
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90 hover:scale-[1.02] w-full sm:w-auto"
               style={{ background: scheme.ctaGradient }}
             >
               Get a free quote <ArrowRight className="w-4 h-4" />
             </Link>
             <a
               href="tel:01273974419"
-              className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/20 bg-white/5 hover:bg-white/10 transition-colors"
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/20 bg-white/5 hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               <Phone className="w-4 h-4" /> 01273 974419
             </a>

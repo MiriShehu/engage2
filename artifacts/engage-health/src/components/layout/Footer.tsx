@@ -137,7 +137,7 @@ export function Footer() {
       {/* Brand + legal bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <Link href="/">
               <img
                 src="/logo.png"
@@ -149,7 +149,7 @@ export function Footer() {
               &copy; {new Date().getFullYear()} Engage Health Group. FCA Authorised No. 812846.
             </p>
           </div>
-          <div className="flex flex-wrap gap-5 text-xs text-white/35">
+          <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 sm:gap-5 text-xs text-white/35">
             <Link href="/knowledge-hub" className="hover:text-white/70 transition-colors">Knowledge Hub</Link>
             <Link href="/" className="hover:text-white/70 transition-colors">TOBA</Link>
             <Link href="/" className="hover:text-white/70 transition-colors">Customer Privacy Policy</Link>

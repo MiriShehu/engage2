@@ -17,38 +17,36 @@ const logos = [
 export function TrustBar() {
   return (
     <section className="py-8 border-y border-border bg-white overflow-hidden">
-      <div className="flex items-center w-full">
 
-        {/* Label — fixed left */}
-        <div className="shrink-0 pl-6 pr-8 border-r border-border/50">
-          <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground/60 whitespace-nowrap">
-            As featured in
-          </p>
+      {/* Label */}
+      <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground/60 text-center mb-6">
+        As featured in
+      </p>
+
+      {/* Scrolling logos */}
+      <div className="relative overflow-hidden group">
+        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+        <div className="marquee-track flex gap-16 md:gap-20 items-center whitespace-nowrap animate-[marquee_35s_linear_infinite] group-hover:[animation-play-state:paused]">
+          {[...logos, ...logos].map((logo, i) => (
+            <img
+              key={i}
+              src={logo.src}
+              alt={logo.alt}
+              className={`${logo.h} w-auto object-contain opacity-50 hover:opacity-75 transition-opacity duration-200 grayscale`}
+            />
+          ))}
         </div>
-
-        {/* Marquee — fills remaining width */}
-        <div className="flex-1 overflow-hidden relative group">
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-          <div className="flex gap-16 md:gap-20 items-center whitespace-nowrap animate-[marquee_35s_linear_infinite] group-hover:[animation-play-state:paused]">
-            {[...logos, ...logos].map((logo, i) => (
-              <img
-                key={i}
-                src={logo.src}
-                alt={logo.alt}
-                className={`${logo.h} w-auto object-contain opacity-50 hover:opacity-75 transition-opacity duration-200 grayscale`}
-              />
-            ))}
-          </div>
-        </div>
-
       </div>
 
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0%); }
           100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 767px) {
+          .marquee-track { animation-duration: 15s !important; }
         }
       `}</style>
     </section>
