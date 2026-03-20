@@ -29,6 +29,9 @@ jobs:
       - name: Build
         run: pnpm run build
         working-directory: artifacts/engage-health
+        env:
+          PORT: 3000
+          BASE_PATH: /
 
       - name: Deploy dist to server
         uses: appleboy/scp-action@v0.1.7
@@ -37,6 +40,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "artifacts/engage-health/dist/*"
+          source: "artifacts/engage-health/dist/public/*"
           target: "/home/fatmirshehu-engagehealthgroup/htdocs/engagehealthgroup.fatmirshehu.com"
           strip_components: 3
