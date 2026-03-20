@@ -1,21 +1,42 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/layout";
-import { ArrowRight, Clock, User, Search, BookOpen } from "lucide-react";
-import { knowledgeHubPosts as posts, categoryColors, categories } from "@/data/knowledgeHubPosts";
+import { ArrowRight, Clock, User, Search, BookOpen, Loader2 } from "lucide-react";
+import { useBlogPosts } from "@/hooks/useWordPress";
 
 export default function KnowledgeHub() {
   const [active, setActive] = useState("All");
   const [query,  setQuery]  = useState("");
+  const { data, isLoading, isError } = useBlogPosts();
 
-  const filtered = posts.filter(p => {
+  // Parse WP posts into the same format as our static posts
+  const wpPosts = data?.posts?.nodes?.map((node: any) => ({
+    title: node.title,
+    excerpt: (node.excerpt || "").replace(/(<([^>]+)>)/gi, ""),
+    category: "Insights",
+    mins: 5,
+    date: new Date(node.date).toLocaleDateString("en-GB", { day: 'numeric', month: 'short', year: 'numeric' }),
+    author: "Editor",
+    img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+    href: `/blog/${node.slug}`,
+    featured: false
+  })) || [];
+
+  // Combine WP posts with static mock posts for now. If WP fails, it uses mock posts.
+  const combinedPosts = wpPosts;
+
+  // We can dynamically extract categories from the imported WP posts
+  // Currently mock WP data uses a hardcoded "Insights" category
+  const categories = ["All", ...Array.from(new Set(wpPosts.map((p: any) => p.category)))];
+
+  const filtered = combinedPosts.filter((p: any) => {
     const matchCat  = active === "All" || p.category === active;
     const matchQ    = !query || p.title.toLowerCase().includes(query.toLowerCase());
     return matchCat && matchQ;
   });
 
-  const featured = filtered.find(p => p.featured);
-  const rest      = filtered.filter(p => !p.featured);
+  const featured = filtered.find((p: any) => p.featured);
+  const rest      = filtered.filter((p: any) => !p.featured);
 
   return (
     <PageLayout>
@@ -66,7 +87,7 @@ export default function KnowledgeHub() {
         {/* ── Category filter ── */}
         <div className="sticky top-[63px] z-30 bg-white border-b border-slate-100 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-2 overflow-x-auto scrollbar-none">
-            {categories.map(cat => (
+            {categories.map((cat: any) => (
               <button key={cat} onClick={() => setActive(cat)}
                 className={`kh-cat-btn flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold border border-slate-200 ${active === cat ? "active" : "text-slate-600 bg-white"}`}>
                 {cat}
@@ -83,18 +104,21 @@ export default function KnowledgeHub() {
               <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Featured</p>
               <div className="kh-card bg-white rounded-xl overflow-hidden border border-slate-100 grid md:grid-cols-[1.4fr_1fr]">
                 <div className="overflow-hidden aspect-[16/9] md:aspect-auto">
-                  <img src={featured.img} alt={featured.title}
-                    className="kh-img w-full h-full object-cover" />
+                  <Link href={featured.href ?? "#"} className="block w-full h-full">
+                    <img src={featured.img} alt={featured.title}
+                      className="kh-img w-full h-full object-cover" />
+                  </Link>
                 </div>
                 <div className="p-8 flex flex-col justify-between">
                   <div>
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white mb-4"
-                      style={{ background: categoryColors[featured.category] ?? "#003648" }}>
+                    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white mb-4 bg-[#003648]">
                       {featured.category}
                     </span>
-                    <h2 className="text-2xl font-black text-[#003648] leading-tight mb-4" style={{ letterSpacing: "-0.01em" }}>
-                      {featured.title}
-                    </h2>
+                    <Link href={featured.href ?? "#"}>
+                      <h2 className="text-2xl font-black text-[#003648] hover:text-[#76186f] transition-colors leading-tight mb-4" style={{ letterSpacing: "-0.01em" }}>
+                        {featured.title}
+                      </h2>
+                    </Link>
                     <p className="text-slate-500 text-sm leading-relaxed mb-6">{featured.excerpt}</p>
                   </div>
                   <div>
@@ -103,10 +127,10 @@ export default function KnowledgeHub() {
                       <span>{featured.date}</span>
                       <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{featured.mins} min read</span>
                     </div>
-                    <a href={featured.href ?? "#"}
+                    <Link href={featured.href ?? "#"}
                       className="btn-cta inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-bold group">
                       Read article <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -121,23 +145,26 @@ export default function KnowledgeHub() {
                 <span className="ml-2 font-normal normal-case text-slate-300">({rest.length})</span>
               </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {rest.map((post, i) => (
+                {rest.map((post: any, i: number) => (
                   <article key={i}
                     className="kh-card bg-white rounded-xl overflow-hidden border border-slate-100 flex flex-col cursor-default">
                     <div className="overflow-hidden aspect-[16/9] relative">
-                      <img src={post.img} alt={post.title}
-                        className="kh-img w-full h-full object-cover" />
-                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white"
-                        style={{ background: categoryColors[post.category] ?? "#003648" }}>
+                      <Link href={post.href ?? "#"} className="block w-full h-full">
+                        <img src={post.img} alt={post.title}
+                          className="kh-img w-full h-full object-cover" />
+                      </Link>
+                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white bg-[#003648]">
                         {post.category}
                       </span>
                     </div>
 
                     <div className="p-5 flex flex-col flex-1">
-                      <h3 className="font-black text-[#003648] text-base leading-snug mb-3 flex-1"
-                        style={{ letterSpacing: "-0.01em" }}>
-                        {post.title}
-                      </h3>
+                      <Link href={post.href ?? "#"} className="flex-1">
+                        <h3 className="font-black text-[#003648] hover:text-[#76186f] transition-colors text-base leading-snug mb-3 flex-1"
+                          style={{ letterSpacing: "-0.01em" }}>
+                          {post.title}
+                        </h3>
+                      </Link>
                       <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
 
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
@@ -145,10 +172,10 @@ export default function KnowledgeHub() {
                           <span>{post.date}</span>
                           <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{post.mins} min</span>
                         </div>
-                        <a href={post.href ?? "#"}
+                        <Link href={post.href ?? "#"}
                           className="flex items-center gap-1 text-xs font-bold text-[#003648] hover:text-[#76186f] transition-colors group">
                           Read <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </article>

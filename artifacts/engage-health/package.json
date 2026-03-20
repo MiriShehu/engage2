@@ -78,6 +78,8 @@
   "dependencies": {
     "embla-carousel-auto-scroll": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
+    "graphql": "^16.13.1",
+    "graphql-request": "^7.4.0",
     "react-use-measure": "^2.1.7"
   }
 }

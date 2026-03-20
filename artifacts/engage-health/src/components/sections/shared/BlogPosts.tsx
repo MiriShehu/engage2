@@ -1,21 +1,30 @@
 import { Link } from "wouter";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { GlassBlogCard } from "@/components/ui/glass-blog-card-shadcnui";
-import { knowledgeHubPosts, categoryColors } from "@/data/knowledgeHubPosts";
+import { useBlogPosts } from "@/hooks/useWordPress";
 
 // Map category → tag label shown on card
 function tagsFor(category: string): string[] {
   return [category];
 }
 
-// Pick 3 posts: the featured one + next 2
-const featured = knowledgeHubPosts.find(p => p.featured) ?? knowledgeHubPosts[0];
-const sideA    = knowledgeHubPosts.filter(p => p !== featured)[0];
-const sideB    = knowledgeHubPosts.filter(p => p !== featured)[1];
-const previewPosts = [featured, sideA, sideB];
-
 export function BlogPosts() {
+  const { data, isLoading, isError } = useBlogPosts();
+
+  // Pick top 3 latest posts
+  const wpPosts = data?.posts?.nodes?.map((node: any) => ({
+    title: node.title,
+    excerpt: (node.excerpt || "").replace(/(<([^>]+)>)/gi, ""),
+    category: "Insights",
+    mins: Math.ceil((node.content?.length || 0) / 1000) || 5, // Estimate
+    date: new Date(node.date).toLocaleDateString("en-GB", { day: 'numeric', month: 'short', year: 'numeric' }),
+    author: "Editor",
+    img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+    href: `/blog/${node.slug}`
+  })) || [];
+
+  const previewPosts = wpPosts.slice(0, 3);
   return (
     <section className="py-28 bg-slate-50/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,29 +58,39 @@ export function BlogPosts() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {previewPosts.map((post, i) => (
-            <motion.div
-              key={post.title}
-              className="h-full"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.1 }}
-            >
-              <GlassBlogCard
-                title={post.title}
-                excerpt={post.excerpt}
-                image={post.img}
-                author={{ name: post.author, avatar: "" }}
-                date={post.date}
-                readTime={`${post.mins} min read`}
-                tags={tagsFor(post.category)}
-                tagColor={categoryColors[post.category]}
-                href={post.href ?? "/knowledge-hub"}
+          {isLoading ? (
+            <div className="col-span-full flex justify-center py-10">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : previewPosts.length > 0 ? (
+            previewPosts.map((post: any, i: number) => (
+              <motion.div
+                key={post.title}
                 className="h-full"
-              />
-            </motion.div>
-          ))}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+              >
+                <GlassBlogCard
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  image={post.img}
+                  author={{ name: post.author, avatar: "" }}
+                  date={post.date}
+                  readTime={`${post.mins} min read`}
+                  tags={tagsFor(post.category)}
+                  tagColor="#003648"
+                  href={post.href ?? "/knowledge-hub"}
+                  className="h-full"
+                />
+              </motion.div>
+            ))
+          ) : (
+            <div className="col-span-full text-center text-slate-500 py-10">
+              No recent posts found.
+            </div>
+          )}
         </div>
 
       </div>

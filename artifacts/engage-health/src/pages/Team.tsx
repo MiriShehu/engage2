@@ -2,6 +2,7 @@ import { PageLayout } from "@/components/layout";
 import { TrustBar } from "@/components/sections/trust";
 import { Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTeamMembers } from "@/hooks/useWordPress";
 
 const BASE = "https://www.engagehealthgroup.co.uk/wp-content/uploads";
 const linkedinUrl = "https://www.linkedin.com/company/engage-health-group/";
@@ -284,6 +285,30 @@ function MemberCard({ member }: { member: typeof departments[0]["members"][0] })
 }
 
 export default function Team() {
+  const { data, isError } = useTeamMembers();
+
+  // Parse WordPress team members if available
+  let dynamicDepartments = departments;
+  if (!isError && data?.teamMembers?.nodes?.length > 0) {
+    const wpMembers = data.teamMembers.nodes.map((node: any) => ({
+      name: node.title,
+      title: "Team Member", // Default fallback if ACF 'role' field isn't added yet
+      bio: (node.content || "").replace(/(<([^>]+)>)/gi, ""),
+      img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
+      accent: "#003648", // Default brand color
+      tags: ["Engage Health"], // Default tag
+    }));
+
+    // For now, group all WP members into a single "Our Team" department
+    dynamicDepartments = [
+      {
+        name: "Our Team",
+        description: "Meet our fantastic team synced directly from WordPress.",
+        members: wpMembers,
+      }
+    ];
+  }
+
   return (
     <PageLayout className="bg-gray-50">
       {/* Hero */}
@@ -324,7 +349,7 @@ export default function Team() {
       <TrustBar />
 
       {/* Departments */}
-      {departments.map((dept, di) => (
+      {dynamicDepartments.map((dept, di) => (
         <section key={di} className={cn("py-20", di % 2 === 0 ? "bg-gray-50" : "bg-white")}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">

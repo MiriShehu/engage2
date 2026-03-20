@@ -12,6 +12,9 @@ import imgApi     from '@/assets/blog/img-0105.jpg';
 import imgBenny   from '@/assets/blog/benny-zee.jpg';
 import imgGamify  from '@/assets/blog/insurtech-gamification.jpg';
 
+import { useBlogPost } from '@/hooks/useWordPress';
+import { Loader2 } from 'lucide-react';
+
 // ── Reading progress ────────────────────────────────────────────────────────
 
 function ReadingProgress() {
@@ -177,7 +180,114 @@ const morePosts = [
   },
 ];
 
-export default function BlogPost() {
+export default function BlogPost({ slug }: { slug: string }) {
+  const { data, isLoading, isError } = useBlogPost(slug);
+
+  // If the WP endpoint hasn't been set up yet, the query will fail.
+  // In that case, we fall back to the original demo post if the slug matches.
+  // This ensures the site doesn't visually break before WP is fully integrated.
+  if (isError && slug === 'insurtech-insights-2025') {
+    return <BlogPostStatic />;
+  }
+
+  if (isLoading) {
+    return (
+      <PageLayout className="bg-[#f0f0f0]">
+        <div className="min-h-[60vh] flex flex-col items-center justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
+          <p className="text-muted-foreground font-medium">Loading post...</p>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (isError || !data?.post) {
+    return (
+      <PageLayout className="bg-[#f0f0f0]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center min-h-[60vh] flex flex-col items-center justify-center">
+          <h1 className="text-3xl font-black text-secondary mb-4">Post not found</h1>
+          <p className="text-muted-foreground mb-8">This post does not exist or WordPress hasn't been synced.</p>
+          <Link href="/knowledge-hub" className="px-6 py-3 rounded-lg font-bold text-white bg-primary hover:bg-primary/90 transition-colors">
+            Back to Knowledge Hub
+          </Link>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  const post = data.post;
+
+  return (
+    <>
+      <ReadingProgress />
+
+      <PageLayout className="bg-[#f0f0f0]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
+            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3" />
+            <Link href="/knowledge-hub" className="hover:text-primary transition-colors">Knowledge Hub</Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-secondary truncate max-w-[200px]">{post.title}</span>
+          </nav>
+
+          <div className="flex gap-6 items-start">
+            <div className="hidden lg:block w-12 flex-shrink-0">
+              <ActionBar />
+            </div>
+
+            <article className="flex-1 min-w-0 bg-white rounded-lg border border-border overflow-hidden">
+              {post.featuredImage?.node?.sourceUrl && (
+                <img
+                  src={post.featuredImage.node.sourceUrl}
+                  alt={post.featuredImage.node.altText || post.title}
+                  className="w-full object-cover block"
+                  style={{ maxHeight: 420 }}
+                />
+              )}
+
+              <div className="p-4 md:p-8">
+                <h1 className="text-2xl md:text-3xl font-black text-secondary leading-tight mb-5" dangerouslySetInnerHTML={{ __html: post.title }} />
+
+                <div className="flex items-center gap-3 mb-7 pb-7 border-b border-border">
+                  {post.author?.node?.avatar?.url && (
+                    <img src={post.author.node.avatar.url} alt={post.author.node.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
+                  )}
+                  <div>
+                    <p className="text-sm font-semibold text-secondary leading-none">{post.author?.node?.name || 'Author'}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: post.content }} />
+
+              </div>
+            </article>
+
+            {/* Keeping the static sidebar for now as a placeholder */}
+            <aside className="hidden lg:flex flex-col gap-4 w-60 xl:w-64 flex-shrink-0 sticky top-[88px] self-start">
+              <div className="bg-white rounded-lg border border-border p-5">
+                <p className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-2">Free consultation</p>
+                <p className="text-sm font-bold text-secondary mb-3 leading-snug">Get expert advice on employee benefits today</p>
+                <Link href="/get-a-quote" className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-lg font-bold text-xs text-white hover:opacity-90 transition-opacity" style={{ background: 'linear-gradient(135deg,#003648,#76186f)' }}>
+                  Get a free quote <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <a href="tel:01273974419" className="mt-2 block text-center text-xs text-muted-foreground hover:text-primary transition-colors">or call 01273 974419</a>
+              </div>
+            </aside>
+
+          </div>
+        </div>
+      </PageLayout>
+    </>
+  );
+}
+
+function BlogPostStatic() {
   return (
     <>
       <ReadingProgress />

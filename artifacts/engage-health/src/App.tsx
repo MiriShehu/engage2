@@ -50,7 +50,9 @@ function Router() {
       </Route>
       <Route path="/xcelerate" component={Xcelerate} />
       <Route path="/knowledge-hub" component={KnowledgeHub} />
-      <Route path="/blog/insurtech-insights-2025" component={BlogPost} />
+      <Route path="/blog/:slug">
+        {(params) => <BlogPost slug={params.slug} />}
+      </Route>
       <Route component={NotFound} />
     </Switch>
   );
