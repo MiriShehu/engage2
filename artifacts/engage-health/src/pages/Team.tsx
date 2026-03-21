@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Loader2 } from "lucide-react";
 import { PageLayout } from "@/components/layout";
 import { TrustBar } from "@/components/sections/trust";
 import { Linkedin } from "lucide-react";
@@ -382,21 +383,28 @@ export default function Team() {
       <TrustBar />
 
       {/* Departments */}
-      {dynamicDepartments.map((dept, di) => (
-        <section key={di} className={cn("py-20", di % 2 === 0 ? "bg-gray-50" : "bg-white")}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-secondary mb-3">{dept.name}</h2>
-              <p className="text-gray-500 text-lg max-w-2xl">{dept.description}</p>
+      {isLoading ? (
+        <div className="py-32 flex flex-col items-center justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
+          <p className="text-sm font-semibold text-muted-foreground">Loading team members...</p>
+        </div>
+      ) : (
+        dynamicDepartments.map((dept, di) => (
+          <section key={di} className={cn("py-20", di % 2 === 0 ? "bg-gray-50" : "bg-white")}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-12">
+                <h2 className="text-2xl md:text-4xl font-extrabold text-secondary mb-3">{dept.name}</h2>
+                <p className="text-gray-500 text-lg max-w-2xl">{dept.description}</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {dept.members.map((member: any, mi: number) => (
+                  <MemberCard key={mi} member={member} />
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {dept.members.map((member: any, mi: number) => (
-                <MemberCard key={mi} member={member} />
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ))
+      )}
     </PageLayout>
   );
 }

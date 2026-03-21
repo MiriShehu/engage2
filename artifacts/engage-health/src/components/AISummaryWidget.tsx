@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Sparkles, ChevronDown, Loader2 } from 'lucide-react';
+import { Sparkles, ChevronDown, Loader2, ArrowRight } from 'lucide-react';
+import { Link } from 'wouter';
 
 const API_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY;
 
@@ -18,12 +19,16 @@ async function summariseContent(text: string): Promise<string> {
       messages: [
         {
           role: 'user',
-          content: `Summarise the following content in 4–5 clear bullet points. Be concise and focus on the key takeaways for someone deciding whether this service is right for them:\n\n${text.slice(0, 6000)}`,
+          content: `Summarise the following content in 4–5 clear bullet points. Start each point with a **bold label** followed by a brief explanation. Be concise and focus on the key takeaways for someone deciding whether this service is right for them. Return only the bullet points, no intro sentence:\n\n${text.slice(0, 6000)}`,
         },
       ],
     }),
   });
-  if (!res.ok) throw new Error(`API error ${res.status}`);
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    console.error('[AISummaryWidget] API error', res.status, body);
+    throw new Error(`${res.status}: ${(body as any)?.error?.message ?? 'unknown'}`);
+  }
   const data = await res.json();
   return data.content[0].text as string;
 }
@@ -38,7 +43,7 @@ export function AISummaryWidget({ contentSelector = '[data-ai-content]' }: Props
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [summary, setSummary] = useState<string | null>(null);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleToggle() {
     // Already have a summary — just toggle visibility
@@ -49,7 +54,7 @@ export function AISummaryWidget({ contentSelector = '[data-ai-content]' }: Props
 
     setOpen(true);
     setLoading(true);
-    setError(false);
+    setError(null);
 
     try {
       const el = document.querySelector(contentSelector);
@@ -57,8 +62,8 @@ export function AISummaryWidget({ contentSelector = '[data-ai-content]' }: Props
       if (!text) throw new Error('No content found');
       const result = await summariseContent(text);
       setSummary(result);
-    } catch {
-      setError(true);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Unknown error');
     } finally {
       setLoading(false);
     }
@@ -91,12 +96,47 @@ export function AISummaryWidget({ contentSelector = '[data-ai-content]' }: Props
           )}
           {error && (
             <p className="pt-4 text-sm text-red-500">
-              Couldn't generate a summary. Please check your API key or try again.
+              Error: {error}
             </p>
           )}
           {summary && (
-            <div className="pt-4 text-sm text-secondary leading-relaxed whitespace-pre-line">
-              {summary}
+            <div className="pt-4">
+              <ul className="space-y-2.5">
+                {summary
+                  .split('\n')
+                  .map(line => line.replace(/^[\s•\-\*]+/, '').trim())
+                  .filter(Boolean)
+                  .map((line, i) => {
+                    // Render **bold** markers
+                    const parts = line.split(/\*\*(.*?)\*\*/g);
+                    return (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-secondary leading-relaxed">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                        <span>
+                          {parts.map((part, j) =>
+                            j % 2 === 1
+                              ? <strong key={j} className="font-bold text-secondary">{part}</strong>
+                              : part
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
+              </ul>
+
+              {/* CTA */}
+              <div className="mt-5 flex items-center justify-between gap-4 rounded-lg bg-white border border-primary/20 px-4 py-3">
+                <p className="text-sm text-secondary font-medium leading-snug">
+                  😊 Want real human support? Talk to our team — it's free &amp; no obligation.
+                </p>
+                <Link
+                  href="/get-a-quote"
+                  className="flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-lg font-bold text-xs text-white hover:opacity-90 transition-opacity whitespace-nowrap"
+                  style={{ background: 'linear-gradient(135deg,#003648,#76186f)' }}
+                >
+                  Contact us <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
           )}
         </div>
