@@ -377,12 +377,9 @@ export function Navbar() {
               color={PURPLE}
               items={intlItems}
             />
-            <SmallDropdown
-              label="Xcelerate"
-              headerLabel="Xcelerate"
-              color={GREEN}
-              items={xcelerateItems}
-            />
+            <Link href="/xcelerate" className="font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2">
+              Xcelerate
+            </Link>
             <Link href="/knowledge-hub" className="font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2">
               Knowledge Hub
             </Link>
@@ -450,16 +447,23 @@ export function Navbar() {
           <MobileSection label="About us"              color={TEAL}   items={aboutItems} />
           <MobileSection label="Employee Benefits"     color={TEAL}   items={employeeItems} />
           <MobileSection label="International Benefits" color={PURPLE} items={intlItems} />
-          <MobileSection label="Xcelerate"             color={GREEN}  items={xcelerateItems} />
+          <div className="border-b border-gray-100">
+            <Link
+              href="/xcelerate"
+              className="w-full flex items-center justify-between py-4 text-sm font-semibold text-gray-800"
+            >
+              Xcelerate
+            </Link>
+          </div>
 
           {/* Knowledge Hub flat links */}
           <div className="border-b border-gray-100">
-            <button
-              onClick={() => {}}
+            <Link
+              href="/knowledge-hub"
               className="w-full flex items-center justify-between py-4 text-sm font-semibold text-gray-800"
             >
               Knowledge Hub
-            </button>
+            </Link>
           </div>
 
           <div className="mt-6 flex flex-col gap-3">
