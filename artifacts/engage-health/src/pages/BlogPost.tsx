@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'wouter';
 import { PageLayout } from '@/components/layout';
 import {
   Heart, Bookmark, Share2, ArrowRight,
-  Linkedin, Facebook, Twitter, ChevronRight,
+  Linkedin, Facebook, Twitter, ChevronRight, List,
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 import heroBanner from '@/assets/blog/insurtech-banner.png';
 import imgChen    from '@/assets/blog/chen-mao-davies.jpg';
@@ -64,9 +65,9 @@ function ArticleImage({ src, alt, caption }: { src: string; alt: string; caption
 
 // ── Section heading ─────────────────────────────────────────────────────────
 
-function SectionH2({ children }: { children: string }) {
+function SectionH2({ id, children }: { id?: string; children: string }) {
   return (
-    <h2 className="text-xl md:text-2xl font-extrabold text-secondary mt-10 mb-4 leading-snug">
+    <h2 id={id} className="text-xl md:text-2xl font-extrabold text-secondary mt-10 mb-4 leading-snug">
       {children}
     </h2>
   );
@@ -162,6 +163,105 @@ function ActionBar() {
   );
 }
 
+// ── Sidebar table of contents ────────────────────────────────────────────────
+
+interface TocItem { id: string; label: string; }
+
+function SidebarTOC({ items }: { items: TocItem[] }) {
+  const [active, setActive] = useState('');
+
+  useEffect(() => {
+    if (items.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) setActive(visible[0].target.id);
+      },
+      { rootMargin: '-10% 0px -75% 0px', threshold: 0 }
+    );
+    items.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [items]);
+
+  if (items.length === 0) return null;
+
+  return (
+    <div className="bg-white rounded-lg border border-border overflow-hidden">
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-border"
+        style={{ background: 'linear-gradient(135deg,#003648 0%,#76186f 100%)' }}>
+        <List className="w-3.5 h-3.5 text-white/80 flex-shrink-0" />
+        <p className="text-[11px] font-black uppercase tracking-widest text-white">In this article</p>
+      </div>
+      <nav className="p-2 flex flex-col gap-0.5">
+        {items.map((item, i) => (
+          <button
+            key={item.id}
+            onClick={() => {
+              const el = document.getElementById(item.id);
+              if (!el) return;
+              const top = el.getBoundingClientRect().top + window.scrollY - 88;
+              window.scrollTo({ top, behavior: 'smooth' });
+            }}
+            className={cn(
+              'flex items-start gap-2.5 px-3 py-2.5 rounded-lg text-left w-full transition-all duration-150 group',
+              active === item.id ? 'bg-secondary/[0.06]' : 'hover:bg-[#f8f7fc]'
+            )}
+          >
+            <span
+              className={cn(
+                'w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black flex-shrink-0 mt-0.5 transition-all duration-150',
+                active === item.id ? 'text-white' : 'text-muted-foreground bg-slate-100'
+              )}
+              style={active === item.id ? { background: 'linear-gradient(135deg,#003648,#76186f)' } : {}}
+            >
+              {i + 1}
+            </span>
+            <span className={cn(
+              'text-[11px] leading-snug font-medium transition-colors flex-1',
+              active === item.id ? 'text-secondary font-semibold' : 'text-muted-foreground group-hover:text-secondary'
+            )}>
+              {item.label}
+            </span>
+            {active === item.id && (
+              <div className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
+                style={{ background: 'linear-gradient(135deg,#003648,#76186f)' }} />
+            )}
+          </button>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
+// ── Hook: parse headings from rendered WP content ────────────────────────────
+
+function useTocFromContent(ref: React.RefObject<HTMLDivElement | null>, content: string) {
+  const [items, setItems] = useState<TocItem[]>([]);
+  useEffect(() => {
+    if (!ref.current || !content) return;
+    const headings = Array.from(ref.current.querySelectorAll('h2, h3'));
+    const seen = new Map<string, number>();
+    const tocItems: TocItem[] = [];
+    headings.forEach((heading) => {
+      const text = heading.textContent?.trim() || '';
+      if (!text) return;
+      let base = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const count = seen.get(base) ?? 0;
+      const id = count === 0 ? base : `${base}-${count}`;
+      seen.set(base, count + 1);
+      if (!heading.id) heading.id = id;
+      tocItems.push({ id: heading.id, label: text });
+    });
+    setItems(tocItems);
+  }, [content]);
+  return items;
+}
+
 // ── Page ────────────────────────────────────────────────────────────────────
 
 const tags = ['#insurtech', '#healthtech', '#grouphealth', '#ai', '#employeebenefits'];
@@ -183,6 +283,8 @@ const morePosts = [
 
 export default function BlogPost({ slug }: { slug: string }) {
   const { data, isLoading, isError } = useBlogPost(slug);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const tocItems = useTocFromContent(contentRef, data?.post?.content ?? '');
 
   // If the WP endpoint hasn't been set up yet, the query will fail.
   // In that case, we fall back to the original demo post if the slug matches.
@@ -265,13 +367,13 @@ export default function BlogPost({ slug }: { slug: string }) {
                 </div>
 
                 <AISummaryWidget />
-                <div data-ai-content className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: post.content }} />
+                <div ref={contentRef} data-ai-content className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: post.content }} />
 
               </div>
             </article>
 
-            {/* Keeping the static sidebar for now as a placeholder */}
             <aside className="hidden lg:flex flex-col gap-4 w-60 xl:w-64 flex-shrink-0 sticky top-[88px] self-start">
+              <SidebarTOC items={tocItems} />
               <div className="bg-white rounded-lg border border-border p-5">
                 <p className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-2">Free consultation</p>
                 <p className="text-sm font-bold text-secondary mb-3 leading-snug">Get expert advice on employee benefits today</p>
@@ -288,6 +390,14 @@ export default function BlogPost({ slug }: { slug: string }) {
     </>
   );
 }
+
+const staticTocItems: TocItem[] = [
+  { id: 'womens-health-app',   label: "The Women's Health App Developed by an Oscar-Winner" },
+  { id: 'health-data-api',     label: 'The API That Unites Health Data from Wearables and Apps' },
+  { id: 'retinal-scanning',    label: 'Retinal Scanning That Sees Beyond Eye Health' },
+  { id: 'gamification',        label: 'Incentivising Wellness: The Gamification Revolution' },
+  { id: 'future-of-insurance', label: 'Is This the Future of Health Insurance?' },
+];
 
 function BlogPostStatic() {
   return (
@@ -370,7 +480,7 @@ function BlogPostStatic() {
                 </p>
 
                 {/* Section 1 */}
-                <SectionH2>The Women's Health App Developed by an Oscar-Winner</SectionH2>
+                <SectionH2 id="womens-health-app">The Women's Health App Developed by an Oscar-Winner</SectionH2>
 
                 <ArticleImage src={imgChen} alt="Chen Mao Davies, CEO of Anya"
                   caption="Chen Mao Davies, CEO & Founder of Anya" />
@@ -409,7 +519,7 @@ function BlogPostStatic() {
                 </p>
 
                 {/* Section 2 */}
-                <SectionH2>The API That Unites Health Data from Wearables and Apps</SectionH2>
+                <SectionH2 id="health-data-api">The API That Unites Health Data from Wearables and Apps</SectionH2>
 
                 <ArticleImage src={imgApi} alt="Terra API at Insurtech Insights 2025"
                   caption="Terra API — unifying health data from hundreds of devices and apps" />
@@ -451,7 +561,7 @@ function BlogPostStatic() {
                 </PullQuote>
 
                 {/* Section 3 */}
-                <SectionH2>Retinal Scanning That Sees Beyond Eye Health</SectionH2>
+                <SectionH2 id="retinal-scanning">Retinal Scanning That Sees Beyond Eye Health</SectionH2>
 
                 <ArticleImage src={imgBenny} alt="Benny C.Y. Zee, Health View Bioanalytic"
                   caption="Benny C.Y. Zee PhD — Founder & CEO, Health View Bioanalytic" />
@@ -478,7 +588,7 @@ function BlogPostStatic() {
                 </PullQuote>
 
                 {/* Section 4 */}
-                <SectionH2>Incentivising Wellness: The Gamification Revolution</SectionH2>
+                <SectionH2 id="gamification">Incentivising Wellness: The Gamification Revolution</SectionH2>
 
                 <ArticleImage src={imgGamify} alt="YuLife and MetLife fireside chat"
                   caption="Sammy Rubin (YuLife) and Dominic Grinstead (MetLife) in conversation" />
@@ -503,7 +613,7 @@ function BlogPostStatic() {
                 </p>
 
                 {/* Conclusion */}
-                <SectionH2>Is This the Future of Health Insurance?</SectionH2>
+                <SectionH2 id="future-of-insurance">Is This the Future of Health Insurance?</SectionH2>
 
                 <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
                   In recent years, the added value services offered on health insurance plans have
@@ -572,6 +682,9 @@ function BlogPostStatic() {
 
             {/* ── Right sidebar ─────────────────────────────────────────── */}
             <aside className="hidden lg:flex flex-col gap-4 w-60 xl:w-64 flex-shrink-0 sticky top-[88px] self-start">
+
+              {/* Table of contents */}
+              <SidebarTOC items={staticTocItems} />
 
               {/* Author card */}
               <div className="bg-white rounded-lg border border-border overflow-hidden">
