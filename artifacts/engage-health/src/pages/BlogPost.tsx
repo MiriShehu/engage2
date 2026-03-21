@@ -67,7 +67,7 @@ function ArticleImage({ src, alt, caption }: { src: string; alt: string; caption
 
 function SectionH2({ id, children }: { id?: string; children: string }) {
   return (
-    <h2 id={id} className="text-xl md:text-2xl font-extrabold text-secondary mt-10 mb-4 leading-snug">
+    <h2 id={id} style={{ scrollMarginTop: '88px' }} className="text-xl md:text-2xl font-extrabold text-secondary mt-10 mb-4 leading-snug">
       {children}
     </h2>
   );
@@ -202,15 +202,13 @@ function SidebarTOC({ items }: { items: TocItem[] }) {
           <button
             key={item.id}
             onClick={() => {
-              const el = document.getElementById(item.id);
-              if (!el) return;
-              const top = el.getBoundingClientRect().top + window.scrollY - 88;
-              window.scrollTo({ top, behavior: 'smooth' });
+              document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }}
             className={cn(
               'flex items-start gap-2.5 px-3 py-2.5 rounded-lg text-left w-full transition-all duration-150 group',
               active === item.id ? 'bg-secondary/[0.06]' : 'hover:bg-[#f8f7fc]'
             )}
+            type="button"
           >
             <span
               className={cn(
@@ -255,6 +253,7 @@ function useTocFromContent(ref: React.RefObject<HTMLDivElement | null>, content:
       const id = count === 0 ? base : `${base}-${count}`;
       seen.set(base, count + 1);
       if (!heading.id) heading.id = id;
+      (heading as HTMLElement).style.scrollMarginTop = '88px';
       tocItems.push({ id: heading.id, label: text });
     });
     setItems(tocItems);
