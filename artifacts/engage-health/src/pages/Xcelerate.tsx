@@ -1,190 +1,27 @@
-import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import {
-  ArrowRight, Globe, Zap, Shield, Users, Heart, Activity,
-  CheckCircle2, Star, Phone, ChevronRight, Building2,
-  Stethoscope, Brain, Pill, Baby, Eye, Dumbbell
-} from "lucide-react";
+import { ArrowRight, Globe, Zap, Shield, Users, Star, Phone, ChevronRight } from "lucide-react";
+
+// Assets
 import peopleGlobe from "@assets/xcelerate/people-globe.jpg";
 import commuters from "@assets/xcelerate/portrait-smiling-commuters-sitting-waiting-area.jpg";
 import keyboard from "@assets/xcelerate/keyboard.png";
 import engageLogo from "@assets/xcelerate/Engage-Health-Group-Main-Logo_4C-qwjz8716wy8rnu049qvlrgt6n4p80z7e0w5c38akfc.png";
 import unitedLogo from "@assets/xcelerate/united-healthcare-global-logo-1-e1762769752422.png";
+
+// Components
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import {
+  Counter, Reveal, WorldDots, CompanyNameCard, CheckItem
+} from "@/components/sections/xcelerate/XcelerateComponents";
 
-// ─── Animated counter ──────────────────────────────────────────────────────────
-function Counter({ to, suffix = "", prefix = "" }: { to: number; suffix?: string; prefix?: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          let start = 0;
-          const duration = 1600;
-          const step = (ts: number) => {
-            if (!start) start = ts;
-            const p = Math.min((ts - start) / duration, 1);
-            setCount(Math.floor((1 - Math.pow(1 - p, 3)) * to));
-            if (p < 1) requestAnimationFrame(step);
-            else setCount(to);
-          };
-          requestAnimationFrame(step);
-        }
-      },
-      { threshold: 0.4 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [to]);
-  return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
-}
+// Data
+import {
+  xcelerateStats, globalHiringChecks, companiesRow1, companiesRow2,
+  coverageCardsRow1, coverageCardsRow2, coverageCardsRow3
+} from "@/data/pages/xcelerateData";
 
-// ─── Scroll reveal ─────────────────────────────────────────────────────────────
-function Reveal({
-  children, delay = 0, className = "", from = "bottom"
-}: {
-  children: React.ReactNode; delay?: number; className?: string; from?: "bottom" | "left" | "right"
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setOn(true); }, { threshold: 0.08 });
-    if (ref.current) o.observe(ref.current);
-    return () => o.disconnect();
-  }, []);
-  const initial = from === "left" ? "translateX(-28px)" : from === "right" ? "translateX(28px)" : "translateY(28px)";
-  return (
-    <div ref={ref} className={className}
-      style={{
-        opacity: on ? 1 : 0,
-        transform: on ? "translate(0)" : initial,
-        transition: `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`,
-      }}>
-      {children}
-    </div>
-  );
-}
-
-// ─── Dot-grid world map pattern (SVG inline) ───────────────────────────────────
-function WorldDots() {
-  // A rough world-map outline using dot positions
-  const dots: [number, number][] = [
-    // North America
-    [12,14],[13,14],[14,14],[15,14],[16,14],[17,14],[18,14],
-    [11,15],[12,15],[13,15],[14,15],[15,15],[16,15],[17,15],[18,15],[19,15],
-    [10,16],[11,16],[12,16],[13,16],[14,16],[15,16],[16,16],[17,16],[18,16],
-    [10,17],[11,17],[12,17],[13,17],[14,17],[15,17],[16,17],
-    [11,18],[12,18],[13,18],[14,18],[15,18],[16,18],
-    [12,19],[13,19],[14,19],[15,19],
-    [13,20],[14,20],[15,20],
-    [15,21],[16,21],
-    // South America
-    [14,22],[15,22],[16,22],
-    [14,23],[15,23],[16,23],[17,23],
-    [14,24],[15,24],[16,24],[17,24],
-    [15,25],[16,25],[17,25],
-    [15,26],[16,26],
-    [15,27],[16,27],
-    [16,28],
-    // Europe
-    [28,12],[29,12],[30,12],[31,12],[32,12],[33,12],
-    [27,13],[28,13],[29,13],[30,13],[31,13],[32,13],[33,13],[34,13],
-    [27,14],[28,14],[29,14],[30,14],[31,14],[32,14],[33,14],[34,14],[35,14],
-    [27,15],[28,15],[29,15],[30,15],[31,15],[32,15],[33,15],[34,15],
-    [28,16],[29,16],[30,16],[31,16],[32,16],[33,16],[34,16],
-    [29,17],[30,17],[31,17],[32,17],
-    // Africa
-    [29,18],[30,18],[31,18],[32,18],[33,18],
-    [28,19],[29,19],[30,19],[31,19],[32,19],[33,19],
-    [28,20],[29,20],[30,20],[31,20],[32,20],[33,20],
-    [28,21],[29,21],[30,21],[31,21],[32,21],
-    [29,22],[30,22],[31,22],[32,22],
-    [29,23],[30,23],[31,23],
-    [30,24],[31,24],
-    [30,25],
-    // Asia
-    [35,11],[36,11],[37,11],[38,11],[39,11],[40,11],[41,11],[42,11],[43,11],[44,11],[45,11],[46,11],
-    [34,12],[35,12],[36,12],[37,12],[38,12],[39,12],[40,12],[41,12],[42,12],[43,12],[44,12],[45,12],[46,12],[47,12],[48,12],
-    [34,13],[35,13],[36,13],[37,13],[38,13],[39,13],[40,13],[41,13],[42,13],[43,13],[44,13],[45,13],[46,13],[47,13],[48,13],[49,13],
-    [35,14],[36,14],[37,14],[38,14],[39,14],[40,14],[41,14],[42,14],[43,14],[44,14],[45,14],[46,14],[47,14],[48,14],[49,14],[50,14],
-    [36,15],[37,15],[38,15],[39,15],[40,15],[41,15],[42,15],[43,15],[44,15],[45,15],[46,15],[47,15],[48,15],[49,15],[50,15],[51,15],
-    [37,16],[38,16],[39,16],[40,16],[41,16],[42,16],[43,16],[44,16],[45,16],[46,16],[47,16],[48,16],[49,16],[50,16],
-    [39,17],[40,17],[41,17],[42,17],[43,17],[44,17],[45,17],[46,17],[47,17],[48,17],[49,17],
-    [42,18],[43,18],[44,18],[45,18],[46,18],[47,18],[48,18],
-    [44,19],[45,19],[46,19],[47,19],[48,19],
-    [45,20],[46,20],[47,20],[48,20],[49,20],
-    [46,21],[47,21],[48,21],[49,21],[50,21],
-    [47,22],[48,22],[49,22],[50,22],
-    // Australia
-    [46,24],[47,24],[48,24],[49,24],[50,24],
-    [46,25],[47,25],[48,25],[49,25],[50,25],[51,25],
-    [46,26],[47,26],[48,26],[49,26],[50,26],[51,26],
-    [47,27],[48,27],[49,27],[50,27],
-    [48,28],[49,28],
-  ];
-  const cols = 62, rows = 35, dotR = 1.8, spacing = 9;
-  const W = cols * spacing, H = rows * spacing;
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-      {Array.from({ length: rows }, (_, r) =>
-        Array.from({ length: cols }, (_, c) => {
-          const isDot = dots.some(([dc, dr]) => dc === c && dr === r);
-          return (
-            <circle
-              key={`${c}-${r}`}
-              cx={c * spacing + spacing / 2}
-              cy={r * spacing + spacing / 2}
-              r={dotR}
-              fill={isDot ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.06)"}
-            />
-          );
-        })
-      )}
-    </svg>
-  );
-}
-
-// ─── Company name slider ────────────────────────────────────────────────────────
-const companiesRow1 = [
-  "Brill Power","Chattermill","Codility","One Plus","Designer Group",
-  "Dugout","GIMO","Humn.ai","Impala","Kairos","Loyalty Lion","Ometria",
-  "Oval Medical Technologies","Oxford Vacmedix","PI Labs","Pismo",
-];
-const companiesRow2 = [
-  "Profit Accumulator","Qdot Technology","Scede","Studio71","ThanksBen",
-  "Thirdfort","Thread","Bootstrap Europe","Unibuddy","Wiredscore",
-  "Zappi","Bitpanda","Maze","Mews","Awin",
-];
-
-function CompanyNameCard({ name }: { name: string }) {
-  return (
-    <div className="flex items-center justify-center px-6 py-4 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-[#003648]/20 transition-all duration-200 group cursor-default">
-      <span className="text-sm font-semibold text-slate-400 group-hover:text-[#003648] transition-colors duration-200 whitespace-nowrap select-none"
-        style={{ fontFamily: "'Inter', sans-serif" }}>
-        {name}
-      </span>
-    </div>
-  );
-}
-
-// ─── Check item ────────────────────────────────────────────────────────────────
-function CheckItem({ text }: { text: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#f0f7fa] flex items-center justify-center mt-1">
-        <CheckCircle2 className="w-3.5 h-3.5 text-[#003648]" />
-      </div>
-      <span className="text-slate-600 text-base leading-relaxed">{text}</span>
-    </div>
-  );
-}
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 export default function Xcelerate() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -360,11 +197,7 @@ export default function Xcelerate() {
           <div className="relative z-20 w-full mt-auto translate-y-8 sm:translate-y-12">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
-                {[
-                  { n: 150,   sfx: "+",   pfx: "",  top: "countries covered",           bot: "under a single plan",           cls: "xp-stat-0" },
-                  { n: 50000, sfx: "+",   pfx: "",  top: "global employees",            bot: "supported by Engage",           cls: "xp-stat-1" },
-                  { n: 199,   sfx: "",    pfx: "£", top: "average premium",             bot: "per employee per month",        cls: "xp-stat-2" },
-                ].map(({ n, sfx, pfx, top, bot, cls }, i) => (
+                {xcelerateStats.map(({ n, sfx, pfx, top, bot, cls }, i) => (
                   <div key={i}
                     className={`${cls} flex flex-col items-center justify-center py-8 px-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl`}>
                     <div className="text-white font-black tabular-nums leading-none mb-2 drop-shadow-sm"
@@ -401,12 +234,7 @@ export default function Xcelerate() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3">
-                {[
-                  "Easy set-up and implementation",
-                  "Competitive premiums",
-                  "No underwriting required",
-                  "Tailored to your international team",
-                ].map((f, i) => <CheckItem key={i} text={f} />)}
+                {globalHiringChecks.map((f, i) => <CheckItem key={i} text={f} />)}
               </div>
             </Reveal>
 
@@ -532,10 +360,7 @@ export default function Xcelerate() {
               </Reveal>
 
               {/* Regular cards */}
-              {[
-                { icon: Activity,    title: "Inpatient treatment",   desc: "Surgeries & treatments requiring an overnight hospital stay" },
-                { icon: Stethoscope, title: "Outpatient treatment",  desc: "Consultations, diagnostics, & minor treatments" },
-              ].map(({ icon: Icon, title, desc }, i) => (
+              {coverageCardsRow1.map(({ icon: Icon, title, desc }, i) => (
                 <Reveal key={i} delay={80 + i * 60}>
                   <div className="group h-full rounded-2xl p-7 cursor-default bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#003648]/20 hover:-translate-y-1 transition-all duration-300">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#f0f7fa] border border-[#003648]/10 group-hover:bg-[#003648] transition-colors duration-300">
@@ -551,12 +376,7 @@ export default function Xcelerate() {
 
             {/* Second row — 4 equal cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-              {[
-                { icon: Shield,   title: "Acute & Chronic",       desc: "Full cover for both acute & chronic conditions" },
-                { icon: Dumbbell, title: "Physical therapies",    desc: "Physiotherapy, chiropractic & alternatives" },
-                { icon: Eye,      title: "Dental & Optical",      desc: "Dentistry & optical care, treatments & diagnostics" },
-                { icon: Brain,    title: "Mental health",         desc: "Counselling & digital support tools" },
-              ].map(({ icon: Icon, title, desc }, i) => (
+              {coverageCardsRow2.map(({ icon: Icon, title, desc }, i) => (
                 <Reveal key={i} delay={i * 50}>
                   <div className="group h-full rounded-2xl p-7 cursor-default bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#003648]/20 hover:-translate-y-1 transition-all duration-300">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#f0f7fa] border border-[#003648]/10 group-hover:bg-[#003648] transition-colors duration-300">
@@ -572,10 +392,7 @@ export default function Xcelerate() {
 
             {/* Third row — 2 cards + CTA card */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                { icon: Pill,  title: "Prescriptions",   desc: "Prescription drugs & vaccinations covered globally" },
-                { icon: Baby,  title: "Maternity",       desc: "Comprehensive options to cover maternity benefits" },
-              ].map(({ icon: Icon, title, desc }, i) => (
+              {coverageCardsRow3.map(({ icon: Icon, title, desc }, i) => (
                 <Reveal key={i} delay={i * 50}>
                   <div className="group h-full rounded-2xl p-7 cursor-default bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#003648]/20 hover:-translate-y-1 transition-all duration-300">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#f0f7fa] border border-[#003648]/10 group-hover:bg-[#003648] transition-colors duration-300">

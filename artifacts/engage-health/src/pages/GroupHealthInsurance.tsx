@@ -1,208 +1,18 @@
-import { useState } from "react";
 import ServicePageLayout from "@/components/service-page/ServicePageLayout";
 import { SectionLabel, SectionHeading, Divider } from "@/components/service-page/ServicePageSections";
 import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
-import { Building2, Globe2, Users, Trophy, CheckCircle2, Plus, Minus, Check, X } from "lucide-react";
-import heroBg from "@assets/Group-Health-Insurance_1773877221793.jpg";
+import { Building2, Users, CheckCircle2, Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-// ─── Data ──────────────────────────────────────────────────────────────────
-
-const serviceList = [
-  "Policy price comparisons to give you the latest idea of what's available and at what price",
-  "Full policy reviews to ensure you're achieving the most value from any current schemes in place",
-  "Advice and support for implementing new policies into your business",
-  "Administrative support post-implementation, reducing the burden on busy HR teams",
-  "Claims assistance in the event of a refused policy claim",
-  "Annual reviews to ensure you're still getting the best possible value from your policy",
-  "Extending health policies internationally if you are employing staff abroad",
-];
-
-const coreCover = [
-  "Consultations with a specialist (subject to insurer fee guidelines)",
-  "Diagnostic tests (blood tests, x-rays and scans)",
-  "Operations and surgical procedures",
-  "Hospital stays and nursing care",
-  "Cancer treatment, such as radiotherapy and chemotherapy",
-  "Medications, some of which may not be available on the NHS",
-  "Physiotherapy, osteopathy, chiropractic treatment",
-  "Mental health and psychiatric treatment",
-];
-
-const addOns = [
-  "Virtual GP / Telemedicine",
-  "Private Prescriptions",
-  "GP and nurse helpline",
-  "NHS Cash Benefit",
-  "Employee Assistance Programmes (EAP)",
-  "Second Opinion Service",
-  "Health Screening",
-  "Gym discounts",
-  "Dental cover",
-  "Optical cover",
-  "Travel cover",
-  "Retail discount",
-];
-
-const employerBenefits = [
-  "Cost effective vs retail plan — cheaper per person than individual policies",
-  "Great way to engage staff — your team will feel valued",
-  "Improve morale and productivity",
-  "Great retention tool — staff who feel looked after are less likely to leave",
-  "Reduce sickness absence",
-  "Ensure fast treatment and return to work",
-  "Classed as a business expense — a tax efficient way to look after staff",
-];
-
-const employeeBenefits = [
-  "Access to otherwise unaffordable benefits",
-  "Fast diagnosis & treatment for medical issues",
-  "Opportunity to add family members",
-  "Treatment in private en-suite rooms",
-  "Choice of consultant",
-  "Choice of hospital",
-  "Choice of treatment date",
-];
-
-const pricingGroups = [
-  {
-    size: "2–9 employees",
-    rows: [
-      { age: 25, range: "£28.00 – £35.00" },
-      { age: 35, range: "£31.00 – £48.00" },
-      { age: 45, range: "£42.00 – £62.00" },
-      { age: 55, range: "£61.00 – £88.00" },
-    ],
-  },
-  {
-    size: "10–29 employees",
-    rows: [
-      { age: 25, range: "£22.00 – £30.00" },
-      { age: 35, range: "£27.00 – £45.00" },
-      { age: 45, range: "£33.00 – £52.00" },
-      { age: 55, range: "£45.00 – £69.00" },
-    ],
-  },
-  {
-    size: "30–49 employees",
-    rows: [
-      { age: 25, range: "£17.00 – £25.00" },
-      { age: 35, range: "£24.00 – £41.00" },
-      { age: 45, range: "£31.00 – £50.00" },
-      { age: 55, range: "£40.00 – £62.00" },
-    ],
-  },
-  {
-    size: "50+ employees",
-    rows: [
-      { age: 25, range: "£13.00 – £22.00" },
-      { age: 35, range: "£21.00 – £35.00" },
-      { age: 45, range: "£28.00 – £44.00" },
-      { age: 55, range: "£38.00 – £58.00" },
-    ],
-  },
-];
-
-const comparisonFeatures = [
-  "Independent advice on all insurers",
-  "Annual reviews & price comparisons",
-  "FCA regulated whole-market advice",
-  "Real-time claims & service experience",
-  "Free to recommend best option",
-  "Personal ongoing service",
-  "Same premium as other channels",
-];
-
-const comparisonChannels = [
-  {
-    name: "Specialist independent broker",
-    highlight: true,
-    ticks: [true, true, true, true, true, true, true],
-    note: null,
-  },
-  {
-    name: "Direct from insurer",
-    highlight: false,
-    ticks: [false, false, false, false, false, false, true],
-    note: null,
-  },
-  {
-    name: "Sales agent of specific insurer",
-    highlight: false,
-    ticks: [false, false, false, false, false, false, true],
-    note: null,
-  },
-  {
-    name: "Comparison sites",
-    highlight: false,
-    ticks: [false, false, false, false, false, false, true],
-    note: "Usually price only",
-  },
-];
-
-const faqs = [
-  {
-    q: "Which private hospitals are covered with health insurance?",
-    a: "There are hundreds of private hospitals and facilities across the British Isles. Key hospital groups include Aspen, BMI, HCA, Nuffield, Ramsey and Spire, all available via UK health insurers. Some insurers offer full hospital coverage as standard; others group them with different premium costs. Many insurers also allow treatment within private facilities of NHS hospitals (NHS pay-beds).",
-  },
-  {
-    q: "How can we reduce the cost of our company medical insurance plan?",
-    a: "Three main options: (1) Excess — employees pay a pre-determined amount (typically £100 per person, per year) towards treatment costs in exchange for a reduced company premium. (2) Shared Responsibility — a 25%/75% co-payment split on every claim until the agreed cap is reached. (3) 6-week rule — if NHS treatment is available within 6 weeks, employees must use it; if not, they access private care immediately. This can deliver up to 25% discount on the premium.",
-  },
-  {
-    q: "Will Private Medical Insurance cover pre-existing health conditions?",
-    a: "Health insurance is designed to cover new conditions not known when the policy starts. Pre-existing conditions are generally not covered, depending on severity. However, companies purchasing for staff have access to Medical History Disregarded (MHD) underwriting, which allows pre-existing conditions to be covered — something not available on individual policies.",
-  },
-  {
-    q: "How are Group Health Insurance renewal premiums calculated?",
-    a: "Once in place, monthly rates are fixed for 12 months. The insurer then provides renewal terms 6–8 weeks before the annual renewal date, calculated based on: age changes in your scheme, insurer base-rate increases due to medical inflation, and your own scheme's claims performance. Most premiums increase 8–12% per annum — a good independent broker will negotiate on your behalf as part of their annual market review service.",
-  },
-  {
-    q: "What is NOT covered under Group Private Medical Insurance?",
-    a: "Routine pregnancy, congenital conditions, chronic conditions, Accident & Emergency, planned treatment overseas, IVF and infertility treatments (unless specifically advised), gender reassignment (unless specifically advised), and cosmetic treatment.",
-  },
-  {
-    q: "How many employees do you need to qualify for group health insurance?",
-    a: "Many insurers only require a minimum of 2 employees, though some set their minimum at 3. Contact our team for guidance on the best options for your specific business size.",
-  },
-  {
-    q: "Does private health insurance replace the NHS?",
-    a: "No — private healthcare should complement the NHS, not replace it. The NHS is best placed for childbirth, Accident & Emergency and intensive care. Private health insurance provides fast access to elective treatment, diagnostics and specialist care, reducing NHS pressure and getting employees back to work sooner.",
-  },
-  {
-    q: "What tax is payable on company health insurance?",
-    a: "Insurance Premium Tax (IPT) is automatically included in the premium and paid by the employer at the current rate of 12%. For employees, Business Health Insurance is classed as a Benefit in Kind and is therefore a taxable benefit reported on P11D. The amount of tax an employee pays is linked directly to their portion of the overall premium and their own tax bracket.",
-  },
-  {
-    q: "How do I make a claim under Private Medical Insurance?",
-    a: "1. Obtain a GP referral from your own GP, a private GP or via telemedicine. 2. Contact your insurer to advise what treatment is needed. 3. If treatment is eligible you'll receive an authorisation number. 4. Provide the authorisation number to the consultant or hospital — bills are settled directly with the insurer.",
-  },
-];
-
-// ─── Page ────────────────────────────────────────────────────────────────────
-
-const entry = {
-  title: 'Group Health Insurance',
-  titleAccent: 'Health Insurance',
-  tagline: 'UK Group Health Insurance',
-  subtitle: 'Build a scheme tailored to your business. Whole-of-market comparisons, personalised advice, and no broker fees — ever.',
-  heroImage: heroBg,
-  colorScheme: 'purple' as const,
-  stats: [
-    { icon: Building2, val: '500+', label: 'Businesses supported' },
-    { icon: Globe2,    val: '70+',  label: 'Countries covered' },
-    { icon: Users,     val: '30+',  label: 'Years combined expertise' },
-    { icon: Trophy,    val: '3×',   label: 'UK award wins' },
-  ],
-  sidebarTestimonial: {
-    quote: 'We received great customer service and a competitive quotation when searching for a health scheme for our business. It was then a simple process to activate the scheme.',
-    author: 'Technology company, London · 12 employees',
-  },
-};
+import { FaqAccordion } from "@/components/shared/FaqAccordion";
+import { IconList } from "@/components/shared/IconList";
+import { PricingTable } from "@/components/shared/PricingTable";
+import { ComparisonTable } from "@/components/shared/ComparisonTable";
+import {
+  serviceList, coreCover, addOns, employerBenefits, employeeBenefits,
+  pricingGroups, comparisonFeatures, comparisonChannels, faqs, entry
+} from "@/data/pages/groupHealthInsuranceData";
 
 export default function GroupHealthInsurance() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
     <ServicePageLayout
       entry={entry}
@@ -219,14 +29,12 @@ export default function GroupHealthInsurance() {
           Engage Health Group has worked with hundreds of businesses that have sought to launch or review a health insurance scheme for their employees. The scope of our service varies greatly according to your needs:
         </p>
 
-        <ul className="mt-6 space-y-3">
-          {serviceList.map((item) => (
-            <li key={item} className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-            </li>
-          ))}
-        </ul>
+        <IconList 
+          items={serviceList} 
+          className="mt-6" 
+          itemClassName="bg-transparent p-0 gap-3" 
+          icon={CheckCircle2} 
+        />
 
         {/* Testimonial pull-quote */}
         <div className="mt-8 p-6 rounded-2xl border-l-4 border-primary bg-primary/5">
@@ -313,10 +121,10 @@ export default function GroupHealthInsurance() {
               { type: "Day-patient", desc: "Patient occupies a bed but does not stay overnight." },
               { type: "Outpatient", desc: "Patient is not admitted nor occupies a bed (e.g. a scan)." },
             ].map((item) => (
-              <div key={item.type} className="flex items-start gap-3">
-                <span className="w-24 text-xs font-bold text-primary flex-shrink-0 mt-0.5">{item.type}</span>
-                <span className="text-xs text-muted-foreground">{item.desc}</span>
-              </div>
+               <div key={item.type} className="flex items-start gap-3">
+                 <span className="w-24 text-xs font-bold text-primary flex-shrink-0 mt-0.5">{item.type}</span>
+                 <span className="text-xs text-muted-foreground">{item.desc}</span>
+               </div>
             ))}
           </div>
           <p className="mt-3 text-xs font-semibold text-primary">All three scenarios CAN be covered by a Group Health policy.</p>
@@ -392,32 +200,7 @@ export default function GroupHealthInsurance() {
           The following factors influence cost: employee age profile, geographic location, benefits selected, claims history, chosen insurer, underwriting method, and number of employees included. Below are indicative monthly costs per employee.*
         </p>
 
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {pricingGroups.map((group) => (
-            <div key={group.size} className="rounded-2xl border border-border bg-white overflow-hidden">
-              <div className="px-5 py-3 border-b border-border flex items-center gap-2" style={{ background: "linear-gradient(135deg,#003648 0%,#76186f 100%)" }}>
-                <Building2 className="w-4 h-4 text-white/70" />
-                <span className="text-sm font-bold text-white">{group.size}</span>
-              </div>
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-[#f8f8f9] border-b border-border">
-                    <th className="text-left px-4 py-2.5 text-xs font-bold text-secondary">Avg age</th>
-                    <th className="text-right px-4 py-2.5 text-xs font-bold text-secondary">Monthly cost / employee</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {group.rows.map((row, i) => (
-                    <tr key={row.age} className={cn("border-b border-border last:border-0", i % 2 === 0 ? "bg-white" : "bg-[#fafafa]")}>
-                      <td className="px-4 py-3 text-sm font-semibold text-secondary">{row.age}</td>
-                      <td className="px-4 py-3 text-sm text-right font-mono text-primary font-bold">{row.range}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ))}
-        </div>
+        <PricingTable groups={pricingGroups} />
         <p className="mt-4 text-xs text-muted-foreground italic leading-relaxed">
           *Premiums shown are based on multiple sources including Engage Health Group existing client base, quotations issued, external sources, and market averages. Based on new-to-market schemes, comprehensive cover, home counties location, non-London hospitals. Other variables can apply and all figures are for indication only.
         </p>
@@ -456,53 +239,7 @@ export default function GroupHealthInsurance() {
         </div>
 
         {/* Comparison table */}
-        <div className="mt-8 overflow-x-auto max-w-full rounded-2xl border border-border">
-          <table className="w-full text-sm min-w-[640px]">
-            <thead>
-              <tr className="border-b border-border">
-                <th className="text-left px-5 py-3.5 text-xs font-bold text-secondary bg-[#f8f8f9] w-48">Purchase channel</th>
-                {comparisonFeatures.map((f) => (
-                  <th key={f} className="px-3 py-3.5 text-center text-[10px] font-bold text-secondary bg-[#f8f8f9] leading-tight max-w-[80px]">{f}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {comparisonChannels.map((ch, i) => (
-                <tr
-                  key={ch.name}
-                  className={cn(
-                    "border-b border-border last:border-0",
-                    ch.highlight
-                      ? "bg-primary/5"
-                      : i % 2 === 0 ? "bg-white" : "bg-[#fafafa]"
-                  )}
-                >
-                  <td className={cn("px-5 py-3.5 text-xs font-semibold leading-snug", ch.highlight ? "text-primary" : "text-secondary")}>
-                    {ch.name}
-                    {ch.highlight && (
-                      <span className="ml-1.5 inline-block px-1.5 py-0.5 text-[9px] rounded-full bg-primary text-white font-bold">US</span>
-                    )}
-                  </td>
-                  {ch.ticks.map((tick, ti) => (
-                    <td key={ti} className="px-3 py-3.5 text-center">
-                      {tick ? (
-                        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-                          <Check className="w-3 h-3 text-green-600" />
-                        </span>
-                      ) : ti === 0 && ch.note ? (
-                        <span className="text-[10px] text-muted-foreground italic">{ch.note}</span>
-                      ) : (
-                        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-red-50">
-                          <X className="w-3 h-3 text-red-400" />
-                        </span>
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ComparisonTable features={comparisonFeatures} channels={comparisonChannels} />
       </section>
 
       <Divider />
@@ -511,29 +248,7 @@ export default function GroupHealthInsurance() {
       <section>
         <SectionLabel>FAQs</SectionLabel>
         <SectionHeading>Frequently Asked Questions</SectionHeading>
-        <div className="mt-6 divide-y divide-border rounded-2xl border border-border overflow-hidden bg-white">
-          {faqs.map((faq, i) => (
-            <div key={i}>
-              <button
-                className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#f8f8f9] transition-colors gap-4"
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-              >
-                <span className="text-sm font-semibold text-secondary pr-4">{faq.q}</span>
-                <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center bg-primary/8">
-                  {openFaq === i
-                    ? <Minus className="w-3.5 h-3.5 text-primary" />
-                    : <Plus className="w-3.5 h-3.5 text-primary" />
-                  }
-                </span>
-              </button>
-              {openFaq === i && (
-                <div className="px-5 pb-5 pt-1">
-                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+        <FaqAccordion items={faqs} variant="plus-minus" />
       </section>
 
     </ServicePageLayout>

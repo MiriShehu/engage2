@@ -3,87 +3,16 @@ import { ClientLogos } from "@/components/sections/trust/ClientLogos";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
-  ArrowRight, Phone, Mail, ChevronRight, Globe2,
-  Users, Trophy, CheckCircle2, Quote, Building2, Clock,
-  MessageSquare, BarChart3, Rocket, Plane, HeartHandshake, BadgeCheck,
+  ArrowRight, Phone, Mail, ChevronRight, CheckCircle2, Quote
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
-import marshmallow  from "@assets/0x0_1773872351104.png";
-import boohoo       from "@assets/boohoo_1773872351104.png";
-import breathe      from "@assets/breathe_1773872351105.png";
-import cae          from "@assets/image2_1773872351105.png";
-import klarna       from "@assets/klarna-logo_1773872351106.png";
-import pleo         from "@assets/p_1773872351106.png";
-import seedcamp     from "@assets/seedcamp_1773872351106.png";
-import superscript  from "@assets/superscript_1773872351107.jpg";
-import teladoc      from "@assets/teledoc-1_1773872351107.png";
-import unmind       from "@assets/unmind_1773872351107.png";
-import vayner       from "@assets/vayner-media-logo-e1741707986477_1773872351107.png";
-
-// ─── Sub-components ──────────────────────────────────────────────────────────
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase border border-primary/15 mb-4">
-      {children}
-    </div>
-  );
-}
-
-function SectionHeading({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <h2 className={cn("text-2xl md:text-3xl font-extrabold text-secondary leading-tight", className)}>
-      {children}
-    </h2>
-  );
-}
-
-function Divider() {
-  return <div className="my-10 h-px bg-gradient-to-r from-transparent via-border to-transparent" />;
-}
-
-function FounderQuote({ quote, name, title }: { quote: string; name: string; title: string }) {
-  return (
-    <div className="my-6 rounded-2xl border border-primary/20 bg-[#f5f4fa] p-6 flex gap-5 items-start">
-      <img src="/nick-hale.png" alt={name} className="w-14 h-14 rounded-full object-cover flex-shrink-0 border-2 border-primary/20" />
-      <div>
-        <Quote className="w-6 h-6 text-primary/30 mb-2" />
-        <p className="text-[15px] font-semibold text-secondary italic leading-relaxed">"{quote}"</p>
-        <div className="mt-3">
-          <p className="text-sm font-extrabold text-secondary">{name}</p>
-          <p className="text-xs text-primary font-medium">{title}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function TestimonialBlock({ quote, author }: { quote: string; author: string }) {
-  return (
-    <div className="rounded-2xl border border-border bg-secondary/3 p-6 flex flex-col gap-4">
-      <Quote className="w-8 h-8 text-primary/30 flex-shrink-0" />
-      <p className="text-base text-secondary font-medium italic leading-relaxed">"{quote}"</p>
-      <p className="text-sm font-bold text-primary">{author}</p>
-    </div>
-  );
-}
-
-const clientLogos = [
-  { src: teladoc,     alt: "Teladoc Health" },
-  { src: pleo,        alt: "Deel" },
-  { src: cae,         alt: "CAE" },
-  { src: boohoo,      alt: "boohoo" },
-  { src: unmind,      alt: "Unmind" },
-  { src: marshmallow, alt: "Marshmallow" },
-  { src: breathe,     alt: "Breathe" },
-  { src: seedcamp,    alt: "Seedcamp" },
-  { src: superscript, alt: "SuperScript" },
-  { src: vayner,      alt: "VaynerMedia" },
-  { src: klarna,      alt: "Klarna" },
-];
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
+import { FounderQuote } from "@/components/shared/FounderQuote";
+import { TestimonialBlock } from "@/components/shared/TestimonialBlock";
+import { SectionLabel, SectionHeading, Divider } from "@/components/service-page/ServicePageSections";
+import {
+  aboutUsStats, coreServices, ourServiceFeatures, clientLogos,
+  awards, theEngageWay, quickLinks
+} from "@/data/pages/aboutUsData";
 
 export default function AboutUs() {
   return (
@@ -148,12 +77,7 @@ export default function AboutUs() {
             className="mt-14 pt-8 border-t border-white/10"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { icon: Clock,     val: "50",   label: "Years combined experience" },
-                { icon: Globe2,    val: "70+",  label: "Countries covered" },
-                { icon: Building2, val: "500+", label: "Businesses supported" },
-                { icon: Trophy,    val: "3×",   label: "UK Health & Protection Award wins" },
-              ].map((s) => (
+              {aboutUsStats.map((s) => (
                 <div key={s.label} className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
                     <s.icon className="w-5 h-5 text-white/70" />
@@ -198,15 +122,7 @@ export default function AboutUs() {
               </div>
 
               <ul className="mt-4 space-y-2">
-                {[
-                  "Group Health Insurance",
-                  "Group Life Insurance",
-                  "Group Income Protection",
-                  "Group Critical Illness Coverage",
-                  "Group Health Cash Plans",
-                  "Key Person Insurance",
-                  "Employee Assistance Programmes",
-                ].map((item) => (
+                {coreServices.map((item) => (
                   <li key={item} className="flex items-center gap-2 text-[15px] text-secondary font-medium">
                     <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
                     {item}
@@ -249,15 +165,7 @@ export default function AboutUs() {
               </div>
 
               <ul className="mt-4 space-y-2">
-                {[
-                  "Impartial advice addressing the specific needs of your company",
-                  "Policy quotes sourced from across the whole market",
-                  "Introduction of new policies to your teams",
-                  "Assistance with claims and staff queries",
-                  "Ongoing admin support, including managing new leavers/joiners",
-                  "Scheme reviews during the annual renewal period",
-                  "Dedicated account manager",
-                ].map((item) => (
+                {ourServiceFeatures.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-[15px] text-secondary font-medium">
                     <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                     {item}
@@ -321,11 +229,7 @@ export default function AboutUs() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-4 items-center">
-                {[
-                  { src: "/award-2022.jpg", label: "UK Health & Protection Award 2022" },
-                  { src: "/award-2023.jpg", label: "UK Health & Protection Award 2023" },
-                  { src: "/award-2024.jpg", label: "UK Health & Protection Award 2024" },
-                ].map((a) => (
+                {awards.map((a) => (
                   <img key={a.src} src={a.src} alt={a.label} className="h-24 w-auto object-contain" />
                 ))}
               </div>
@@ -398,38 +302,7 @@ export default function AboutUs() {
               <SectionHeading>How we deliver for you</SectionHeading>
 
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  {
-                    icon: MessageSquare,
-                    title: "One-to-one consultation",
-                    body: "Whether you're launching a scheme for the first time or seeking a review of your current strategy and policies, we're here to answer all your questions and provide the best solutions.",
-                  },
-                  {
-                    icon: BarChart3,
-                    title: "Market-wide quotes",
-                    body: "Our team will source policies and price points from across the market – usually superior to what you can find publicly available. We will also explain the crucial policy points in straight-forward language.",
-                  },
-                  {
-                    icon: Rocket,
-                    title: "Scheme implementation",
-                    body: "We will advise on the best way of making benefits available to your teams, including guidance on benefits platforms and apps. We can also help onboard your teams onto your new scheme via in-office or virtual presentations.",
-                  },
-                  {
-                    icon: Plane,
-                    title: "UK and global",
-                    body: "Our expertise go beyond the UK. Our international team advise on the best way to support teams and individuals in different parts of the world too. Global benefits can involve significant investment; we make sure it's wisely spent.",
-                  },
-                  {
-                    icon: HeartHandshake,
-                    title: "Claims assistance",
-                    body: "We're here to help should you ever encounter issues when making a claim on a policy. We help clear up any confusion and, if we believe you've been wrongly refused a claim, we will argue your case.",
-                  },
-                  {
-                    icon: BadgeCheck,
-                    title: "No contracts, no fees",
-                    body: "We won't tie you into any contracts or charge you for our advice. In essence, we take a finder's fee from the providers we place you with. Be assured: we do not have \"preferred partnership\" arrangements - we always seek out the best policies from across all available providers.",
-                  },
-                ].map((step) => (
+                {theEngageWay.map((step) => (
                   <div key={step.title} className="flex gap-4 p-5 rounded-2xl border border-border bg-white hover:shadow-sm transition-shadow">
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
@@ -487,13 +360,7 @@ export default function AboutUs() {
             <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
               <p className="text-xs font-black uppercase tracking-wider text-muted-foreground mb-4">Quick links</p>
               <ul className="space-y-2">
-                {[
-                  { label: "Meet the team", href: "/team" },
-                  { label: "Employee Benefits", href: "/employee-benefits" },
-                  { label: "International Benefits", href: "/international-benefits" },
-                  { label: "Xcelerate", href: "/xcelerate" },
-                  { label: "Knowledge Hub", href: "/knowledge-hub" },
-                ].map((l) => (
+                {quickLinks.map((l) => (
                   <li key={l.label}>
                     <Link href={l.href} className="flex items-center gap-2 text-sm font-medium text-secondary hover:text-primary transition-colors py-1">
                       <ChevronRight className="w-3.5 h-3.5 text-primary/50" />

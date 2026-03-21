@@ -2,210 +2,21 @@ import { PageLayout } from "@/components/layout";
 import { TrustBar } from "@/components/sections/trust";
 import { Link } from "wouter";
 import heroBg from "@assets/Employee-Benefits-main-heading1_1773875144473.jpg";
-import tipBlend from "@assets/Emp-Benefits-blend-your-approach_1773875338242.jpg";
-import tipPromote from "@assets/Emp-Benefits-promote-communicate_1773875338242.jpg";
-import tipManage from "@assets/Emp.-Benefits-manage-in-one-place_1773875338242.jpg";
-import tipMeasure from "@assets/woman-2773007_1280_1773875338243.jpg";
 import award2024 from "@assets/HPA24-Best-Group-International-Advice-Firm-yellow_1773869302815.jpg";
 import award2023 from "@assets/HPA_Winner-Badges_0219_1773869302816.jpg";
 import award2022 from "@assets/HPA10_WIN_YELLOW_1773869302815.jpg";
 import { motion } from "framer-motion";
 import {
-  Shield, Heart, TrendingUp, AlertCircle, Smile, Activity,
-  HeartPulse, DollarSign, Key, UserCheck, Stethoscope, MonitorDot,
   CheckCircle2, Phone, Mail, ArrowRight, ChevronRight, Star,
   Users, Building2, Globe2, Trophy
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
-const products = [
-  {
-    icon: Shield,
-    href: "/employee-benefits/group-health-insurance",
-    name: "Group Health Insurance",
-    desc: "Give your employees access to fast private medical care and a range of additional benefits, including wellness apps and Employee Assistance Programmes.",
-  },
-  {
-    icon: Heart,
-    href: "/employee-benefits/group-life-insurance",
-    name: "Group Life Insurance",
-    desc: "Ensure your employees' families are financially protected in the event of their death by taking out a Group Life Insurance policy.",
-  },
-  {
-    icon: TrendingUp,
-    href: "/employee-benefits/group-income-protection",
-    name: "Group Income Protection Insurance",
-    subName: "(AKA Sick Pay Insurance)",
-    desc: "Get extra financial protection for your employees should they be unable to work due to illness or injury beyond the statutory sick pay allowance. Staff also get access to rehab services to help speed up recovery.",
-  },
-  {
-    icon: AlertCircle,
-    href: "/employee-benefits/group-critical-illness",
-    name: "Group Critical Illness Insurance",
-    desc: "Give your staff extra financial protection in the event they are diagnosed with a critical illness.",
-  },
-  {
-    icon: Smile,
-    href: "/employee-benefits/group-dental-insurance",
-    name: "Group Dental Insurance",
-    desc: "Allow your staff to get rapid dental treatment and checkups with a standalone private dental plan.",
-  },
-  {
-    icon: DollarSign,
-    href: "/employee-benefits/group-health-cash-plan",
-    name: "Health Cash Plan",
-    desc: "Give staff access to everyday health and wellbeing services, such as physiotherapy, dentistry, optical care and more — up to a predetermined cash amount.",
-  },
-  {
-    icon: Key,
-    href: "/employee-benefits/key-person-insurance",
-    name: "Key Person Insurance",
-    desc: "Financially protect your business from the impact of losing an essential member of your team.",
-  },
-  {
-    icon: HeartPulse,
-    href: "/employee-benefits/employee-assistance-programmes",
-    name: "Employee Assistance Programmes (EAP)",
-    desc: "A suite of self-help tools and professional counselling and/or advisory services designed to bolster the emotional wellbeing of your employees.",
-  },
-  {
-    icon: MonitorDot,
-    href: "/employee-benefits/employee-benefits-platforms",
-    name: "Staff Discount Schemes",
-    desc: "Reward your employees with a range of discounts across health, leisure and retail services — all housed on a digital platform.",
-  },
-  {
-    icon: Activity,
-    href: "/employee-benefits/corporate-wellness-programmes",
-    name: "Corporate Wellness Programmes",
-    desc: "Formulate a range of wellbeing benefits that support every aspect of your team's mental and emotional wellbeing, including wellness days, meditation classes, CBT tools, gym memberships, counselling services and more.",
-  },
-];
-
-const whyBenefits = [
-  "Improved morale",
-  "Increased productivity",
-  "Improved Employer Value Proposition (EVP)",
-  "Improved employee engagement",
-  "Improved recruitment",
-  "Reduced absenteeism",
-  "Reduced presenteeism",
-  "Reduced staff turnover",
-];
-
-const processSteps = [
-  { n: "01", title: "Learn & Understand",   desc: "We begin by learning about your business, its current challenges and desired outcomes." },
-  { n: "02", title: "Share Intelligence",    desc: "We provide insider knowledge into what businesses of a similar size and sector offer their workers." },
-  { n: "03", title: "Design & Create",       desc: "We work out the best solutions for your business, present them to you and agree on timeframes." },
-  { n: "04", title: "Negotiate & Price",     desc: "We liaise with ALL insurers and service providers to obtain the most competitive pricing." },
-  { n: "05", title: "Launch the Policy",     desc: "We set up and implement the policy/scheme on your behalf to ensure a smooth start." },
-  { n: "06", title: "Raise Awareness",       desc: "We provide bespoke literature and perform onsite presentations to promote benefits to staff." },
-  { n: "07", title: "Manage the Scheme",     desc: "We handle the everyday management of the scheme so you don't have to." },
-  { n: "08", title: "Review & Evaluate",     desc: "We perform annual market reviews to ensure your scheme remains effective and competitively priced." },
-];
-
-const tips = [
-  {
-    n: "1",
-    title: "Blend your approach",
-    body: "Placing all your focus in just one camp can leave your benefit provision lacking. An insurance-heavy approach is excellent but can leave staff disengaged because these benefits are only realised when things go wrong. A wellness-heavy approach makes staff feel engaged but isn't much use if someone needs physiotherapy. A blended approach delivers the best of both worlds.",
-    img: tipBlend,
-    imgAlt: "Diverse team laughing together",
-  },
-  {
-    n: "2",
-    title: "Promote and communicate",
-    body: "Once you have decided upon your benefits strategy, it's important to educate your employees. They need to know what they have and how to use it — otherwise the benefits become redundant and unappreciated. A good consultancy will deliver employee presentations, develop bespoke written guidance and spend time at your premises answering questions.",
-    img: tipPromote,
-    imgAlt: "Audience applauding at a presentation",
-  },
-  {
-    n: "3",
-    title: "Manage in one place",
-    body: "Many organisations make the mistake of managing different types of coverage across separate departments. This compartmentalised approach reduces the opportunity to drive cost efficiencies. Working with multiple providers across different departments means you'll likely pay more overall and find it increasingly difficult to achieve your overall objective.",
-    img: tipManage,
-    imgAlt: "Woman working on laptop in bright office",
-  },
-  {
-    n: "4",
-    title: "Measure success",
-    body: "Even if you're spending a small percentage of gross payroll on benefits, continuous review should be a priority. An annual review (at minimum) will help avoid stagnation, maintain relevance and ensure businesses get the best possible return on their investment. Key questions: Is it still valued by staff? Are we paying too much? Is it effective?",
-    img: tipMeasure,
-    imgAlt: "Woman reviewing documents at desk",
-  },
-];
-
-const taxItems = [
-  {
-    name: "Business Health Insurance",
-    text: "Premiums are usually classed as a Benefit in Kind (taxable via payroll). Business Health Insurance also attracts Insurance Premium Tax (IPT), which is automatically included in the cost of the premium.",
-  },
-  {
-    name: "Group Life Insurance",
-    text: "The premium is usually allowable as a business expense so tax can be claimed back. The employee is not taxed on the value of the premium. The policy is kept in a discretionary trust so it avoids liability for Inheritance or Income Tax.",
-  },
-  {
-    name: "Group Income Protection",
-    text: "No tax is liable from employee or employer until a payout is made, in which case it's taxed via PAYE as per a normal wage. It's also usually an allowable business expense for the employer.",
-  },
-  {
-    name: "Group Critical Illness",
-    text: "The employee pays tax on the value of the premium via adjusted tax code. On the plus side, the policy is paid out as a tax-free lump sum and is also considered a business expense (claimable against Corporation Tax).",
-  },
-  {
-    name: "Business Health Cash Plan",
-    text: "The employee pays tax on its value via payroll, and the company can claim it as a business expense.",
-  },
-  {
-    name: "Health Screening",
-    text: "In most cases, a single health assessment and/or single medical check-up per employee per year is allowable as a tax-free benefit.",
-  },
-  {
-    name: "Employee Assistance Programme",
-    text: "Usually regarded as a business expense rather than a benefit in kind — meaning the employee avoids paying tax on the benefit in most cases.",
-  },
-];
-
-const sidebarLinks = [
-  { icon: Shield,       label: "Group Health Insurance",          href: "/employee-benefits/group-health-insurance" },
-  { icon: Heart,        label: "Group Life Insurance",            href: "/employee-benefits/group-life-insurance" },
-  { icon: TrendingUp,   label: "Group Income Protection",         href: "/employee-benefits/group-income-protection" },
-  { icon: AlertCircle,  label: "Group Critical Illness",          href: "/employee-benefits/group-critical-illness" },
-  { icon: Smile,        label: "Group Dental Insurance",          href: "/employee-benefits/group-dental-insurance" },
-  { icon: Activity,     label: "Corporate Wellness Programmes",   href: "/employee-benefits/corporate-wellness-programmes" },
-  { icon: HeartPulse,   label: "Employee Assistance Programmes",  href: "/employee-benefits/employee-assistance-programmes" },
-  { icon: DollarSign,   label: "Health Cash Plan",                href: "/employee-benefits/group-health-cash-plan" },
-  { icon: Key,          label: "Key Person Insurance",            href: "/employee-benefits/key-person-insurance" },
-  { icon: UserCheck,    label: "Relevant Life Insurance",         href: "/employee-benefits/relevant-life-insurance" },
-  { icon: Stethoscope,  label: "Health Screening",                href: "/employee-benefits/employee-health-screening" },
-  { icon: MonitorDot,   label: "Benefits Platforms",              href: "/employee-benefits/employee-benefits-platforms" },
-];
-
-// ─── Sub-components ──────────────────────────────────────────────────────────
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase border border-primary/15 mb-4">
-      {children}
-    </div>
-  );
-}
-
-function SectionHeading({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <h2 className={cn("text-2xl md:text-3xl font-extrabold text-secondary leading-tight", className)}>
-      {children}
-    </h2>
-  );
-}
-
-function Divider() {
-  return <div className="my-10 h-px bg-gradient-to-r from-transparent via-border to-transparent" />;
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
+import { products, whyBenefits, processSteps, tips, taxItems, sidebarLinks } from "@/data/pages/employeeBenefitsData";
+import { SectionLabel, SectionHeading, Divider } from "@/components/service-page/ServicePageSections";
+import { IconList } from "@/components/shared/IconList";
+import { ContactSidebarCard } from "@/components/shared/ContactSidebarCard";
+import { TestimonialSidebarCard } from "@/components/shared/TestimonialSidebarCard";
 
 export default function EmployeeBenefits() {
   return (
@@ -381,14 +192,12 @@ export default function EmployeeBenefits() {
                 </p>
               </div>
 
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {whyBenefits.map((item) => (
-                  <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-[#f5f4fa]">
-                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-base font-medium text-secondary">{item}</span>
-                  </div>
-                ))}
-              </div>
+              <IconList 
+                items={whyBenefits}
+                className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3"
+                itemClassName="bg-[#f5f4fa]"
+                icon={CheckCircle2}
+              />
 
               {/* Pull quote */}
               <div className="mt-8 p-6 rounded-2xl border-l-4 border-primary bg-primary/5">
@@ -570,49 +379,7 @@ export default function EmployeeBenefits() {
           {/* ── SIDEBAR ──────────────────────────────────────────────────── */}
           <aside className="w-full lg:w-80 xl:w-[340px] flex-shrink-0 space-y-5 lg:sticky lg:top-24 self-start">
 
-            {/* CTA card */}
-            <div
-              className="rounded-2xl p-6 text-white overflow-hidden relative"
-              style={{ background: "linear-gradient(135deg,#003648 0%,#76186f 100%)" }}
-            >
-              <img
-                src="/logomark.png"
-                alt=""
-                aria-hidden="true"
-                className="absolute -bottom-6 -right-6 w-40 h-40 object-contain opacity-[0.08] brightness-0 invert pointer-events-none select-none"
-              />
-              <div className="relative">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-semibold mb-4">
-                  FREE consultation
-                </div>
-                <h3 className="text-xl font-extrabold mb-2 leading-snug text-white">
-                  Get expert advice today
-                </h3>
-                <p className="text-white/85 text-sm leading-relaxed mb-5">
-                  No charge, no obligation — just straightforward advice from our team of specialists.
-                </p>
-                <Link
-                  href="/get-a-quote"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm bg-white text-secondary hover:bg-white/90 transition-colors"
-                >
-                  Get a free quote <ArrowRight className="w-4 h-4" />
-                </Link>
-                <div className="mt-3 flex flex-col gap-2">
-                  <a
-                    href="tel:01273974419"
-                    className="flex items-center gap-2 text-sm text-white/85 hover:text-white transition-colors"
-                  >
-                    <Phone className="w-4 h-4" /> 01273 974419
-                  </a>
-                  <a
-                    href="mailto:enquiries@engagehealthgroup.co.uk"
-                    className="flex items-center gap-2 text-sm text-white/85 hover:text-white transition-colors"
-                  >
-                    <Mail className="w-4 h-4" /> enquiries@engagehealthgroup.co.uk
-                  </a>
-                </div>
-              </div>
-            </div>
+            <ContactSidebarCard />
 
             {/* Quick links */}
             <div className="rounded-2xl border border-border bg-white p-5">
@@ -658,18 +425,11 @@ export default function EmployeeBenefits() {
               </div>
             </div>
 
-            {/* Testimonial */}
-            <div className="rounded-2xl border border-border bg-[#f5f4fa] p-5">
-              <div className="flex gap-0.5 mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-sm text-secondary font-medium italic leading-relaxed">
-                "Fantastic service from start to finish. The team at Engage Health really took time to understand our business before recommending a benefits package that works for everyone."
-              </p>
-              <p className="text-xs text-muted-foreground mt-3">— Tech Start-up, London · 45 employees</p>
-            </div>
+            <TestimonialSidebarCard
+              quote="Fantastic service from start to finish. The team at Engage Health really took time to understand our business before recommending a benefits package that works for everyone."
+              author="Tech Start-up, London · 45 employees"
+              className="bg-[#f5f4fa]"
+            />
 
           </aside>
         </div>

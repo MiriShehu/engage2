@@ -120,11 +120,11 @@ function SmallDropdown({
   return (
     <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
       <button
-        className="flex items-center gap-1 font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2"
+        className="flex items-center gap-[6px] font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2"
         aria-expanded={open}
       >
         {label}
-        <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", open && "rotate-180")} />
+        <ChevronDown className={cn("w-3.5 h-3.5 stroke-[2.5px] opacity-70 transition-transform duration-300", open && "rotate-180 opacity-100")} />
       </button>
 
       <div className={cn(
@@ -165,11 +165,11 @@ function MegaDropdown({
   return (
     <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
       <button
-        className="flex items-center gap-1 font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2"
+        className="flex items-center gap-[6px] font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2"
         aria-expanded={open}
       >
         {label}
-        <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", open && "rotate-180")} />
+        <ChevronDown className={cn("w-3.5 h-3.5 stroke-[2.5px] opacity-70 transition-transform duration-300", open && "rotate-180 opacity-100")} />
       </button>
 
       <AnimatePresence>
@@ -291,11 +291,11 @@ function KnowledgeDropdown() {
   return (
     <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
       <button
-        className="flex items-center gap-1 font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2"
+        className="flex items-center gap-[6px] font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2"
         aria-expanded={open}
       >
         Knowledge Hub
-        <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", open && "rotate-180")} />
+        <ChevronDown className={cn("w-3.5 h-3.5 stroke-[2.5px] opacity-70 transition-transform duration-300", open && "rotate-180 opacity-100")} />
       </button>
 
       <div
@@ -344,10 +344,10 @@ function MobileSection({
     <div className="border-b border-gray-100">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-4 text-sm font-semibold text-gray-800"
+        className="w-full flex items-center justify-between py-4 text-[15px] font-['Inter'] font-semibold tracking-wide text-gray-800"
       >
         {label}
-        <ChevronDown className={cn("w-4 h-4 text-gray-400 transition-transform duration-200", open && "rotate-180")} />
+        <ChevronDown className={cn("w-4 h-4 stroke-[2.5px] text-gray-400 transition-transform duration-300", open && "rotate-180")} />
       </button>
       {open && (
         <div className="pb-4 pl-2 flex flex-col gap-0.5">
@@ -395,7 +395,7 @@ export function Navbar() {
             ? "bg-white/97 backdrop-blur-md border-border/50 shadow-sm"
             : "bg-white/97 backdrop-blur-md border-border/30 shadow-sm"
         )}
-        style={{ height: "64px", fontFamily: "'Inter', sans-serif" }}
+        style={{ height: "64px" }}
       >
         <div className="w-full px-4 sm:px-6 lg:px-8 h-full hidden lg:grid lg:grid-cols-[1fr_auto_1fr] items-center gap-4">
           {/* Logo — left */}
@@ -423,10 +423,10 @@ export function Navbar() {
               items={intlItems}
               viewAllHref="/international-benefits"
             />
-            <Link href="/xcelerate" className="font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2">
+            <Link href="/xcelerate" className="font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2">
               Xcelerate
             </Link>
-            <Link href="/knowledge-hub" className="font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2">
+            <Link href="/knowledge-hub" className="font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2">
               Knowledge Hub
             </Link>
           </nav>
