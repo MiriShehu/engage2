@@ -443,7 +443,7 @@ export default function BlogPost({ slug }: { slug: string }) {
                 </div>
 
                 <AISummaryWidget />
-                <div data-ai-content className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: processedContent }} />
+                <div data-ai-content className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary prose-img:max-w-full prose-img:h-auto prose-img:rounded-lg prose-img:block [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_figure]:max-w-full [&_figure]:overflow-hidden" dangerouslySetInnerHTML={{ __html: processedContent }} />
 
               </div>
             </article>

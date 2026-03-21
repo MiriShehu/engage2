@@ -163,4 +163,17 @@
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
+
+  /* WordPress post content — prevent images from overflowing */
+  [data-ai-content] img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    border-radius: 0.5rem;
+  }
+  [data-ai-content] figure {
+    max-width: 100%;
+    overflow: hidden;
+  }
 }
