@@ -60,15 +60,54 @@ function LogoMarquee() {
 }
 
 const TESTIMONIALS = [
-  { quote: "Engage made the whole process completely seamless. We had competitive quotes from multiple insurers within a day and the team was incredibly knowledgeable throughout.", name: "Stephanie Knap", role: "Senior Manager", company: "Couchbase" },
-  { quote: "From initial enquiry through to policy setup, the team was professional, responsive and thorough. Highly recommend to any business looking for group health cover.", name: "Stamatios Andreou", role: "Procurement Analyst", company: "Teya (formerly SaltPay)" },
-  { quote: "I was blown away by how smooth the process was. The team clearly knows the market inside out and found us a fantastic deal. I wouldn't hesitate to recommend Engage.", name: "Amber Goldstein", role: "Operations Director", company: "Creative Rock Stars Agency" },
-  { quote: "Engage provided excellent guidance throughout the whole process. The team were always on hand to answer questions and made everything simple and straightforward.", name: "Martina Borni", role: "HR & Facilities Officer", company: "Medical Aid for Palestinians" },
-  { quote: "I found the whole experience to be very professional. Engage helped us navigate a complicated insurance landscape and secured a policy that suited our needs perfectly.", name: "Linda McGlynn", role: "Insurance & Customer Management", company: "CAE Parc Aviation" },
-  { quote: "Engage have been fantastic partners. They took time to understand our business and found a solution that ticked every box. The ongoing support has been outstanding.", name: "Rachel Ramsay", role: "People & Culture Director", company: "BCB Group" },
-  { quote: "Outstanding service from start to finish. The team were knowledgeable, friendly and efficient — I wouldn't go anywhere else for our business insurance needs.", name: "Verified Client", role: "Client", company: "Insurance Firm" },
-  { quote: "Excellent company to work with. They understood our requirements quickly and delivered exactly what we needed. Communication throughout was first class.", name: "Verified Client", role: "Client", company: "Offset Architects" },
-  { quote: "Very professional service. They made what can be a complicated process feel very straightforward. Highly recommend to any business looking for quality advice.", name: "G. Lane", role: "Client", company: "Engage Health Group" },
+  {
+    quote: "There are a lot of reasons why I value my relationship with Engage Health, but what stands out for me most is how much time they take to understand their client's needs, and deliver results that meet all the criteria. Thank you to the team for always delivering, and the first-class support you provide!",
+    name: "Senior Manager",
+    role: "Senior Manager",
+    company: "Couchbase",
+  },
+  {
+    quote: "SaltPay has collaborated with Engage on various insurance projects. Their professionalism and knowledge has been extremely helpful in finding the right insurance coverage for our needs. They took the time to understand our situation and made recommendations based on SaltPay's specific requirements. The entire process was smooth and hassle-free always with attention to detail and budget assumptions.",
+    name: "Procurement Analyst",
+    role: "Procurement Analyst",
+    company: "SaltPay",
+  },
+  {
+    quote: "Working with Engage Health Group has been seamless and we are very pleased with the service, communication and overall experience. The guys at Engage are very friendly, knowledgeable and helpful and made the process of signing up for group health insurance very easy and simple. Five star service and would definitely recommend.",
+    name: "Amber Goldstein",
+    role: "Operations Director",
+    company: "Creative Rock Stars Agency",
+  },
+  {
+    quote: "Dave (from Engage) was an amazing help from day one. He understood perfectly what we were looking for and directed me and my team in the right direction. We were able to find the EAP provider we needed for our overseas offices. He was always an email away and guided me through the process. I will recommend working with him and Engage Health without a doubt.",
+    name: "HR & Facilities Officer",
+    role: "HR & Facilities Officer",
+    company: "Medical Aid for Palestinians",
+  },
+  {
+    quote: "Our Company is very happy to have had the pleasure of using Engage Health Group. James has been amazing to work with from start to finish. From the very first phone call he listened to our requirements and worked tirelessly to find the best options for us and found an excellent insurance package best suited to our needs. The customer service and response turnaround time from himself and Bruno has been outstanding and certainly made our working day a lot less stressful. We would 100% recommend Engage Health Group, you won't be disappointed.",
+    name: "Insurances & Customer Management Support Co-Ordinator",
+    role: "Insurances & Customer Management Support Co-Ordinator",
+    company: "CAE Parc Aviation",
+  },
+  {
+    quote: "James at Engage was super helpful with explaining all our potential options, he understood the requirement for ensuring the level of cover was appropriate whilst also balancing financial impact. Throughout the process, from market review through to cover in place, there was regular and quick communication, keeping us in the loop with any developments. I would have absolutely no hesitation in coming to James and the team again for any future support required.",
+    name: "People & Culture Director",
+    role: "People & Culture Director",
+    company: "BCB Group",
+  },
+  {
+    quote: "They helped us establish a comprehensive medical plan that covers our employees globally, with competitive and flat rates. Additionally, they act as advisors, providing us with valuable guidance on best practices in countries where we lack local knowledge. Engage Health's expertise and network of brokers have been instrumental in navigating the complex world of global benefits. We highly recommend Engage Health for their exceptional service and expertise.",
+    name: "Senior Expert, Global Benefits Strategy and Design",
+    role: "Senior Expert, Global Benefits Strategy and Design",
+    company: "Remote",
+  },
+  {
+    quote: "We have worked with Nick for over 4 years, during this time he has become a valued member of our extended Reward Team. Nick's deep knowledge and understanding of not only the insurance and benefits market but of our organisation has enabled us to trust that his primary focus is getting the best from the products for us. The detailed and transparent market review reports Nick compiles makes choosing a product and accepting his advice a simple choice.",
+    name: "Associate Director – HR Service Delivery",
+    role: "Associate Director – HR Service Delivery",
+    company: "CityFibre",
+  },
 ];
 
 function getInitials(name: string) {
