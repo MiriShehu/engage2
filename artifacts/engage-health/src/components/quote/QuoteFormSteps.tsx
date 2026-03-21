@@ -57,7 +57,7 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
 
   return (
     <div className="w-full md:w-[52%] flex flex-col bg-white overflow-hidden">
-      <div className="flex-1 overflow-y-auto relative">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden relative">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={step}
