@@ -32,6 +32,7 @@ jobs:
         env:
           PORT: 3000
           BASE_PATH: /
+          VITE_WP_GRAPHQL_URL: https://manage.engagehealthgroup.co.uk/graphql
 
       - name: Deploy dist to server
         uses: appleboy/scp-action@v0.1.7
