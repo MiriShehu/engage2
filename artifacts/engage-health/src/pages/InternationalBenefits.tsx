@@ -6,11 +6,12 @@ import {
   Globe, Globe2, TrendingUp, AlertCircle, Plane, Lock, Clock,
   Users, ShieldAlert, MapPin, Flag, Briefcase,
   CheckCircle2, Phone, Mail, ArrowRight, ChevronRight, Star,
-  Building2, Trophy, ChevronDown, List,
+  Building2, Trophy, ChevronDown,
   BookOpen, BarChart2, PenLine, Handshake, Settings2, MessageSquare, ClipboardList, RefreshCw
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { TableOfContents } from "@/components/ui/TableOfContents";
 import heroBg from "@assets/international-employee-benefits-hero.jpg";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -206,7 +207,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   );
 }
 
-// ─── Table of Contents ────────────────────────────────────────────────────────
+// ─── TOC items ────────────────────────────────────────────────────────────────
 
 const tocItems = [
   { id: "source",         label: "How should businesses source international benefits?" },
@@ -218,104 +219,6 @@ const tocItems = [
   { id: "how-important",  label: "How important are International Employee Benefits?" },
   { id: "faqs",           label: "Frequently Asked Questions" },
 ];
-
-const NAVBAR_HEIGHT = 80; // 64px nav + 16px breathing room
-
-function scrollToId(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
-  window.scrollTo({ top, behavior: "smooth" });
-}
-
-function TableOfContents() {
-  const [active, setActive] = useState<string>("");
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible.length > 0) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-10% 0px -80% 0px", threshold: 0 }
-    );
-    tocItems.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className="mb-10 rounded-2xl border border-border overflow-hidden shadow-sm">
-      {/* Header */}
-      <button
-        className="w-full flex items-center justify-between px-5 py-4 bg-gradient-to-r from-secondary/5 to-primary/5"
-        onClick={() => setOpen(o => !o)}
-        aria-expanded={open}
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-            style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
-          >
-            <List className="w-3.5 h-3.5 text-white" />
-          </div>
-          <span className="font-extrabold text-secondary text-sm uppercase tracking-wider">In this page</span>
-          <span className="hidden sm:inline text-xs text-muted-foreground font-normal normal-case tracking-normal">
-            — {tocItems.length} sections
-          </span>
-        </div>
-        <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform sm:hidden", open && "rotate-180")} />
-      </button>
-
-      {/* Items */}
-      <div className={cn("border-t border-border sm:block", open ? "block" : "hidden")}>
-        <div className="grid sm:grid-cols-2">
-          {tocItems.map((item, i) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                // On mobile the TOC is open and collapses first — defer scroll
-                // so the layout reflow settles before we calculate position
-                if (open) {
-                  setOpen(false);
-                  setTimeout(() => scrollToId(item.id), 50);
-                } else {
-                  scrollToId(item.id);
-                }
-              }}
-              className={cn(
-                "flex items-center gap-3 px-5 py-3.5 text-left w-full transition-all duration-150 border-b border-border/50",
-                "sm:odd:border-r sm:border-b sm:[&:nth-last-child(-n+2)]:border-b-0",
-                active === item.id
-                  ? "bg-secondary/[0.06] text-secondary"
-                  : "bg-white hover:bg-[#f8f7fc] text-muted-foreground hover:text-secondary"
-              )}
-            >
-              <span
-                className={cn(
-                  "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 transition-all",
-                  active === item.id ? "text-white" : "text-muted-foreground bg-border"
-                )}
-                style={active === item.id ? { background: "linear-gradient(135deg,#003648,#76186f)" } : {}}
-              >
-                {i + 1}
-              </span>
-              <span className="text-xs font-medium leading-snug flex-1">{item.label}</span>
-              {active === item.id && (
-                <div className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0" />
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -412,7 +315,7 @@ export default function InternationalBenefits() {
           {/* ── MAIN CONTENT ───────────────────────────────────────────── */}
           <main className="flex-1 min-w-0">
 
-            <TableOfContents />
+            <TableOfContents items={tocItems} />
 
             {/* 1 — How should businesses source international benefits? */}
             <section id="source">
