@@ -12,6 +12,7 @@ import GetAQuote from "@/pages/GetAQuote";
 import Team from "@/pages/Team";
 import TeamMemberProfile from "@/pages/TeamMemberProfile";
 import EmployeeBenefits from "@/pages/EmployeeBenefits";
+import InternationalBenefits from "@/pages/InternationalBenefits";
 import GroupHealthInsurance from "@/pages/GroupHealthInsurance";
 import ServicePage from "@/pages/ServicePage";
 import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
@@ -56,6 +57,7 @@ function Router() {
       <Route path="/employee-benefits/:slug">
         {() => <ServicePage category="employee-benefits" services={employeeBenefitsServices} />}
       </Route>
+      <Route path="/international-benefits" component={InternationalBenefits} />
       <Route path="/international-benefits/:slug">
         {() => <ServicePage category="international-benefits" services={internationalBenefitsServices} />}
       </Route>

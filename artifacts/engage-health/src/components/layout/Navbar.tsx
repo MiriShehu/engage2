@@ -421,6 +421,7 @@ export function Navbar() {
               label="International Benefits"
               color={PURPLE}
               items={intlItems}
+              viewAllHref="/international-benefits"
             />
             <Link href="/xcelerate" className="font-medium text-sm text-foreground/80 hover:text-primary transition-colors py-2">
               Xcelerate
