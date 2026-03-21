@@ -234,6 +234,7 @@ export default function TestimonialCarousel() {
 
               {/* author */}
               <div className="flex items-center gap-3">
+                {/* Avatar */}
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-[12px] font-extrabold text-white flex-shrink-0"
                   style={{
@@ -243,14 +244,27 @@ export default function TestimonialCarousel() {
                 >
                   {t.name ? getInitials(t.name) : t.company[0].toUpperCase()}
                 </div>
+
+                {/* Name / role / company */}
                 <div className="flex-1 min-w-0">
-                  {t.name && (
-                    <div className="text-[15px] font-bold text-white truncate">{t.name}</div>
+                  {t.name ? (
+                    <>
+                      <div className="text-[14px] font-bold text-white leading-tight truncate">{t.name}</div>
+                      <div className="text-[11px] leading-tight mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.45)" }}>
+                        {t.role} · <span style={{ color: "rgba(255,255,255,0.6)" }}>{t.company}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-[14px] font-bold text-white leading-tight truncate">{t.company}</div>
+                      <div className="text-[11px] leading-tight mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.45)" }}>
+                        {t.role}
+                      </div>
+                    </>
                   )}
-                  <div className="text-[12px] truncate" style={{ color: t.name ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.75)" }}>
-                    {t.role} · {t.company}
-                  </div>
                 </div>
+
+                {/* Verified badge */}
                 <div
                   className="flex-shrink-0 flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
                   style={{
