@@ -82,12 +82,6 @@ const products = [
     name: "Corporate Wellness Programmes",
     desc: "Formulate a range of wellbeing benefits that support every aspect of your team's mental and emotional wellbeing, including wellness days, meditation classes, CBT tools, gym memberships, counselling services and more.",
   },
-  {
-    icon: UserCheck,
-    href: "/employee-benefits/lifestyle-benefits",
-    name: "Lifestyle Benefits",
-    desc: "A broad area which can cover remote/hybrid working arrangements, gym memberships, discount schemes, parental leave and much more.",
-  },
 ];
 
 const whyBenefits = [
