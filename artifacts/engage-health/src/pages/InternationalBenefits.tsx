@@ -6,11 +6,11 @@ import {
   Globe, Globe2, TrendingUp, AlertCircle, Plane, Lock, Clock,
   Users, ShieldAlert, MapPin, Flag, Briefcase,
   CheckCircle2, Phone, Mail, ArrowRight, ChevronRight, Star,
-  Building2, Trophy, ChevronDown,
+  Building2, Trophy, ChevronDown, List,
   BookOpen, BarChart2, PenLine, Handshake, Settings2, MessageSquare, ClipboardList, RefreshCw
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import heroBg from "@assets/international-employee-benefits-hero.jpg";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -206,6 +206,102 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   );
 }
 
+// ─── Table of Contents ────────────────────────────────────────────────────────
+
+const tocItems = [
+  { id: "source",         label: "How should businesses source international benefits?" },
+  { id: "what-are",       label: "What are International Employee Benefits?" },
+  { id: "most-common",    label: "Most common International Employee Benefits" },
+  { id: "our-approach",   label: "Our approach to EB Consultancy" },
+  { id: "vs-domestic",    label: "International vs single country solutions" },
+  { id: "which-benefits", label: "Which benefits are right for my business?" },
+  { id: "how-important",  label: "How important are International Employee Benefits?" },
+  { id: "faqs",           label: "Frequently Asked Questions" },
+];
+
+function TableOfContents() {
+  const [active, setActive] = useState<string>("");
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-10% 0px -80% 0px", threshold: 0 }
+    );
+    tocItems.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="mb-10 rounded-2xl border border-border overflow-hidden shadow-sm">
+      {/* Header */}
+      <button
+        className="w-full flex items-center justify-between px-5 py-4 bg-gradient-to-r from-secondary/5 to-primary/5"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
+          >
+            <List className="w-3.5 h-3.5 text-white" />
+          </div>
+          <span className="font-extrabold text-secondary text-sm uppercase tracking-wider">In this page</span>
+          <span className="hidden sm:inline text-xs text-muted-foreground font-normal normal-case tracking-normal">
+            — {tocItems.length} sections
+          </span>
+        </div>
+        <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform sm:hidden", open && "rotate-180")} />
+      </button>
+
+      {/* Items */}
+      <div className={cn("border-t border-border sm:block", open ? "block" : "hidden")}>
+        <div className="grid sm:grid-cols-2">
+          {tocItems.map((item, i) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                setOpen(false);
+              }}
+              className={cn(
+                "flex items-center gap-3 px-5 py-3.5 text-left w-full transition-all duration-150 border-b border-border/50",
+                "sm:odd:border-r sm:border-b sm:[&:nth-last-child(-n+2)]:border-b-0",
+                active === item.id
+                  ? "bg-secondary/[0.06] text-secondary"
+                  : "bg-white hover:bg-[#f8f7fc] text-muted-foreground hover:text-secondary"
+              )}
+            >
+              <span
+                className={cn(
+                  "w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black flex-shrink-0 transition-all",
+                  active === item.id ? "text-white" : "text-muted-foreground bg-border"
+                )}
+                style={active === item.id ? { background: "linear-gradient(135deg,#003648,#76186f)" } : {}}
+              >
+                {i + 1}
+              </span>
+              <span className="text-xs font-medium leading-snug flex-1">{item.label}</span>
+              {active === item.id && (
+                <div className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0" />
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function InternationalBenefits() {
@@ -301,8 +397,10 @@ export default function InternationalBenefits() {
           {/* ── MAIN CONTENT ───────────────────────────────────────────── */}
           <main className="flex-1 min-w-0">
 
+            <TableOfContents />
+
             {/* 1 — How should businesses source international benefits? */}
-            <section>
+            <section id="source">
               <SectionLabel>Our service</SectionLabel>
               <SectionHeading>How should businesses source international benefits?</SectionHeading>
               <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
@@ -367,7 +465,7 @@ export default function InternationalBenefits() {
             <Divider />
 
             {/* 2 — Products */}
-            <section>
+            <section id="what-are">
               <SectionLabel>Our international services</SectionLabel>
               <SectionHeading>What are International Employee Benefits?</SectionHeading>
               <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -461,7 +559,7 @@ export default function InternationalBenefits() {
             <Divider />
 
             {/* 3 — Top 5 most common */}
-            <section>
+            <section id="most-common">
               <SectionLabel>Most popular</SectionLabel>
               <SectionHeading>What are the most common International Employee Benefits?</SectionHeading>
               <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -491,7 +589,7 @@ export default function InternationalBenefits() {
             <Divider />
 
             {/* 4 — How we work */}
-            <section>
+            <section id="our-approach">
               <SectionLabel>Our process</SectionLabel>
               <SectionHeading>Our approach to Employee Benefits Consultancy</SectionHeading>
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -521,7 +619,7 @@ export default function InternationalBenefits() {
             <Divider />
 
             {/* 5 — International vs domestic */}
-            <section>
+            <section id="vs-domestic">
               <SectionLabel>International vs domestic</SectionLabel>
               <SectionHeading>International Employee Benefits vs single country solutions</SectionHeading>
               <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -540,7 +638,7 @@ export default function InternationalBenefits() {
             <Divider />
 
             {/* 6 — Which benefits are right for my business? */}
-            <section>
+            <section id="which-benefits">
               <SectionLabel>Expert guidance</SectionLabel>
               <SectionHeading>Which benefits are right for my business?</SectionHeading>
               <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -567,7 +665,7 @@ export default function InternationalBenefits() {
             <Divider />
 
             {/* 7 — How important are International Employee Benefits? */}
-            <section>
+            <section id="how-important">
               <SectionLabel>The importance</SectionLabel>
               <SectionHeading>How important are International Employee Benefits?</SectionHeading>
               <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
@@ -593,7 +691,7 @@ export default function InternationalBenefits() {
             <Divider />
 
             {/* 8 — FAQs */}
-            <section>
+            <section id="faqs">
               <SectionLabel>FAQs</SectionLabel>
               <SectionHeading>Frequently Asked Questions</SectionHeading>
               <div className="mt-6 flex flex-col gap-3">
