@@ -2,6 +2,21 @@ import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown, Building2, Search, Loader2 } from "lucide-react";
 
+const INDUSTRIES = [
+  "Accounting & Finance","Advertising & Marketing","Aerospace & Defence","Agriculture & Farming",
+  "Architecture & Design","Automotive","Banking & Financial Services","Biotechnology",
+  "Broadcasting & Media","Business Consulting","Chemical & Pharmaceutical","Construction & Real Estate",
+  "Consumer Goods & Retail","Cybersecurity","Data & Analytics","Education & Training",
+  "Energy & Utilities","Engineering","Entertainment & Sports","Environmental Services",
+  "Fashion & Apparel","Food & Beverage","Government & Public Sector","Healthcare & Medical",
+  "Hospitality & Tourism","Human Resources","Information Technology","Insurance",
+  "Legal Services","Logistics & Supply Chain","Manufacturing","Market Research",
+  "Mining & Resources","Non-Profit & Charity","Printing & Publishing","Professional Services",
+  "Property & Real Estate","Public Relations","Recruitment & Staffing","Research & Development",
+  "Retail & E-Commerce","Software & SaaS","Telecommunications","Transport & Aviation",
+  "Venture Capital & Private Equity","Wholesale & Distribution",
+];
+
 const COUNTRIES = [
   "United Kingdom","United States","Afghanistan","Albania","Algeria","Andorra","Angola",
   "Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas",
@@ -41,12 +56,18 @@ export default function Step3Company({ company, industry, country, onChange }: P
   const [results, setResults] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showIndustryDropdown, setShowIndustryDropdown] = useState(false);
+  const [industrySearch, setIndustrySearch] = useState(industry);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const industryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setShowDropdown(false);
+      }
+      if (industryRef.current && !industryRef.current.contains(e.target as Node)) {
+        setShowIndustryDropdown(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -160,14 +181,38 @@ export default function Step3Company({ company, industry, country, onChange }: P
               </div>
             )}
           </div>
-          <div>
+          <div className="relative" ref={industryRef}>
             <label className={labelClass}>Industry</label>
             <input
-              value={industry}
-              onChange={(e) => onChange("industry", e.target.value)}
+              value={industrySearch}
+              onChange={(e) => {
+                setIndustrySearch(e.target.value);
+                onChange("industry", e.target.value);
+                setShowIndustryDropdown(true);
+              }}
+              onFocus={() => setShowIndustryDropdown(true)}
               placeholder="e.g. Technology"
               className={inputClass}
             />
+            {showIndustryDropdown && (
+              <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-white rounded-[12px] shadow-xl border border-gray-100 overflow-hidden max-h-56 overflow-y-auto">
+                <ul className="py-2">
+                  {INDUSTRIES.filter(i => i.toLowerCase().includes(industrySearch.toLowerCase())).map((ind) => (
+                    <li
+                      key={ind}
+                      className="px-4 py-2.5 hover:bg-gray-50 cursor-pointer text-sm font-medium text-gray-800 transition-colors"
+                      onClick={() => {
+                        setIndustrySearch(ind);
+                        onChange("industry", ind);
+                        setShowIndustryDropdown(false);
+                      }}
+                    >
+                      {ind}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <div>
             <label className={labelClass}>Headquarters country</label>
