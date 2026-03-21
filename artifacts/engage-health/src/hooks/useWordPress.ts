@@ -5,7 +5,7 @@ import { fetchWP } from '../lib/wordpress';
 
 const GET_BLOG_POSTS_QUERY = `
   query GetBlogPosts {
-    posts {
+    posts(first: 100) {
       nodes {
         id
         title

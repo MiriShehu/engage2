@@ -119,7 +119,7 @@ export function ServicesGrid() {
 
               <div className="mt-4 pt-4 border-t border-gray-100 px-4">
                 <Link
-                  href="/products"
+                  href="/employee-benefits"
                   className="inline-flex items-center gap-2 text-sm font-bold text-[#76186f] hover:gap-3 transition-all duration-200"
                 >
                   View all UK products
@@ -162,7 +162,7 @@ export function ServicesGrid() {
 
               <div className="mt-4 pt-4 border-t border-gray-100 px-4">
                 <Link
-                  href="/products"
+                  href="/international-benefits"
                   className="inline-flex items-center gap-2 text-sm font-bold text-[#003648] hover:gap-3 transition-all duration-200"
                 >
                   View all international products

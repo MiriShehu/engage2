@@ -7,7 +7,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 // Pages
 import Home from "@/pages/Home";
 import Solutions from "@/pages/Solutions";
-import Products from "@/pages/Products";
 import GetAQuote from "@/pages/GetAQuote";
 import Team from "@/pages/Team";
 import TeamMemberProfile from "@/pages/TeamMemberProfile";
@@ -48,7 +47,6 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/solutions" component={Solutions} />
-      <Route path="/products" component={Products} />
       <Route path="/get-a-quote" component={GetAQuote} />
       <Route path="/team" component={Team} />
       <Route path="/team/:slug" component={TeamMemberProfile} />

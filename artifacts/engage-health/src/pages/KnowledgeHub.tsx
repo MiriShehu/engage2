@@ -4,7 +4,7 @@ import { PageLayout } from "@/components/layout";
 import { ArrowRight, Clock, User, Search, BookOpen, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useBlogPosts } from "@/hooks/useWordPress";
 
-const POSTS_PER_PAGE = 9;
+const POSTS_PER_PAGE = 10;
 
 function getPageRange(current: number, total: number): (number | "…")[] {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
