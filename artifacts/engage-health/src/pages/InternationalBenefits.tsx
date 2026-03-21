@@ -196,7 +196,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         <ChevronDown className={cn("w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform duration-200", open && "rotate-180")} />
       </button>
       {open && (
-        <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed space-y-3 border-t border-border pt-4">
+        <div className="px-5 pb-5 text-base text-muted-foreground leading-relaxed space-y-3 border-t border-border pt-4">
           {a.split('\n\n').map((para, i) => <p key={i}>{para}</p>)}
         </div>
       )}
@@ -322,7 +322,7 @@ export default function InternationalBenefits() {
                 {["Legal compliance", "Administrative complexity", "Consistent benefits application", "Cost control"].map((item) => (
                   <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-[#f5f4fa]">
                     <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="text-sm font-medium text-secondary">{item}</span>
+                    <span className="text-base font-medium text-secondary">{item}</span>
                   </div>
                 ))}
               </div>
@@ -343,11 +343,11 @@ export default function InternationalBenefits() {
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3 p-3 rounded-xl hover:bg-[#f5f4fa] transition-colors">
                     <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-secondary leading-relaxed">{item}</span>
+                    <span className="text-base text-secondary leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 p-4 rounded-xl bg-secondary/5 border border-secondary/10 text-sm text-secondary/80">
+              <div className="mt-6 p-4 rounded-xl bg-secondary/5 border border-secondary/10 text-base text-secondary/80">
                 The next best course of action is to contact one of our team for a free no-obligation call.{" "}
                 <a href="tel:01273974419" className="text-primary font-medium hover:underline">Tel.: +44 (0)1273 974419</a>{" "}
                 or email{" "}
@@ -390,7 +390,7 @@ export default function InternationalBenefits() {
                         <p.icon className="w-5 h-5 text-secondary" />
                       </div>
                       <h3 className="font-bold text-secondary text-[0.9rem] leading-snug mb-1">{p.name}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{p.desc}</p>
                       <div className="mt-auto pt-4 flex items-center gap-1 text-xs font-semibold text-secondary opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
                         Learn more <ChevronRight className="w-3.5 h-3.5" />
                       </div>
@@ -399,7 +399,7 @@ export default function InternationalBenefits() {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 rounded-xl bg-secondary/5 border border-secondary/10 text-sm text-secondary/80">
+              <div className="mt-6 p-4 rounded-xl bg-secondary/5 border border-secondary/10 text-base text-secondary/80">
                 With over 23 years of combined experience in the International Employee Benefit arena, Engage Health Group is expertly placed to establish your unique needs. For FREE expert advice call{" "}
                 <a href="tel:01273974419" className="text-primary font-medium hover:underline">+44 (0)1273 974419</a>{" "}
                 or email{" "}
@@ -429,7 +429,7 @@ export default function InternationalBenefits() {
                 {whyBenefits.map((item) => (
                   <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-[#f5f4fa]">
                     <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
-                    <span className="text-sm font-medium text-secondary">{item}</span>
+                    <span className="text-base font-medium text-secondary">{item}</span>
                   </div>
                 ))}
               </div>
@@ -445,7 +445,7 @@ export default function InternationalBenefits() {
                       <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <span className="text-sm text-muted-foreground">— Eva Maguire, General Manager, Timber Trading</span>
+                  <span className="text-base text-muted-foreground">— Eva Maguire, General Manager, Timber Trading</span>
                 </div>
               </div>
             </section>
@@ -470,7 +470,7 @@ export default function InternationalBenefits() {
                     </div>
                     <div>
                       <h4 className="font-bold text-secondary text-sm">{step.title}</h4>
-                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+                      <p className="text-base text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -497,7 +497,7 @@ export default function InternationalBenefits() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-secondary text-sm mb-1">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{item.body}</p>
                       <Link href={item.href} className="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-secondary hover:text-primary transition-colors">
                         Learn more <ChevronRight className="w-3.5 h-3.5" />
                       </Link>
@@ -520,7 +520,7 @@ export default function InternationalBenefits() {
                 {vsItems.map((item, i) => (
                   <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-[#f5f4fa]">
                     <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-secondary leading-relaxed">{item}</span>
+                    <span className="text-base text-secondary leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
@@ -546,7 +546,7 @@ export default function InternationalBenefits() {
                     </div>
                     <div>
                       <h4 className="font-bold text-secondary text-sm mb-1">{tip.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{tip.body}</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{tip.body}</p>
                     </div>
                   </div>
                 ))}
