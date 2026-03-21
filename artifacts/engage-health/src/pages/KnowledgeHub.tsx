@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
+import { AnimatePresence, motion } from "framer-motion";
 import { PageLayout } from "@/components/layout";
-import { ArrowRight, Clock, User, Search, BookOpen, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Clock, User, Search, BookOpen, Loader2, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useBlogPosts } from "@/hooks/useWordPress";
 
 const POSTS_PER_PAGE = 10;
@@ -16,6 +17,154 @@ function getPageRange(current: number, total: number): (number | "…")[] {
   return pages;
 }
 
+// ── Featured Slider ──────────────────────────────────────────────────────────
+
+interface Post {
+  title: string; excerpt: string; category: string; mins: number;
+  date: string; author: string; img: string; href: string; featured: boolean;
+}
+
+function FeaturedSlider({ posts }: { posts: Post[] }) {
+  const [idx, setIdx]       = useState(0);
+  const [dir, setDir]       = useState(1);
+  const [paused, setPaused] = useState(false);
+  const total = posts.length;
+
+  const go = (next: number, direction: number) => {
+    setDir(direction);
+    setIdx((next + total) % total);
+  };
+
+  useEffect(() => {
+    if (paused || total <= 1) return;
+    const t = setInterval(() => go(idx + 1, 1), 5000);
+    return () => clearInterval(t);
+  }, [idx, paused, total]);
+
+  const variants = {
+    enter: (d: number) => ({ x: d * 60, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit:  (d: number) => ({ x: d * -60, opacity: 0 }),
+  };
+
+  const post = posts[idx];
+
+  return (
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "linear-gradient(135deg,#00263a 0%,#003648 60%,#1a0a40 100%)" }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* dot grid */}
+      <div className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        style={{ backgroundImage: "radial-gradient(circle,white 1px,transparent 1px)", backgroundSize: "28px 28px" }} />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
+        style={{ background: "rgba(118,24,111,0.18)" }} />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}>
+              <Star className="w-4 h-4 text-white fill-white" />
+            </div>
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/50 leading-none mb-0.5">Knowledge Hub</p>
+              <h2 className="text-lg font-black text-white leading-none">Featured News</h2>
+            </div>
+          </div>
+          {/* Arrow controls */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-white/40 font-semibold mr-1">{idx + 1} / {total}</span>
+            <button onClick={() => go(idx - 1, -1)}
+              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-all">
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button onClick={() => go(idx + 1, 1)}
+              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-all">
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Slide */}
+        <div className="relative overflow-hidden rounded-2xl min-h-[280px] md:min-h-[320px]">
+          <AnimatePresence mode="wait" custom={dir}>
+            <motion.div
+              key={idx}
+              custom={dir}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="grid md:grid-cols-[1.2fr_1fr] gap-0 bg-white/[0.05] border border-white/10 rounded-2xl overflow-hidden"
+            >
+              {/* Image */}
+              <div className="relative overflow-hidden aspect-[16/9] md:aspect-auto md:min-h-[280px]">
+                <img src={post.img} alt={post.title}
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/30 md:block hidden" />
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold text-white backdrop-blur-sm"
+                  style={{ background: "rgba(118,24,111,0.85)" }}>
+                  {post.category}
+                </span>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col justify-between p-7 md:p-10">
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 flex-shrink-0" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/50">Featured</span>
+                  </div>
+                  <Link href={post.href}>
+                    <h3 className="text-xl md:text-2xl font-black text-white hover:text-white/80 leading-snug mb-4 transition-colors"
+                      style={{ letterSpacing: "-0.01em" }}>
+                      {post.title}
+                    </h3>
+                  </Link>
+                  <p className="text-white/55 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-4 text-xs text-white/40 mt-5 mb-6">
+                    <span className="flex items-center gap-1.5"><User className="w-3 h-3" />{post.author}</span>
+                    <span>{post.date}</span>
+                    <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{post.mins} min read</span>
+                  </div>
+                  <Link href={post.href}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-[#003648] bg-white hover:bg-white/90 transition-colors group">
+                    Read article <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Dots */}
+        {total > 1 && (
+          <div className="flex justify-center gap-2 mt-6">
+            {posts.map((_, i) => (
+              <button key={i} onClick={() => go(i, i > idx ? 1 : -1)}
+                className="transition-all duration-300 rounded-full"
+                style={{
+                  width: i === idx ? 24 : 8, height: 8,
+                  background: i === idx ? "#76186f" : "rgba(255,255,255,0.25)",
+                }} />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ── Page ─────────────────────────────────────────────────────────────────────
+
 export default function KnowledgeHub() {
   const [active, setActive] = useState("All");
   const [query,  setQuery]  = useState("");
@@ -23,36 +172,30 @@ export default function KnowledgeHub() {
   const gridRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, isError } = useBlogPosts();
 
-  // Parse WP posts into the same format as our static posts
-  const wpPosts = data?.posts?.nodes?.map((node: any) => ({
-    title: node.title,
-    excerpt: (node.excerpt || "").replace(/(<([^>]+)>)/gi, ""),
-    category: "Insights",
-    mins: 5,
-    date: new Date(node.date).toLocaleDateString("en-GB", { day: 'numeric', month: 'short', year: 'numeric' }),
-    author: "Editor",
-    img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-    href: `/knowledge-hub/${node.slug}`,
-    featured: false
+  const wpPosts: Post[] = data?.posts?.nodes?.map((node: any) => ({
+    title:    node.title,
+    excerpt:  (node.excerpt || "").replace(/(<([^>]+)>)/gi, ""),
+    category: node.categories?.nodes?.[0]?.name || "Insights",
+    mins:     5,
+    date:     new Date(node.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }),
+    author:   "Editor",
+    img:      node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+    href:     `/knowledge-hub/${node.slug}`,
+    featured: !!node.isSticky,
   })) || [];
 
-  // Combine WP posts with static mock posts for now. If WP fails, it uses mock posts.
-  const combinedPosts = wpPosts;
+  const featuredPosts = wpPosts.filter(p => p.featured).slice(0, 5);
 
-  // We can dynamically extract categories from the imported WP posts
-  // Currently mock WP data uses a hardcoded "Insights" category
-  const categories = ["All", ...Array.from(new Set(wpPosts.map((p: any) => p.category)))];
+  const categories = ["All", ...Array.from(new Set(wpPosts.map(p => p.category)))];
 
-  const filtered = combinedPosts.filter((p: any) => {
-    const matchCat  = active === "All" || p.category === active;
-    const matchQ    = !query || p.title.toLowerCase().includes(query.toLowerCase());
+  const filtered = wpPosts.filter(p => {
+    const matchCat = active === "All" || p.category === active;
+    const matchQ   = !query || p.title.toLowerCase().includes(query.toLowerCase());
     return matchCat && matchQ;
   });
 
-  const featured = filtered.find((p: any) => p.featured);
-  const rest      = filtered.filter((p: any) => !p.featured);
+  const rest = filtered.filter(p => !p.featured);
 
-  // Reset to page 1 whenever filter or search changes
   useEffect(() => { setPage(1); }, [active, query]);
 
   const totalPages = Math.ceil(rest.length / POSTS_PER_PAGE);
@@ -86,12 +229,11 @@ export default function KnowledgeHub() {
 
         {/* ── Hero ── */}
         <section className="relative overflow-hidden py-20"
-          style={{ background: "linear-gradient(135deg, #00263a 0%, #003648 55%, #1a0a40 100%)" }}>
+          style={{ background: "linear-gradient(135deg,#00263a 0%,#003648 55%,#1a0a40 100%)" }}>
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
-            style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+            style={{ backgroundImage: "radial-gradient(circle,white 1px,transparent 1px)", backgroundSize: "28px 28px" }} />
           <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none"
             style={{ background: "rgba(118,24,111,0.15)" }} />
-
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-5" style={{ letterSpacing: "-0.02em" }}>
               Knowledge Hub Articles
@@ -99,20 +241,17 @@ export default function KnowledgeHub() {
             <p className="text-white/50 text-lg max-w-xl mx-auto mb-10 italic" style={{ fontWeight: 300 }}>
               "The only thing to do with good advice is to pass it on" – Oscar Wilde
             </p>
-
-            {/* Search */}
             <div className="relative max-w-md mx-auto">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Search articles…"
-                value={query}
+              <input type="text" placeholder="Search articles…" value={query}
                 onChange={e => setQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-white text-slate-800 text-sm outline-none shadow-lg placeholder-slate-400 focus:ring-2 focus:ring-green-400/40"
-              />
+                className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-white text-slate-800 text-sm outline-none shadow-lg placeholder-slate-400 focus:ring-2 focus:ring-green-400/40" />
             </div>
           </div>
         </section>
+
+        {/* ── Featured slider (only if there are featured posts) ── */}
+        {featuredPosts.length > 0 && <FeaturedSlider posts={featuredPosts} />}
 
         {/* ── Category filter ── */}
         <div className="sticky top-[63px] z-30 bg-white border-b border-slate-100 shadow-sm">
@@ -127,45 +266,6 @@ export default function KnowledgeHub() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-
-          {/* ── Featured post ── */}
-          {featured && (
-            <div className="mb-12">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Featured</p>
-              <div className="kh-card bg-white rounded-xl overflow-hidden border border-slate-100 grid md:grid-cols-[1.4fr_1fr]">
-                <div className="overflow-hidden aspect-[16/9] md:aspect-auto">
-                  <Link href={featured.href ?? "#"} className="block w-full h-full">
-                    <img src={featured.img} alt={featured.title}
-                      className="kh-img w-full h-full object-cover" />
-                  </Link>
-                </div>
-                <div className="p-8 flex flex-col justify-between">
-                  <div>
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white mb-4 bg-[#003648]">
-                      {featured.category}
-                    </span>
-                    <Link href={featured.href ?? "#"}>
-                      <h2 className="text-2xl font-black text-[#003648] hover:text-[#76186f] transition-colors leading-tight mb-4" style={{ letterSpacing: "-0.01em" }}>
-                        {featured.title}
-                      </h2>
-                    </Link>
-                    <p className="text-slate-500 text-sm leading-relaxed mb-6">{featured.excerpt}</p>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-4 text-xs text-slate-400 mb-5">
-                      <span className="flex items-center gap-1.5"><User className="w-3 h-3" />{featured.author}</span>
-                      <span>{featured.date}</span>
-                      <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{featured.mins} min read</span>
-                    </div>
-                    <Link href={featured.href ?? "#"}
-                      className="btn-cta inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-bold group">
-                      Read article <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* ── Grid ── */}
           {rest.length > 0 && (
@@ -182,34 +282,31 @@ export default function KnowledgeHub() {
                 )}
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {pagePosts.map((post: any, i: number) => (
+                {pagePosts.map((post, i) => (
                   <article key={i}
                     className="kh-card bg-white rounded-xl overflow-hidden border border-slate-100 flex flex-col cursor-default">
                     <div className="overflow-hidden aspect-[16/9] relative">
-                      <Link href={post.href ?? "#"} className="block w-full h-full">
-                        <img src={post.img} alt={post.title}
-                          className="kh-img w-full h-full object-cover" />
+                      <Link href={post.href} className="block w-full h-full">
+                        <img src={post.img} alt={post.title} className="kh-img w-full h-full object-cover" />
                       </Link>
                       <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white bg-[#003648]">
                         {post.category}
                       </span>
                     </div>
-
                     <div className="p-5 flex flex-col flex-1">
-                      <Link href={post.href ?? "#"} className="flex-1">
+                      <Link href={post.href} className="flex-1">
                         <h3 className="font-black text-[#003648] hover:text-[#76186f] transition-colors text-base leading-snug mb-3 flex-1"
                           style={{ letterSpacing: "-0.01em" }}>
                           {post.title}
                         </h3>
                       </Link>
                       <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
-
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
                         <div className="flex items-center gap-3 text-xs text-slate-400">
                           <span>{post.date}</span>
                           <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{post.mins} min</span>
                         </div>
-                        <Link href={post.href ?? "#"}
+                        <Link href={post.href}
                           className="flex items-center gap-1 text-xs font-bold text-[#003648] hover:text-[#76186f] transition-colors group">
                           Read <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                         </Link>
@@ -222,42 +319,27 @@ export default function KnowledgeHub() {
               {/* ── Pagination ── */}
               {totalPages > 1 && (
                 <div className="mt-10 flex items-center justify-center gap-1.5 flex-wrap">
-                  {/* Prev */}
-                  <button
-                    onClick={() => goToPage(page - 1)}
-                    disabled={page === 1}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                  >
+                  <button onClick={() => goToPage(page - 1)} disabled={page === 1}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
                     <ChevronLeft className="w-3.5 h-3.5" /> Prev
                   </button>
-
-                  {/* Page numbers */}
                   {getPageRange(page, totalPages).map((p, i) =>
                     p === "…" ? (
-                      <span key={`ellipsis-${i}`} className="px-2 py-2 text-xs text-slate-400 select-none">…</span>
+                      <span key={`e-${i}`} className="px-2 py-2 text-xs text-slate-400 select-none">…</span>
                     ) : (
-                      <button
-                        key={p}
-                        onClick={() => goToPage(p as number)}
+                      <button key={p} onClick={() => goToPage(p as number)}
                         className="w-9 h-9 rounded-lg text-xs font-bold border transition-colors"
                         style={page === p
                           ? { background: "#003648", color: "white", borderColor: "#003648" }
-                          : { background: "white", color: "#475569", borderColor: "#e2e8f0" }
-                        }
+                          : { background: "white", color: "#475569", borderColor: "#e2e8f0" }}
                         onMouseEnter={e => { if (page !== p) (e.currentTarget as HTMLButtonElement).style.background = "#f1f5f9"; }}
-                        onMouseLeave={e => { if (page !== p) (e.currentTarget as HTMLButtonElement).style.background = "white"; }}
-                      >
+                        onMouseLeave={e => { if (page !== p) (e.currentTarget as HTMLButtonElement).style.background = "white"; }}>
                         {p}
                       </button>
                     )
                   )}
-
-                  {/* Next */}
-                  <button
-                    onClick={() => goToPage(page + 1)}
-                    disabled={page === totalPages}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                  >
+                  <button onClick={() => goToPage(page + 1)} disabled={page === totalPages}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
                     Next <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
