@@ -234,25 +234,13 @@ export default function InternationalBenefits() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white/80 text-xs font-bold tracking-wider uppercase border border-white/15 mb-6">
               Engage International Employee Benefits
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-              Nurture & protect your<br />
-              <span style={{ color: "#b55db0" }}>international workforce</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+              International<br />
+              <span style={{ color: "#b55db0" }}>Employee Benefits</span>
             </h1>
-            <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mb-2">
-              Our expert consultants are ready to help your business:
+            <p className="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl mb-8">
+              Nurture & protect your international workforce
             </p>
-            <ul className="mb-8 space-y-2">
-              {[
-                "Navigate the International Employee Benefits market",
-                "Simplify & streamline all policies in one place",
-                "Bolster the health, happiness & wellbeing of your global team",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-white/70 text-base">
-                  <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/get-a-quote"
@@ -313,6 +301,21 @@ export default function InternationalBenefits() {
               <SectionLabel>Our service</SectionLabel>
               <SectionHeading>How should businesses source international benefits?</SectionHeading>
               <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
+                <p>Our expert consultants are ready to help your business:</p>
+              </div>
+              <div className="mt-3 flex flex-col gap-2 mb-6">
+                {[
+                  "Navigate the International Employee Benefits market",
+                  "Simplify & streamline all policies in one place",
+                  "Bolster the health, happiness & wellbeing of your global team",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-[#f5f4fa]">
+                    <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <span className="text-base font-medium text-secondary">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Increasing numbers of businesses are employing talent from around the world. Some companies employ a remote workforce scattered across different countries, while others have offices in different global locations. Either way, delivering and managing employee benefits is going to be one of the biggest stressors for HR teams.
                 </p>
