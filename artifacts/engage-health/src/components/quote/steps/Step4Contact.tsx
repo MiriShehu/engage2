@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { DialCodePicker } from "@/components/ui/DialCodePicker";
 
@@ -63,12 +64,33 @@ function getPhoneMeta(dialCode: string): [string, number, number] {
   return PHONE_META[stripped] ?? ["Phone number", 6, 15];
 }
 
+function validateName(value: string): string | null {
+  if (!value.trim()) return "Required";
+  if (value.trim().length < 3) return "Must be at least 3 characters";
+  if (!/^[a-zA-Z\s'\-]+$/.test(value.trim())) return "Only letters, spaces, hyphens and apostrophes allowed";
+  return null;
+}
+
+function validateEmail(value: string): string | null {
+  if (!value.trim()) return "Required";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) return "Please enter a valid email address";
+  return null;
+}
+
 function validatePhone(phone: string, dialCode: string): string | null {
   const digits = phone.replace(/\D/g, "");
-  if (!digits) return null;
-  const [, min, max] = getPhoneMeta(dialCode);
-  if (digits.length < min) return `Too short — expected at least ${min} digits`;
-  if (digits.length > max) return `Too long — expected at most ${max} digits`;
+  if (!digits) return "Required";
+  const stripped = "+" + dialCode.replace(/[^0-9]/g, "");
+  // UK-specific format validation
+  if (stripped === "+44") {
+    if (digits.length !== 10 && digits.length !== 11) return "UK numbers must be 10–11 digits";
+    const normalized = digits.length === 11 ? digits : "0" + digits;
+    if (!/^0(1|2|3|7|8)/.test(normalized)) return "Enter a valid UK phone number";
+  } else {
+    const [, min, max] = getPhoneMeta(dialCode);
+    if (digits.length < min) return `Too short — expected at least ${min} digits`;
+    if (digits.length > max) return `Too long — expected at most ${max} digits`;
+  }
   return null;
 }
 
@@ -88,12 +110,22 @@ export default function Step4Contact({
   firstName, lastName, email, phone, dialCode, gdprConsent,
   submitting, onChange, onSubmit,
 }: Props) {
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const touch = (field: string) => setTouched((t) => ({ ...t, [field]: true }));
+
+  const firstNameError = validateName(firstName);
+  const lastNameError = validateName(lastName);
+  const emailError = validateEmail(email);
   const phoneError = validatePhone(phone, dialCode);
-  const phoneValid = phone.trim() && !phoneError;
-  const valid = firstName.trim() && lastName.trim() && email.trim() && phoneValid && gdprConsent;
+
+  const valid = !firstNameError && !lastNameError && !emailError && !phoneError && gdprConsent;
 
   const inputClass = "w-full px-5 py-3.5 rounded-[12px] border-[1.5px] border-border bg-muted/30 text-[15px] font-medium text-foreground outline-none transition-all focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(118,24,111,0.08)] placeholder:text-muted-foreground/60";
+  const inputErrorClass = "w-full px-5 py-3.5 rounded-[12px] border-[1.5px] border-red-400 bg-muted/30 text-[15px] font-medium text-foreground outline-none transition-all focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.1)] placeholder:text-muted-foreground/60";
   const labelClass = "text-[11px] font-extrabold uppercase tracking-[0.09em] text-muted-foreground mb-2 block";
+
+  const fieldClass = (error: string | null, field: string) =>
+    touched[field] && error ? inputErrorClass : inputClass;
 
   const [placeholder] = getPhoneMeta(dialCode);
 
@@ -121,12 +153,20 @@ export default function Step4Contact({
           <div>
             <label className={labelClass}>First name</label>
             <input value={firstName} onChange={(e) => onChange("firstName", e.target.value)}
-              placeholder="Jane" className={inputClass} />
+              onBlur={() => touch("firstName")}
+              placeholder="Jane" className={fieldClass(firstNameError, "firstName")} />
+            {touched.firstName && firstNameError && (
+              <p className="text-[12px] text-red-500 font-medium mt-1.5">{firstNameError}</p>
+            )}
           </div>
           <div>
             <label className={labelClass}>Last name</label>
             <input value={lastName} onChange={(e) => onChange("lastName", e.target.value)}
-              placeholder="Smith" className={inputClass} />
+              onBlur={() => touch("lastName")}
+              placeholder="Smith" className={fieldClass(lastNameError, "lastName")} />
+            {touched.lastName && lastNameError && (
+              <p className="text-[12px] text-red-500 font-medium mt-1.5">{lastNameError}</p>
+            )}
           </div>
         </div>
 
@@ -134,7 +174,11 @@ export default function Step4Contact({
         <div className="mb-4">
           <label className={labelClass}>Email address</label>
           <input type="email" value={email} onChange={(e) => onChange("email", e.target.value)}
-            placeholder="jane@company.com" className={inputClass} />
+            onBlur={() => touch("email")}
+            placeholder="jane@company.com" className={fieldClass(emailError, "email")} />
+          {touched.email && emailError && (
+            <p className="text-[12px] text-red-500 font-medium mt-1.5">{emailError}</p>
+          )}
         </div>
 
         {/* Phone — no overflow-hidden so dropdown isn't clipped */}
@@ -142,18 +186,19 @@ export default function Step4Contact({
           <label className={labelClass}>Phone number</label>
           <div className={cn(
             "flex rounded-[12px] border-[1.5px] bg-muted/30 transition-all",
-            phoneError && phone ? "border-red-400 focus-within:border-red-400 focus-within:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]" : "border-border focus-within:border-primary focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(118,24,111,0.08)]"
+            touched.phone && phoneError ? "border-red-400 focus-within:border-red-400 focus-within:shadow-[0_0_0_3px_rgba(239,68,68,0.1)]" : "border-border focus-within:border-primary focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(118,24,111,0.08)]"
           )}>
             <DialCodePicker value={dialCode} onChange={(v) => { onChange("dialCode", v); onChange("phone", ""); }} className="border-r border-border" />
             <input
               type="tel"
               value={phone}
               onChange={(e) => onChange("phone", e.target.value)}
+              onBlur={() => touch("phone")}
               placeholder={placeholder}
               className="flex-1 px-5 py-3.5 text-[15px] font-medium text-foreground bg-transparent outline-none placeholder:text-muted-foreground/60 min-w-0"
             />
           </div>
-          {phoneError && phone && (
+          {touched.phone && phoneError && (
             <p className="text-[12px] text-red-500 font-medium mt-1.5">{phoneError}</p>
           )}
         </div>
@@ -187,13 +232,16 @@ export default function Step4Contact({
         {/* Submit CTA */}
         <button
           type="button"
-          onClick={onSubmit}
-          disabled={!valid || submitting}
+          onClick={() => {
+            touch("firstName"); touch("lastName"); touch("email"); touch("phone");
+            if (valid) onSubmit();
+          }}
+          disabled={submitting}
           className={cn(
             "w-full py-4 rounded-[12px] text-[16px] font-extrabold text-white flex items-center justify-center gap-2 transition-all",
             valid && !submitting
               ? "opacity-100 hover:opacity-90 hover:-translate-y-px"
-              : "opacity-50 cursor-not-allowed"
+              : "opacity-60 cursor-not-allowed"
           )}
           style={{ background: "linear-gradient(135deg,#76186f,#5a1254)", boxShadow: "0 4px 16px rgba(118,24,111,0.28)" }}
         >
