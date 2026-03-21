@@ -46,6 +46,7 @@ const COUNTRIES = [
 ];
 
 interface Props {
+  coverType: string;
   company: string;
   industry: string;
   country: string;
@@ -55,7 +56,8 @@ interface Props {
   companySic?: string;
 }
 
-export default function Step3Company({ company, industry, country, onChange }: Props) {
+export default function Step3Company({ coverType, company, industry, country, onChange }: Props) {
+  const isUK = coverType === "UK Company";
   const [results, setResults] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -78,7 +80,7 @@ export default function Step3Company({ company, industry, country, onChange }: P
   }, []);
 
   useEffect(() => {
-    if (country !== "United Kingdom" || !showDropdown || company.length < 2) {
+    if (!isUK || !showDropdown || company.length < 2) {
       setResults([]);
       return;
     }
@@ -102,7 +104,7 @@ export default function Step3Company({ company, industry, country, onChange }: P
     }, 400);
 
     return () => clearTimeout(timer);
-  }, [company, country, showDropdown]);
+  }, [company, isUK, showDropdown]);
 
   const handleSelect = (comp: any) => {
     onChange("company", comp.title);
@@ -135,7 +137,10 @@ export default function Step3Company({ company, industry, country, onChange }: P
 
         <div className="flex flex-col gap-5">
           <div className="relative" ref={dropdownRef}>
-            <label className={labelClass}>Company name <span className="text-primary normal-case font-normal">*</span></label>
+            <label className={labelClass}>
+              Company name <span className="text-primary normal-case font-normal">*</span>
+              {isUK && <span className="ml-2 normal-case font-normal text-muted-foreground/70">— powered by Companies House</span>}
+            </label>
             <div className="relative">
               <input
                 value={company}
@@ -144,19 +149,19 @@ export default function Step3Company({ company, industry, country, onChange }: P
                   setShowDropdown(true);
                 }}
                 onFocus={() => setShowDropdown(true)}
-                placeholder="Acme Ltd"
+                placeholder={isUK ? "Search Companies House…" : "Enter company name"}
                 className={inputClass}
               />
-              {country === "United Kingdom" && isLoading && (
+              {isUK && isLoading && (
                  <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground animate-spin" />
               )}
-              {country === "United Kingdom" && !isLoading && !company && (
+              {isUK && !isLoading && !company && (
                  <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/50" />
               )}
             </div>
 
             {/* Dropdown */}
-            {country === "United Kingdom" && showDropdown && (company.length >= 2) && (
+            {isUK && showDropdown && (company.length >= 2) && (
               <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-white rounded-[12px] shadow-xl border border-gray-100 overflow-hidden max-h-64 overflow-y-auto">
                 {isLoading && results.length === 0 ? (
                   <div className="p-4 text-center text-sm font-medium text-gray-500">Searching Companies House...</div>

@@ -92,6 +92,7 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
             )}
             {step === 3 && (
               <Step3Company
+                coverType={formData.coverTypes[0] ?? ""}
                 company={formData.company}
                 companyAddress={formData.companyAddress}
                 companySic={formData.companySic}
