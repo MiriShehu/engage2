@@ -29,6 +29,7 @@ const GET_BLOG_POST_BY_SLUG_QUERY = `
       id
       title
       date
+      modified
       content
       featuredImage {
         node {

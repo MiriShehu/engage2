@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import { PageLayout } from '@/components/layout';
 import {
   Heart, Bookmark, Share2, ArrowRight,
-  Linkedin, Facebook, Twitter, ChevronRight, List,
+  Linkedin, Facebook, Twitter, ChevronRight, List, Clock, RefreshCw,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -263,6 +263,44 @@ function processContent(html: string): { html: string; items: TocItem[] } {
   return { html: processed, items };
 }
 
+// ── Helpers ─────────────────────────────────────────────────────────────────
+
+function fmtDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function fmtTime(iso: string) {
+  return new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+}
+
+/** Injects Article JSON-LD into <head> via a <script> tag */
+function ArticleSchema({ title, datePublished, dateModified, authorName, imageUrl, url }: {
+  title: string; datePublished: string; dateModified: string;
+  authorName: string; imageUrl?: string; url: string;
+}) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    datePublished: new Date(datePublished).toISOString(),
+    dateModified: new Date(dateModified).toISOString(),
+    author: { '@type': 'Person', name: authorName },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Engage Health Group',
+      logo: { '@type': 'ImageObject', url: `${url.split('/').slice(0, 3).join('/')}/logo.png` },
+    },
+    ...(imageUrl ? { image: imageUrl } : {}),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 // ── Page ────────────────────────────────────────────────────────────────────
 
 const tags = ['#insurtech', '#healthtech', '#grouphealth', '#ai', '#employeebenefits'];
@@ -322,9 +360,21 @@ export default function BlogPost({ slug }: { slug: string }) {
   }
 
   const post = data.post;
+  const authorName = post.author?.node?.name || 'Engage Health Group';
+  const imageUrl   = post.featuredImage?.node?.sourceUrl;
+  const pageUrl    = typeof window !== 'undefined' ? window.location.href : '';
+  const modifiedDiffers = post.modified && post.modified !== post.date;
 
   return (
     <>
+      <ArticleSchema
+        title={post.title}
+        datePublished={post.date}
+        dateModified={post.modified || post.date}
+        authorName={authorName}
+        imageUrl={imageUrl}
+        url={pageUrl}
+      />
       <ReadingProgress />
 
       <PageLayout className="bg-[#f0f0f0]">
@@ -357,15 +407,24 @@ export default function BlogPost({ slug }: { slug: string }) {
               <div className="p-4 md:p-8">
                 <h1 className="text-2xl md:text-3xl font-black text-secondary leading-tight mb-5" dangerouslySetInnerHTML={{ __html: post.title }} />
 
-                <div className="flex items-center gap-3 mb-7 pb-7 border-b border-border">
+                <div className="flex items-start gap-3 mb-7 pb-7 border-b border-border flex-wrap">
                   {post.author?.node?.avatar?.url && (
-                    <img src={post.author.node.avatar.url} alt={post.author.node.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
+                    <img src={post.author.node.avatar.url} alt={post.author.node.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
                   )}
-                  <div>
-                    <p className="text-sm font-semibold text-secondary leading-none">{post.author?.node?.name || 'Author'}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                      {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    </p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-secondary leading-none mb-2">{authorName}</p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1">
+                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Clock className="w-3 h-3 flex-shrink-0" />
+                        <span>Published <time dateTime={new Date(post.date).toISOString()}>{fmtDate(post.date)} at {fmtTime(post.date)}</time></span>
+                      </span>
+                      {modifiedDiffers && (
+                        <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                          <RefreshCw className="w-3 h-3 flex-shrink-0" />
+                          <span>Updated <time dateTime={new Date(post.modified).toISOString()}>{fmtDate(post.modified)} at {fmtTime(post.modified)}</time></span>
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -402,9 +461,21 @@ const staticTocItems: TocItem[] = [
   { id: 'future-of-insurance', label: 'Is This the Future of Health Insurance?' },
 ];
 
+const STATIC_DATE_PUBLISHED = '2025-05-01T09:00:00';
+const STATIC_DATE_MODIFIED  = '2025-05-01T09:00:00';
+
 function BlogPostStatic() {
+  const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <>
+      <ArticleSchema
+        title="Peering into the future of healthcare — Highlights from Insurtech Insights 2025"
+        datePublished={STATIC_DATE_PUBLISHED}
+        dateModified={STATIC_DATE_MODIFIED}
+        authorName="Mel Dixon"
+        imageUrl={heroBanner}
+        url={pageUrl}
+      />
       <ReadingProgress />
 
       <PageLayout className="bg-[#f0f0f0]">
@@ -456,14 +527,17 @@ function BlogPostStatic() {
                 </h1>
 
                 {/* Author row */}
-                <div className="flex items-center gap-3 mb-7 pb-7 border-b border-border">
+                <div className="flex items-start gap-3 mb-7 pb-7 border-b border-border flex-wrap">
                   <img src="https://secure.gravatar.com/avatar/8675797f4efbab66341170349ac946ca849ecb48e9a42a6d2dafbf055dc59e23?s=300&d=mm&r=g"
-                    alt="Mel Dixon" className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-secondary leading-none">Mel Dixon</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                      1 May 2025 &nbsp;·&nbsp; 6 min read
-                    </p>
+                    alt="Mel Dixon" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-secondary leading-none mb-2">Mel Dixon</p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1">
+                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Clock className="w-3 h-3 flex-shrink-0" />
+                        <span>Published <time dateTime={new Date(STATIC_DATE_PUBLISHED).toISOString()}>{fmtDate(STATIC_DATE_PUBLISHED)} at {fmtTime(STATIC_DATE_PUBLISHED)}</time></span>
+                      </span>
+                    </div>
                   </div>
                 </div>
 
