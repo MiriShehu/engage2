@@ -338,7 +338,7 @@ export default function EmployeeBenefits() {
                         <span className="block font-normal text-muted-foreground text-xs mt-0.5">{p.subName}</span>
                       )}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                    <p className="text-base text-muted-foreground leading-relaxed">{p.desc}</p>
                     {/* Learn more link */}
                     <div className="mt-auto pt-4 flex items-center gap-1 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
                       Learn more <ChevronRight className="w-3.5 h-3.5" />
@@ -347,7 +347,7 @@ export default function EmployeeBenefits() {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 rounded-xl bg-secondary/5 border border-secondary/10 text-sm text-secondary/80">
+              <div className="mt-6 p-4 rounded-xl bg-secondary/5 border border-secondary/10 text-base text-secondary/80">
                 For FREE access to impartial advice and personalised quotes, email{" "}
                 <a href="mailto:enquiries@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">
                   enquiries@engagehealthgroup.co.uk
@@ -379,7 +379,7 @@ export default function EmployeeBenefits() {
                 {whyBenefits.map((item) => (
                   <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-[#f5f4fa]">
                     <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-sm font-medium text-secondary">{item}</span>
+                    <span className="text-base font-medium text-secondary">{item}</span>
                   </div>
                 ))}
               </div>
@@ -424,7 +424,7 @@ export default function EmployeeBenefits() {
                     </div>
                     <div>
                       <h4 className="font-bold text-secondary text-sm">{step.title}</h4>
-                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+                      <p className="text-base text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -470,7 +470,7 @@ export default function EmployeeBenefits() {
                     {/* Text */}
                     <div className="p-5">
                       <h4 className="font-bold text-secondary mb-2 text-[0.95rem]">{tip.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{tip.body}</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{tip.body}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -499,7 +499,7 @@ export default function EmployeeBenefits() {
                     <div className="w-2 flex-shrink-0 rounded-full bg-primary/30 self-stretch" />
                     <div>
                       <h4 className="font-bold text-secondary text-sm mb-1">{item.name}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{item.text}</p>
                     </div>
                   </div>
                 ))}
