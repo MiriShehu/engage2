@@ -308,7 +308,57 @@ export default function InternationalBenefits() {
           {/* ── MAIN CONTENT ───────────────────────────────────────────── */}
           <main className="flex-1 min-w-0">
 
-            {/* 1 — Products */}
+            {/* 1 — How should businesses source international benefits? */}
+            <section>
+              <SectionLabel>Our service</SectionLabel>
+              <SectionHeading>How should businesses source international benefits?</SectionHeading>
+              <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Increasing numbers of businesses are employing talent from around the world. Some companies employ a remote workforce scattered across different countries, while others have offices in different global locations. Either way, delivering and managing employee benefits is going to be one of the biggest stressors for HR teams.
+                </p>
+                <p>Key challenges for HR include:</p>
+              </div>
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {["Legal compliance", "Administrative complexity", "Consistent benefits application", "Cost control"].map((item) => (
+                  <div key={item} className="flex items-center gap-3 p-3 rounded-xl bg-[#f5f4fa]">
+                    <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <span className="text-sm font-medium text-secondary">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  It's important that HR teams can source expert advice from people who are working in their best interest. An international employee benefits consultant, like Engage Health Group, specialises in helping companies source, implement and manage benefits policies in different countries. The Engage International team is led by Ian Abbott, formerly of Bupa Global, and Penny Pemberton, formerly of Aon.
+                </p>
+                <p>Our expert team will:</p>
+              </div>
+              <div className="mt-4 flex flex-col gap-2">
+                {[
+                  "Help you draw up an employee benefits scheme or review any current policies in place",
+                  "Source tailored policies designed for your business",
+                  "Gather a wide variety of quotes from across the market",
+                  "Ensure legal compliance across different jurisdictions",
+                  "Help implement policies across the business",
+                  "Manage policies on your behalf and review them when up for renewal",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3 p-3 rounded-xl hover:bg-[#f5f4fa] transition-colors">
+                    <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-secondary leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 p-4 rounded-xl bg-secondary/5 border border-secondary/10 text-sm text-secondary/80">
+                The next best course of action is to contact one of our team for a free no-obligation call.{" "}
+                <a href="tel:01273974419" className="text-primary font-medium hover:underline">Tel.: +44 (0)1273 974419</a>{" "}
+                or email{" "}
+                <a href="mailto:info@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">info@engagehealthgroup.co.uk</a>{" "}
+                to find out how we can help.
+              </div>
+            </section>
+
+            <Divider />
+
+            {/* 2 — Products */}
             <section>
               <SectionLabel>Our international services</SectionLabel>
               <SectionHeading>What are International Employee Benefits?</SectionHeading>
