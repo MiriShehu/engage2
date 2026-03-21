@@ -100,27 +100,49 @@ const tips = [
   {
     n: "1",
     title: "Blend your approach",
-    body: "Placing all your budget in one area can leave your benefit lopsided and employees disappointed unless you are just looking for protection in one area by design. For example, an insurance-heavy approach (featuring International Health Insurance, International Business Life Insurance etc.), whilst excellent to provide, can leave staff feeling disengaged. This is because they are only realised when staff are unwell or the worst happens. Alternatively, if you go heavy on a fun/wellness only approach, it is proven to make staff feel more engaged as the benefits can be utilised more frequently. However, they aren't much use if someone needs physiotherapy or an urgent diagnostic scan. Nor does it provide much protection for your business. However, by blending the two approaches you can deliver the best of both worlds.",
+    body: [
+      "Placing all your budget in one area can leave your benefit lopsided and employees disappointed unless you are just looking for protection in one area by design.",
+      "An insurance-heavy approach (featuring International Health Insurance, International Business Life Insurance etc.), whilst excellent to provide, can leave staff feeling disengaged — benefits are only realised when staff are unwell or the worst happens.",
+      "A wellness-only approach makes staff feel more engaged as benefits can be utilised more frequently, but they aren't much use if someone needs physiotherapy or an urgent diagnostic scan, nor does it provide much protection for your business.",
+      "By blending the two approaches you can deliver the best of both worlds.",
+    ],
   },
   {
     n: "2",
     title: "Consider your locations and the cost of replacing staff",
-    body: "Different countries have different standards and requirements when it comes to employee benefits. For example, you're forced to invest in a cost-heavy health insurance plan if you have staff in the US, but very few other staff benefits are mandated. The culture around employee benefits can vary greatly between countries and getting the balance right between global harmonisation and maintaining local expectations is important. For expatriates, or key personnel in overseas offices, you also need to consider the costs of an attractive benefits package against how much it would cost to replace them. Failed expatriate assignments can be very costly.",
+    body: [
+      "Different countries have different standards and requirements when it comes to employee benefits. For example, you're forced to invest in a cost-heavy health insurance plan if you have staff in the US, but very few other staff benefits are mandated.",
+      "The culture around employee benefits can vary greatly between countries and getting the balance right between global harmonisation and maintaining local expectations is important.",
+      "For expatriates, or key personnel in overseas offices, you also need to consider the costs of an attractive benefits package against how much it would cost to replace them. Failed expatriate assignments can be very costly.",
+    ],
   },
   {
     n: "3",
     title: "Promote and Communicate",
-    body: "Once you have chosen your policies, it's important to ensure people know what they have and how to use it. If you're using an independent intermediary (broker/consultant) to assist you with sourcing, devising and implementing your benefits provision; ask them to assist in how best to communicate the finished article to employees. Any good employee benefits consultancy will be happy to develop bespoke literature and spend time to help you promote the benefits and answer employee questions. We've heard from many businesses who made the mistake of investing in benefits without promoting them fully. The end result? Poor employee engagement.",
+    body: [
+      "Once you have chosen your policies, it's important to ensure people know what they have and how to use it.",
+      "If you're using an independent intermediary (broker/consultant) to assist you with sourcing, devising and implementing your benefits provision, ask them to assist in how best to communicate the finished article to employees.",
+      "Any good employee benefits consultancy will be happy to develop bespoke literature and spend time to help you promote the benefits and answer employee questions.",
+      "We've heard from many businesses who made the mistake of investing in benefits without promoting them fully. The end result? Poor employee engagement.",
+    ],
   },
   {
     n: "4",
     title: "Centralise and simplify",
-    body: "International businesses often have siloed benefits strategies for each individual country. This means they're missing a trick. It's usually because they are either unaware of the opportunity to have an all-inclusive international policy, or are concerned about following local requirements or customs. Sometimes the problem is internal — some organisations have different insurance mechanisms managed by different departments. Compartmentalising benefits across different areas of the business often inhibits a joined-up approach and reduces the opportunity to drive cost efficiencies and streamline administration. If your business is working with multiple service providers via different internal stakeholders, it's likely you will pay more overall.",
+    body: [
+      "International businesses often have siloed benefits strategies for each individual country — usually because they are either unaware of the opportunity to have an all-inclusive international policy, or are concerned about following local requirements or customs.",
+      "Sometimes the problem is internal: some organisations have different insurance mechanisms managed by different departments. Compartmentalising benefits often inhibits a joined-up approach and reduces the opportunity to drive cost efficiencies.",
+      "If your business is working with multiple service providers via different internal stakeholders, it's likely you will pay more overall.",
+    ],
   },
   {
     n: "5",
     title: "Measure success",
-    body: "Continuous review should be a priority. This is true even if you are spending a small percentage of gross payroll on benefits or have them implemented solely to meet regulatory obligations. A few key questions should be asked: What are we getting from our current benefit provision? Is it still valued by staff? Have requirements or regulation changed? Do our partners/providers align with our company culture? Are we paying too much? Is it achieving its objective? These questions should be asked on an annual basis (at least) to avoid stagnation, maintain relevance and to ensure businesses get the best possible return on their investment.",
+    body: [
+      "Continuous review should be a priority — even if you are spending a small percentage of gross payroll on benefits or have them implemented solely to meet regulatory obligations.",
+      "A few key questions should be asked regularly: What are we getting from our current benefit provision? Is it still valued by staff? Have requirements or regulation changed? Do our partners align with our company culture? Are we paying too much?",
+      "These questions should be asked on an annual basis (at least) to avoid stagnation, maintain relevance and ensure the best possible return on investment.",
+    ],
   },
 ];
 
@@ -579,7 +601,11 @@ export default function InternationalBenefits() {
                       <div className="flex-1 min-w-0">
                         <h4 className="font-extrabold text-secondary text-base mb-2 leading-snug">{tip.title}</h4>
                         <div className="h-px bg-border mb-3" />
-                        <p className="text-base text-muted-foreground leading-relaxed">{tip.body}</p>
+                        <div className="space-y-2">
+                          {tip.body.map((para, i) => (
+                            <p key={i} className="text-base text-muted-foreground leading-relaxed">{para}</p>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
