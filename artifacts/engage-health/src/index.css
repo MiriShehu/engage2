@@ -164,10 +164,10 @@
     color: transparent;
   }
 
-  /* WordPress post content — prevent images from overflowing */
+  /* WordPress post content — full width images, no overflow */
   [data-ai-content] img {
     max-width: 100% !important;
-    width: auto !important;
+    width: 100% !important;
     height: auto !important;
     display: block;
     border-radius: 0.5rem;
@@ -175,5 +175,7 @@
   [data-ai-content] figure {
     max-width: 100%;
     overflow: hidden;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
