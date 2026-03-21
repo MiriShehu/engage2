@@ -16,7 +16,7 @@ export default function QuoteLayout({ step, children }: Props) {
     <div className="flex flex-col min-h-screen md:h-screen md:overflow-hidden bg-white">
 
       {/* ── Navbar ── */}
-      <nav className="flex items-center justify-between px-4 sm:px-8 md:px-10 h-[64px] bg-white border-b border-border flex-shrink-0 z-10">
+      <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-[64px] bg-white border-b border-border flex-shrink-0 z-10">
         <Link href="/" className="flex items-center z-50 flex-shrink-0">
           <img src="/logo.png" alt="Engage Health Group" className="h-9 w-auto" />
         </Link>
@@ -53,7 +53,7 @@ export default function QuoteLayout({ step, children }: Props) {
 
           {/* Desktop: dot + label strip */}
           <div
-            className="hidden md:flex items-center gap-0 px-10 flex-shrink-0"
+            className="hidden md:flex items-center gap-0 px-6 lg:px-8 flex-shrink-0"
             style={{ background: "linear-gradient(135deg,#003648,#76186f)", height: 36 }}
           >
             {STEPS.map((label, i) => {
@@ -98,7 +98,7 @@ export default function QuoteLayout({ step, children }: Props) {
       </div>
 
       {/* ── Footer ── */}
-      <footer className="flex items-center justify-between px-4 sm:px-8 md:px-10 h-[42px] bg-white border-t border-border flex-shrink-0">
+      <footer className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-[42px] bg-white border-t border-border flex-shrink-0">
         <div className="flex items-center gap-2 sm:gap-4">
           <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground font-semibold">
             <div className="w-1.5 h-1.5 rounded-full bg-[#0dab76]" />

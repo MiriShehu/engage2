@@ -1,5 +1,6 @@
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Building2, Search, Loader2 } from "lucide-react";
 
 const COUNTRIES = [
   "United Kingdom","United States","Afghanistan","Albania","Algeria","Andorra","Angola",
@@ -37,6 +38,52 @@ interface Props {
 }
 
 export default function Step3Company({ company, industry, country, onChange }: Props) {
+  const [results, setResults] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    if (country !== "United Kingdom" || !showDropdown || company.length < 2) {
+      setResults([]);
+      return;
+    }
+    
+    const timer = setTimeout(async () => {
+      setIsLoading(true);
+      try {
+        const res = await fetch(`/api/companies.php?q=${encodeURIComponent(company)}`);
+        if (res.ok) {
+          const data = await res.json();
+          setResults(data.items || []);
+        } else {
+          setResults([]);
+        }
+      } catch (err) {
+        setResults([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [company, country, showDropdown]);
+
+  const handleSelect = (comp: any) => {
+    onChange("company", comp.title);
+    setShowDropdown(false);
+  };
+
   const inputClass = "w-full px-5 py-3.5 rounded-[12px] border-[1.5px] border-border bg-muted/30 text-[15px] font-medium text-foreground outline-none transition-all focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(118,24,111,0.08)] placeholder:text-muted-foreground/60";
   const labelClass = "text-[11px] font-extrabold uppercase tracking-[0.09em] text-muted-foreground mb-2 block";
 
@@ -60,14 +107,57 @@ export default function Step3Company({ company, industry, country, onChange }: P
         </p>
 
         <div className="flex flex-col gap-5">
-          <div>
+          <div className="relative" ref={dropdownRef}>
             <label className={labelClass}>Company name <span className="text-primary normal-case font-normal">*</span></label>
-            <input
-              value={company}
-              onChange={(e) => onChange("company", e.target.value)}
-              placeholder="Acme Ltd"
-              className={inputClass}
-            />
+            <div className="relative">
+              <input
+                value={company}
+                onChange={(e) => {
+                  onChange("company", e.target.value);
+                  setShowDropdown(true);
+                }}
+                onFocus={() => setShowDropdown(true)}
+                placeholder="Acme Ltd"
+                className={inputClass}
+              />
+              {country === "United Kingdom" && isLoading && (
+                 <Loader2 className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground animate-spin" />
+              )}
+              {country === "United Kingdom" && !isLoading && !company && (
+                 <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/50" />
+              )}
+            </div>
+
+            {/* Dropdown */}
+            {country === "United Kingdom" && showDropdown && (company.length >= 2) && (
+              <div className="absolute z-50 top-full left-0 right-0 mt-2 bg-white rounded-[12px] shadow-xl border border-gray-100 overflow-hidden max-h-64 overflow-y-auto">
+                {isLoading && results.length === 0 ? (
+                  <div className="p-4 text-center text-sm font-medium text-gray-500">Searching Companies House...</div>
+                ) : results.length > 0 ? (
+                  <ul className="py-2">
+                    {results.map((r, i) => (
+                      <li
+                        key={i}
+                        className="px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-50 last:border-0 transition-colors"
+                        onClick={() => handleSelect(r)}
+                      >
+                        <div className="flex items-start gap-3">
+                          <Building2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                          <div>
+                            <div className="text-sm font-bold text-gray-800 leading-tight">{r.title}</div>
+                            {r.address_snippet && (
+                              <div className="text-xs font-medium text-gray-500 mt-1 line-clamp-1">{r.address_snippet}</div>
+                            )}
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="p-4 text-center text-sm font-medium text-gray-500">No companies found</div>
+                )}
+              </div>
+            )}
           </div>
           <div>
             <label className={labelClass}>Industry</label>

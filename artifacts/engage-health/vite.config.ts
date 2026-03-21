@@ -65,6 +65,22 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
+    proxy: {
+      '^/api/companies\.php': {
+        target: 'https://api.company-information.service.gov.uk',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/companies\.php/, '/search/companies'),
+        configure: (proxy, options) => {
+          proxy.on('proxyReq', (proxyReq, req, res) => {
+            const apiKey = process.env.VITE_COMPANIES_HOUSE_KEY || process.env.COMPANIES_HOUSE_KEY;
+            if (apiKey) {
+              const auth = Buffer.from(apiKey + ':').toString('base64');
+              proxyReq.setHeader('Authorization', 'Basic ' + auth);
+            }
+          });
+        }
+      }
+    }
   },
   preview: {
     port,
