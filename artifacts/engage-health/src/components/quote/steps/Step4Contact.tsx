@@ -83,7 +83,7 @@ function validatePhone(phone: string, dialCode: string): string | null {
   const stripped = "+" + dialCode.replace(/[^0-9]/g, "");
   // UK-specific format validation
   if (stripped === "+44") {
-    if (digits.length !== 10 && digits.length !== 11) return "UK numbers must be 10–11 digits";
+    if (digits.length !== 10 && digits.length !== 11) return "Please enter a valid phone number";
     const normalized = digits.length === 11 ? digits : "0" + digits;
     if (!/^0(1|2|3|7|8)/.test(normalized)) return "Enter a valid UK phone number";
   } else {
