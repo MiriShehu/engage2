@@ -351,7 +351,7 @@ export default function InternationalBenefits() {
                 The next best course of action is to contact one of our team for a free no-obligation call.{" "}
                 <a href="tel:01273974419" className="text-primary font-medium hover:underline">Tel.: +44 (0)1273 974419</a>{" "}
                 or email{" "}
-                <a href="mailto:info@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">info@engagehealthgroup.co.uk</a>{" "}
+                <a href="mailto:enquiries@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">enquiries@engagehealthgroup.co.uk</a>{" "}
                 to find out how we can help.
               </div>
             </section>
@@ -403,7 +403,7 @@ export default function InternationalBenefits() {
                 With over 23 years of combined experience in the International Employee Benefit arena, Engage Health Group is expertly placed to establish your unique needs. For FREE expert advice call{" "}
                 <a href="tel:01273974419" className="text-primary font-medium hover:underline">+44 (0)1273 974419</a>{" "}
                 or email{" "}
-                <a href="mailto:info@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">info@engagehealthgroup.co.uk</a>.
+                <a href="mailto:enquiries@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">enquiries@engagehealthgroup.co.uk</a>.
               </div>
             </section>
 
@@ -628,8 +628,8 @@ export default function InternationalBenefits() {
                   <a href="tel:01273974419" className="flex items-center gap-2 text-sm text-white/85 hover:text-white transition-colors">
                     <Phone className="w-4 h-4" /> +44 (0)1273 974419
                   </a>
-                  <a href="mailto:info@engagehealthgroup.co.uk" className="flex items-center gap-2 text-sm text-white/85 hover:text-white transition-colors">
-                    <Mail className="w-4 h-4" /> info@engagehealthgroup.co.uk
+                  <a href="mailto:enquiries@engagehealthgroup.co.uk" className="flex items-center gap-2 text-sm text-white/85 hover:text-white transition-colors">
+                    <Mail className="w-4 h-4" /> enquiries@engagehealthgroup.co.uk
                   </a>
                 </div>
               </div>
