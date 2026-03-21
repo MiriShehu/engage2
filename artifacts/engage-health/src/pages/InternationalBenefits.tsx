@@ -6,7 +6,8 @@ import {
   Globe, Globe2, TrendingUp, AlertCircle, Plane, Lock, Clock,
   Users, ShieldAlert, MapPin, Flag, Briefcase,
   CheckCircle2, Phone, Mail, ArrowRight, ChevronRight, Star,
-  Building2, Trophy, ChevronDown
+  Building2, Trophy, ChevronDown,
+  BookOpen, BarChart2, PenLine, Handshake, Settings2, MessageSquare, ClipboardList, RefreshCw
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -42,14 +43,14 @@ const whyBenefits = [
 ];
 
 const processSteps = [
-  { n: "1", title: "Learning",       desc: "Assess the wants and needs of the business collaboratively." },
-  { n: "2", title: "Benchmarking",   desc: "Provide insight into what business of a similar size and sector offer." },
-  { n: "3", title: "Designing",      desc: "Establish the best solutions and agree on timeframes." },
-  { n: "4", title: "Negotiating",    desc: "Liaise with all providers to obtain the most competitive prices." },
-  { n: "5", title: "Implementing",   desc: "Manage any policy/scheme set up on behalf of clients." },
-  { n: "6", title: "Communicating",  desc: "Provide bespoke literature and onsite employee presentations to promote benefits." },
-  { n: "7", title: "Managing",       desc: "Handle the everyday scheme management so that the clients don't have to." },
-  { n: "8", title: "Reviewing",      desc: "Annual market reviews to ensure any solution remains effective and competitive." },
+  { icon: BookOpen,       title: "Learning",       desc: "Assess the wants and needs of the business collaboratively." },
+  { icon: BarChart2,      title: "Benchmarking",   desc: "Provide insight into what business of a similar size and sector offer." },
+  { icon: PenLine,        title: "Designing",      desc: "Establish the best solutions and agree on timeframes." },
+  { icon: Handshake,      title: "Negotiating",    desc: "Liaise with all providers to obtain the most competitive prices." },
+  { icon: Settings2,      title: "Implementing",   desc: "Manage any policy/scheme set up on behalf of clients." },
+  { icon: MessageSquare,  title: "Communicating",  desc: "Provide bespoke literature and onsite employee presentations to promote benefits." },
+  { icon: ClipboardList,  title: "Managing",       desc: "Handle the everyday scheme management so that the clients don't have to." },
+  { icon: RefreshCw,      title: "Reviewing",      desc: "Annual market reviews to ensure any solution remains effective and competitive." },
 ];
 
 const vsItems = [
@@ -459,34 +460,7 @@ export default function InternationalBenefits() {
 
             <Divider />
 
-            {/* 3 — How we work */}
-            <section>
-              <SectionLabel>Our process</SectionLabel>
-              <SectionHeading>Our approach to Employee Benefits Consultancy</SectionHeading>
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {processSteps.map((step) => (
-                  <div
-                    key={step.n}
-                    className="flex gap-4 p-5 rounded-2xl border border-border bg-white hover:border-secondary/20 hover:shadow-sm transition-all duration-200"
-                  >
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-sm font-black text-white"
-                      style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
-                    >
-                      {step.n}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-secondary text-sm">{step.title}</h4>
-                      <p className="text-base text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <Divider />
-
-            {/* 4 — Top 5 most common */}
+            {/* 3 — Top 5 most common */}
             <section>
               <SectionLabel>Most popular</SectionLabel>
               <SectionHeading>What are the most common International Employee Benefits?</SectionHeading>
@@ -511,6 +485,36 @@ export default function InternationalBenefits() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </section>
+
+            <Divider />
+
+            {/* 4 — How we work */}
+            <section>
+              <SectionLabel>Our process</SectionLabel>
+              <SectionHeading>Our approach to Employee Benefits Consultancy</SectionHeading>
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {processSteps.map((step) => {
+                  const Icon = step.icon;
+                  return (
+                    <div
+                      key={step.title}
+                      className="flex gap-4 p-5 rounded-2xl border border-border bg-white hover:border-secondary/20 hover:shadow-sm transition-all duration-200"
+                    >
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                        style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
+                      >
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-secondary text-sm">{step.title}</h4>
+                        <p className="text-base text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </section>
 
