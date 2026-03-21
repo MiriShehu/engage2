@@ -23,57 +23,68 @@ import { cn } from "@/lib/utils";
 const products = [
   {
     icon: Shield,
+    href: "/employee-benefits/group-health-insurance",
     name: "Group Health Insurance",
     desc: "Give your employees access to fast private medical care and a range of additional benefits, including wellness apps and Employee Assistance Programmes.",
   },
   {
     icon: Heart,
+    href: "/employee-benefits/group-life-insurance",
     name: "Group Life Insurance",
     desc: "Ensure your employees' families are financially protected in the event of their death by taking out a Group Life Insurance policy.",
   },
   {
     icon: TrendingUp,
+    href: "/employee-benefits/group-income-protection",
     name: "Group Income Protection Insurance",
     subName: "(AKA Sick Pay Insurance)",
     desc: "Get extra financial protection for your employees should they be unable to work due to illness or injury beyond the statutory sick pay allowance. Staff also get access to rehab services to help speed up recovery.",
   },
   {
     icon: AlertCircle,
+    href: "/employee-benefits/group-critical-illness",
     name: "Group Critical Illness Insurance",
     desc: "Give your staff extra financial protection in the event they are diagnosed with a critical illness.",
   },
   {
     icon: Smile,
+    href: "/employee-benefits/group-dental-insurance",
     name: "Group Dental Insurance",
     desc: "Allow your staff to get rapid dental treatment and checkups with a standalone private dental plan.",
   },
   {
     icon: DollarSign,
+    href: "/employee-benefits/group-health-cash-plan",
     name: "Health Cash Plan",
     desc: "Give staff access to everyday health and wellbeing services, such as physiotherapy, dentistry, optical care and more — up to a predetermined cash amount.",
   },
   {
     icon: Key,
+    href: "/employee-benefits/key-person-insurance",
     name: "Key Person Insurance",
     desc: "Financially protect your business from the impact of losing an essential member of your team.",
   },
   {
     icon: HeartPulse,
+    href: "/employee-benefits/employee-assistance-programmes",
     name: "Employee Assistance Programmes (EAP)",
     desc: "A suite of self-help tools and professional counselling and/or advisory services designed to bolster the emotional wellbeing of your employees.",
   },
   {
     icon: MonitorDot,
+    href: "/employee-benefits/employee-benefits-platforms",
     name: "Staff Discount Schemes",
     desc: "Reward your employees with a range of discounts across health, leisure and retail services — all housed on a digital platform.",
   },
   {
     icon: Activity,
+    href: "/employee-benefits/corporate-wellness-programmes",
     name: "Corporate Wellness Programmes",
     desc: "Formulate a range of wellbeing benefits that support every aspect of your team's mental and emotional wellbeing, including wellness days, meditation classes, CBT tools, gym memberships, counselling services and more.",
   },
   {
     icon: UserCheck,
+    href: "/employee-benefits/lifestyle-benefits",
     name: "Lifestyle Benefits",
     desc: "A broad area which can cover remote/hybrid working arrangements, gym memberships, discount schemes, parental leave and much more.",
   },
@@ -311,13 +322,13 @@ export default function EmployeeBenefits() {
 
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {products.map((p, i) => (
+                  <Link key={p.name} href={p.href}>
                   <motion.div
-                    key={p.name}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
-                    className="group relative flex flex-col p-5 rounded-2xl border border-border bg-white hover:shadow-lg hover:border-primary/20 transition-all duration-300 cursor-default overflow-hidden"
+                    className="group relative flex flex-col p-5 rounded-2xl border border-border bg-white hover:shadow-lg hover:border-primary/20 transition-all duration-300 cursor-pointer overflow-hidden h-full"
                   >
                     {/* Accent bar top */}
                     <div
@@ -344,6 +355,7 @@ export default function EmployeeBenefits() {
                       Learn more <ChevronRight className="w-3.5 h-3.5" />
                     </div>
                   </motion.div>
+                  </Link>
                 ))}
               </div>
 
