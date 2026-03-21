@@ -22,7 +22,7 @@ type NavItem = { icon: React.ElementType; label: string; desc: string; href?: st
 
 // ─── Menu data ────────────────────────────────────────────────────────────────
 const aboutItems: NavItem[] = [
-  { icon: UserCircle,  label: "Who we are",    desc: "Engage Health Group" },
+  { icon: UserCircle,  label: "Who we are",    desc: "Engage Health Group", href: "/about-us" },
   { icon: Users,       label: "Meet the team", desc: "50 years combined experience", href: "/team" },
   { icon: Quote,       label: "Testimonials",  desc: "What they say about us" },
 ];

@@ -16,6 +16,7 @@ import ServicePage from "@/pages/ServicePage";
 import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
 import { internationalBenefitsServices } from "@/data/internationalBenefitsServices";
 import BlogPost from "@/pages/BlogPost";
+import AboutUs from "@/pages/AboutUs";
 import Xcelerate from "@/pages/Xcelerate";
 import KnowledgeHub from "@/pages/KnowledgeHub";
 import NotFound from "@/pages/not-found";
@@ -57,6 +58,7 @@ function Router() {
       <Route path="/international-benefits/:slug">
         {() => <ServicePage category="international-benefits" services={internationalBenefitsServices} />}
       </Route>
+      <Route path="/about-us" component={AboutUs} />
       <Route path="/xcelerate" component={Xcelerate} />
       <Route path="/knowledge-hub" component={KnowledgeHub} />
       <Route path="/knowledge-hub/:slug">
