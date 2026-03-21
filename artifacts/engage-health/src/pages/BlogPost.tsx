@@ -265,6 +265,13 @@ function processContent(html: string): { html: string; items: TocItem[] } {
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
+/** Strip HTML and estimate reading time at 200 wpm */
+function calcReadTime(html: string): number {
+  const text  = html.replace(/<[^>]+>/g, ' ');
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
 function fmtDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 }
@@ -274,9 +281,9 @@ function fmtTime(iso: string) {
 }
 
 /** Injects Article JSON-LD into <head> via a <script> tag */
-function ArticleSchema({ title, datePublished, dateModified, authorName, imageUrl, url }: {
+function ArticleSchema({ title, datePublished, dateModified, authorName, imageUrl, url, readMins }: {
   title: string; datePublished: string; dateModified: string;
-  authorName: string; imageUrl?: string; url: string;
+  authorName: string; imageUrl?: string; url: string; readMins: number;
 }) {
   const schema = {
     '@context': 'https://schema.org',
@@ -284,13 +291,14 @@ function ArticleSchema({ title, datePublished, dateModified, authorName, imageUr
     headline: title,
     datePublished: new Date(datePublished).toISOString(),
     dateModified: new Date(dateModified).toISOString(),
+    timeRequired: `PT${readMins}M`,
     author: { '@type': 'Person', name: authorName },
     publisher: {
       '@type': 'Organization',
       name: 'Engage Health Group',
       logo: { '@type': 'ImageObject', url: `${url.split('/').slice(0, 3).join('/')}/logo.png` },
     },
-    ...(imageUrl ? { image: imageUrl } : {}),
+    ...(imageUrl ? { image: { '@type': 'ImageObject', url: imageUrl } } : {}),
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   };
   return (
@@ -360,10 +368,11 @@ export default function BlogPost({ slug }: { slug: string }) {
   }
 
   const post = data.post;
-  const authorName = post.author?.node?.name || 'Engage Health Group';
-  const imageUrl   = post.featuredImage?.node?.sourceUrl;
-  const pageUrl    = typeof window !== 'undefined' ? window.location.href : '';
+  const authorName   = post.author?.node?.name || 'Engage Health Group';
+  const imageUrl     = post.featuredImage?.node?.sourceUrl;
+  const pageUrl      = typeof window !== 'undefined' ? window.location.href : '';
   const modifiedDiffers = post.modified && post.modified !== post.date;
+  const readMins     = calcReadTime(post.content ?? '');
 
   return (
     <>
@@ -374,6 +383,7 @@ export default function BlogPost({ slug }: { slug: string }) {
         authorName={authorName}
         imageUrl={imageUrl}
         url={pageUrl}
+        readMins={readMins}
       />
       <ReadingProgress />
 
@@ -424,6 +434,10 @@ export default function BlogPost({ slug }: { slug: string }) {
                           <span>Updated <time dateTime={new Date(post.modified).toISOString()}>{fmtDate(post.modified)} at {fmtTime(post.modified)}</time></span>
                         </span>
                       )}
+                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Clock className="w-3 h-3 flex-shrink-0" />
+                        <span>{readMins} min read</span>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -463,6 +477,7 @@ const staticTocItems: TocItem[] = [
 
 const STATIC_DATE_PUBLISHED = '2025-05-01T09:00:00';
 const STATIC_DATE_MODIFIED  = '2025-05-01T09:00:00';
+const STATIC_READ_MINS      = 6;
 
 function BlogPostStatic() {
   const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
@@ -475,6 +490,7 @@ function BlogPostStatic() {
         authorName="Mel Dixon"
         imageUrl={heroBanner}
         url={pageUrl}
+        readMins={STATIC_READ_MINS}
       />
       <ReadingProgress />
 
@@ -536,6 +552,10 @@ function BlogPostStatic() {
                       <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <Clock className="w-3 h-3 flex-shrink-0" />
                         <span>Published <time dateTime={new Date(STATIC_DATE_PUBLISHED).toISOString()}>{fmtDate(STATIC_DATE_PUBLISHED)} at {fmtTime(STATIC_DATE_PUBLISHED)}</time></span>
+                      </span>
+                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Clock className="w-3 h-3 flex-shrink-0" />
+                        <span>{STATIC_READ_MINS} min read</span>
                       </span>
                     </div>
                   </div>
