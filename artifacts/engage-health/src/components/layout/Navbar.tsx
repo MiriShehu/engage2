@@ -155,8 +155,8 @@ const itemVariants = {
 };
 
 function MegaDropdown({
-  label, color, items,
-}: { label: string; color: string; items: NavItem[]; headerLabel?: string; cols?: number }) {
+  label, color, items, viewAllHref, viewAllLabel,
+}: { label: string; color: string; items: NavItem[]; headerLabel?: string; cols?: number; viewAllHref?: string; viewAllLabel?: string }) {
   const { open, enter, leave } = useMenuHover();
   const half = Math.ceil(items.length / 2);
   const col1 = items.slice(0, half);
@@ -186,29 +186,52 @@ function MegaDropdown({
             onMouseLeave={leave}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden grid grid-cols-[1fr_1fr_280px]">
-                {/* Column 1 */}
-                <motion.div
-                  className="p-4 flex flex-col gap-0.5 border-r border-gray-100"
-                  variants={colVariants} initial="hidden" animate="visible"
-                >
-                  {col1.map((item) => (
-                    <motion.div key={item.label} variants={itemVariants}>
-                      <DropdownItem item={item} color={color} />
+              <div className="bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden grid grid-cols-[1fr_280px]">
+                {/* Left: two columns + view all strip */}
+                <div className="flex flex-col border-r border-gray-100">
+                  <div className="grid grid-cols-2 flex-1">
+                    {/* Column 1 */}
+                    <motion.div
+                      className="p-4 flex flex-col gap-0.5 border-r border-gray-100"
+                      variants={colVariants} initial="hidden" animate="visible"
+                    >
+                      {col1.map((item) => (
+                        <motion.div key={item.label} variants={itemVariants}>
+                          <DropdownItem item={item} color={color} />
+                        </motion.div>
+                      ))}
                     </motion.div>
-                  ))}
-                </motion.div>
-                {/* Column 2 */}
-                <motion.div
-                  className="p-4 flex flex-col gap-0.5 border-r border-gray-100"
-                  variants={colVariants} initial="hidden" animate="visible"
-                >
-                  {col2.map((item) => (
-                    <motion.div key={item.label} variants={itemVariants}>
-                      <DropdownItem item={item} color={color} />
+                    {/* Column 2 */}
+                    <motion.div
+                      className="p-4 flex flex-col gap-0.5"
+                      variants={colVariants} initial="hidden" animate="visible"
+                    >
+                      {col2.map((item) => (
+                        <motion.div key={item.label} variants={itemVariants}>
+                          <DropdownItem item={item} color={color} />
+                        </motion.div>
+                      ))}
                     </motion.div>
-                  ))}
-                </motion.div>
+                  </div>
+                  {/* View all strip */}
+                  {viewAllHref && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.2, delay: 0.15 }}
+                      className="border-t border-gray-100"
+                    >
+                      <Link
+                        href={viewAllHref}
+                        className="flex items-center justify-between px-6 py-3 text-sm font-semibold group/all transition-colors hover:bg-gray-50"
+                        style={{ color }}
+                      >
+                        <span>{viewAllLabel ?? `View all ${label}`}</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover/all:translate-x-1" />
+                      </Link>
+                    </motion.div>
+                  )}
+                </div>
                 {/* Info panel */}
                 <div
                   className="relative flex flex-col justify-end p-7 overflow-hidden"
@@ -392,6 +415,7 @@ export function Navbar() {
               label="Employee Benefits"
               color={TEAL}
               items={employeeItems}
+              viewAllHref="/employee-benefits"
             />
             <MegaDropdown
               label="International Benefits"
