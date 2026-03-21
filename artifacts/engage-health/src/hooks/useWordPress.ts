@@ -11,7 +11,6 @@ const GET_BLOG_POSTS_QUERY = `
         title
         slug
         date
-        isSticky
         excerpt
         categories {
           nodes { name }

@@ -181,7 +181,7 @@ export default function KnowledgeHub() {
     author:   "Editor",
     img:      node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
     href:     `/knowledge-hub/${node.slug}`,
-    featured: !!node.isSticky,
+    featured: node.categories?.nodes?.some((c: any) => c.name === "Featured") ?? false,
   })) || [];
 
   const featuredPosts = wpPosts.filter(p => p.featured).slice(0, 5);
