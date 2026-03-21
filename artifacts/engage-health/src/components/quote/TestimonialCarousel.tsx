@@ -116,11 +116,6 @@ function getInitials(name: string) {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-const LINE_HEIGHT = 1.7;
-const FONT_SIZE = 15;
-const MAX_LINES = 6;
-const MAX_HEIGHT = LINE_HEIGHT * FONT_SIZE * MAX_LINES; // px
-
 function QuoteText({ text }: { text: string }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const [overflows, setOverflows] = useState(false);
@@ -128,39 +123,38 @@ function QuoteText({ text }: { text: string }) {
 
   useEffect(() => {
     setExpanded(false);
-    const el = ref.current;
-    if (!el) return;
-    // Measure with no clamp applied
-    el.style.webkitLineClamp = "unset";
-    el.style.overflow = "visible";
-    const full = el.scrollHeight;
-    el.style.webkitLineClamp = "";
-    el.style.overflow = "";
-    setOverflows(full > MAX_HEIGHT + 4);
+    setOverflows(false);
+    // After collapsing, measure whether the clamped element actually clips content
+    requestAnimationFrame(() => {
+      const el = ref.current;
+      if (!el) return;
+      setOverflows(el.scrollHeight > el.clientHeight + 2);
+    });
   }, [text]);
 
   return (
-    <div className="mb-6">
+    <div className="mb-5">
       <p
         ref={ref}
         className="text-[15px] italic"
         style={{
           color: "rgba(255,255,255,0.85)",
-          lineHeight: LINE_HEIGHT,
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: expanded ? "unset" : MAX_LINES,
-          overflow: expanded ? "visible" : "hidden",
-          transition: "all 0.3s ease",
+          lineHeight: 1.7,
+          ...(!expanded && {
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 6,
+            overflow: "hidden",
+          }),
         }}
       >
         "{text}"
       </p>
-      {overflows && (
+      {(overflows || expanded) && (
         <button
           onClick={() => setExpanded((e) => !e)}
-          className="mt-2 text-[12px] font-semibold tracking-wide transition-colors"
-          style={{ color: expanded ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.55)" }}
+          className="mt-2 text-[12px] font-semibold tracking-wide transition-opacity hover:opacity-100"
+          style={{ color: expanded ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.6)" }}
         >
           {expanded ? "Show less ↑" : "Read more ↓"}
         </button>
