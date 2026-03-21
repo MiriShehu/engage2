@@ -390,15 +390,6 @@ export default function BlogPost({ slug }: { slug: string }) {
       <PageLayout className="bg-[#f0f0f0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
-            <Link href="/knowledge-hub" className="hover:text-primary transition-colors">Knowledge Hub</Link>
-            <ChevronRight className="w-3 h-3" />
-            <span className="text-secondary truncate max-w-[200px]">{post.title}</span>
-          </nav>
-
           <div className="flex gap-6 items-start">
             <div className="hidden lg:block w-12 flex-shrink-0">
               <ActionBar />
@@ -415,6 +406,15 @@ export default function BlogPost({ slug }: { slug: string }) {
               )}
 
               <div className="p-4 md:p-8">
+                {/* Breadcrumb */}
+                <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
+                  <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+                  <ChevronRight className="w-3 h-3" />
+                  <Link href="/knowledge-hub" className="hover:text-primary transition-colors">Knowledge Hub</Link>
+                  <ChevronRight className="w-3 h-3" />
+                  <span className="text-secondary truncate max-w-[200px]" dangerouslySetInnerHTML={{ __html: post.title }} />
+                </nav>
+
                 <h1 className="text-2xl md:text-3xl font-black text-secondary leading-tight mb-5" dangerouslySetInnerHTML={{ __html: post.title }} />
 
                 <div className="flex items-start gap-3 mb-7 pb-7 border-b border-border flex-wrap">
@@ -497,15 +497,6 @@ function BlogPostStatic() {
       <PageLayout className="bg-[#f0f0f0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
-            <Link href="/blog" className="hover:text-primary transition-colors">Knowledge Hub</Link>
-            <ChevronRight className="w-3 h-3" />
-            <span className="text-secondary">Insurtech Insights 2025</span>
-          </nav>
-
           {/* Three-column grid: action | article | sidebar */}
           <div className="flex gap-6 items-start">
 
@@ -526,6 +517,15 @@ function BlogPostStatic() {
               />
 
               <div className="p-4 md:p-8">
+
+                {/* Breadcrumb */}
+                <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
+                  <Link href="/" className="hover:text-primary transition-colors">Home</Link>
+                  <ChevronRight className="w-3 h-3" />
+                  <Link href="/knowledge-hub" className="hover:text-primary transition-colors">Knowledge Hub</Link>
+                  <ChevronRight className="w-3 h-3" />
+                  <span className="text-secondary">Insurtech Insights 2025</span>
+                </nav>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
