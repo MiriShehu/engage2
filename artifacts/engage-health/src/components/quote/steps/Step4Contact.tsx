@@ -97,6 +97,7 @@ function validatePhone(phone: string, dialCode: string): string | null {
 interface Props {
   firstName: string;
   lastName: string;
+  jobTitle: string;
   email: string;
   phone: string;
   dialCode: string;
@@ -107,7 +108,7 @@ interface Props {
 }
 
 export default function Step4Contact({
-  firstName, lastName, email, phone, dialCode, gdprConsent,
+  firstName, lastName, jobTitle, email, phone, dialCode, gdprConsent,
   submitting, onChange, onSubmit,
 }: Props) {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -118,7 +119,8 @@ export default function Step4Contact({
   const emailError = validateEmail(email);
   const phoneError = validatePhone(phone, dialCode);
 
-  const valid = !firstNameError && !lastNameError && !emailError && !phoneError && gdprConsent;
+  const jobTitleError = jobTitle.trim().length < 2 ? "Required" : null;
+  const valid = !firstNameError && !lastNameError && !jobTitleError && !emailError && !phoneError && gdprConsent;
 
   const inputClass = "w-full px-5 py-3.5 rounded-[12px] border-[1.5px] border-border bg-muted/30 text-[15px] font-medium text-foreground outline-none transition-all focus:border-primary focus:bg-white focus:shadow-[0_0_0_3px_rgba(118,24,111,0.08)] placeholder:text-muted-foreground/60";
   const inputErrorClass = "w-full px-5 py-3.5 rounded-[12px] border-[1.5px] border-red-400 bg-muted/30 text-[15px] font-medium text-foreground outline-none transition-all focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.1)] placeholder:text-muted-foreground/60";
@@ -170,6 +172,17 @@ export default function Step4Contact({
           </div>
         </div>
 
+        {/* Job title */}
+        <div className="mb-4">
+          <label className={labelClass}>Job title / Role</label>
+          <input value={jobTitle} onChange={(e) => onChange("jobTitle", e.target.value)}
+            onBlur={() => touch("jobTitle")}
+            placeholder="e.g. HR Manager" className={fieldClass(jobTitleError, "jobTitle")} />
+          {touched.jobTitle && jobTitleError && (
+            <p className="text-[12px] text-red-500 font-medium mt-1.5">{jobTitleError}</p>
+          )}
+        </div>
+
         {/* Email */}
         <div className="mb-4">
           <label className={labelClass}>Email address</label>
@@ -192,7 +205,8 @@ export default function Step4Contact({
             <input
               type="tel"
               value={phone}
-              onChange={(e) => onChange("phone", e.target.value)}
+              onChange={(e) => onChange("phone", e.target.value.replace(/[^\d\s\-().+]/g, ""))}
+              onKeyDown={(e) => { if (!/[\d\s\-().+Backspace\t]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }}
               onBlur={() => touch("phone")}
               placeholder={placeholder}
               className="flex-1 px-5 py-3.5 text-[15px] font-medium text-foreground bg-transparent outline-none placeholder:text-muted-foreground/60 min-w-0"
@@ -233,7 +247,7 @@ export default function Step4Contact({
         <button
           type="button"
           onClick={() => {
-            touch("firstName"); touch("lastName"); touch("email"); touch("phone");
+            touch("firstName"); touch("lastName"); touch("jobTitle"); touch("email"); touch("phone");
             if (valid) onSubmit();
           }}
           disabled={submitting}

@@ -20,6 +20,7 @@ export interface FormData {
   notes: string;
   firstName: string;
   lastName: string;
+  jobTitle: string;
   email: string;
   phone: string;
   dialCode: string;
@@ -115,6 +116,7 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
               <Step6Contact
                 firstName={formData.firstName}
                 lastName={formData.lastName}
+                jobTitle={formData.jobTitle}
                 email={formData.email}
                 phone={formData.phone}
                 dialCode={formData.dialCode}

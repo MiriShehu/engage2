@@ -16,6 +16,7 @@ const DEFAULT_FORM: FormData = {
   notes: "",
   firstName: "",
   lastName: "",
+  jobTitle: "",
   email: "",
   phone: "",
   dialCode: "🇬🇧+44",
