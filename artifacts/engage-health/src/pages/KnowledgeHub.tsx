@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { PageLayout } from "@/components/layout";
-import { ArrowRight, Clock, User, Search, BookOpen, Loader2 } from "lucide-react";
+import { ArrowRight, Clock, User, Search, BookOpen, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { useBlogPosts } from "@/hooks/useWordPress";
+
+const POSTS_PER_PAGE = 9;
+
+function getPageRange(current: number, total: number): (number | "…")[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const pages: (number | "…")[] = [1];
+  if (current > 3) pages.push("…");
+  for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) pages.push(i);
+  if (current < total - 2) pages.push("…");
+  pages.push(total);
+  return pages;
+}
 
 export default function KnowledgeHub() {
   const [active, setActive] = useState("All");
   const [query,  setQuery]  = useState("");
+  const [page,   setPage]   = useState(1);
+  const gridRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, isError } = useBlogPosts();
 
   // Parse WP posts into the same format as our static posts
@@ -37,6 +51,22 @@ export default function KnowledgeHub() {
 
   const featured = filtered.find((p: any) => p.featured);
   const rest      = filtered.filter((p: any) => !p.featured);
+
+  // Reset to page 1 whenever filter or search changes
+  useEffect(() => { setPage(1); }, [active, query]);
+
+  const totalPages = Math.ceil(rest.length / POSTS_PER_PAGE);
+  const pagePosts  = rest.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
+  const startIdx   = (page - 1) * POSTS_PER_PAGE + 1;
+  const endIdx     = Math.min(page * POSTS_PER_PAGE, rest.length);
+
+  const goToPage = (p: number) => {
+    setPage(p);
+    if (gridRef.current) {
+      const top = gridRef.current.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
 
   return (
     <PageLayout>
@@ -140,12 +170,19 @@ export default function KnowledgeHub() {
           {/* ── Grid ── */}
           {rest.length > 0 && (
             <>
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
-                {active === "All" ? "Latest articles" : active}
-                <span className="ml-2 font-normal normal-case text-slate-300">({rest.length})</span>
-              </p>
+              <div ref={gridRef} className="flex items-center justify-between mb-6 flex-wrap gap-2">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                  {active === "All" ? "Latest articles" : active}
+                  <span className="ml-2 font-normal normal-case text-slate-300">({rest.length})</span>
+                </p>
+                {rest.length > POSTS_PER_PAGE && (
+                  <p className="text-xs text-slate-400">
+                    Showing <span className="font-semibold text-slate-600">{startIdx}–{endIdx}</span> of <span className="font-semibold text-slate-600">{rest.length}</span> articles
+                  </p>
+                )}
+              </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {rest.map((post: any, i: number) => (
+                {pagePosts.map((post: any, i: number) => (
                   <article key={i}
                     className="kh-card bg-white rounded-xl overflow-hidden border border-slate-100 flex flex-col cursor-default">
                     <div className="overflow-hidden aspect-[16/9] relative">
@@ -181,6 +218,50 @@ export default function KnowledgeHub() {
                   </article>
                 ))}
               </div>
+
+              {/* ── Pagination ── */}
+              {totalPages > 1 && (
+                <div className="mt-10 flex items-center justify-center gap-1.5 flex-wrap">
+                  {/* Prev */}
+                  <button
+                    onClick={() => goToPage(page - 1)}
+                    disabled={page === 1}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" /> Prev
+                  </button>
+
+                  {/* Page numbers */}
+                  {getPageRange(page, totalPages).map((p, i) =>
+                    p === "…" ? (
+                      <span key={`ellipsis-${i}`} className="px-2 py-2 text-xs text-slate-400 select-none">…</span>
+                    ) : (
+                      <button
+                        key={p}
+                        onClick={() => goToPage(p as number)}
+                        className="w-9 h-9 rounded-lg text-xs font-bold border transition-colors"
+                        style={page === p
+                          ? { background: "#003648", color: "white", borderColor: "#003648" }
+                          : { background: "white", color: "#475569", borderColor: "#e2e8f0" }
+                        }
+                        onMouseEnter={e => { if (page !== p) (e.currentTarget as HTMLButtonElement).style.background = "#f1f5f9"; }}
+                        onMouseLeave={e => { if (page !== p) (e.currentTarget as HTMLButtonElement).style.background = "white"; }}
+                      >
+                        {p}
+                      </button>
+                    )
+                  )}
+
+                  {/* Next */}
+                  <button
+                    onClick={() => goToPage(page + 1)}
+                    disabled={page === totalPages}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Next <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              )}
             </>
           )}
 
