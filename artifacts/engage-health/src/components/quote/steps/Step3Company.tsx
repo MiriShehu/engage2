@@ -62,7 +62,8 @@ export default function Step3Company({ company, industry, country, onChange }: P
     const timer = setTimeout(async () => {
       setIsLoading(true);
       try {
-        const res = await fetch(`/api/companies.php?q=${encodeURIComponent(company)}`);
+        const proxyUrl = import.meta.env.VITE_COMPANIES_PROXY_URL;
+        const res = await fetch(`${proxyUrl}?q=${encodeURIComponent(company)}`);
         if (res.ok) {
           const data = await res.json();
           setResults(data.items || []);

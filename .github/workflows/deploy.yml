@@ -34,6 +34,7 @@ jobs:
           BASE_PATH: /
           VITE_WP_GRAPHQL_URL: https://manage.engagehealthgroup.co.uk/graphql
           VITE_ANTHROPIC_API_KEY: ${{ secrets.VITE_ANTHROPIC_API_KEY }}
+          VITE_COMPANIES_PROXY_URL: ${{ secrets.VITE_COMPANIES_PROXY_URL }}
 
       - name: Inject Companies House API Key
         run: sed -i 's|%%COMPANIES_HOUSE_KEY%%|${{ secrets.COMPANIES_HOUSE_KEY }}|g' artifacts/engage-health/dist/public/api/companies.php || true
