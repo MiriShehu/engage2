@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import heroBg from "@assets/international-employee-benefits-hero.jpg";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -210,12 +211,15 @@ export default function InternationalBenefits() {
   return (
     <PageLayout className="bg-white">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section
-        className="relative pt-16 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #00263a 0%, #003648 50%, #1a0a40 100%)" }}
-      >
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none" style={{ background: "rgba(118,24,111,0.18)" }} />
+      <section className="relative pt-16 overflow-hidden bg-secondary">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(105deg, rgba(0,54,72,0.96) 0%, rgba(0,54,72,0.88) 45%, rgba(0,54,72,0.55) 70%, rgba(0,54,72,0.2) 100%)" }}
+        />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           {/* Breadcrumb */}
