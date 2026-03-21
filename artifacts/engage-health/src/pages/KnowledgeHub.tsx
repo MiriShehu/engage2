@@ -50,48 +50,36 @@ function FeaturedSlider({ posts }: { posts: Post[] }) {
   const post = posts[idx];
 
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg,#00263a 0%,#003648 60%,#1a0a40 100%)" }}
+    <div
+      className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* dot grid */}
-      <div className="absolute inset-0 opacity-[0.035] pointer-events-none"
-        style={{ backgroundImage: "radial-gradient(circle,white 1px,transparent 1px)", backgroundSize: "28px 28px" }} />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
-        style={{ background: "rgba(118,24,111,0.18)" }} />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
               style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}>
-              <Star className="w-4 h-4 text-white fill-white" />
+              <Star className="w-3.5 h-3.5 text-white fill-white" />
             </div>
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/50 leading-none mb-0.5">Knowledge Hub</p>
-              <h2 className="text-lg font-black text-white leading-none">Featured News</h2>
-            </div>
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">Featured News</p>
           </div>
           {/* Arrow controls */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-white/40 font-semibold mr-1">{idx + 1} / {total}</span>
+            <span className="text-xs text-slate-400 font-semibold mr-1">{idx + 1} / {total}</span>
             <button onClick={() => go(idx - 1, -1)}
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-all">
+              className="w-8 h-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:border-slate-300 hover:text-slate-700 transition-all">
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button onClick={() => go(idx + 1, 1)}
-              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-all">
+              className="w-8 h-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:border-slate-300 hover:text-slate-700 transition-all">
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
         {/* Slide */}
-        <div className="relative overflow-hidden rounded-2xl min-h-[280px] md:min-h-[320px]">
+        <div className="relative overflow-hidden rounded-2xl min-h-[260px] md:min-h-[300px]">
           <AnimatePresence mode="wait" custom={dir}>
             <motion.div
               key={idx}
@@ -101,13 +89,12 @@ function FeaturedSlider({ posts }: { posts: Post[] }) {
               animate="center"
               exit="exit"
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="grid md:grid-cols-[1.2fr_1fr] gap-0 bg-white/[0.05] border border-white/10 rounded-2xl overflow-hidden"
+              className="grid md:grid-cols-[1.2fr_1fr] gap-0 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm"
             >
               {/* Image */}
-              <div className="relative overflow-hidden aspect-[16/9] md:aspect-auto md:min-h-[280px]">
+              <div className="relative overflow-hidden aspect-[16/9] md:aspect-auto md:min-h-[260px]">
                 <img src={post.img} alt={post.title}
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/30 md:block hidden" />
                 <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold text-white backdrop-blur-sm"
                   style={{ background: "rgba(118,24,111,0.85)" }}>
                   {post.category}
@@ -115,28 +102,29 @@ function FeaturedSlider({ posts }: { posts: Post[] }) {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col justify-between p-7 md:p-10">
+              <div className="flex flex-col justify-between p-7 md:p-9">
                 <div>
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-3">
                     <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 flex-shrink-0" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/50">Featured</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Featured</span>
                   </div>
                   <Link href={post.href}>
-                    <h3 className="text-xl md:text-2xl font-black text-white hover:text-white/80 leading-snug mb-4 transition-colors"
+                    <h3 className="text-xl md:text-2xl font-black text-[#003648] hover:text-[#76186f] leading-snug mb-3 transition-colors"
                       style={{ letterSpacing: "-0.01em" }}>
                       {post.title}
                     </h3>
                   </Link>
-                  <p className="text-white/55 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
+                  <p className="text-slate-500 text-sm leading-relaxed line-clamp-3">{post.excerpt}</p>
                 </div>
                 <div>
-                  <div className="flex items-center gap-4 text-xs text-white/40 mt-5 mb-6">
+                  <div className="flex items-center gap-4 text-xs text-slate-400 mt-5 mb-5">
                     <span className="flex items-center gap-1.5"><User className="w-3 h-3" />{post.author}</span>
                     <span>{post.date}</span>
                     <span className="flex items-center gap-1.5"><Clock className="w-3 h-3" />{post.mins} min read</span>
                   </div>
                   <Link href={post.href}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-[#003648] bg-white hover:bg-white/90 transition-colors group">
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-colors group"
+                    style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}>
                     Read article <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>
@@ -147,19 +135,18 @@ function FeaturedSlider({ posts }: { posts: Post[] }) {
 
         {/* Dots */}
         {total > 1 && (
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-5">
             {posts.map((_, i) => (
               <button key={i} onClick={() => go(i, i > idx ? 1 : -1)}
                 className="transition-all duration-300 rounded-full"
                 style={{
                   width: i === idx ? 24 : 8, height: 8,
-                  background: i === idx ? "#76186f" : "rgba(255,255,255,0.25)",
+                  background: i === idx ? "#76186f" : "#cbd5e1",
                 }} />
             ))}
           </div>
         )}
-      </div>
-    </section>
+    </div>
   );
 }
 
@@ -250,9 +237,6 @@ export default function KnowledgeHub() {
           </div>
         </section>
 
-        {/* ── Featured slider (only if there are featured posts) ── */}
-        {featuredPosts.length > 0 && <FeaturedSlider posts={featuredPosts} />}
-
         {/* ── Category filter ── */}
         <div className="sticky top-[63px] z-30 bg-white border-b border-slate-100 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex gap-2 overflow-x-auto scrollbar-none">
@@ -266,6 +250,13 @@ export default function KnowledgeHub() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
+          {/* ── Featured slider ── */}
+          {featuredPosts.length > 0 && (
+            <div className="mb-12">
+              <FeaturedSlider posts={featuredPosts} />
+            </div>
+          )}
 
           {/* ── Grid ── */}
           {rest.length > 0 && (
