@@ -15,13 +15,13 @@ export function Hero() {
 
           {/* Text Content */}
           <div className="flex flex-col gap-8 max-w-2xl animate-in slide-in-up relative z-10 pb-16 lg:pb-32">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold w-fit border border-primary/20">
+            <Link href="/knowledge-hub/engage-health-group-nominated-for-three-awards-at-the-uk-health-protection-awards-2024" className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold w-fit border border-primary/20 hover:bg-primary/20 transition-colors">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
               🏆 Voted UK's #1 Health &amp; Protection Advisory Firm — 2024
-            </div>
+            </Link>
             
             <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight text-secondary leading-[1.15]">
               Source outstanding employee benefits in the{" "}
