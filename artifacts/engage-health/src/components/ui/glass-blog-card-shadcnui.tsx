@@ -58,13 +58,25 @@ export function GlassBlogCard({
     >
       <Card className="group relative h-full overflow-hidden rounded-2xl border-border/50 bg-card/30 backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
         {/* Image Section */}
-        <div className="relative aspect-[16/9] overflow-hidden">
+        <a href={href} className="block relative aspect-[16/9] overflow-hidden">
           <motion.img
             src={image}
             alt={title}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
+          {/* Permanent subtle gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+          {/* Hover overlay — dark branded */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ background: "linear-gradient(135deg,rgba(0,54,72,0.75),rgba(118,24,111,0.65))" }}>
+            <motion.span
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-[#003648] shadow-lg"
+            >
+              <BookOpen className="h-4 w-4" />
+              Read Article
+            </motion.span>
+          </div>
 
           <div className="absolute bottom-3 left-3 flex gap-2">
             {tags?.map((tag, index) => (
@@ -78,28 +90,16 @@ export function GlassBlogCard({
               </Badge>
             ))}
           </div>
-
-          {/* Hover Overlay Action */}
-          <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <a href={href}>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25"
-              >
-                <BookOpen className="h-4 w-4" />
-                Read Article
-              </motion.button>
-            </a>
-          </div>
-        </div>
+        </a>
 
         {/* Content Section */}
         <div className="flex flex-col gap-4 p-5">
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground transition-colors group-hover:text-primary" style={{ fontFamily: "'Inter', sans-serif" }}>
-              {title}
-            </h3>
+            <a href={href}>
+              <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground transition-colors group-hover:text-primary" style={{ fontFamily: "'Inter', sans-serif" }}>
+                {title}
+              </h3>
+            </a>
             <p className="line-clamp-2 text-sm text-muted-foreground">
               {excerpt}
             </p>
