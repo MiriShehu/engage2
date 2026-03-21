@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { useParams, Link } from "wouter";
 import { PageLayout } from "@/components/layout";
 import { useTeamMember } from "@/hooks/useWordPress";
@@ -6,6 +7,12 @@ import NotFound from "./not-found";
 
 export default function TeamMemberProfile() {
   const { slug } = useParams<{ slug: string }>();
+
+  // Scroll to top when navigating to this page immediately before paint
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   const { data, isLoading, isError } = useTeamMember(slug as string);
 
   if (isLoading) {

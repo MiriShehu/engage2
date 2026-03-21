@@ -16,9 +16,9 @@ export default function QuoteLayout({ step, children }: Props) {
     <div className="flex flex-col min-h-screen md:h-screen md:overflow-hidden bg-white">
 
       {/* ── Navbar ── */}
-      <nav className="flex items-center justify-between px-4 sm:px-8 md:px-10 h-[52px] bg-white border-b border-border flex-shrink-0 z-10">
+      <nav className="flex items-center justify-between px-4 sm:px-8 md:px-10 h-[64px] bg-white border-b border-border flex-shrink-0 z-10">
         <Link href="/" className="flex items-center z-50 flex-shrink-0">
-          <img src="/logo.png" alt="Engage Health Group" className="h-8 w-auto" />
+          <img src="/logo.png" alt="Engage Health Group" className="h-9 w-auto" />
         </Link>
         <div className="flex items-center gap-3 sm:gap-5">
           <Link href="/" className="text-[12px] text-muted-foreground font-medium hover:text-foreground transition-colors">

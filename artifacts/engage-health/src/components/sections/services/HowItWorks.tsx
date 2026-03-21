@@ -175,7 +175,7 @@ export function HowItWorks() {
 
             {/* CTA underneath nav */}
             <Link
-              href="/contact"
+              href="/get-a-quote"
               className="btn-cta mt-2 flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl"
             >
               Start your free review

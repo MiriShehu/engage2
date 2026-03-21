@@ -14,7 +14,7 @@ export function WhyChooseUs() {
             <div className="text-white/55 text-sm">We'll assess your current setup and show you what's possible, at zero cost.</div>
           </div>
           <Link
-            href="/contact"
+            href="/get-a-quote"
             className="btn-cta relative shrink-0 inline-flex items-center gap-2 px-8 py-4 rounded-xl"
           >
             Get my free review

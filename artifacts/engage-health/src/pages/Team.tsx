@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { PageLayout } from "@/components/layout";
 import { TrustBar } from "@/components/sections/trust";
 import { Linkedin } from "lucide-react";
@@ -292,7 +293,14 @@ function MemberCard({ member }: { member: any }) {
 }
 
 export default function Team() {
-  const { data, isError } = useTeamMembers();
+  const { data, isLoading, isError } = useTeamMembers();
+
+  // Helper to strip HTML tags and perfectly decode entities from WP GraphQL excerpts
+  const decodeHtmlEntities = (html: string) => {
+    if (typeof window === "undefined") return html.replace(/(<([^>]+)>)/gi, "");
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
 
   // Parse WordPress team members if available
   let dynamicDepartments = departments;
@@ -301,7 +309,7 @@ export default function Team() {
       name: node.title,
       slug: node.slug,
       title: node.staffMemberFields?.positionTitle || "Team Member",
-      bio: (node.excerpt || node.content || "").replace(/(<([^>]+)>)/gi, ""),
+      bio: decodeHtmlEntities(node.excerpt || node.content || ""),
       img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
       accent: "#003648", // Default brand color
       tags: ["Engage Health"] as const, // Default tag
@@ -316,12 +324,12 @@ export default function Team() {
       return 0; // maintain original query order
     });
 
-    // For now, group all WP members into a single "Our Team" department
+    // Group all WP members into a single "Our Experts" department
     dynamicDepartments = [
       {
-        name: "Our Team",
-        description: "Meet our fantastic team synced directly from WordPress.",
-        members: wpMembers,
+        name: "Our Experts",
+        description: "Get to know the dedicated professionals working to secure the best outcomes for your business.",
+        members: wpMembers
       }
     ];
   }
@@ -382,7 +390,7 @@ export default function Team() {
               <p className="text-gray-500 text-lg max-w-2xl">{dept.description}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {dept.members.map((member, mi) => (
+              {dept.members.map((member: any, mi: number) => (
                 <MemberCard key={mi} member={member} />
               ))}
             </div>

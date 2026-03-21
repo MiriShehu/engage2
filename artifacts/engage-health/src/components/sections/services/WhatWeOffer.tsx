@@ -87,7 +87,7 @@ export function WhatWeOffer() {
               Engage Health Group provides full consultancy and administrative support services, so you get expert advice and ongoing hands-on help, not just a policy.
             </p>
             <Link
-              href="/contact"
+              href="/get-a-quote"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-[#003648] bg-white hover:bg-white/90 transition-colors duration-200 shadow-md"
             >
               Speak to a consultant

@@ -140,7 +140,7 @@ function WorldDots() {
               cx={c * spacing + spacing / 2}
               cy={r * spacing + spacing / 2}
               r={dotR}
-              fill={isDot ? "rgba(22,163,74,0.55)" : "rgba(255,255,255,0.06)"}
+              fill={isDot ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.06)"}
             />
           );
         })
@@ -165,7 +165,7 @@ function CompanyNameCard({ name }: { name: string }) {
   return (
     <div className="flex items-center justify-center px-6 py-4 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-[#003648]/20 transition-all duration-200 group cursor-default">
       <span className="text-sm font-semibold text-slate-400 group-hover:text-[#003648] transition-colors duration-200 whitespace-nowrap select-none"
-        style={{ fontFamily: "'Outfit', sans-serif" }}>
+        style={{ fontFamily: "'Inter', sans-serif" }}>
         {name}
       </span>
     </div>
@@ -176,8 +176,8 @@ function CompanyNameCard({ name }: { name: string }) {
 function CheckItem({ text }: { text: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-1">
-        <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#f0f7fa] flex items-center justify-center mt-1">
+        <CheckCircle2 className="w-3.5 h-3.5 text-[#003648]" />
       </div>
       <span className="text-slate-600 text-base leading-relaxed">{text}</span>
     </div>
@@ -191,9 +191,9 @@ export default function Xcelerate() {
       <Navbar />
       <main className="flex-1">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
-        .xp { font-family: 'Outfit', sans-serif; }
+        .xp { font-family: 'Inter', sans-serif; }
         .xp-serif { font-family: 'Lora', serif; }
 
         @keyframes xcHeroIn {
@@ -217,15 +217,15 @@ export default function Xcelerate() {
         .xp-stat-1 { animation: xcStatIn 0.6s ease 0.35s both; }
         .xp-stat-2 { animation: xcStatIn 0.6s ease 0.5s both; }
 
-        .xp-btn-green {
-          background: #16a34a;
+        .xp-btn-primary {
+          background: #76186f;
           color: #fff;
           font-weight: 600;
           letter-spacing: 0.01em;
           transition: background 0.18s, transform 0.18s;
         }
-        .xp-btn-green:hover {
-          background: #15803d;
+        .xp-btn-primary:hover {
+          background: #5e1258;
           transform: translateY(-1px);
         }
         .xp-btn-white {
@@ -256,8 +256,8 @@ export default function Xcelerate() {
           transition: background 0.18s, border-color 0.18s;
         }
         .xp-cover-item:hover {
-          background: #f0fdf4;
-          border-color: #bbf7d0;
+          background: #fdfafc;
+          border-color: #f3dff1;
         }
         .xp .btn-cta {
           box-shadow: none;
@@ -277,97 +277,102 @@ export default function Xcelerate() {
       <div className="xp bg-white">
 
         {/* ══ HERO ═══════════════════════════════════════════════════════════ */}
-        <section className="relative min-h-[92vh] flex flex-col overflow-hidden"
-          style={{ background: "linear-gradient(160deg, #00263a 0%, #003648 45%, #004d20 100%)" }}>
+        <section className="relative min-h-[92vh] flex flex-col overflow-hidden bg-secondary">
 
           {/* Hero background photo */}
           <div className="absolute inset-0 pointer-events-none">
-            <img src={peopleGlobe} alt="" className="w-full h-full object-cover object-center opacity-20" />
+            <img src={peopleGlobe} alt="" className="w-full h-full object-cover object-center opacity-[0.12]" />
           </div>
+
+          {/* Grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "32px 32px" }}
+          />
 
           {/* World dot map overlay */}
           <div className="absolute inset-0 opacity-20 pointer-events-none">
             <WorldDots />
           </div>
 
-          {/* Soft radial glow */}
+          {/* Soft radial glow (Purple branding) */}
           <div className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse 55% 55% at 50% 40%, rgba(22,163,74,0.18) 0%, transparent 65%)", animation: "xcGlow 5s ease-in-out infinite" }} />
+            style={{ background: "radial-gradient(ellipse 60% 60% at 50% 30%, rgba(118,24,111,0.25) 0%, transparent 70%)", animation: "xcGlow 6s ease-in-out infinite" }} />
+          
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
           {/* Content */}
-          <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pt-28 pb-10">
+          <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-28 pb-16">
 
             {/* Badge */}
             <div className="xp-hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-7">
-              <Zap className="w-3.5 h-3.5 text-green-300" />
-              <span className="text-xs font-semibold tracking-[0.15em] uppercase text-green-200">Powered by UnitedHealthcare Global</span>
+              <Zap className="w-3.5 h-3.5 text-white/90" />
+              <span className="text-xs font-bold tracking-[0.1em] text-white/90">POWERED BY UNITEDHEALTHCARE GLOBAL</span>
             </div>
 
             {/* Headline */}
-            <h1 className="xp-hero-h1 text-white leading-none mb-5"
-              style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900, fontSize: "clamp(3.2rem, 8vw, 6.5rem)", letterSpacing: "-0.02em" }}>
+            <h1 className="xp-hero-h1 text-white leading-tight mb-6"
+              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900, fontSize: "clamp(3rem, 8vw, 6rem)", letterSpacing: "-0.02em" }}>
               Xcelerate
             </h1>
 
-            <p className="xp-hero-sub text-white/75 mb-8 max-w-xl leading-relaxed"
-              style={{ fontSize: "clamp(1rem, 2.5vw, 1.2rem)", fontWeight: 300 }}>
-              Global health insurance for<br className="hidden sm:block" />
-              <strong className="text-white font-semibold">fast-growing businesses.</strong>
+            <p className="xp-hero-sub text-white/80 mb-10 max-w-2xl leading-relaxed"
+              style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.3rem)", fontWeight: 300 }}>
+              Global health insurance for <strong className="text-white font-semibold">fast-growing businesses.</strong>
             </p>
 
             {/* Partner logos row */}
-            <div className="xp-hero-logos flex flex-wrap items-center justify-center gap-3 mb-10">
-              <div className="flex items-center px-6 py-3.5 rounded-2xl backdrop-blur-md"
-                style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.18)" }}>
-                <img src={engageLogo} alt="Engage Health Group" className="w-auto"
-                  style={{ height: "42px", filter: "brightness(0) invert(1)" }} />
+            <div className="xp-hero-logos flex flex-wrap items-center justify-center gap-4 mb-12">
+              <div className="flex items-center px-6 py-4 rounded-2xl backdrop-blur-md shadow-lg"
+                style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                <img src={engageLogo} alt="Engage Health Group" className="w-auto h-[38px]"
+                  style={{ filter: "brightness(0) invert(1)" }} />
               </div>
 
-              <div className="flex items-center justify-center w-8 h-8 rounded-full text-white/40"
-                style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <span className="text-xs font-light">×</span>
+              <div className="flex items-center justify-center w-8 h-8 rounded-full text-white/50"
+                style={{ background: "rgba(255,255,255,0.05)" }}>
+                <span className="text-sm font-light">×</span>
               </div>
 
-              <div className="flex items-center px-6 py-3.5 rounded-2xl backdrop-blur-md"
-                style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.18)" }}>
-                <img src={unitedLogo} alt="UnitedHealthcare Global" className="w-auto"
-                  style={{ height: "42px", filter: "brightness(0) invert(1)" }} />
+              <div className="flex items-center px-6 py-4 rounded-2xl backdrop-blur-md shadow-lg"
+                style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                <img src={unitedLogo} alt="UnitedHealthcare Global" className="w-auto h-[38px]"
+                  style={{ filter: "brightness(0) invert(1)" }} />
               </div>
             </div>
 
             {/* CTAs */}
-            <div className="xp-hero-ctas flex flex-wrap gap-3 justify-center">
+            <div className="xp-hero-ctas flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
               <Link href="/get-a-quote"
-                className="btn-cta inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm group">
+                className="btn-cta inline-flex justify-center items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm group bg-primary hover:bg-[#5e1258] text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                 Get pricing
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <a href="#eligibility"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm bg-white text-[#003648] border-2 border-white/20 shadow-lg hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200">
-                Find out if Xcelerate is right for you
+                className="group inline-flex justify-center items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm bg-white/5 text-white border-2 border-white/20 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-200 backdrop-blur-sm">
+                Find out if Xcelerate is right
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
             </div>
           </div>
 
-          {/* Stats bar */}
-          <div className="relative z-10 w-full mt-auto">
-            <div className="max-w-5xl mx-auto px-6 pb-0">
-              <div className="grid grid-cols-1 sm:grid-cols-3 rounded-t-2xl overflow-hidden border-t border-x border-white/10 backdrop-blur-md"
-                style={{ background: "rgba(0,0,0,0.35)" }}>
+          {/* Floating Stats Bar */}
+          <div className="relative z-20 w-full mt-auto translate-y-8 sm:translate-y-12">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
                 {[
                   { n: 150,   sfx: "+",   pfx: "",  top: "countries covered",           bot: "under a single plan",           cls: "xp-stat-0" },
                   { n: 50000, sfx: "+",   pfx: "",  top: "global employees",            bot: "supported by Engage",           cls: "xp-stat-1" },
                   { n: 199,   sfx: "",    pfx: "£", top: "average premium",             bot: "per employee per month",        cls: "xp-stat-2" },
                 ].map(({ n, sfx, pfx, top, bot, cls }, i) => (
                   <div key={i}
-                    className={`${cls} flex flex-col items-center justify-center py-7 px-6 border-b sm:border-b-0 border-white/8 ${i > 0 ? "sm:border-l border-white/8" : ""}`}>
-                    <div className="text-white font-black tabular-nums leading-none mb-1"
-                      style={{ fontFamily: "'Outfit', sans-serif", fontSize: "clamp(2rem, 4vw, 2.6rem)" }}>
+                    className={`${cls} flex flex-col items-center justify-center py-8 px-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl`}>
+                    <div className="text-white font-black tabular-nums leading-none mb-2 drop-shadow-sm"
+                      style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(2.5rem, 4vw, 3rem)" }}>
                       <Counter to={n} suffix={sfx} prefix={pfx} />
                     </div>
-                    <div className="text-green-300 text-xs font-semibold uppercase tracking-widest">{top}</div>
-                    <div className="text-white/40 text-xs mt-0.5">{bot}</div>
+                    <div className="text-white/90 text-sm font-bold tracking-wider uppercase mb-1">{top}</div>
+                    <div className="text-white/60 text-sm">{bot}</div>
                   </div>
                 ))}
               </div>
@@ -380,11 +385,11 @@ export default function Xcelerate() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
 
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-200 mb-5">
-                <Globe className="w-3 h-3 text-green-600" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-green-700">Global coverage</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0f7fa] border border-[#003648]/20 mb-5">
+                <Globe className="w-3 h-3 text-[#003648]" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#003648]">Global coverage</span>
               </div>
-              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 2.75rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}
+              <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 2.75rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}
                 className="mb-6">
                 Global hiring<br />made easy.
               </h2>
@@ -438,11 +443,11 @@ export default function Xcelerate() {
 
             {/* Text — right */}
             <Reveal from="right" delay={100}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-200 mb-5">
-                <Star className="w-3 h-3 text-green-600" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-green-700">Expert support</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0f7fa] border border-[#003648]/20 mb-5">
+                <Star className="w-3 h-3 text-[#003648]" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#003648]">Expert support</span>
               </div>
-              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 2.75rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}
+              <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 2.75rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}
                 className="mb-6">
                 Expert advice &amp;<br />ongoing support.
               </h2>
@@ -462,7 +467,7 @@ export default function Xcelerate() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center mb-12">
             <p className="text-xs font-bold tracking-widest uppercase text-[#003648]/50 mb-3">Trusted by</p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#003648] leading-tight"
-              style={{ fontFamily: "'Outfit', sans-serif" }}>
+              style={{ fontFamily: "'Inter', sans-serif" }}>
               Trusted by more than 500 businesses worldwide
             </h2>
             <p className="mt-3 text-slate-500 text-base max-w-xl mx-auto">
@@ -486,72 +491,66 @@ export default function Xcelerate() {
         </section>
 
         {/* ══ WORLD-CLASS HEALTHCARE ════════════════════════════════════════ */}
-        <section className="py-28 overflow-hidden"
-          style={{ background: "linear-gradient(160deg, #00263a 0%, #003648 60%, #004020 100%)" }}>
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="py-28 overflow-hidden bg-gray-50 border-t border-slate-200 relative">
+          {/* Subtle background element */}
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#003648]/[0.02] rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
+          
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
 
             {/* Header */}
             <Reveal className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-green-500/30 bg-green-500/10 mb-5">
-                <Shield className="w-3 h-3 text-green-400" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-green-300">Coverage</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#003648]/20 bg-[#f0f7fa] mb-5">
+                <Shield className="w-3.5 h-3.5 text-[#003648]" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#003648]">Coverage</span>
               </div>
-              <h2 className="text-white mb-4"
-                style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}>
+              <h2 className="text-[#003648] mb-5"
+                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}>
                 World-class healthcare<br />for global teams.
               </h2>
-              <p className="text-white/50 text-base max-w-md mx-auto leading-relaxed">
+              <p className="text-slate-500 text-lg max-w-xl mx-auto leading-relaxed">
                 Xcelerate provides a comprehensive range of world-class healthcare, including, but not limited to:
               </p>
             </Reveal>
 
             {/* Bento grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
 
               {/* Large featured card — spans 2 cols */}
               <Reveal delay={0} className="col-span-2">
-                <div className="group h-full rounded-2xl p-7 cursor-default relative overflow-hidden"
-                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", transition: "border-color 0.2s, background 0.2s" }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(34,197,94,0.35)"; (e.currentTarget as HTMLElement).style.background = "rgba(34,197,94,0.07)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.09)"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; }}>
-                  <div className="absolute top-0 right-0 w-32 h-32 rounded-full pointer-events-none"
-                    style={{ background: "radial-gradient(circle, rgba(34,197,94,0.1) 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                    style={{ background: "rgba(34,197,94,0.15)", border: "1px solid rgba(34,197,94,0.25)" }}>
-                    <Globe className="w-6 h-6 text-green-400" />
+                <div className="group h-full rounded-2xl p-8 cursor-default relative overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#003648]/20 hover:-translate-y-1 transition-all duration-300">
+                  <div className="absolute top-0 right-0 w-48 h-48 rounded-full pointer-events-none transition-transform duration-500 group-hover:scale-110"
+                    style={{ background: "radial-gradient(circle, rgba(118,24,111,0.06) 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#f0f7fa] border border-[#003648]/10 group-hover:bg-[#003648] transition-colors duration-300">
+                    <Globe className="w-6 h-6 text-[#003648] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <p className="text-white font-bold text-lg mb-2"
-                    style={{ fontFamily: "'Outfit', sans-serif" }}>Global medical access</p>
-                  <p className="text-white/50 text-base leading-relaxed">
-                    Access to medical facilities &amp; specialists anywhere in the world, excl. USA as standard
+                  <p className="text-[#003648] font-extrabold text-xl mb-3"
+                    style={{ fontFamily: "'Inter', sans-serif" }}>Global medical access</p>
+                  <p className="text-slate-500 text-base leading-relaxed">
+                    Access to medical facilities &amp; specialists anywhere in the world, excluding the USA as standard, ensuring your team is uniformly protected across all your international operating territories.
                   </p>
                 </div>
               </Reveal>
 
               {/* Regular cards */}
               {[
-                { icon: Activity,    title: "Inpatient treatment",   desc: "Surgeries & treatments requiring an overnight stay" },
-                { icon: Stethoscope, title: "Outpatient treatment",  desc: "Consultations, diagnostics & minor treatments" },
+                { icon: Activity,    title: "Inpatient treatment",   desc: "Surgeries & treatments requiring an overnight hospital stay" },
+                { icon: Stethoscope, title: "Outpatient treatment",  desc: "Consultations, diagnostics, & minor treatments" },
               ].map(({ icon: Icon, title, desc }, i) => (
                 <Reveal key={i} delay={80 + i * 60}>
-                  <div className="group h-full rounded-2xl p-6 cursor-default"
-                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", transition: "border-color 0.2s, background 0.2s" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(34,197,94,0.35)"; (e.currentTarget as HTMLElement).style.background = "rgba(34,197,94,0.07)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.09)"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; }}>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                      style={{ background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.2)" }}>
-                      <Icon className="w-5 h-5 text-green-400" />
+                  <div className="group h-full rounded-2xl p-7 cursor-default bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#003648]/20 hover:-translate-y-1 transition-all duration-300">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#f0f7fa] border border-[#003648]/10 group-hover:bg-[#003648] transition-colors duration-300">
+                      <Icon className="w-5 h-5 text-[#003648] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <p className="text-white font-semibold text-sm mb-1.5"
-                      style={{ fontFamily: "'Outfit', sans-serif" }}>{title}</p>
-                    <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+                    <p className="text-[#003648] font-bold text-lg mb-2"
+                      style={{ fontFamily: "'Inter', sans-serif" }}>{title}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </Reveal>
               ))}
             </div>
 
             {/* Second row — 4 equal cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
               {[
                 { icon: Shield,   title: "Acute & Chronic",       desc: "Full cover for both acute & chronic conditions" },
                 { icon: Dumbbell, title: "Physical therapies",    desc: "Physiotherapy, chiropractic & alternatives" },
@@ -559,61 +558,53 @@ export default function Xcelerate() {
                 { icon: Brain,    title: "Mental health",         desc: "Counselling & digital support tools" },
               ].map(({ icon: Icon, title, desc }, i) => (
                 <Reveal key={i} delay={i * 50}>
-                  <div className="group h-full rounded-2xl p-6 cursor-default"
-                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", transition: "border-color 0.2s, background 0.2s" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(34,197,94,0.35)"; (e.currentTarget as HTMLElement).style.background = "rgba(34,197,94,0.07)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.09)"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; }}>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                      style={{ background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.2)" }}>
-                      <Icon className="w-5 h-5 text-green-400" />
+                  <div className="group h-full rounded-2xl p-7 cursor-default bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#003648]/20 hover:-translate-y-1 transition-all duration-300">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#f0f7fa] border border-[#003648]/10 group-hover:bg-[#003648] transition-colors duration-300">
+                      <Icon className="w-5 h-5 text-[#003648] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <p className="text-white font-semibold text-sm mb-1.5"
-                      style={{ fontFamily: "'Outfit', sans-serif" }}>{title}</p>
-                    <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+                    <p className="text-[#003648] font-bold text-lg mb-2"
+                      style={{ fontFamily: "'Inter', sans-serif" }}>{title}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </Reveal>
               ))}
             </div>
 
             {/* Third row — 2 cards + CTA card */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { icon: Pill,  title: "Prescriptions",   desc: "Prescription drugs & vaccinations" },
-                { icon: Baby,  title: "Maternity",       desc: "Options to cover maternity benefits" },
+                { icon: Pill,  title: "Prescriptions",   desc: "Prescription drugs & vaccinations covered globally" },
+                { icon: Baby,  title: "Maternity",       desc: "Comprehensive options to cover maternity benefits" },
               ].map(({ icon: Icon, title, desc }, i) => (
                 <Reveal key={i} delay={i * 50}>
-                  <div className="group h-full rounded-2xl p-6 cursor-default"
-                    style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", transition: "border-color 0.2s, background 0.2s" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(34,197,94,0.35)"; (e.currentTarget as HTMLElement).style.background = "rgba(34,197,94,0.07)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.09)"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; }}>
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                      style={{ background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.2)" }}>
-                      <Icon className="w-5 h-5 text-green-400" />
+                  <div className="group h-full rounded-2xl p-7 cursor-default bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#003648]/20 hover:-translate-y-1 transition-all duration-300">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-[#f0f7fa] border border-[#003648]/10 group-hover:bg-[#003648] transition-colors duration-300">
+                      <Icon className="w-5 h-5 text-[#003648] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <p className="text-white font-semibold text-sm mb-1.5"
-                      style={{ fontFamily: "'Outfit', sans-serif" }}>{title}</p>
-                    <p className="text-white/45 text-sm leading-relaxed">{desc}</p>
+                    <p className="text-[#003648] font-bold text-lg mb-2"
+                      style={{ fontFamily: "'Inter', sans-serif" }}>{title}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </Reveal>
               ))}
 
               {/* CTA card — spans 2 cols */}
               <Reveal delay={120} className="col-span-2">
-                <div className="h-full rounded-2xl p-7 flex flex-col justify-between"
-                  style={{ background: "linear-gradient(135deg, rgba(22,163,74,0.2) 0%, rgba(22,163,74,0.08) 100%)", border: "1px solid rgba(34,197,94,0.3)" }}>
-                  <div>
-                    <p className="text-white font-bold text-base mb-2"
-                      style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <div className="h-full rounded-2xl p-8 flex flex-col justify-between bg-[#003648] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[60px] pointer-events-none group-hover:bg-primary/30 transition-colors duration-500" />
+                  <div className="relative z-10">
+                    <p className="text-white font-extrabold text-xl mb-3"
+                      style={{ fontFamily: "'Inter', sans-serif" }}>
                       Ready for a personalised quote?
                     </p>
-                    <p className="text-white/50 text-base leading-relaxed mb-5">
-                      Every Xcelerate plan is tailored to your team. Get expert advice and pricing specific to your business.
+                    <p className="text-white/80 text-base leading-relaxed mb-6 max-w-md">
+                      Every Xcelerate plan is tailored to your team. Get expert advice and pricing specific to your business from our award-winning consultants.
                     </p>
                   </div>
                   <Link href="/get-a-quote"
-                    className="btn-cta inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold self-start group">
+                    className="relative z-10 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-bold self-start group/btn bg-primary hover:bg-[#5e1258] text-white transition-colors shadow-md">
                     Request a personalised quotation
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>
               </Reveal>
@@ -626,7 +617,7 @@ export default function Xcelerate() {
         <section className="py-24 border-y border-slate-100" style={{ background: "#f8fafc" }}>
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <Reveal className="text-center mb-14">
-              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}>
+              <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}>
                 Built by Engage Health Group
               </h2>
               <p className="text-slate-400 text-sm mt-2">Powered by UnitedHealthcare</p>
@@ -685,25 +676,25 @@ export default function Xcelerate() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-200 mb-5">
-                <Users className="w-3 h-3 text-green-600" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-green-700">Eligibility</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f0f7fa] border border-[#003648]/20 mb-5">
+                <Users className="w-3 h-3 text-[#003648]" />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#003648]">Eligibility</span>
               </div>
-              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 2.75rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}
+              <h2 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 2.75rem)", lineHeight: 1.1, color: "#003648", letterSpacing: "-0.02em" }}
                 className="mb-6">
                 Who can join<br />Xcelerate?
               </h2>
-              <p className="text-slate-500 leading-relaxed text-lg mb-6" style={{ fontWeight: 300 }}>
+              <p className="text-slate-500 leading-relaxed text-lg mb-8" style={{ fontWeight: 300 }}>
                 If you're a start-up with employees in more than one country, there's a good chance you will qualify for the scheme. Fill in the form below for a free assessment from one of our international specialists.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4">
                 <Link href="/get-a-quote"
-                  className="xp-btn-green inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm">
+                  className="xp-btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm shadow-md">
                   Check your eligibility
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a href="tel:01273974419"
-                  className="xp-btn-outline-dark inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm">
+                  className="xp-btn-outline-dark inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm">
                   <Phone className="w-4 h-4" />
                   01273 974419
                 </a>
@@ -711,85 +702,80 @@ export default function Xcelerate() {
             </Reveal>
 
             <Reveal delay={150}>
-              <div className="rounded-2xl overflow-hidden border border-slate-100"
-                style={{ background: "linear-gradient(135deg, #003648 0%, #004d20 100%)" }}>
-                <div className="p-8">
-                  <h3 className="font-bold text-white text-xl mb-2"
-                    style={{ fontFamily: "'Outfit', sans-serif" }}>
+              <div className="rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-2xl relative">
+                {/* Decorative subtle stripe */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#003648] to-[#76186f]" />
+                <div className="p-8 sm:p-10">
+                  <h3 className="font-extrabold text-[#003648] text-2xl mb-2"
+                    style={{ fontFamily: "'Inter', sans-serif" }}>
                     Get a free assessment
                   </h3>
-                  <p className="text-white/60 text-base mb-6">Please complete this form and someone will be in touch shortly.</p>
+                  <p className="text-slate-500 text-base mb-8">Please complete this form and someone will be in touch shortly.</p>
 
-                  <form className="flex flex-col gap-4" onSubmit={e => e.preventDefault()}>
+                  <form className="flex flex-col gap-5" onSubmit={e => e.preventDefault()}>
 
                     {/* Row: First + Last name */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-4">
                       {[
                         { label: "First Name", type: "text" },
                         { label: "Last Name",  type: "text" },
                       ].map(({ label, type }) => (
                         <div key={label}>
-                          <label className="text-white/60 text-xs font-medium block mb-1">{label} <span className="text-green-400">*</span></label>
+                          <label className="text-slate-600 text-xs font-bold uppercase tracking-wider block mb-1.5">{label} <span className="text-primary">*</span></label>
                           <input required type={type} placeholder={label}
-                            className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-green-400/50 transition"
-                            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }} />
+                            className="w-full px-4 py-3 rounded-xl text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-primary/40 border border-slate-200 bg-slate-50 transition-all" />
                         </div>
                       ))}
                     </div>
 
-                    {/* Phone */}
-                    <div>
-                      <label className="text-white/60 text-xs font-medium block mb-1">Phone <span className="text-green-400">*</span></label>
-                      <input required type="tel" placeholder="Phone number"
-                        className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-green-400/50 transition"
-                        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }} />
+                    {/* Phone & Company */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-slate-600 text-xs font-bold uppercase tracking-wider block mb-1.5">Phone <span className="text-primary">*</span></label>
+                        <input required type="tel" placeholder="Phone number"
+                          className="w-full px-4 py-3 rounded-xl text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-primary/40 border border-slate-200 bg-slate-50 transition-all" />
+                      </div>
+                      <div>
+                        <label className="text-slate-600 text-xs font-bold uppercase tracking-wider block mb-1.5">Company <span className="text-primary">*</span></label>
+                        <input required type="text" placeholder="Company name"
+                          className="w-full px-4 py-3 rounded-xl text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-primary/40 border border-slate-200 bg-slate-50 transition-all" />
+                      </div>
                     </div>
 
-                    {/* Company name */}
-                    <div>
-                      <label className="text-white/60 text-xs font-medium block mb-1">Company name <span className="text-green-400">*</span></label>
-                      <input required type="text" placeholder="Company name"
-                        className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-green-400/50 transition"
-                        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }} />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label className="text-white/60 text-xs font-medium block mb-1">Email <span className="text-green-400">*</span></label>
-                      <input required type="email" placeholder="Email address"
-                        className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-green-400/50 transition"
-                        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }} />
-                    </div>
-
-                    {/* No. Employees */}
-                    <div>
-                      <label className="text-white/60 text-xs font-medium block mb-1">No. Employees <span className="text-green-400">*</span></label>
-                      <input required type="number" min="1" placeholder="Number of employees"
-                        className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-green-400/50 transition"
-                        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }} />
+                    {/* Email & Employees */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-slate-600 text-xs font-bold uppercase tracking-wider block mb-1.5">Email <span className="text-primary">*</span></label>
+                        <input required type="email" placeholder="Email address"
+                          className="w-full px-4 py-3 rounded-xl text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-primary/40 border border-slate-200 bg-slate-50 transition-all" />
+                      </div>
+                      <div>
+                        <label className="text-slate-600 text-xs font-bold uppercase tracking-wider block mb-1.5">Employees <span className="text-primary">*</span></label>
+                        <input required type="number" min="1" placeholder="Number"
+                          className="w-full px-4 py-3 rounded-xl text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-primary/40 border border-slate-200 bg-slate-50 transition-all" />
+                      </div>
                     </div>
 
                     {/* Comments */}
                     <div>
-                      <label className="text-white/60 text-xs font-medium block mb-1">Comments</label>
+                      <label className="text-slate-600 text-xs font-bold uppercase tracking-wider block mb-1.5">Comments</label>
                       <textarea rows={3} placeholder="Any additional comments..."
-                        className="w-full px-3 py-2.5 rounded-lg text-sm text-white placeholder-white/30 outline-none focus:ring-2 focus:ring-green-400/50 transition resize-none"
-                        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }} />
+                        className="w-full px-4 py-3 rounded-xl text-sm text-slate-800 placeholder-slate-400 outline-none focus:ring-2 focus:ring-primary/40 border border-slate-200 bg-slate-50 transition-all resize-none" />
                     </div>
 
                     {/* GDPR */}
-                    <label className="flex items-start gap-3 cursor-pointer">
+                    <label className="flex items-start gap-3 cursor-pointer mt-2">
                       <input required type="checkbox"
-                        className="mt-0.5 flex-shrink-0 w-4 h-4 rounded accent-green-500 cursor-pointer" />
-                      <span className="text-white/45 text-xs leading-relaxed">
-                        We strictly adhere to the General Data Protection Regulation and will only use your personal information for the purposes of helping with your query. For more information, please read our{" "}
-                        <a href="#" className="text-green-400 underline hover:text-green-300 transition-colors">Privacy Notice &amp; Cookies</a>.
+                        className="mt-1 flex-shrink-0 w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary cursor-pointer" />
+                      <span className="text-slate-500 text-xs leading-relaxed">
+                        We strictly adhere to the General Data Protection Regulation and will only use your personal information. For more information, please read our{" "}
+                        <a href="#" className="text-primary font-medium hover:underline transition-colors">Privacy Notice &amp; Cookies</a>.
                       </span>
                     </label>
 
                     {/* Submit */}
                     <button type="submit"
-                      className="btn-cta w-full py-3.5 rounded-xl text-sm font-bold mt-1 flex items-center justify-center gap-2 tracking-wide">
+                      className="xp-btn-primary w-full py-4 rounded-xl text-sm font-bold mt-2 flex items-center justify-center gap-2 tracking-wide shadow-md">
                       CHECK YOUR ELIGIBILITY
                       <ArrowRight className="w-4 h-4" />
                     </button>

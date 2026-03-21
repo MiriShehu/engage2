@@ -92,7 +92,7 @@ export function ProblemSolution() {
               <h3 className="text-xl font-bold text-white mb-3 leading-snug">{facts[0].label}</h3>
               <p className="text-white/60 text-sm leading-relaxed">{facts[0].detail}</p>
             </div>
-            <Link href="/contact" className="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-white transition-colors group/link">
+            <Link href="/get-a-quote" className="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-white transition-colors group/link">
               Get a free review
               <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
             </Link>
@@ -122,7 +122,7 @@ export function ProblemSolution() {
             <div className="text-gray-500 text-sm mt-0.5">Free market review, no obligation, no cost to your business.</div>
           </div>
           <Link
-            href="/contact"
+            href="/get-a-quote"
             className="btn-cta shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl"
           >
             Start your free review
