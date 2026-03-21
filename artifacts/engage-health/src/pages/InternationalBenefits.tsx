@@ -219,6 +219,15 @@ const tocItems = [
   { id: "faqs",           label: "Frequently Asked Questions" },
 ];
 
+const NAVBAR_HEIGHT = 80; // 64px nav + 16px breathing room
+
+function scrollToId(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
 function TableOfContents() {
   const [active, setActive] = useState<string>("");
   const [open, setOpen] = useState(false);
@@ -270,8 +279,14 @@ function TableOfContents() {
             <button
               key={item.id}
               onClick={() => {
-                document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-                setOpen(false);
+                // On mobile the TOC is open and collapses first — defer scroll
+                // so the layout reflow settles before we calculate position
+                if (open) {
+                  setOpen(false);
+                  setTimeout(() => scrollToId(item.id), 50);
+                } else {
+                  scrollToId(item.id);
+                }
               }}
               className={cn(
                 "flex items-center gap-3 px-5 py-3.5 text-left w-full transition-all duration-150 border-b border-border/50",
