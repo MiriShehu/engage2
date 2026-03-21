@@ -202,7 +202,10 @@ function SidebarTOC({ items }: { items: TocItem[] }) {
           <button
             key={item.id}
             onClick={() => {
-              document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              const el = document.getElementById(item.id);
+              if (!el) return;
+              const y = el.getBoundingClientRect().top + window.scrollY - 88;
+              window.scrollTo({ top: y, behavior: 'smooth' });
             }}
             className={cn(
               'flex items-start gap-2.5 px-3 py-2.5 rounded-lg text-left w-full transition-all duration-150 group',
@@ -340,7 +343,7 @@ export default function BlogPost({ slug }: { slug: string }) {
               <ActionBar />
             </div>
 
-            <article className="flex-1 min-w-0 bg-white rounded-lg border border-border overflow-hidden">
+            <article className="flex-1 min-w-0 bg-white rounded-lg border border-border">
               {post.featuredImage?.node?.sourceUrl && (
                 <img
                   src={post.featuredImage.node.sourceUrl}
@@ -424,7 +427,7 @@ function BlogPostStatic() {
             </div>
 
             {/* ── Article card ─────────────────────────────────────────── */}
-            <article className="flex-1 min-w-0 bg-white rounded-lg border border-border overflow-hidden">
+            <article className="flex-1 min-w-0 bg-white rounded-lg border border-border">
 
               {/* Featured image — flush to top */}
               <img
