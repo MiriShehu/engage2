@@ -99,7 +99,7 @@ export function WhyEngageSection() {
               transition={{ delay: 0.5, duration: 0.4 }}
             >
               <Link
-                href="/solutions"
+                href="/employee-benefits"
                 className="group inline-flex items-center gap-2 font-bold text-primary hover:gap-3 transition-all duration-200 text-base"
               >
                 Why Engage?
