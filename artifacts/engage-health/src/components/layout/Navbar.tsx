@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import {
-  Menu, X, ChevronDown, Phone, Mail, ArrowRight,
+  Menu, X, ChevronDown, Phone, ArrowRight,
   Globe, Shield, Users, Heart, Activity, Smile, TrendingUp,
   Building2, Star, AlertCircle, Plane, Lock, MapPin, Flag,
   Zap, BookOpen, Clock, UserCircle, Quote, Briefcase, Key,
@@ -144,6 +145,15 @@ function SmallDropdown({
 }
 
 // ─── Mega dropdown (Employee Benefits / International) ────────────────────────
+const colVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.04 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.18, ease: "easeOut" } },
+};
+
 function MegaDropdown({
   label, color, items,
 }: { label: string; color: string; items: NavItem[]; headerLabel?: string; cols?: number }) {
@@ -162,73 +172,84 @@ function MegaDropdown({
         <ChevronDown className={cn("w-4 h-4 transition-transform duration-200", open && "rotate-180")} />
       </button>
 
-      <div
-        className={cn(
-          "fixed left-0 right-0 transition-all duration-200 z-50",
-          open ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1 pointer-events-none"
-        )}
-        style={{ top: "64px" }}
-        onMouseEnter={enter}
-        onMouseLeave={leave}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden grid grid-cols-[1fr_1fr_280px]">
-            {/* Column 1 */}
-            <div className="p-4 flex flex-col gap-0.5 border-r border-gray-100">
-              {col1.map((item) => <DropdownItem key={item.label} item={item} color={color} />)}
-            </div>
-            {/* Column 2 */}
-            <div className="p-4 flex flex-col gap-0.5 border-r border-gray-100">
-              {col2.map((item) => <DropdownItem key={item.label} item={item} color={color} />)}
-            </div>
-            {/* Info panel */}
-            <div
-              className="relative flex flex-col justify-end p-7 overflow-hidden"
-              style={{ background: `radial-gradient(120% 120% at 100% 100%, ${color} 0%, #001f29 100%)` }}
-            >
-              <img src="/logomark-plain.png" alt="" className="absolute top-7 left-7 w-12 h-12 object-contain filter brightness-0 invert opacity-90" />
-              
-              {/* Subtle glass shadow */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-white/5 pointer-events-none" />
-
-              <div className="relative z-10 flex flex-col gap-4 mt-16">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Get in touch</p>
-                  <p className="text-lg font-extrabold text-white leading-snug">Talk to an expert</p>
-                  <p className="text-sm text-white/70 mt-1 leading-snug">Free, impartial advice with no obligation.</p>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <a
-                    href="tel:01273974419"
-                    className="flex items-center gap-2.5 text-sm font-semibold text-white hover:text-white/80 transition-colors"
-                  >
-                    <span className="flex items-center justify-center w-7 h-7 rounded-full bg-white/15">
-                      <Phone className="w-3.5 h-3.5 text-white" />
-                    </span>
-                    01273 974419
-                  </a>
-                  <a
-                    href="mailto:info@engagehealthgroup.co.uk"
-                    className="flex items-center gap-2.5 text-sm font-semibold text-white hover:text-white/80 transition-colors"
-                  >
-                    <span className="flex items-center justify-center w-7 h-7 rounded-full bg-white/15">
-                      <Mail className="w-3.5 h-3.5 text-white" />
-                    </span>
-                    info@engagehealthgroup.co.uk
-                  </a>
-                </div>
-                <Link
-                  href="/get-a-quote"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white text-[#003648] text-sm font-bold hover:bg-white/90 transition-colors"
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mega"
+            initial={{ opacity: 0, y: -8, scaleY: 0.97 }}
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}
+            exit={{ opacity: 0, y: -6, scaleY: 0.97 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            style={{ top: "64px", transformOrigin: "top center" }}
+            className="fixed left-0 right-0 z-50"
+            onMouseEnter={enter}
+            onMouseLeave={leave}
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden grid grid-cols-[1fr_1fr_280px]">
+                {/* Column 1 */}
+                <motion.div
+                  className="p-4 flex flex-col gap-0.5 border-r border-gray-100"
+                  variants={colVariants} initial="hidden" animate="visible"
                 >
-                  Get a free quote
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                  {col1.map((item) => (
+                    <motion.div key={item.label} variants={itemVariants}>
+                      <DropdownItem item={item} color={color} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+                {/* Column 2 */}
+                <motion.div
+                  className="p-4 flex flex-col gap-0.5 border-r border-gray-100"
+                  variants={colVariants} initial="hidden" animate="visible"
+                >
+                  {col2.map((item) => (
+                    <motion.div key={item.label} variants={itemVariants}>
+                      <DropdownItem item={item} color={color} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+                {/* Info panel */}
+                <div
+                  className="relative flex flex-col justify-end p-7 overflow-hidden"
+                  style={{ background: `radial-gradient(120% 120% at 100% 100%, ${color} 0%, #001f29 100%)` }}
+                >
+                  <img src="/logomark-plain.png" alt="" className="absolute top-7 left-7 w-12 h-12 object-contain filter brightness-0 invert opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-white/5 pointer-events-none" />
+                  <motion.div
+                    className="relative z-10 flex flex-col gap-4 mt-16"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25, delay: 0.1, ease: "easeOut" }}
+                  >
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Get in touch</p>
+                      <p className="text-lg font-extrabold text-white leading-snug">Talk to an expert</p>
+                      <p className="text-sm text-white/70 mt-1 leading-snug">Free, impartial advice with no obligation.</p>
+                    </div>
+                    <a
+                      href="tel:01273974419"
+                      className="flex items-center gap-2.5 text-sm font-semibold text-white hover:text-white/80 transition-colors"
+                    >
+                      <span className="flex items-center justify-center w-7 h-7 rounded-full bg-white/15">
+                        <Phone className="w-3.5 h-3.5 text-white" />
+                      </span>
+                      01273 974419
+                    </a>
+                    <Link
+                      href="/get-a-quote"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white text-[#003648] text-sm font-bold hover:bg-white/90 transition-colors"
+                    >
+                      Get a free quote
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </motion.div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
