@@ -416,21 +416,31 @@ export default function EmployeeBenefits() {
                 At Engage Health Group, we're experienced in designing, implementing and managing employee benefit packages for companies large and small. Here's what to expect:
               </p>
 
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {processSteps.map((step) => (
-                  <div
-                    key={step.n}
-                    className="flex gap-4 p-5 rounded-2xl border border-border bg-white hover:border-primary/20 hover:shadow-sm transition-all duration-200"
-                  >
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-sm font-black text-white"
-                      style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
-                    >
-                      {step.n}
+              <div className="mt-8 flex flex-col">
+                {processSteps.map((step, i) => (
+                  <div key={step.n} className="flex gap-0 items-stretch">
+                    {/* Timeline column */}
+                    <div className="flex flex-col items-center flex-shrink-0 w-10">
+                      {/* dot */}
+                      <div
+                        className="w-3 h-3 rounded-full flex-shrink-0 mt-1 ring-4 ring-primary/15"
+                        style={{ background: "linear-gradient(135deg,#76186f,#003648)" }}
+                      />
+                      {/* vertical line — hidden on last item */}
+                      {i < processSteps.length - 1 && (
+                        <div className="w-px flex-1 mt-1" style={{ background: "linear-gradient(to bottom,#76186f40,#00364820)" }} />
+                      )}
                     </div>
-                    <div>
-                      <h4 className="font-bold text-secondary text-sm">{step.title}</h4>
-                      <p className="text-base text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+
+                    {/* Horizontal dash + content */}
+                    <div className={cn("flex items-start gap-3 flex-1", i < processSteps.length - 1 ? "pb-8" : "")}>
+                      {/* dash line */}
+                      <div className="w-5 h-px mt-[7px] flex-shrink-0" style={{ background: "linear-gradient(90deg,#76186f,#003648)" }} />
+                      <div>
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground/50 mb-0.5">{step.n}</p>
+                        <h4 className="font-extrabold text-secondary text-base leading-snug">{step.title}</h4>
+                        <p className="text-base text-muted-foreground mt-1 leading-relaxed">{step.desc}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
