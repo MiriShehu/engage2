@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import marshmallow  from "@assets/0x0_1773872351104.png";
@@ -116,6 +116,59 @@ function getInitials(name: string) {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
+const LINE_HEIGHT = 1.7;
+const FONT_SIZE = 15;
+const MAX_LINES = 6;
+const MAX_HEIGHT = LINE_HEIGHT * FONT_SIZE * MAX_LINES; // px
+
+function QuoteText({ text }: { text: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const [overflows, setOverflows] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    setExpanded(false);
+    const el = ref.current;
+    if (!el) return;
+    // Measure with no clamp applied
+    el.style.webkitLineClamp = "unset";
+    el.style.overflow = "visible";
+    const full = el.scrollHeight;
+    el.style.webkitLineClamp = "";
+    el.style.overflow = "";
+    setOverflows(full > MAX_HEIGHT + 4);
+  }, [text]);
+
+  return (
+    <div className="mb-6">
+      <p
+        ref={ref}
+        className="text-[15px] italic"
+        style={{
+          color: "rgba(255,255,255,0.85)",
+          lineHeight: LINE_HEIGHT,
+          display: "-webkit-box",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: expanded ? "unset" : MAX_LINES,
+          overflow: expanded ? "visible" : "hidden",
+          transition: "all 0.3s ease",
+        }}
+      >
+        "{text}"
+      </p>
+      {overflows && (
+        <button
+          onClick={() => setExpanded((e) => !e)}
+          className="mt-2 text-[12px] font-semibold tracking-wide transition-colors"
+          style={{ color: expanded ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.55)" }}
+        >
+          {expanded ? "Show less ↑" : "Read more ↓"}
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function TestimonialCarousel() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -183,10 +236,7 @@ export default function TestimonialCarousel() {
               </div>
 
               {/* quote */}
-              <p className="text-[15px] leading-[1.7] italic mb-6"
-                 style={{ color: "rgba(255,255,255,0.85)" }}>
-                "{t.quote}"
-              </p>
+              <QuoteText text={t.quote} />
 
               {/* author */}
               <div className="flex items-center gap-3">
