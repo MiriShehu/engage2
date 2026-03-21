@@ -564,16 +564,23 @@ export default function InternationalBenefits() {
               </p>
               <div className="mt-8 flex flex-col gap-4">
                 {tips.map((tip) => (
-                  <div key={tip.n} className="flex gap-4 p-5 rounded-2xl border border-border bg-white hover:border-secondary/20 hover:shadow-sm transition-all duration-200">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-sm font-black text-white"
-                      style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
-                    >
-                      {tip.n}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-secondary text-sm mb-1">{tip.title}</h4>
-                      <p className="text-base text-muted-foreground leading-relaxed">{tip.body}</p>
+                  <div key={tip.n} className="group relative rounded-2xl border border-border bg-white overflow-hidden hover:border-secondary/20 hover:shadow-md transition-all duration-200">
+                    {/* Accent bar */}
+                    <div className="absolute top-0 left-0 right-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: "linear-gradient(90deg,#003648,#76186f)" }} />
+                    <div className="flex gap-5 p-6">
+                      {/* Number badge */}
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 text-lg font-black text-white shadow-sm"
+                        style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
+                      >
+                        {tip.n}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-extrabold text-secondary text-base mb-2 leading-snug">{tip.title}</h4>
+                        <div className="h-px bg-border mb-3" />
+                        <p className="text-base text-muted-foreground leading-relaxed">{tip.body}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
