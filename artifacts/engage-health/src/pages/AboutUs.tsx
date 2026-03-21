@@ -1,12 +1,25 @@
 import { PageLayout } from "@/components/layout";
-import { TrustBar } from "@/components/sections/trust";
+import { ClientLogos } from "@/components/sections/trust/ClientLogos";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
-  ArrowRight, Phone, Mail, ChevronRight, Clock, Globe2,
-  Users, Trophy, CheckCircle2, Quote, Heart, Building2,
+  ArrowRight, Phone, Mail, ChevronRight, Globe2,
+  Users, Trophy, CheckCircle2, Quote, Building2, Clock,
+  MessageSquare, BarChart3, Rocket, Plane, HeartHandshake, BadgeCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+import marshmallow  from "@assets/0x0_1773872351104.png";
+import boohoo       from "@assets/boohoo_1773872351104.png";
+import breathe      from "@assets/breathe_1773872351105.png";
+import cae          from "@assets/image2_1773872351105.png";
+import klarna       from "@assets/klarna-logo_1773872351106.png";
+import pleo         from "@assets/p_1773872351106.png";
+import seedcamp     from "@assets/seedcamp_1773872351106.png";
+import superscript  from "@assets/superscript_1773872351107.jpg";
+import teladoc      from "@assets/teledoc-1_1773872351107.png";
+import unmind       from "@assets/unmind_1773872351107.png";
+import vayner       from "@assets/vayner-media-logo-e1741707986477_1773872351107.png";
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
@@ -30,6 +43,22 @@ function Divider() {
   return <div className="my-10 h-px bg-gradient-to-r from-transparent via-border to-transparent" />;
 }
 
+function FounderQuote({ quote, name, title }: { quote: string; name: string; title: string }) {
+  return (
+    <div className="my-6 rounded-2xl border border-primary/20 bg-[#f5f4fa] p-6 flex gap-5 items-start">
+      <img src="/nick-hale.png" alt={name} className="w-14 h-14 rounded-full object-cover flex-shrink-0 border-2 border-primary/20" />
+      <div>
+        <Quote className="w-6 h-6 text-primary/30 mb-2" />
+        <p className="text-[15px] font-semibold text-secondary italic leading-relaxed">"{quote}"</p>
+        <div className="mt-3">
+          <p className="text-sm font-extrabold text-secondary">{name}</p>
+          <p className="text-xs text-primary font-medium">{title}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function TestimonialBlock({ quote, author }: { quote: string; author: string }) {
   return (
     <div className="rounded-2xl border border-border bg-secondary/3 p-6 flex flex-col gap-4">
@@ -39,6 +68,20 @@ function TestimonialBlock({ quote, author }: { quote: string; author: string }) 
     </div>
   );
 }
+
+const clientLogos = [
+  { src: teladoc,     alt: "Teladoc Health" },
+  { src: pleo,        alt: "Deel" },
+  { src: cae,         alt: "CAE" },
+  { src: boohoo,      alt: "boohoo" },
+  { src: unmind,      alt: "Unmind" },
+  { src: marshmallow, alt: "Marshmallow" },
+  { src: breathe,     alt: "Breathe" },
+  { src: seedcamp,    alt: "Seedcamp" },
+  { src: superscript, alt: "SuperScript" },
+  { src: vayner,      alt: "VaynerMedia" },
+  { src: klarna,      alt: "Klarna" },
+];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -59,7 +102,6 @@ export default function AboutUs() {
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-white/40 text-xs font-medium mb-6">
             <Link href="/" className="hover:text-white/70 transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
@@ -99,7 +141,6 @@ export default function AboutUs() {
             </div>
           </motion.div>
 
-          {/* Stats strip */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,31 +169,30 @@ export default function AboutUs() {
         </div>
       </section>
 
-      <TrustBar />
-
       {/* ── Body ─────────────────────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
         <div className="flex flex-col lg:flex-row gap-10 xl:gap-16 items-start">
 
           {/* ── MAIN CONTENT ─────────────────────────────────────────────── */}
-          <main className="flex-1 min-w-0 space-y-0">
+          <main className="flex-1 min-w-0">
 
             {/* 1 — Who we are */}
             <section>
               <SectionLabel>Who we are</SectionLabel>
               <SectionHeading>About Engage Health Group</SectionHeading>
 
-              {/* Founder pull-quote */}
-              <blockquote className="my-6 bg-[#f5f4fa] rounded-xl px-6 py-5 border-l-4 border-primary">
-                <p className="text-[15px] font-semibold text-secondary italic leading-relaxed">
-                  "I've witnessed many UK companies get treated in a transactional way when it comes to employee benefits. We believe in supporting companies and their staff throughout the life of their policy, not just when the renewal period comes around."
-                </p>
-                <p className="mt-2 text-xs font-bold text-primary">Founding Director, Engage Health Group</p>
-              </blockquote>
+              <FounderQuote
+                quote="I've witnessed many UK companies get treated in a transactional way when it comes to employee benefits. We believe in supporting companies and their staff throughout the life of their policy, not just when the renewal period comes around."
+                name="Nick Hale"
+                title="Founding Director, Engage Health Group"
+              />
 
               <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Engage Health Group is an employee benefits consultancy and brokerage dedicated to helping UK companies gain superior value and support on their health and protection policies. The company was founded in 2016 by Nick Hale CII with a mission to ensure that all businesses could access impartial advice and ongoing support.
+                  Engage Health Group is an employee benefits consultancy and brokerage dedicated to helping UK companies gain superior value and support on their health and protection policies.
+                </p>
+                <p>
+                  The company was founded in 2016 by Nick Hale CII with a mission to ensure that all businesses could access impartial advice and ongoing support.
                 </p>
                 <p>Our award-winning team provides free quotation services and administrative support across the following policies (in the UK and globally):</p>
               </div>
@@ -160,9 +200,11 @@ export default function AboutUs() {
               <ul className="mt-4 space-y-2">
                 {[
                   "Group Health Insurance",
+                  "Group Life Insurance",
                   "Group Income Protection",
                   "Group Critical Illness Coverage",
                   "Group Health Cash Plans",
+                  "Key Person Insurance",
                   "Employee Assistance Programmes",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-[15px] text-secondary font-medium">
@@ -172,7 +214,7 @@ export default function AboutUs() {
                 ))}
               </ul>
 
-              <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
+              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
                 <p>Engage Health Group's services expand beyond the UK and into more than 70 countries globally.</p>
                 <p>Our dedication to customer service and innovation has earned us awards at the UK Health & Protection Awards for three consecutive years.</p>
                 <p>
@@ -186,24 +228,22 @@ export default function AboutUs() {
 
             <Divider />
 
-            {/* 2 — Testimonial */}
+            {/* 2 — How we work */}
             <section>
+              <SectionLabel>How we work</SectionLabel>
+              <SectionHeading>Our service</SectionHeading>
+
               <TestimonialBlock
                 quote="Working with Engage Health Group has been seamless and we are very pleased with the service, communication and overall experience. The guys are very friendly, knowledgeable and helpful and made the process of signing up for group health insurance very easy and simple. Five-star service and would definitely recommend."
                 author="Amber Goldstein, Creative Rockstars Agency"
               />
-            </section>
 
-            <Divider />
-
-            {/* 3 — Our service */}
-            <section>
-              <SectionLabel>Our service</SectionLabel>
-              <SectionHeading>What we do</SectionHeading>
-
-              <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
+              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Engage Health Group advises on every aspect of sourcing, implementing and managing benefit schemes in the UK and around the world. As a trusted partner to hundreds of businesses, we alleviate HR's workload and guide them through the finer details of how policies work and help them attain the most effective benefits at the most competitive price.
+                  Engage Health Group advises on every aspect of sourcing, implementing and managing benefit schemes in the UK and around the world.
+                </p>
+                <p>
+                  As a trusted partner to hundreds of businesses, we alleviate HR's workload and guide them through the finer details of how policies work and help them attain the most effective benefits at the most competitive price.
                 </p>
                 <p>Our service includes:</p>
               </div>
@@ -225,7 +265,7 @@ export default function AboutUs() {
                 ))}
               </ul>
 
-              <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
+              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Whether you're an ambitious start-up or an established global company, we provide clarity and work to maximise your return on investment now and in the future. And our service comes at no extra cost to your policy.
                 </p>
@@ -236,29 +276,39 @@ export default function AboutUs() {
                   <a href="mailto:enquiries@engagehealthgroup.co.uk" className="text-primary font-medium hover:underline">enquiries@engagehealthgroup.co.uk</a>.
                 </p>
               </div>
+
+              {/* Client logos */}
+              <div className="mt-10">
+                <p className="text-xs font-bold tracking-widest uppercase text-muted-foreground/60 mb-5">Trusted by</p>
+                <div className="flex flex-wrap gap-6 items-center">
+                  {clientLogos.map((logo) => (
+                    <img key={logo.alt} src={logo.src} alt={logo.alt} className="h-7 w-auto object-contain grayscale opacity-50 hover:opacity-80 hover:grayscale-0 transition-all duration-300" />
+                  ))}
+                </div>
+              </div>
             </section>
 
             <Divider />
 
-            {/* 4 — Award-winning */}
+            {/* 3 — Award-winning */}
             <section>
               <SectionLabel>Award-winning support</SectionLabel>
               <SectionHeading>Recognised for excellence</SectionHeading>
 
-              <blockquote className="my-6 bg-[#f5f4fa] rounded-xl px-6 py-5 border-l-4 border-primary">
-                <p className="text-[15px] font-semibold text-secondary italic leading-relaxed">
-                  "Our objective has always been to offer world class advice to our customers and make the world of employee benefits as straightforward as possible for them."
-                </p>
-                <p className="mt-2 text-xs font-bold text-primary">Founding Director, Engage Health Group</p>
-              </blockquote>
+              <FounderQuote
+                quote="Our objective has always been to offer world class advice to our customers and make the world of employee benefits as straightforward as possible for them."
+                name="Nick Hale"
+                title="Founding Director, Engage Health Group"
+              />
 
               <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Engage Health Group has received recognition for the quality of its international expertise for three consecutive years at the UK Health & Protection Awards. In 2023 we won Best International Group Advice Firm, and in 2024 we picked up Best International Group Advice Firm.
                 </p>
                 <p>
-                  The Engage team consists of experienced ex-industry insiders from some of the world's biggest insurers and brokers, including the likes of Bupa Global, Aetna and Vitality UK. But we also have some of the brightest young talent in the industry. Together we have the same goal: to provide great outcomes for the businesses we work for and the staff they employ.
+                  The Engage team consists of experienced ex-industry insiders from some of the world's biggest insurers and brokers, including the likes of Bupa Global, Aetna and Vitality UK. But we also have some of the brightest young talent in the industry.
                 </p>
+                <p>Together we have the same goal: to provide great outcomes for the businesses we work for and the staff they employ.</p>
                 <p>
                   <Link href="/team" className="text-primary font-medium hover:underline">Find out who's who here.</Link>
                 </p>
@@ -270,17 +320,20 @@ export default function AboutUs() {
                 </p>
               </div>
 
-              {/* Award badges */}
               <div className="mt-8 flex flex-wrap gap-4 items-center">
-                {["/award-2022.jpg", "/award-2023.jpg", "/award-2024.jpg"].map((src, i) => (
-                  <img key={i} src={src} alt={`UK Health & Protection Award ${2022 + i}`} className="h-24 w-auto object-contain" />
+                {[
+                  { src: "/award-2022.jpg", label: "UK Health & Protection Award 2022" },
+                  { src: "/award-2023.jpg", label: "UK Health & Protection Award 2023" },
+                  { src: "/award-2024.jpg", label: "UK Health & Protection Award 2024" },
+                ].map((a) => (
+                  <img key={a.src} src={a.src} alt={a.label} className="h-24 w-auto object-contain" />
                 ))}
               </div>
             </section>
 
             <Divider />
 
-            {/* 5 — International expertise */}
+            {/* 4 — International expertise */}
             <section>
               <SectionLabel>International expertise</SectionLabel>
               <SectionHeading>Global employee benefits</SectionHeading>
@@ -292,7 +345,10 @@ export default function AboutUs() {
 
               <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Engage Health Group has a specialist international team dedicated to helping companies source and manage employee benefits policies in multiple countries. As with our UK service, clients receive a dedicated account manager to relieve the administration from their HR teams.
+                  Engage Health Group has a specialist international team dedicated to helping companies source and manage employee benefits policies in multiple countries.
+                </p>
+                <p>
+                  As with our UK service, clients receive a dedicated account manager to relieve the administration from their HR teams.
                 </p>
                 <p>
                   Engage International was founded by Ian Abbott, formerly of Bupa Global. Our international team has won awards for three consecutive years thanks to its innovative approach to finding solutions to some of the most complex company requirements.
@@ -307,7 +363,7 @@ export default function AboutUs() {
 
             <Divider />
 
-            {/* 6 — Values & charity */}
+            {/* 5 — Values & charity */}
             <section>
               <SectionLabel>Our values and charitable initiatives</SectionLabel>
               <SectionHeading>Putting expertise to good use</SectionHeading>
@@ -321,48 +377,65 @@ export default function AboutUs() {
                 <p>
                   We like to put our expertise to good use in the wider community. That's why we launched the Engage Charity Health Fund. The fund provides free healthcare to the employees of selected small charities and ensures they can access treatment for everyday healthcare costs.
                 </p>
-                <p>
-                  Current recipients of the fund include: Rockinghorse Children's Charity, The Starr Trust, Sussex Cancer Fund and Grassroots Suicide Prevention.
-                </p>
+                <p>Current recipients of the fund include: Rockinghorse Children's Charity, The Starr Trust, Sussex Cancer Fund and Grassroots Suicide Prevention.</p>
                 <p>
                   We believe that employee benefits are much more than a box-ticking exercise. A carefully considered and well-executed strategy can have a huge impact on an individual's health and wellbeing. In turn, this can drive staff recruitment and retention, and ensure that people are happy, healthy and ready to give their best.
                 </p>
+                <p>That's why our client relationships are never just a transaction and advice is never given on a whim.</p>
                 <p>
-                  That's why our client relationships are never just a transaction and advice is never given on a whim.
+                  <a href="https://www.engagehealthgroup.co.uk/engage-charity-health-fund/" target="_blank" rel="noreferrer" className="text-primary font-medium hover:underline">
+                    Read more about the Engage Charity Health Fund.
+                  </a>
                 </p>
               </div>
             </section>
 
             <Divider />
 
-            {/* 7 — How we work */}
+            {/* 6 — The Engage Way */}
             <section>
-              <SectionLabel>How we work</SectionLabel>
-              <SectionHeading>Our process</SectionHeading>
+              <SectionLabel>The Engage Way</SectionLabel>
+              <SectionHeading>How we deliver for you</SectionHeading>
 
-              <div className="mt-6 space-y-6">
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   {
+                    icon: MessageSquare,
                     title: "One-to-one consultation",
-                    body: "Whether you're launching a scheme for the first time or seeking a review of your current strategy and policies, we're here to answer all your questions and provide the best solutions. Our team will source policies and price points from across the market – usually superior to what you can find publicly available. We will also explain the crucial policy points in straight-forward language.",
+                    body: "Whether you're launching a scheme for the first time or seeking a review of your current strategy and policies, we're here to answer all your questions and provide the best solutions.",
                   },
                   {
+                    icon: BarChart3,
+                    title: "Market-wide quotes",
+                    body: "Our team will source policies and price points from across the market – usually superior to what you can find publicly available. We will also explain the crucial policy points in straight-forward language.",
+                  },
+                  {
+                    icon: Rocket,
                     title: "Scheme implementation",
-                    body: "We will advise on the best way of making benefits available to your teams, including guidance on benefits platforms and apps. We can also help onboard your teams onto your new scheme via in-office or virtual presentations. Our expertise go beyond the UK. Our international team advise on the best way to support teams and individuals in different parts of the world too. Global benefits can involve significant investment; we make sure it's wisely spent.",
+                    body: "We will advise on the best way of making benefits available to your teams, including guidance on benefits platforms and apps. We can also help onboard your teams onto your new scheme via in-office or virtual presentations.",
                   },
                   {
-                    title: "Claims support",
+                    icon: Plane,
+                    title: "UK and global",
+                    body: "Our expertise go beyond the UK. Our international team advise on the best way to support teams and individuals in different parts of the world too. Global benefits can involve significant investment; we make sure it's wisely spent.",
+                  },
+                  {
+                    icon: HeartHandshake,
+                    title: "Claims assistance",
                     body: "We're here to help should you ever encounter issues when making a claim on a policy. We help clear up any confusion and, if we believe you've been wrongly refused a claim, we will argue your case.",
                   },
                   {
+                    icon: BadgeCheck,
                     title: "No contracts, no fees",
                     body: "We won't tie you into any contracts or charge you for our advice. In essence, we take a finder's fee from the providers we place you with. Be assured: we do not have \"preferred partnership\" arrangements - we always seek out the best policies from across all available providers.",
                   },
                 ].map((step) => (
                   <div key={step.title} className="flex gap-4 p-5 rounded-2xl border border-border bg-white hover:shadow-sm transition-shadow">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
-                      style={{ background: "linear-gradient(135deg,rgba(118,24,111,0.12),rgba(0,54,72,0.08))" }}>
-                      <CheckCircle2 className="w-5 h-5 text-primary" />
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+                      style={{ background: "linear-gradient(135deg,rgba(118,24,111,0.12),rgba(0,54,72,0.08))" }}
+                    >
+                      <step.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-bold text-secondary text-[0.95rem] mb-1">{step.title}</h3>
@@ -399,13 +472,15 @@ export default function AboutUs() {
               </a>
             </div>
 
-            {/* Sidebar quote */}
+            {/* Sidebar founder quote */}
             <div className="rounded-2xl border border-border bg-secondary/3 p-6">
-              <Quote className="w-7 h-7 text-primary/30 mb-3" />
+              <img src="/nick-hale.png" alt="Nick Hale" className="w-12 h-12 rounded-full object-cover mb-3 border-2 border-primary/20" />
+              <Quote className="w-6 h-6 text-primary/30 mb-2" />
               <p className="text-sm text-secondary font-medium italic leading-relaxed mb-3">
                 "I've witnessed many UK companies get treated in a transactional way when it comes to employee benefits. We believe in supporting companies and their staff throughout the life of their policy, not just when the renewal period comes around."
               </p>
-              <p className="text-xs font-bold text-primary">Founding Director, Engage Health Group</p>
+              <p className="text-xs font-extrabold text-secondary">Nick Hale</p>
+              <p className="text-xs text-primary font-medium">Founding Director, Engage Health Group</p>
             </div>
 
             {/* Quick links */}
@@ -432,6 +507,10 @@ export default function AboutUs() {
           </aside>
         </div>
       </div>
+
+      {/* ── Client Logos ─────────────────────────────────────────────────── */}
+      <ClientLogos />
+
     </PageLayout>
   );
 }
