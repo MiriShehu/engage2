@@ -47,13 +47,13 @@ function ServiceListRenderer({ s }: { s: Extract<ServiceSection, { type: 'servic
         {s.items.map((item) => (
           <li key={item} className="flex items-start gap-3">
             <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+            <span className="text-base text-muted-foreground leading-relaxed">{item}</span>
           </li>
         ))}
       </ul>
       {s.testimonial && (
         <div className="mt-8 p-6 rounded-2xl border-l-4 border-primary bg-primary/5">
-          <p className="text-secondary font-medium italic leading-relaxed text-sm">"{s.testimonial}"</p>
+          <p className="text-secondary font-medium italic leading-relaxed text-base">"{s.testimonial}"</p>
         </div>
       )}
     </section>
@@ -82,7 +82,7 @@ function CoverageRenderer({ s }: { s: Extract<ServiceSection, { type: 'coverage'
         {s.items.map((item) => (
           <div key={item} className="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-border">
             <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-            <span className="text-sm text-secondary leading-snug">{item}</span>
+            <span className="text-base text-secondary leading-snug">{item}</span>
           </div>
         ))}
       </div>
@@ -122,7 +122,7 @@ function WhyBuyRenderer({ s, colorScheme }: { s: Extract<ServiceSection, { type:
             {s.employerBenefits.map((b) => (
               <li key={b} className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-muted-foreground leading-snug">{b}</span>
+                <span className="text-base text-muted-foreground leading-snug">{b}</span>
               </li>
             ))}
           </ul>
@@ -138,7 +138,7 @@ function WhyBuyRenderer({ s, colorScheme }: { s: Extract<ServiceSection, { type:
             {s.employeeBenefits.map((b) => (
               <li key={b} className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-muted-foreground leading-snug">{b}</span>
+                <span className="text-base text-muted-foreground leading-snug">{b}</span>
               </li>
             ))}
           </ul>
@@ -161,7 +161,7 @@ function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-blo
           {s.items.map((item) => (
             <li key={item} className="flex items-start gap-3">
               <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+              <span className="text-base text-muted-foreground leading-relaxed">{item}</span>
             </li>
           ))}
         </ul>
@@ -201,7 +201,7 @@ function InsurersRenderer({ s }: { s: Extract<ServiceSection, { type: 'insurers'
               />
             </div>
             <div className="p-5 flex-1 flex flex-col justify-between">
-              <p className="text-sm text-muted-foreground leading-relaxed italic">"{insurer.quote}"</p>
+              <p className="text-base text-muted-foreground leading-relaxed italic">"{insurer.quote}"</p>
               <p className="mt-3 text-xs font-bold text-primary">{insurer.name}</p>
             </div>
           </div>
@@ -225,14 +225,14 @@ function FaqsRenderer({ s }: { s: Extract<ServiceSection, { type: 'faqs' }> }) {
               onClick={() => setOpen(open === faq.q ? null : faq.q)}
               aria-expanded={open === faq.q}
             >
-              <span className="text-sm font-semibold text-secondary pr-4">{faq.q}</span>
+              <span className="text-base font-semibold text-secondary pr-4">{faq.q}</span>
               <span className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center bg-primary/8">
                 {open === faq.q ? <Minus className="w-3.5 h-3.5 text-primary" /> : <Plus className="w-3.5 h-3.5 text-primary" />}
               </span>
             </button>
             {open === faq.q && (
               <div className="px-5 pb-5 pt-1">
-                <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                <p className="text-base text-muted-foreground leading-relaxed">{faq.a}</p>
               </div>
             )}
           </div>
