@@ -164,18 +164,18 @@ const taxItems = [
 ];
 
 const sidebarLinks = [
-  { icon: Shield,       label: "Group Health Insurance" },
-  { icon: Heart,        label: "Group Life Insurance" },
-  { icon: TrendingUp,   label: "Group Income Protection" },
-  { icon: AlertCircle,  label: "Group Critical Illness" },
-  { icon: Smile,        label: "Group Dental Insurance" },
-  { icon: Activity,     label: "Corporate Wellness Programmes" },
-  { icon: HeartPulse,   label: "Employee Assistance Programmes" },
-  { icon: DollarSign,   label: "Health Cash Plan" },
-  { icon: Key,          label: "Key Person Insurance" },
-  { icon: UserCheck,    label: "Relevant Life Insurance" },
-  { icon: Stethoscope,  label: "Health Screening" },
-  { icon: MonitorDot,   label: "Benefits Platforms" },
+  { icon: Shield,       label: "Group Health Insurance",          href: "/employee-benefits/group-health-insurance" },
+  { icon: Heart,        label: "Group Life Insurance",            href: "/employee-benefits/group-life-insurance" },
+  { icon: TrendingUp,   label: "Group Income Protection",         href: "/employee-benefits/group-income-protection" },
+  { icon: AlertCircle,  label: "Group Critical Illness",          href: "/employee-benefits/group-critical-illness" },
+  { icon: Smile,        label: "Group Dental Insurance",          href: "/employee-benefits/group-dental-insurance" },
+  { icon: Activity,     label: "Corporate Wellness Programmes",   href: "/employee-benefits/corporate-wellness-programmes" },
+  { icon: HeartPulse,   label: "Employee Assistance Programmes",  href: "/employee-benefits/employee-assistance-programmes" },
+  { icon: DollarSign,   label: "Health Cash Plan",                href: "/employee-benefits/group-health-cash-plan" },
+  { icon: Key,          label: "Key Person Insurance",            href: "/employee-benefits/key-person-insurance" },
+  { icon: UserCheck,    label: "Relevant Life Insurance",         href: "/employee-benefits/relevant-life-insurance" },
+  { icon: Stethoscope,  label: "Health Screening",                href: "/employee-benefits/employee-health-screening" },
+  { icon: MonitorDot,   label: "Benefits Platforms",              href: "/employee-benefits/employee-benefits-platforms" },
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
@@ -605,9 +605,9 @@ export default function EmployeeBenefits() {
               </h3>
               <div className="flex flex-col gap-0.5">
                 {sidebarLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
-                    href="#"
+                    href={link.href}
                     className="group flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f5f4fa] transition-colors"
                   >
                     <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-primary/10 flex-shrink-0 group-hover:bg-primary transition-colors">
@@ -617,7 +617,7 @@ export default function EmployeeBenefits() {
                       {link.label}
                     </span>
                     <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-primary transition-colors" />
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
