@@ -93,6 +93,41 @@ const top5 = [
   },
 ];
 
+const tips = [
+  {
+    n: "1",
+    title: "Blend your approach",
+    body: "Placing all your budget in one area can leave your benefit lopsided and employees disappointed unless you are just looking for protection in one area by design. For example, an insurance-heavy approach (featuring International Health Insurance, International Business Life Insurance etc.), whilst excellent to provide, can leave staff feeling disengaged. This is because they are only realised when staff are unwell or the worst happens. Alternatively, if you go heavy on a fun/wellness only approach, it is proven to make staff feel more engaged as the benefits can be utilised more frequently. However, they aren't much use if someone needs physiotherapy or an urgent diagnostic scan. Nor does it provide much protection for your business. However, by blending the two approaches you can deliver the best of both worlds.",
+  },
+  {
+    n: "2",
+    title: "Consider your locations and the cost of replacing staff",
+    body: "Different countries have different standards and requirements when it comes to employee benefits. For example, you're forced to invest in a cost-heavy health insurance plan if you have staff in the US, but very few other staff benefits are mandated. The culture around employee benefits can vary greatly between countries and getting the balance right between global harmonisation and maintaining local expectations is important. For expatriates, or key personnel in overseas offices, you also need to consider the costs of an attractive benefits package against how much it would cost to replace them. Failed expatriate assignments can be very costly.",
+  },
+  {
+    n: "3",
+    title: "Promote and Communicate",
+    body: "Once you have chosen your policies, it's important to ensure people know what they have and how to use it. If you're using an independent intermediary (broker/consultant) to assist you with sourcing, devising and implementing your benefits provision; ask them to assist in how best to communicate the finished article to employees. Any good employee benefits consultancy will be happy to develop bespoke literature and spend time to help you promote the benefits and answer employee questions. We've heard from many businesses who made the mistake of investing in benefits without promoting them fully. The end result? Poor employee engagement.",
+  },
+  {
+    n: "4",
+    title: "Centralise and simplify",
+    body: "International businesses often have siloed benefits strategies for each individual country. This means they're missing a trick. It's usually because they are either unaware of the opportunity to have an all-inclusive international policy, or are concerned about following local requirements or customs. Sometimes the problem is internal — some organisations have different insurance mechanisms managed by different departments. Compartmentalising benefits across different areas of the business often inhibits a joined-up approach and reduces the opportunity to drive cost efficiencies and streamline administration. If your business is working with multiple service providers via different internal stakeholders, it's likely you will pay more overall.",
+  },
+  {
+    n: "5",
+    title: "Measure success",
+    body: "Continuous review should be a priority. This is true even if you are spending a small percentage of gross payroll on benefits or have them implemented solely to meet regulatory obligations. A few key questions should be asked: What are we getting from our current benefit provision? Is it still valued by staff? Have requirements or regulation changed? Do our partners/providers align with our company culture? Are we paying too much? Is it achieving its objective? These questions should be asked on an annual basis (at least) to avoid stagnation, maintain relevance and to ensure businesses get the best possible return on their investment.",
+  },
+];
+
+const metlifeStats = [
+  { pct: "58%", country: "China" },
+  { pct: "57%", country: "United Kingdom" },
+  { pct: "53%", country: "UAE" },
+  { pct: "51%", country: "India" },
+];
+
 const faqs = [
   {
     q: "What do you need in place to properly support Expatriate employees?",
@@ -443,7 +478,60 @@ export default function InternationalBenefits() {
 
             <Divider />
 
-            {/* 6 — FAQs */}
+            {/* 6 — Which benefits are right for my business? */}
+            <section>
+              <SectionLabel>Expert guidance</SectionLabel>
+              <SectionHeading>Which benefits are right for my business?</SectionHeading>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                Every company is different so there is no single answer. We would advise reviewing business need across a range of areas, including: company culture, industry benchmarking, age of the workforce, volume of expatriates, global mobility, job role and budget. It's important to not rush any decisions and give yourself enough time to conduct a thorough review. To help you get started, here are five key things to consider:
+              </p>
+              <div className="mt-8 flex flex-col gap-4">
+                {tips.map((tip) => (
+                  <div key={tip.n} className="flex gap-4 p-5 rounded-2xl border border-border bg-white hover:border-secondary/20 hover:shadow-sm transition-all duration-200">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-sm font-black text-white"
+                      style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
+                    >
+                      {tip.n}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-secondary text-sm mb-1">{tip.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{tip.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <Divider />
+
+            {/* 7 — How important are International Employee Benefits? */}
+            <section>
+              <SectionLabel>The importance</SectionLabel>
+              <SectionHeading>How important are International Employee Benefits?</SectionHeading>
+              <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Employees all over the world cite the benefits package offered by companies as an important consideration. A global 2017 study by Metlife found that improved benefits were a key reason employees stayed in their role, or moved to a new one:
+                </p>
+              </div>
+              <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {metlifeStats.map((s) => (
+                  <div key={s.country} className="flex flex-col items-center justify-center p-5 rounded-2xl bg-[#f5f4fa] border border-border text-center">
+                    <span className="text-3xl font-black text-secondary">{s.pct}</span>
+                    <span className="text-xs text-muted-foreground mt-1">of employees in {s.country}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  A well-designed International Employee Benefits scheme is a great way to stand out from competitors due to their quality, scope and flexibility. Compliance is often also a major challenge for international businesses. Many businesses struggle to scale local benefits solutions when they start opening overseas offices. Plus, sourcing local solutions in new locations can mean having to duplicate processes and add complexity, or additional resources, to a HR function.
+                </p>
+              </div>
+            </section>
+
+            <Divider />
+
+            {/* 8 — FAQs */}
             <section>
               <SectionLabel>FAQs</SectionLabel>
               <SectionHeading>Frequently Asked Questions</SectionHeading>
