@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'wouter';
 import { PageLayout } from '@/components/layout';
 import {
@@ -239,29 +239,28 @@ function SidebarTOC({ items }: { items: TocItem[] }) {
   );
 }
 
-// ── Hook: parse headings from rendered WP content ────────────────────────────
+// ── Pre-process WP HTML: inject IDs + scroll-margin into headings ─────────────
 
-function useTocFromContent(ref: React.RefObject<HTMLDivElement | null>, content: string) {
-  const [items, setItems] = useState<TocItem[]>([]);
-  useEffect(() => {
-    if (!ref.current || !content) return;
-    const headings = Array.from(ref.current.querySelectorAll('h2, h3'));
-    const seen = new Map<string, number>();
-    const tocItems: TocItem[] = [];
-    headings.forEach((heading) => {
-      const text = heading.textContent?.trim() || '';
-      if (!text) return;
-      let base = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+function processContent(html: string): { html: string; items: TocItem[] } {
+  if (!html) return { html: '', items: [] };
+  const items: TocItem[] = [];
+  const seen = new Map<string, number>();
+  const processed = html.replace(/<(h[23])([^>]*)>([\s\S]*?)<\/h[23]>/gi, (_, tag, attrs, inner) => {
+    const text = inner.replace(/<[^>]+>/g, '').trim();
+    if (!text) return _;
+    const existingId = attrs.match(/\bid="([^"]+)"/)?.[1];
+    let id = existingId;
+    if (!id) {
+      const base = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
       const count = seen.get(base) ?? 0;
-      const id = count === 0 ? base : `${base}-${count}`;
+      id = count === 0 ? base : `${base}-${count}`;
       seen.set(base, count + 1);
-      if (!heading.id) heading.id = id;
-      (heading as HTMLElement).style.scrollMarginTop = '88px';
-      tocItems.push({ id: heading.id, label: text });
-    });
-    setItems(tocItems);
-  }, [content]);
-  return items;
+    }
+    items.push({ id, label: text });
+    const attrsWithId = existingId ? attrs : `${attrs} id="${id}"`;
+    return `<${tag}${attrsWithId} style="scroll-margin-top:88px">${inner}</${tag}>`;
+  });
+  return { html: processed, items };
 }
 
 // ── Page ────────────────────────────────────────────────────────────────────
@@ -285,8 +284,10 @@ const morePosts = [
 
 export default function BlogPost({ slug }: { slug: string }) {
   const { data, isLoading, isError } = useBlogPost(slug);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const tocItems = useTocFromContent(contentRef, data?.post?.content ?? '');
+  const { html: processedContent, items: tocItems } = useMemo(
+    () => processContent(data?.post?.content ?? ''),
+    [data?.post?.content]
+  );
 
   // If the WP endpoint hasn't been set up yet, the query will fail.
   // In that case, we fall back to the original demo post if the slug matches.
@@ -369,7 +370,7 @@ export default function BlogPost({ slug }: { slug: string }) {
                 </div>
 
                 <AISummaryWidget />
-                <div ref={contentRef} data-ai-content className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: post.content }} />
+                <div data-ai-content className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: processedContent }} />
 
               </div>
             </article>
