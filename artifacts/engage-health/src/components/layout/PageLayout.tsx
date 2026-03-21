@@ -12,7 +12,7 @@ export function PageLayout({ children, className }: PageLayoutProps) {
   return (
     <div className={cn("min-h-screen flex flex-col", className)}>
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         {children}
       </main>
       <CTASection />

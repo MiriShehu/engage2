@@ -206,7 +206,7 @@ export default function EmployeeBenefits() {
   return (
     <PageLayout className="bg-white">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative pt-16 overflow-hidden bg-secondary">
+      <section className="relative overflow-hidden bg-secondary">
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-top bg-no-repeat"
