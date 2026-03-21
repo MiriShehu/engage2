@@ -11,6 +11,8 @@ export interface FormData {
   coverTypes: string[];
   employeeRange: string;
   company: string;
+  companyAddress: string;
+  companySic: string;
   industry: string;
   country: string;
   budget: string;
@@ -90,6 +92,8 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
             {step === 3 && (
               <Step3Company
                 company={formData.company}
+                companyAddress={formData.companyAddress}
+                companySic={formData.companySic}
                 industry={formData.industry}
                 country={formData.country}
                 onChange={(field, value) => onChange(field as keyof FormData, value)}

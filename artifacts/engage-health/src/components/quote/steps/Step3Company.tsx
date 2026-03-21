@@ -50,6 +50,9 @@ interface Props {
   industry: string;
   country: string;
   onChange: (field: string, value: string) => void;
+  // hidden fields populated on company select
+  companyAddress?: string;
+  companySic?: string;
 }
 
 export default function Step3Company({ company, industry, country, onChange }: Props) {
@@ -103,6 +106,8 @@ export default function Step3Company({ company, industry, country, onChange }: P
 
   const handleSelect = (comp: any) => {
     onChange("company", comp.title);
+    onChange("companyAddress", comp.address_snippet || "");
+    onChange("companySic", comp.description || "");
     setShowDropdown(false);
   };
 

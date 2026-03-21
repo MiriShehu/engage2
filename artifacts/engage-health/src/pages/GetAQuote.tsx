@@ -7,6 +7,8 @@ const DEFAULT_FORM: FormData = {
   coverTypes: [],
   employeeRange: "",
   company: "",
+  companyAddress: "",
+  companySic: "",
   industry: "",
   country: "United Kingdom",
   budget: "",
