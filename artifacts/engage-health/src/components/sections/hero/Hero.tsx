@@ -4,7 +4,7 @@ import teamPhoto from "@assets/Image-2_(1)_1773870230383.png";
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-0 lg:pt-48 lg:pb-0 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30">
+    <section className="relative pt-12 pb-0 lg:pt-20 lg:pb-0 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30">
       {/* Background Gradients */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/8 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/8 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
