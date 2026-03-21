@@ -4,6 +4,7 @@ import { Phone, Mail, ArrowRight, ChevronRight, Trophy, Star } from 'lucide-reac
 import { PageLayout } from '@/components/layout';
 import { TrustBar } from '@/components/sections/trust';
 import type { ServiceEntry } from '@/data/types';
+import { AISummaryWidget } from '@/components/AISummaryWidget';
 import award2024 from '@assets/HPA24-Best-Group-International-Advice-Firm-yellow_1773869302815.jpg';
 import award2023 from '@assets/HPA_Winner-Badges_0219_1773869302816.jpg';
 import award2022 from '@assets/HPA10_WIN_YELLOW_1773869302815.jpg';
@@ -128,7 +129,10 @@ export default function ServicePageLayout({ entry, category, currentSlug, allSer
 
           {/* Main content */}
           <div className="flex-1 min-w-0 w-full">
-            {children}
+            <AISummaryWidget />
+            <div data-ai-content>
+              {children}
+            </div>
           </div>
 
           {/* Sidebar */}

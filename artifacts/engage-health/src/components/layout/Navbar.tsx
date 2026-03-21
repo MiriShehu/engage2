@@ -76,9 +76,9 @@ function DropdownItem({ item, color }: { item: NavItem; color: string }) {
     >
       <span
         className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-150"
-        style={{ background: color + "18" }}
+        style={{ backgroundColor: color + "18", color: color }}
       >
-        <item.icon className="w-4 h-4 transition-colors duration-150 group-hover/item:text-white" style={{ color }} />
+        <item.icon className="w-4 h-4 transition-colors duration-150 group-hover/item:text-white" />
       </span>
       <p className="text-sm font-semibold text-gray-800 group-hover/item:text-white leading-snug transition-colors duration-150">
         {item.label}
@@ -183,12 +183,15 @@ function MegaDropdown({
             </div>
             {/* Info panel */}
             <div
-              className="relative flex flex-col justify-end p-6 overflow-hidden"
-              style={{ backgroundImage: `url(${menuBg})`, backgroundSize: "cover", backgroundPosition: "center" }}
+              className="relative flex flex-col justify-end p-7 overflow-hidden"
+              style={{ background: `radial-gradient(120% 120% at 100% 100%, ${color} 0%, #001f29 100%)` }}
             >
-              {/* dark overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#003648]/90 via-[#003648]/60 to-[#003648]/30" />
-              <div className="relative z-10 flex flex-col gap-4">
+              <img src="/logomark-plain.png" alt="" className="absolute top-7 left-7 w-12 h-12 object-contain filter brightness-0 invert opacity-90" />
+              
+              {/* Subtle glass shadow */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-white/5 pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col gap-4 mt-16">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Get in touch</p>
                   <p className="text-lg font-extrabold text-white leading-snug">Talk to an expert</p>
@@ -312,9 +315,9 @@ function MobileSection({
             >
               <span
                 className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ background: color + "18" }}
+                style={{ backgroundColor: color + "18", color: color }}
               >
-                <item.icon className="w-4 h-4" style={{ color }} />
+                <item.icon className="w-4 h-4" />
               </span>
               <span className="text-sm font-medium text-gray-700">{item.label}</span>
             </Link>

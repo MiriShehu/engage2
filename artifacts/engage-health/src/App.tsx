@@ -1,5 +1,5 @@
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,11 +23,22 @@ import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
 
+
+
 function ScrollToTop() {
   const [location] = useLocation();
+
+  // Prevent browser from automatically restoring scroll position on navigation
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [location]);
+  
   return null;
 }
 

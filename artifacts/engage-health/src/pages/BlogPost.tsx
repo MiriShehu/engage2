@@ -14,6 +14,7 @@ import imgGamify  from '@/assets/blog/insurtech-gamification.jpg';
 
 import { useBlogPost } from '@/hooks/useWordPress';
 import { Loader2 } from 'lucide-react';
+import { AISummaryWidget } from '@/components/AISummaryWidget';
 
 // ── Reading progress ────────────────────────────────────────────────────────
 
@@ -263,7 +264,8 @@ export default function BlogPost({ slug }: { slug: string }) {
                   </div>
                 </div>
 
-                <div className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: post.content }} />
+                <AISummaryWidget />
+                <div data-ai-content className="prose prose-slate max-w-none prose-headings:font-black prose-headings:text-secondary prose-p:text-muted-foreground prose-a:text-primary" dangerouslySetInnerHTML={{ __html: post.content }} />
 
               </div>
             </article>
@@ -352,7 +354,11 @@ function BlogPostStatic() {
                   </div>
                 </div>
 
+                {/* AI Summary */}
+                <AISummaryWidget />
+
                 {/* Intro */}
+                <div data-ai-content>
                 <p className="text-base font-semibold text-secondary leading-relaxed mb-4">
                   Insurtech Insights 2025 brought together the world's leading technology innovators,
                   all vying to prove the value of their products.
@@ -511,6 +517,7 @@ function BlogPostStatic() {
                   that could find their way onto Company Health Insurance, Income Protection plans
                   and other employee health and protection policies in the near future.
                 </p>
+                </div>{/* /data-ai-content */}
 
                 {/* CTA */}
                 <div className="rounded-md p-6 text-white relative overflow-hidden"
