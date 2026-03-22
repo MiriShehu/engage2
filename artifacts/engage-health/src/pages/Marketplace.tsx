@@ -48,10 +48,10 @@ export default function Marketplace() {
               partner network
             </span>
           </h1>
-          <p className="text-white/65 text-xl max-w-2xl mx-auto mb-6">
+          <p className="text-white/65 text-base max-w-2xl mx-auto mb-6">
             This space is dedicated to showcasing the diverse and innovative offerings of our trusted partners. We pride ourselves on delivering a truly holistic approach to employee benefits, which is why we've carefully curated a range of services designed to add meaningful value to any workplace – helping you engage and retain talent while supporting business growth.
           </p>
-          <p className="text-white/65 text-xl max-w-2xl mx-auto mb-12">
+          <p className="text-white/65 text-base max-w-2xl mx-auto mb-12">
             Our marketplace is ever evolving. We'll continue to expand with new categories and partners to keep pace with the changing employee benefits landscape – so watch this space!
           </p>
 
