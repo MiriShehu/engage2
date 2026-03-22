@@ -77,7 +77,7 @@ const SCHEME = {
 
 function ServiceListRenderer({ s }: { s: Extract<ServiceSection, { type: 'service-list' }> }) {
   return (
-    <section id={toId(s.title)}>
+    <section id={toId(s.title)} className="scroll-mt-24">
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
@@ -100,7 +100,7 @@ function ServiceListRenderer({ s }: { s: Extract<ServiceSection, { type: 'servic
 
 function IntroRenderer({ s }: { s: Extract<ServiceSection, { type: 'intro' }> }) {
   return (
-    <section id={toId(s.title)}>
+    <section id={toId(s.title)} className="scroll-mt-24">
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
@@ -112,7 +112,7 @@ function IntroRenderer({ s }: { s: Extract<ServiceSection, { type: 'intro' }> })
 
 function CoverageRenderer({ s }: { s: Extract<ServiceSection, { type: 'coverage' }> }) {
   return (
-    <section id={toId(s.title)}>
+    <section id={toId(s.title)} className="scroll-mt-24">
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
@@ -144,7 +144,7 @@ function CoverageRenderer({ s }: { s: Extract<ServiceSection, { type: 'coverage'
 function WhyBuyRenderer({ s, colorScheme }: { s: Extract<ServiceSection, { type: 'why-buy' }>; colorScheme: 'purple' | 'teal' }) {
   const scheme = SCHEME[colorScheme];
   return (
-    <section id={toId(s.title)}>
+    <section id={toId(s.title)} className="scroll-mt-24">
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
@@ -188,7 +188,7 @@ function WhyBuyRenderer({ s, colorScheme }: { s: Extract<ServiceSection, { type:
 
 function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-block' }> }) {
   return (
-    <section id={toId(s.title)}>
+    <section id={toId(s.title)} className="scroll-mt-24">
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
@@ -251,7 +251,7 @@ function TestimonialRenderer({ s }: { s: Extract<ServiceSection, { type: 'testim
 
 function InsurersRenderer({ s }: { s: Extract<ServiceSection, { type: 'insurers' }> }) {
   return (
-    <section id={toId(s.title)}>
+    <section id={toId(s.title)} className="scroll-mt-24">
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
