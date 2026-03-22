@@ -39,7 +39,7 @@ const columns = [
     heading: "Knowledge Hub",
     viewAll: "/knowledge-hub",
     links: [
-      { label: "Marketplace",       href: "/" },
+      { label: "Marketplace",       href: "/marketplace" },
       { label: "Knowledge Hub",     href: "/knowledge-hub" },
       { label: "Mission Statement",  href: "/" },
       { label: "Meet the Team",     href: "/team" },
