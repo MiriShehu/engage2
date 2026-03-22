@@ -211,8 +211,8 @@ export const employeeBenefitsServices: ServiceEntry[] = [
       },
       {
         type: 'text-block',
-        label: 'Key Benefits',
-        title: 'Key Benefits',
+        label: 'Key Features',
+        title: 'Key Features',
         paragraphs: [
           'Businesses choose this coverage for several reasons:',
         ],
@@ -1090,7 +1090,7 @@ export const employeeBenefitsServices: ServiceEntry[] = [
       {
         type: 'text-block',
         label: 'Best deal',
-        title: 'How do businesses find the best deal?',
+        title: 'Finding the Best Deal',
         paragraphs: [
           'There are two general ways you can go about purchasing an insurance product: Employ an insurance broker or go straight to the seller. It\'s usually advised that you employ the services of an independent insurance broker like Engage because we can provide an insider\'s perspective on how it works from purchase to claim. Plus, a consultant like Engage will have your best interests at heart, unlike an insurance provider who will have a vested interest in promoting a deal which suits their commercial needs.',
         ],
