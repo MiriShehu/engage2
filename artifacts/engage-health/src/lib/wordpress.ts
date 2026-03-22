@@ -3,7 +3,7 @@ import { GraphQLClient } from 'graphql-request';
 // We pull the WordPress GraphQL endpoint from environment variables
 // For local development, this could be http://localhost:8000/graphql 
 // or the URL of your hosted WordPress instance like https://my-wp-site.com/graphql
-const endpoint = import.meta.env.VITE_WP_GRAPHQL_URL || 'https://your-wp-domain.com/graphql';
+const endpoint = import.meta.env.VITE_WP_GRAPHQL_URL || 'https://manage.engagehealthgroup.co.uk/graphql';
 
 export const wpClient = new GraphQLClient(endpoint, {
   headers: {
