@@ -67,7 +67,7 @@ export type PricingSection = {
   label: string
   title: string
   intro: string
-  rows: { salaryRoll: string; details: string[]; price: string }[]
+  rows: { staffCount: string; details: string[] }[]
 }
 
 export type ServiceSection =

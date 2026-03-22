@@ -183,25 +183,18 @@ function PricingRenderer({ s }: { s: Extract<ServiceSection, { type: 'pricing' }
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
         {s.rows.map((row, i) => (
-          <div key={i} className="rounded-2xl border border-border bg-white overflow-hidden">
-            <div className="px-5 py-3 border-b border-border" style={{ background: 'linear-gradient(135deg,#76186f,#003648)' }}>
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60 mb-0.5">Salary roll</p>
-              <p className="text-xl font-extrabold text-white">{row.salaryRoll}</p>
+          <div key={i} className="rounded-2xl border border-border bg-white p-5">
+            <div className="flex items-baseline gap-2 mb-4">
+              <span className="text-5xl font-extrabold text-secondary leading-none">{row.staffCount}</span>
+              <span className="text-base font-bold text-secondary uppercase tracking-wide">Staff</span>
             </div>
-            <div className="px-5 py-4 flex flex-col gap-3">
-              <ul className="space-y-1.5">
-                {row.details.map((d) => (
-                  <li key={d} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary/40 flex-shrink-0" />
-                    {d}
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-3 border-t border-border flex items-baseline gap-2">
-                <span className="text-2xl font-extrabold text-secondary">{row.price.split(' / ')[0]}</span>
-                <span className="text-sm text-muted-foreground">/ year total premium</span>
-              </div>
-            </div>
+            <ul className="space-y-1.5">
+              {row.details.map((d, di) => (
+                <li key={di} className={`text-sm leading-snug ${di === row.details.length - 1 ? 'font-bold text-secondary mt-3 pt-3 border-t border-border' : 'text-muted-foreground'}`}>
+                  {d}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
