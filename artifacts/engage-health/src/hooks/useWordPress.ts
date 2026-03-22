@@ -123,3 +123,37 @@ export function useTeamMembers() {
   });
 }
 
+// ── Marketplace ───────────────────────────────────────────────────────────────
+
+const GET_MARKETPLACE_PARTNERS_QUERY = `
+  query GetMarketplacePartners {
+    marketplacePartners(first: 100) {
+      nodes {
+        id
+        slug
+        title
+        content
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        categories {
+          nodes {
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useMarketplacePartners() {
+  return useQuery({
+    queryKey: ['marketplacePartners'],
+    queryFn: () => fetchWP(GET_MARKETPLACE_PARTNERS_QUERY),
+  });
+}
+

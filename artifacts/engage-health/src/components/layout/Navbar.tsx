@@ -426,6 +426,9 @@ export function Navbar() {
             <Link href="/xcelerate" className="font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2">
               Xcelerate
             </Link>
+            <Link href="/marketplace" className="font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2">
+              Marketplace
+            </Link>
             <Link href="/knowledge-hub" className="font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2">
               Knowledge Hub
             </Link>
@@ -499,6 +502,15 @@ export function Navbar() {
               className="w-full flex items-center justify-between py-4 text-sm font-semibold text-gray-800"
             >
               Xcelerate
+            </Link>
+          </div>
+
+          <div className="border-b border-gray-100">
+            <Link
+              href="/marketplace"
+              className="w-full flex items-center justify-between py-4 text-sm font-semibold text-gray-800"
+            >
+              Marketplace
             </Link>
           </div>
 
