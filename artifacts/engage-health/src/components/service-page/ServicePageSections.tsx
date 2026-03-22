@@ -1,6 +1,44 @@
 import { useState } from 'react';
-import { CheckCircle2, Plus, Minus, Building2, Users } from 'lucide-react';
+import { CheckCircle2, Plus, Minus, Building2, Users, BookOpen } from 'lucide-react';
 import type { ServiceSection } from '@/data/types';
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+function toId(str: string) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+// ── Table of Contents ──────────────────────────────────────────────────────
+
+function TableOfContents({ sections }: { sections: ServiceSection[] }) {
+  const items = sections
+    .filter((s): s is Extract<ServiceSection, { title: string }> => 'title' in s)
+    .map(s => ({ title: s.title, id: toId(s.title) }));
+
+  if (items.length < 2) return null;
+
+  return (
+    <nav className="mb-10 p-5 rounded-2xl border border-border bg-white">
+      <div className="flex items-center gap-2 mb-4">
+        <BookOpen className="w-4 h-4 text-primary flex-shrink-0" />
+        <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-secondary">On This Page</h3>
+      </div>
+      <ul className="space-y-1.5">
+        {items.map(({ title, id }) => (
+          <li key={id}>
+            <a
+              href={`#${id}`}
+              className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors group py-0.5"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-primary transition-colors flex-shrink-0" />
+              {title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 // ── Shared sub-components (also used by GroupHealthInsurance.tsx) ──────────
 
@@ -39,7 +77,7 @@ const SCHEME = {
 
 function ServiceListRenderer({ s }: { s: Extract<ServiceSection, { type: 'service-list' }> }) {
   return (
-    <section>
+    <section id={toId(s.title)}>
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
@@ -62,7 +100,7 @@ function ServiceListRenderer({ s }: { s: Extract<ServiceSection, { type: 'servic
 
 function IntroRenderer({ s }: { s: Extract<ServiceSection, { type: 'intro' }> }) {
   return (
-    <section>
+    <section id={toId(s.title)}>
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
@@ -74,7 +112,7 @@ function IntroRenderer({ s }: { s: Extract<ServiceSection, { type: 'intro' }> })
 
 function CoverageRenderer({ s }: { s: Extract<ServiceSection, { type: 'coverage' }> }) {
   return (
-    <section>
+    <section id={toId(s.title)}>
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
@@ -106,7 +144,7 @@ function CoverageRenderer({ s }: { s: Extract<ServiceSection, { type: 'coverage'
 function WhyBuyRenderer({ s, colorScheme }: { s: Extract<ServiceSection, { type: 'why-buy' }>; colorScheme: 'purple' | 'teal' }) {
   const scheme = SCHEME[colorScheme];
   return (
-    <section>
+    <section id={toId(s.title)}>
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
@@ -150,7 +188,7 @@ function WhyBuyRenderer({ s, colorScheme }: { s: Extract<ServiceSection, { type:
 
 function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-block' }> }) {
   return (
-    <section>
+    <section id={toId(s.title)}>
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
@@ -213,7 +251,7 @@ function TestimonialRenderer({ s }: { s: Extract<ServiceSection, { type: 'testim
 
 function InsurersRenderer({ s }: { s: Extract<ServiceSection, { type: 'insurers' }> }) {
   return (
-    <section>
+    <section id={toId(s.title)}>
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
       <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
@@ -279,6 +317,7 @@ type Props = {
 export default function ServicePageSections({ sections, colorScheme }: Props) {
   return (
     <>
+      <TableOfContents sections={sections} />
       {sections.map((s, i) => (
         <div key={i}>
           {i > 0 && <Divider />}

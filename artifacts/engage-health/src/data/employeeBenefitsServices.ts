@@ -194,18 +194,6 @@ export const employeeBenefitsServices: ServiceEntry[] = [
     ],
     sections: [
       {
-        type: 'service-list',
-        label: 'Engage Group Income Protection',
-        title: 'Our independent brokers are ready to help your business:',
-        intro: '',
-        items: [
-          'Source the ideal Group Income Protection scheme',
-          'Streamline the set-up and claims process',
-          'Reduce absenteeism across the business',
-        ],
-        testimonial: 'Engage didn\'t sell us a policy but they stopped us making a big mistake. Well done!',
-      },
-      {
         type: 'intro',
         label: 'What It Is',
         title: 'What is Group Income Protection?',
@@ -224,7 +212,7 @@ export const employeeBenefitsServices: ServiceEntry[] = [
       {
         type: 'text-block',
         label: 'Key Benefits',
-        title: 'What are the key benefits?',
+        title: 'Key Benefits',
         paragraphs: [
           'Businesses choose this coverage for several reasons:',
         ],
@@ -241,7 +229,7 @@ export const employeeBenefitsServices: ServiceEntry[] = [
       {
         type: 'text-block',
         label: 'Cost Factors',
-        title: 'How much does Group Income Protection cost?',
+        title: 'Cost Factors',
         paragraphs: [
           'Premiums are typically calculated as a percentage of gross payroll and vary based on:',
         ],
@@ -256,41 +244,24 @@ export const employeeBenefitsServices: ServiceEntry[] = [
       },
       {
         type: 'text-block',
-        label: 'Finding the Best Deal',
-        title: 'How do businesses find the best deal?',
+        label: 'Finding Coverage',
+        title: 'Finding the Best Deal',
         paragraphs: [
           'Businesses can research independently or work with brokers. Brokers offer expertise across the entire marketplace and often negotiate better rates than publicly available options.',
         ],
       },
       {
-        type: 'coverage',
-        label: 'Group Income Protection',
-        title: 'Who are the main Income Protection insurance providers?',
-        intro: 'All the main insurance providers offer Group Income Protection and they also include some form of employee support service designed to help workers get better and back to work as quickly as possible. The main insurance providers offering Group Income Protection Insurance include:',
+        type: 'insurers',
+        label: 'Major Providers',
+        title: 'Major Providers',
+        intro: 'Metlife, Canada Life, Aviva, Zurich, Unum, and Legal & General all offer Group Income Protection with integrated support services.',
         items: [
-          'Metlife – "Tailored return to work support can help minimise absence duration and even prevent an absence becoming long term in the first place."',
-          'Canada Life – "Our insurance provides a replacement income if your employee is unable to work because of an illness or injury. Plus, we\'ll help your employees return to work with our rehabilitation support."',
-          'Aviva – "Proactive rehabilitation services and a simple claims process help your employees focus on their health, recovery and return to work."',
-          'AIG – "Our Group Income Protection solution provides the tips and tools needed to help employees with their physical, mental and financial wellbeing, as well as paying up to 80% of an employee\'s salary, if they are unable work."',
-          'Zurich – "Our in-house team of rehabilitation specialists are on hand to offer practical support and expertise from the employees initial absence through to recovery."',
-          'Legal & General – "As well as the financial support, we aim to help you manage long-term sickness absence. Policies include rehabilitation where appropriate, to help support employees back into the workplace."',
-        ],
-      },
-      {
-        type: 'faqs',
-        items: [
-          {
-            q: 'Is Group Income Protection insurance a taxable benefit?',
-            a: 'No, Group Income Protection is not normally considered a taxable benefit in kind for the employee. Furthermore, it\'s usually an allowable business expense for the employer too. That means neither employer nor employees usually have to pay additional tax on premiums. However, if a claim is made then HMRC will tax the benefit via the PAYE system as they would with a normal wage.',
-          },
-          {
-            q: 'How is Income Protection paid?',
-            a: 'Once a successful claim has been made, the insurance company will pay the employer who, in turn, will pay the employee via payroll. An amount is usually paid out monthly, though a lump sum payment option is possible.',
-          },
-          {
-            q: 'Do I need both Income Protection and Critical Illness Cover?',
-            a: 'Potentially, as they cater for different scenarios. While Income Protection provides for a wider scope of injuries and illnesses, Critical Illness Cover pays out a single lump sum if an employee is diagnosed with, or has surgery for, a specified, potentially life-threatening illness.',
-          },
+          { name: 'Metlife', logo: metlifeLogo, quote: 'Tailored return to work support can help minimise absence duration and even prevent an absence becoming long term in the first place.' },
+          { name: 'Canada Life', logo: canadalifeLogo, quote: 'Our insurance provides a replacement income if your employee is unable to work because of an illness or injury. Plus, we\'ll help your employees return to work with our rehabilitation support.' },
+          { name: 'Aviva', logo: avivaLogo, quote: 'Proactive rehabilitation services and a simple claims process help your employees focus on their health, recovery and return to work.' },
+          { name: 'Zurich', logo: zurichLogo, quote: 'Our in-house team of rehabilitation specialists are on hand to offer practical support and expertise from the employees initial absence through to recovery.' },
+          { name: 'Unum', logo: unumLogo, quote: 'We provide the financial security and support services your employees need to recover and return to work with confidence.' },
+          { name: 'Legal & General', logo: legalLogo, quote: 'As well as the financial support, we aim to help you manage long-term sickness absence. Policies include rehabilitation where appropriate, to help support employees back into the workplace.' },
         ],
       },
     ],
