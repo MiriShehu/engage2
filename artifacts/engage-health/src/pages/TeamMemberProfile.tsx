@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useParams, Link } from "wouter";
 import { PageLayout } from "@/components/layout";
-import { useTeamMember } from "@/hooks/useWordPress";
+import { useTeamMembers } from "@/hooks/useWordPress";
 import { Loader2, ArrowLeft, Linkedin, Mail, Phone, Twitter } from "lucide-react";
 import NotFound from "./not-found";
 
@@ -13,7 +13,7 @@ export default function TeamMemberProfile() {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  const { data, isLoading, isError } = useTeamMember(slug as string);
+  const { data, isLoading, isError } = useTeamMembers();
 
   if (isLoading) {
     return (
@@ -25,8 +25,8 @@ export default function TeamMemberProfile() {
     );
   }
 
-  const member = data?.teamMember;
-  
+  const member = data?.teamMembers?.nodes?.find((n: any) => n.slug === slug);
+
   if (isError || !member) {
     return <NotFound />;
   }
@@ -35,7 +35,7 @@ export default function TeamMemberProfile() {
   const nameParts = member.title.trim().toLowerCase().split(' ');
   const firstName = nameParts[0] || '';
   const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : '';
-  const memberEmail = nameParts.length > 1 
+  const memberEmail = nameParts.length > 1
     ? `${firstName}.${lastName}@engagehealthgroup.co.uk`
     : `${firstName}@engagehealthgroup.co.uk`;
 
@@ -66,8 +66,8 @@ export default function TeamMemberProfile() {
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#003648] to-[#76186f] rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                 <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-8 border-white shadow-xl relative bg-white z-10">
                   {member.featuredImage?.node?.sourceUrl ? (
-                    <img 
-                      src={member.featuredImage.node.sourceUrl} 
+                    <img
+                      src={member.featuredImage.node.sourceUrl}
                       alt={member.title}
                       className="w-full h-full object-cover object-top"
                     />
