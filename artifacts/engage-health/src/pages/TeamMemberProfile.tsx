@@ -31,6 +31,10 @@ export default function TeamMemberProfile() {
     return <NotFound />;
   }
 
+  // Extract job title from WP content HTML
+  const jobTitleMatch = member.content?.match(/Job title:?\s*<\/strong><\/p>\s*<p>([^<]+)/i);
+  const positionTitle = jobTitleMatch ? jobTitleMatch[1].trim() : null;
+
   // Generate email from name
   const nameParts = member.title.trim().toLowerCase().split(' ');
   const firstName = nameParts[0] || '';
@@ -80,9 +84,9 @@ export default function TeamMemberProfile() {
               </div>
 
               <h1 className="text-2xl font-extrabold text-[#003648] mb-1">{member.title}</h1>
-              {member.staffMemberFields?.positionTitle && (
+              {positionTitle && (
                 <p className="text-[#76186f] font-bold text-sm uppercase tracking-wider mb-8">
-                  {member.staffMemberFields.positionTitle}
+                  {positionTitle}
                 </p>
               )}
 

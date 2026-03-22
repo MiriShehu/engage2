@@ -74,7 +74,6 @@ const GET_PAGE_DATA_QUERY = `
 
 const GET_TEAM_MEMBERS_QUERY = `
   query GetTeamMembers {
-    # 'teamMembers' depends on how your CPT is exposed in GraphQL
     teamMembers(first: 100) {
       nodes {
         id
@@ -87,28 +86,6 @@ const GET_TEAM_MEMBERS_QUERY = `
             sourceUrl
           }
         }
-        staffMemberFields {
-          positionTitle
-        }
-      }
-    }
-  }
-`;
-
-const GET_TEAM_MEMBER_BY_SLUG_QUERY = `
-  query GetTeamMemberBySlug($slug: ID!) {
-    teamMember(id: $slug, idType: SLUG) {
-      id
-      title
-      content
-      excerpt
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-      staffMemberFields {
-        positionTitle
       }
     }
   }
@@ -146,10 +123,3 @@ export function useTeamMembers() {
   });
 }
 
-export function useTeamMember(slug: string) {
-  return useQuery({
-    queryKey: ['teamMember', slug],
-    queryFn: () => fetchWP(GET_TEAM_MEMBER_BY_SLUG_QUERY, { slug }),
-    enabled: !!slug,
-  });
-}
