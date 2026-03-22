@@ -345,9 +345,23 @@ export default function BlogPost({ slug }: { slug: string }) {
   if (isLoading) {
     return (
       <PageLayout className="bg-[#f0f0f0]">
-        <div className="min-h-[60vh] flex flex-col items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-          <p className="text-muted-foreground font-medium">Loading post...</p>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          {/* Hero image */}
+          <div className="w-full aspect-[16/7] bg-gray-200 rounded-2xl animate-pulse mb-10" />
+          {/* Meta */}
+          <div className="flex gap-3 mb-6">
+            <div className="h-5 w-20 bg-gray-200 rounded-full animate-pulse" />
+            <div className="h-5 w-24 bg-gray-200 rounded-full animate-pulse" />
+          </div>
+          {/* Title */}
+          <div className="h-9 w-full bg-gray-200 rounded animate-pulse mb-3" />
+          <div className="h-9 w-3/4 bg-gray-200 rounded animate-pulse mb-10" />
+          {/* Body */}
+          <div className="space-y-3">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div key={i} className={`h-4 bg-gray-200 rounded animate-pulse ${i % 5 === 4 ? "w-2/3" : "w-full"}`} />
+            ))}
+          </div>
         </div>
       </PageLayout>
     );

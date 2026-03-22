@@ -251,15 +251,37 @@ export default function KnowledgeHub() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
 
+          {/* ── Loading skeleton ── */}
+          {isLoading && (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-white rounded-xl overflow-hidden border border-slate-100">
+                  <div className="aspect-[16/9] bg-slate-200 animate-pulse" />
+                  <div className="p-5 space-y-3">
+                    <div className="h-3 w-20 bg-slate-200 rounded-full animate-pulse" />
+                    <div className="h-5 w-full bg-slate-200 rounded animate-pulse" />
+                    <div className="h-5 w-4/5 bg-slate-200 rounded animate-pulse" />
+                    <div className="h-3 w-full bg-slate-200 rounded animate-pulse" />
+                    <div className="h-3 w-5/6 bg-slate-200 rounded animate-pulse" />
+                    <div className="flex gap-3 pt-2">
+                      <div className="h-3 w-16 bg-slate-200 rounded animate-pulse" />
+                      <div className="h-3 w-20 bg-slate-200 rounded animate-pulse" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* ── Featured slider ── */}
-          {featuredPosts.length > 0 && (
+          {!isLoading && featuredPosts.length > 0 && (
             <div className="mb-12">
               <FeaturedSlider posts={featuredPosts} />
             </div>
           )}
 
           {/* ── Grid ── */}
-          {rest.length > 0 && (
+          {!isLoading && rest.length > 0 && (
             <>
               <div ref={gridRef} className="flex items-center justify-between mb-6 flex-wrap gap-2">
                 <p className="text-xs font-bold uppercase tracking-widest text-slate-400">

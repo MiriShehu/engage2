@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import { useParams, Link } from "wouter";
 import { PageLayout } from "@/components/layout";
 import { useMarketplacePartners } from "@/hooks/useWordPress";
-import { Loader2, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import NotFound from "./not-found";
 
 function addUtmToLinks(html: string, partnerSlug: string): string {
@@ -30,9 +30,32 @@ export default function MarketplacePartner() {
 
   if (isLoading) {
     return (
-      <PageLayout className="bg-slate-50 relative min-h-[80vh]">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Loader2 className="w-12 h-12 animate-spin text-[#003648]" />
+      <PageLayout className="bg-slate-50 min-h-screen">
+        <div className="relative bg-[#003648] pt-24 pb-56" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-40 relative z-20 pb-24">
+          <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-1/3 p-8 md:p-12 flex flex-col items-center gap-4">
+                <div className="w-44 h-44 rounded-2xl bg-slate-200 animate-pulse" />
+                <div className="h-6 w-40 bg-slate-200 rounded animate-pulse" />
+                <div className="flex gap-2">
+                  <div className="h-5 w-20 bg-slate-200 rounded-full animate-pulse" />
+                  <div className="h-5 w-16 bg-slate-200 rounded-full animate-pulse" />
+                </div>
+                <div className="h-10 w-full bg-slate-200 rounded-[14px] animate-pulse mt-2" />
+              </div>
+              <div className="md:w-2/3 p-8 md:p-12 lg:p-16 space-y-4">
+                <div className="h-4 w-36 bg-slate-200 rounded animate-pulse mb-8" />
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className={`h-3 bg-slate-200 rounded animate-pulse ${i % 4 === 3 ? "w-3/5" : "w-full"}`} />
+                ))}
+                <div className="h-4 w-32 bg-slate-200 rounded animate-pulse mt-6" />
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="h-3 w-5/6 bg-slate-200 rounded animate-pulse" />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </PageLayout>
     );

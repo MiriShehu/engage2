@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Loader2, Search, ChevronDown } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { PageLayout } from "@/components/layout";
 import { TrustBar } from "@/components/sections/trust";
 import { useMarketplacePartners } from "@/hooks/useWordPress";
@@ -109,9 +109,14 @@ export default function Marketplace() {
 
           {/* Loading */}
           {isLoading && (
-            <div className="py-32 flex flex-col items-center justify-center">
-              <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
-              <p className="text-sm font-semibold text-muted-foreground">Loading partners…</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {Array.from({ length: 15 }).map((_, i) => (
+                <div key={i} className="bg-white border border-gray-100 rounded-2xl p-5 flex flex-col items-center gap-3">
+                  <div className="w-full h-16 bg-gray-200 rounded-lg animate-pulse" />
+                  <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
+                  <div className="h-4 w-16 bg-gray-200 rounded-full animate-pulse" />
+                </div>
+              ))}
             </div>
           )}
 

@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import { useParams, Link } from "wouter";
 import { PageLayout } from "@/components/layout";
 import { useTeamMembers } from "@/hooks/useWordPress";
-import { Loader2, ArrowLeft, Linkedin, Mail, Phone, Twitter } from "lucide-react";
+import { ArrowLeft, Linkedin, Mail, Phone, Twitter } from "lucide-react";
 import NotFound from "./not-found";
 
 export default function TeamMemberProfile() {
@@ -17,9 +17,28 @@ export default function TeamMemberProfile() {
 
   if (isLoading) {
     return (
-      <PageLayout className="bg-slate-50 relative min-h-[80vh]">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Loader2 className="w-12 h-12 animate-spin text-[#003648]" />
+      <PageLayout className="bg-slate-50 min-h-screen">
+        <div className="relative bg-[#003648] pt-24 pb-56" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-40 relative z-20 pb-24">
+          <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-1/3 p-8 md:p-12 flex flex-col items-center gap-4">
+                <div className="w-48 h-48 rounded-full bg-slate-200 animate-pulse" />
+                <div className="h-6 w-36 bg-slate-200 rounded animate-pulse" />
+                <div className="h-4 w-28 bg-slate-200 rounded animate-pulse" />
+                <div className="w-full space-y-2 mt-4">
+                  <div className="h-10 bg-slate-200 rounded-[14px] animate-pulse" />
+                  <div className="h-10 bg-slate-200 rounded-[14px] animate-pulse" />
+                </div>
+              </div>
+              <div className="md:w-2/3 p-8 md:p-12 lg:p-16 space-y-4">
+                <div className="h-4 w-32 bg-slate-200 rounded animate-pulse mb-8" />
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} className={`h-3 bg-slate-200 rounded animate-pulse ${i % 3 === 2 ? "w-4/6" : "w-full"}`} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </PageLayout>
     );
