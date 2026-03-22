@@ -2,8 +2,22 @@ import { useLayoutEffect } from "react";
 import { useParams, Link } from "wouter";
 import { PageLayout } from "@/components/layout";
 import { useMarketplacePartners } from "@/hooks/useWordPress";
-import { Loader2, ArrowLeft, ExternalLink } from "lucide-react";
+import { Loader2, ArrowLeft } from "lucide-react";
 import NotFound from "./not-found";
+
+function addUtmToLinks(html: string, partnerSlug: string): string {
+  return html.replace(/href="(https?:\/\/[^"]+)"/g, (_, url) => {
+    try {
+      const u = new URL(url);
+      u.searchParams.set("utm_source", "engage-health-group");
+      u.searchParams.set("utm_medium", "marketplace");
+      u.searchParams.set("utm_campaign", partnerSlug);
+      return `href="${u.toString()}"`;
+    } catch {
+      return `href="${url}"`;
+    }
+  });
+}
 
 export default function MarketplacePartner() {
   const { slug } = useParams<{ slug: string }>();
@@ -96,7 +110,7 @@ export default function MarketplacePartner() {
               </h2>
               <div
                 className="prose prose-slate max-w-none prose-headings:text-[#003648] prose-h5:text-sm prose-h5:font-black prose-h5:uppercase prose-h5:tracking-wider prose-p:text-slate-600 prose-p:leading-loose prose-a:text-[#76186f] hover:prose-a:text-[#003648] prose-strong:text-[#003648] prose-li:text-slate-600 prose-ul:my-2"
-                dangerouslySetInnerHTML={{ __html: partner.content || "<p>No information available.</p>" }}
+                dangerouslySetInnerHTML={{ __html: addUtmToLinks(partner.content || "<p>No information available.</p>", partner.slug) }}
               />
             </div>
 
