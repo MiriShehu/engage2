@@ -387,10 +387,13 @@ export const employeeBenefitsServices: ServiceEntry[] = [
         ],
       },
       {
-        type: 'coverage',
+        type: 'text-block',
+        variant: 'cards',
         label: 'Cost factors',
         title: 'How much does Group Critical Illness cost?',
-        intro: 'As with any kind of insurance, costs will vary depending on the level coverage you choose to provide and the health profile of your workforce. Some of the key factors affecting price include:',
+        paragraphs: [
+          'As with any kind of insurance, costs will vary depending on the level coverage you choose to provide and the health profile of your workforce. Some of the key factors affecting price include:',
+        ],
         items: [
           'Workforce demographic: age and gender',
           'Occupations: some forms of work have a higher risk profile than others',
@@ -399,7 +402,7 @@ export const employeeBenefitsServices: ServiceEntry[] = [
           "Salary levels: if you're providing cover based on a multiple of their salary this will affect size of potential payout (and therefore initial cost)",
           'Current sickness levels: if employees are currently off sick long-term this could affect cost too.',
         ],
-        addOns: [
+        footerParagraphs: [
           "Each of these factors affects the cost of your insurance premium. To get an accurate quote, it's best to work with an independent insurance broker, like Engage, as we work across the whole insurance industry to present a range of competitive quotes tailored to your business.",
         ],
       },
