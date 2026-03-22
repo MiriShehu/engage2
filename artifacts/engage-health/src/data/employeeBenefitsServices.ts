@@ -196,65 +196,61 @@ export const employeeBenefitsServices: ServiceEntry[] = [
       {
         type: 'intro',
         label: 'What It Is',
-        title: 'What is Group Income Protection?',
+        title: 'What It Is',
         paragraphs: [
-          'Group Income Protection offers financial assistance when employees cannot work due to serious illness or injury. Beyond monetary support, these policies typically include practical services to facilitate recovery and workplace return.',
+          'Group Income Protection delivers financial assistance when workers cannot perform their duties due to serious health issues or injuries. Beyond monetary support, these plans typically incorporate rehabilitation services to facilitate employee recovery and workplace return.',
         ],
       },
       {
         type: 'intro',
-        label: 'How It Works',
-        title: 'How does Group Income Protection work?',
+        label: 'How It Functions',
+        title: 'How It Functions',
         paragraphs: [
-          'The employer is the actual beneficiary, though the employee is insured. Employers select a salary percentage to insure—commonly 75%—so if an employee becomes unable to work, the insurer pays that percentage to the employer, enabling continued staff payments and temporary replacement hiring.',
+          'The employer serves as the policy beneficiary, though the employee is the insured party. Employers select a salary percentage (commonly 75%) to protect. When an employee becomes unable to work, the insurer compensates the employer that percentage, enabling continued staff payment and temporary replacement hiring.',
         ],
       },
       {
         type: 'text-block',
-        label: 'Key Features',
-        title: 'Key Features',
-        paragraphs: [
-          'Businesses choose this coverage for several reasons:',
-        ],
+        label: 'Key Advantages',
+        title: 'Key Advantages',
+        paragraphs: [],
         items: [
-          'Monthly income replacement during employee absences',
-          'Reduced employer financial strain',
-          'Access to rehabilitation and support services including virtual GPs, mental health support, and physiotherapy',
-          'Facilitated employee recovery and return to work',
-        ],
-        footerParagraphs: [
-          'Vitality reported paying out "96.8% of Income Protection claims in 2020," demonstrating strong claim acceptance rates.',
+          'Monthly income replacement during illness or injury absences',
+          'Reduces employer financial burden during extended absences',
+          'Supports employer moral and financial responsibilities',
+          'Facilitates expedited workplace return through insurer assistance',
+          'Includes rehabilitation services and support programs',
         ],
       },
       {
-        type: 'text-block',
+        type: 'intro',
+        label: 'Support Services Available',
+        title: 'Support Services Available',
+        paragraphs: [
+          'Providers commonly offer virtual medical consultations, mental health services, physiotherapy, specialist second opinions, Employee Assistance Programs, and rehabilitation support.',
+        ],
+      },
+      {
+        type: 'intro',
         label: 'Cost Factors',
         title: 'Cost Factors',
         paragraphs: [
-          'Premiums are typically calculated as a percentage of gross payroll and vary based on:',
-        ],
-        items: [
-          'Coverage duration (short-term or long-term)',
-          'Employee medical history',
-          'Workforce age and occupation type',
-          'Income replacement percentage (typically 60-75%)',
-          'Deferral period (13-26 weeks are standard)',
-          'Premium type (standard vs. guaranteed)',
+          'Premiums vary based on coverage duration, medical history, workforce age and occupation, income replacement percentage (typically 60-75%), conditions covered, deferral period (often 13-26 weeks), premium type, and payment frequency.',
         ],
       },
       {
-        type: 'text-block',
+        type: 'intro',
         label: 'Finding Coverage',
-        title: 'Finding the Best Deal',
+        title: 'Finding Coverage',
         paragraphs: [
-          'Businesses can research independently or work with brokers. Brokers offer expertise across the entire marketplace and often negotiate better rates than publicly available options.',
+          'Businesses can negotiate directly with insurers or engage independent brokers. Brokers offer market expertise and access to better rates through volume relationships with providers.',
         ],
       },
       {
         type: 'insurers',
         label: 'Major Providers',
         title: 'Major Providers',
-        intro: 'Metlife, Canada Life, Aviva, Zurich, Unum, and Legal & General all offer Group Income Protection with integrated support services.',
+        intro: 'Metlife, Canada Life, Aviva, AIG, Zurich, and Legal & General all offer Group Income Protection with integrated support services.',
         items: [
           { name: 'Metlife', logo: metlifeLogo, quote: 'Tailored return to work support can help minimise absence duration and even prevent an absence becoming long term in the first place.' },
           { name: 'Canada Life', logo: canadalifeLogo, quote: 'Our insurance provides a replacement income if your employee is unable to work because of an illness or injury. Plus, we\'ll help your employees return to work with our rehabilitation support.' },
