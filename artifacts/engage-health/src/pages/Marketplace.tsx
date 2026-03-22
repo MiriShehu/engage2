@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Loader2, Search } from "lucide-react";
+import { Loader2, Search, ChevronDown } from "lucide-react";
 import { PageLayout } from "@/components/layout";
 import { TrustBar } from "@/components/sections/trust";
 import { useMarketplacePartners } from "@/hooks/useWordPress";
@@ -32,7 +32,7 @@ export default function Marketplace() {
   return (
     <PageLayout className="bg-gray-50">
       {/* Hero */}
-      <section className="bg-secondary py-24 relative overflow-hidden">
+      <section id="hero" className="bg-secondary py-24 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "28px 28px" }}
@@ -51,16 +51,28 @@ export default function Marketplace() {
           <p className="text-white/65 text-xl max-w-2xl mx-auto mb-6">
             This space is dedicated to showcasing the diverse and innovative offerings of our trusted partners. We pride ourselves on delivering a truly holistic approach to employee benefits, which is why we've carefully curated a range of services designed to add meaningful value to any workplace – helping you engage and retain talent while supporting business growth.
           </p>
-          <p className="text-white/65 text-xl max-w-2xl mx-auto">
+          <p className="text-white/65 text-xl max-w-2xl mx-auto mb-12">
             Our marketplace is ever evolving. We'll continue to expand with new categories and partners to keep pace with the changing employee benefits landscape – so watch this space!
           </p>
+
+          {/* Scroll down button */}
+          <button
+            onClick={() => document.getElementById("partners")?.scrollIntoView({ behavior: "smooth" })}
+            aria-label="Scroll to partners"
+            className="group mx-auto flex flex-col items-center gap-1 text-white/50 hover:text-white transition-colors duration-300"
+          >
+            <span className="text-xs font-semibold tracking-widest uppercase">Browse partners</span>
+            <span className="w-9 h-9 rounded-full border border-white/20 group-hover:border-white/60 flex items-center justify-center transition-all duration-300 group-hover:bg-white/10 animate-bounce">
+              <ChevronDown className="w-5 h-5" />
+            </span>
+          </button>
         </div>
       </section>
 
       <TrustBar />
 
       {/* Filters + Grid */}
-      <section className="py-16 bg-gray-50">
+      <section id="partners" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Search */}
