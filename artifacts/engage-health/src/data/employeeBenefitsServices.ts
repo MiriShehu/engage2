@@ -122,15 +122,15 @@ export const employeeBenefitsServices: ServiceEntry[] = [
         ],
       },
       {
-        type: 'text-block',
+        type: 'pricing',
         label: 'Cost examples',
         title: 'How much does Group Life Insurance cost?',
-        paragraphs: [
-          'All the above factors make it difficult to give an average Group Life Insurance cost point. But to give you an idea are some examples of Group Life Insurance premiums for different sized businesses and age ranges:',
-          'Salary roll – £150,000 · Home Counties location · New to market with no long-term absentees → £500 total premium per annum',
-          'Salary roll – £300,000 · Home Counties location · New to market with no long-term absentees → £600 total premium per annum',
-          'Salary roll – £1,200,000 · Home Counties location · New to market with no long-term absentees → £840 total premium per annum',
-          'Salary roll – £3,000,000 · Home Counties location · New to market with no long-term absentees → £2,064 total premium per annum',
+        intro: 'All the above factors make it difficult to give an average Group Life Insurance cost point. But to give you an idea are some examples of Group Life Insurance premiums for different sized businesses and age ranges:',
+        rows: [
+          { salaryRoll: '£150,000', details: ['Home Counties location', 'New to market', 'No long-term absentees'], price: '£500 / year' },
+          { salaryRoll: '£300,000', details: ['Home Counties location', 'New to market', 'No long-term absentees'], price: '£600 / year' },
+          { salaryRoll: '£1,200,000', details: ['Home Counties location', 'New to market', 'No long-term absentees'], price: '£840 / year' },
+          { salaryRoll: '£3,000,000', details: ['Home Counties location', 'New to market', 'No long-term absentees'], price: '£2,064 / year' },
         ],
       },
       {

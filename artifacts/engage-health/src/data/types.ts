@@ -62,6 +62,14 @@ export type InsurersSection = {
   items: { name: string; logo: string; quote: string }[]
 }
 
+export type PricingSection = {
+  type: 'pricing'
+  label: string
+  title: string
+  intro: string
+  rows: { salaryRoll: string; details: string[]; price: string }[]
+}
+
 export type ServiceSection =
   | ServiceListSection
   | IntroSection
@@ -71,6 +79,7 @@ export type ServiceSection =
   | FaqsSection
   | TestimonialSection
   | InsurersSection
+  | PricingSection
 
 export type ServiceStat = {
   icon: LucideIcon

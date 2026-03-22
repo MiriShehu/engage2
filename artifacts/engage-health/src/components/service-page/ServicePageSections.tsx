@@ -175,6 +175,40 @@ function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-blo
   );
 }
 
+function PricingRenderer({ s }: { s: Extract<ServiceSection, { type: 'pricing' }> }) {
+  return (
+    <section>
+      <SectionLabel>{s.label}</SectionLabel>
+      <SectionHeading>{s.title}</SectionHeading>
+      <p className="mt-4 text-muted-foreground leading-relaxed">{s.intro}</p>
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {s.rows.map((row, i) => (
+          <div key={i} className="rounded-2xl border border-border bg-white overflow-hidden">
+            <div className="px-5 py-3 border-b border-border" style={{ background: 'linear-gradient(135deg,#76186f,#003648)' }}>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/60 mb-0.5">Salary roll</p>
+              <p className="text-xl font-extrabold text-white">{row.salaryRoll}</p>
+            </div>
+            <div className="px-5 py-4 flex flex-col gap-3">
+              <ul className="space-y-1.5">
+                {row.details.map((d) => (
+                  <li key={d} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/40 flex-shrink-0" />
+                    {d}
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-3 border-t border-border flex items-baseline gap-2">
+                <span className="text-2xl font-extrabold text-secondary">{row.price.split(' / ')[0]}</span>
+                <span className="text-sm text-muted-foreground">/ year total premium</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function TestimonialRenderer({ s }: { s: Extract<ServiceSection, { type: 'testimonial' }> }) {
   return (
     <div className="rounded-2xl bg-primary/5 border-l-4 border-primary px-8 py-7">
@@ -260,6 +294,7 @@ export default function ServicePageSections({ sections, colorScheme }: Props) {
           {s.type === 'coverage'     && <CoverageRenderer s={s} />}
           {s.type === 'why-buy'      && <WhyBuyRenderer s={s} colorScheme={colorScheme} />}
           {s.type === 'text-block'   && <TextBlockRenderer s={s} />}
+          {s.type === 'pricing'      && <PricingRenderer s={s} />}
           {s.type === 'testimonial'  && <TestimonialRenderer s={s} />}
           {s.type === 'insurers'     && <InsurersRenderer s={s} />}
           {s.type === 'faqs'         && <FaqsRenderer s={s} />}
