@@ -347,7 +347,7 @@ export default function BlogPost({ slug }: { slug: string }) {
       <PageLayout className="bg-[#f0f0f0]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Hero image */}
-          <div className="w-full aspect-[16/7] bg-gray-200 rounded-2xl animate-pulse mb-10" />
+          <div className="w-full aspect-[16/7] bg-gray-200 rounded-xl animate-pulse mb-10" />
           {/* Meta */}
           <div className="flex gap-3 mb-6">
             <div className="h-5 w-20 bg-gray-200 rounded-full animate-pulse" />
@@ -402,31 +402,31 @@ export default function BlogPost({ slug }: { slug: string }) {
       <ReadingProgress />
 
       <PageLayout className="bg-[#f0f0f0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10">
 
           <div className="flex gap-6 items-start">
             <div className="hidden lg:block w-12 flex-shrink-0">
               <ActionBar />
             </div>
 
-            <article className="flex-1 min-w-0 bg-white rounded-lg border border-border">
+            <article className="flex-1 min-w-0 bg-white rounded-xl border border-border overflow-hidden">
               {post.featuredImage?.node?.sourceUrl && (
                 <img
                   src={post.featuredImage.node.sourceUrl}
                   alt={post.featuredImage.node.altText || post.title}
-                  className="w-full object-cover block"
+                  className="w-full object-cover block rounded-t-lg"
                   style={{ maxHeight: 420 }}
                 />
               )}
 
               <div className="p-4 md:p-8">
                 {/* Breadcrumb */}
-                <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-                  <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-                  <ChevronRight className="w-3 h-3" />
-                  <Link href="/knowledge-hub" className="hover:text-primary transition-colors">Knowledge Hub</Link>
-                  <ChevronRight className="w-3 h-3" />
-                  <span className="text-secondary truncate max-w-[200px]" dangerouslySetInnerHTML={{ __html: post.title }} />
+                <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4 overflow-hidden">
+                  <Link href="/" className="hover:text-primary transition-colors whitespace-nowrap flex-shrink-0 hidden sm:inline">Home</Link>
+                  <ChevronRight className="w-3 h-3 flex-shrink-0 hidden sm:inline" />
+                  <Link href="/knowledge-hub" className="hover:text-primary transition-colors whitespace-nowrap flex-shrink-0">Knowledge Hub</Link>
+                  <ChevronRight className="w-3 h-3 flex-shrink-0" />
+                  <span className="text-secondary truncate min-w-0" dangerouslySetInnerHTML={{ __html: post.title }} />
                 </nav>
 
                 <h1 className="text-2xl md:text-3xl font-black text-secondary leading-tight mb-5" dangerouslySetInnerHTML={{ __html: post.title }} />
