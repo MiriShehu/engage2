@@ -41,6 +41,7 @@ export type TextBlockSection = {
   paragraphs: string[]
   items?: string[]
   footerParagraphs?: string[]
+  variant?: 'default' | 'cards'
 }
 
 export type FaqsSection = {

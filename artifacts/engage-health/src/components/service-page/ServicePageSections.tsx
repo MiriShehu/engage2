@@ -186,23 +186,52 @@ function WhyBuyRenderer({ s, colorScheme }: { s: Extract<ServiceSection, { type:
   );
 }
 
+function BoldLeadItem({ text }: { text: string }) {
+  const colonIdx = text.indexOf(':');
+  if (colonIdx === -1) return <span className="text-sm text-muted-foreground leading-relaxed">{text}</span>;
+  const label = text.slice(0, colonIdx);
+  const body  = text.slice(colonIdx + 1).trim();
+  return (
+    <span className="text-sm leading-relaxed">
+      <span className="font-bold text-secondary">{label}:</span>{' '}
+      <span className="text-muted-foreground">{body}</span>
+    </span>
+  );
+}
+
 function TextBlockRenderer({ s }: { s: Extract<ServiceSection, { type: 'text-block' }> }) {
+  const isCards = s.variant === 'cards';
   return (
     <section id={toId(s.title)} className="scroll-mt-24">
       <SectionLabel>{s.label}</SectionLabel>
       <SectionHeading>{s.title}</SectionHeading>
-      <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
-        {s.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
-      </div>
+      {s.paragraphs.length > 0 && (
+        <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
+          {s.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
+      )}
       {s.items && s.items.length > 0 && (
-        <ul className="mt-6 space-y-3">
-          {s.items.map((item) => (
-            <li key={item} className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span className="text-base text-muted-foreground leading-relaxed">{item}</span>
-            </li>
-          ))}
-        </ul>
+        isCards ? (
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {s.items.map((item, i) => (
+              <div key={i} className="flex gap-3 p-4 rounded-2xl bg-white border border-border hover:border-primary/30 hover:shadow-sm transition-all">
+                <div className="mt-0.5 w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[10px] font-black text-primary">{i + 1}</span>
+                </div>
+                <BoldLeadItem text={item} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <ul className="mt-6 space-y-3">
+            {s.items.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-base text-muted-foreground leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        )
       )}
       {s.footerParagraphs && s.footerParagraphs.length > 0 && (
         <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">

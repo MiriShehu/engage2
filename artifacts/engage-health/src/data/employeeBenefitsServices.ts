@@ -239,6 +239,7 @@ export const employeeBenefitsServices: ServiceEntry[] = [
         type: 'text-block',
         label: 'Group Income Protection',
         title: 'How much does Group Income Protection cost?',
+        variant: 'cards',
         paragraphs: [
           'There are various factors which influence the cost of sick pay insurance. Costs are usually calculated as a percentage of gross payroll. The following factors will affect the premium:',
         ],
