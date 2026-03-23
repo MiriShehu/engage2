@@ -54,18 +54,19 @@ export default function GetAQuote() {
       console.log("[Sheets] webhookUrl =", webhookUrl);
       if (webhookUrl) {
         console.log("[Sheets] sending...");
+        const payload = JSON.stringify({
+          ...formData,
+          coverTypes: formData.coverTypes.join(", "),
+          submittedAt: new Date().toISOString(),
+        });
+        const form = new FormData();
+        form.append("data", payload);
         await fetch(webhookUrl, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "text/plain" },
-          body: JSON.stringify({
-            ...formData,
-            coverTypes: formData.coverTypes.join(", "),
-            submittedAt: new Date().toISOString(),
-          }),
+          body: form,
         });
-      }
-      console.log("[Sheets] sent.");
+        console.log("[Sheets] sent.");
     } catch (err) {
       console.error("[Sheets] error:", err);
     } finally {

@@ -49,7 +49,8 @@ function doPost(e) {
       sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight("bold");
     }
 
-    const data = JSON.parse(e.postData.contents);
+    const raw = e.parameter.data || e.postData.contents;
+    const data = JSON.parse(raw);
 
     sheet.appendRow([
       data.submittedAt || new Date().toISOString(),
