@@ -13,6 +13,10 @@ import teladoc      from "@assets/teledoc-1_1773872351107.png";
 import unmind       from "@assets/unmind_1773872351107.png";
 import vayner       from "@assets/vayner-media-logo-e1741707986477_1773872351107.png";
 
+function logo(domain: string, alt: string) {
+  return { src: `https://img.logo.dev/${domain}?token=pk_J3Dx4tCMRMe4PjQ9YQ3JpA&retina=true`, alt };
+}
+
 const row1 = [
   { src: marshmallow, alt: "Marshmallow" },
   { src: klarna,      alt: "Klarna" },
@@ -31,6 +35,39 @@ const row2 = [
   { src: pleo,        alt: "Pleo" },
 ];
 
+const row3 = [
+  logo("brillpower.com",          "Brill Power"),
+  logo("chattermill.com",         "Chattermill"),
+  logo("codility.com",            "Codility"),
+  logo("oneplus.com",             "OnePlus"),
+  logo("designergroup.ie",        "Designer Group"),
+  logo("dugout.com",              "Dugout"),
+  logo("humn.ai",                 "Humn.ai"),
+  logo("impala.travel",           "Impala"),
+  logo("kairos.com",              "Kairos"),
+  logo("loyaltylion.com",         "Loyalty Lion"),
+  logo("ometria.com",             "Ometria"),
+  logo("pilabs.co.uk",            "PI Labs"),
+  logo("pismo.io",                "Pismo"),
+];
+
+const row4 = [
+  logo("profitaccumulator.co.uk", "Profit Accumulator"),
+  logo("scede.io",                "Scede"),
+  logo("studio71.com",            "Studio71"),
+  logo("thanksben.com",           "ThanksBen"),
+  logo("thirdfort.com",           "Thirdfort"),
+  logo("thread.com",              "Thread"),
+  logo("bootstrap.eu",            "Bootstrap Europe"),
+  logo("unibuddy.com",            "Unibuddy"),
+  logo("wiredscore.com",          "Wiredscore"),
+  logo("zappi.io",                "Zappi"),
+  logo("bitpanda.com",            "Bitpanda"),
+  logo("maze.co",                 "Maze"),
+  logo("mews.com",                "Mews"),
+  logo("awin.com",                "Awin"),
+];
+
 export function ClientLogos() {
   return (
     <section className="bg-[#f5f4fa] py-20 overflow-hidden">
@@ -47,8 +84,10 @@ export function ClientLogos() {
       </div>
 
       <div className="space-y-4">
-        <LogoCloud logos={row1} duration={60} durationOnHover={120} />
-        <LogoCloud logos={row2} duration={70} durationOnHover={140} reverse />
+        <LogoCloud logos={row1} duration={60}  durationOnHover={120} />
+        <LogoCloud logos={row2} duration={70}  durationOnHover={140} reverse />
+        <LogoCloud logos={row3} duration={80}  durationOnHover={160} />
+        <LogoCloud logos={row4} duration={75}  durationOnHover={150} reverse />
       </div>
     </section>
   );

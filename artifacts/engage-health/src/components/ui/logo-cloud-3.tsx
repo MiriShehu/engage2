@@ -37,6 +37,7 @@ export function LogoCloud({ className, logos, reverse, duration = 30, durationOn
               loading="lazy"
               src={logo.src}
               width={logo.width || "auto" as unknown as number}
+              onError={(e) => { (e.currentTarget.closest("div") as HTMLElement).style.display = "none"; }}
             />
           </div>
         ))}
