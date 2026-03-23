@@ -117,12 +117,6 @@ export default function MarketplacePartner() {
                 </div>
               )}
 
-              <Link
-                href="/marketplace"
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-[14px] bg-[#003648] text-white font-bold text-sm hover:bg-[#003648]/90 transition-colors mt-2"
-              >
-                <ArrowLeft className="w-4 h-4" /> All Partners
-              </Link>
             </div>
 
             {/* Right: Content */}

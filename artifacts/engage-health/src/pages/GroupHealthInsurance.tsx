@@ -7,10 +7,21 @@ import { FaqAccordion } from "@/components/shared/FaqAccordion";
 import { IconList } from "@/components/shared/IconList";
 import { PricingTable } from "@/components/shared/PricingTable";
 import { ComparisonTable } from "@/components/shared/ComparisonTable";
+import { TableOfContents } from "@/components/ui/TableOfContents";
 import {
   serviceList, coreCover, addOns, employerBenefits, employeeBenefits,
   pricingGroups, comparisonFeatures, comparisonChannels, faqs, entry
 } from "@/data/pages/groupHealthInsuranceData";
+
+const tocItems = [
+  { id: "our-service",   label: "How can Engage help your business?" },
+  { id: "what-is",       label: "What is Group Health Insurance?" },
+  { id: "coverage",      label: "What does Group Health Insurance cover?" },
+  { id: "why-buy",       label: "Why buy Group Health Insurance?" },
+  { id: "cost",          label: "How much does it cost?" },
+  { id: "how-to-buy",    label: "How do I buy Group Health Insurance?" },
+  { id: "faqs",          label: "Frequently Asked Questions" },
+];
 
 export default function GroupHealthInsurance() {
   return (
@@ -21,8 +32,10 @@ export default function GroupHealthInsurance() {
       allServices={employeeBenefitsServices}
     >
 
+      <TableOfContents items={tocItems} />
+
       {/* 1 — How can Engage help? */}
-      <section>
+      <section id="our-service">
         <SectionLabel>Our service</SectionLabel>
         <SectionHeading>How can Engage help your business?</SectionHeading>
         <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -47,7 +60,7 @@ export default function GroupHealthInsurance() {
       <Divider />
 
       {/* 2 — What is Group Health Insurance? */}
-      <section>
+      <section id="what-is">
         <SectionLabel>The basics</SectionLabel>
         <SectionHeading>What is Group Health Insurance?</SectionHeading>
         <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
@@ -66,7 +79,7 @@ export default function GroupHealthInsurance() {
       <Divider />
 
       {/* 3 — What does it cover? */}
-      <section>
+      <section id="coverage">
         <SectionLabel>Policy coverage</SectionLabel>
         <SectionHeading>What does Group Health Insurance cover?</SectionHeading>
         <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -145,7 +158,7 @@ export default function GroupHealthInsurance() {
       <Divider />
 
       {/* 4 — Why buy? */}
-      <section>
+      <section id="why-buy">
         <SectionLabel>The business case</SectionLabel>
         <SectionHeading>Why buy Group Health Insurance?</SectionHeading>
         <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -193,7 +206,7 @@ export default function GroupHealthInsurance() {
       <Divider />
 
       {/* 5 — Pricing tables */}
-      <section>
+      <section id="cost">
         <SectionLabel>Indicative costs</SectionLabel>
         <SectionHeading>How much does Group Health Insurance cost?</SectionHeading>
         <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -216,7 +229,7 @@ export default function GroupHealthInsurance() {
       <Divider />
 
       {/* 6 — How to buy */}
-      <section>
+      <section id="how-to-buy">
         <SectionLabel>Your options</SectionLabel>
         <SectionHeading>How do I buy Group Health Insurance?</SectionHeading>
         <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -245,7 +258,7 @@ export default function GroupHealthInsurance() {
       <Divider />
 
       {/* 7 — FAQs */}
-      <section>
+      <section id="faqs">
         <SectionLabel>FAQs</SectionLabel>
         <SectionHeading>Frequently Asked Questions</SectionHeading>
         <FaqAccordion items={faqs} variant="plus-minus" />

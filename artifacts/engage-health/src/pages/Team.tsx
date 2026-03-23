@@ -53,13 +53,6 @@ function MemberCard({ member }: { member: any }) {
         </div>
         <h3 className="text-base font-extrabold text-secondary mb-2 leading-tight">{member.name}</h3>
         <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{member.bio}</p>
-        <div className="flex flex-wrap gap-1.5">
-          {member.tags.map((tag: string, i: number) => (
-            <span key={i} className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-600">
-              {tag}
-            </span>
-          ))}
-        </div>
       </div>
     </div>
   );
