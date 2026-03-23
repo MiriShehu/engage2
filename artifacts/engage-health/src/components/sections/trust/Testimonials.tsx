@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, UserRound, ArrowUpRight } from "lucide-react";
 import { Link } from "wouter";
@@ -123,11 +123,15 @@ function TestimonialCard({ t, dupIndex, cardIndex }: { t: Testimonial; dupIndex:
 }
 
 function ScrollColumn({ items, duration, className }: { items: Testimonial[]; duration: number; className?: string }) {
+  const [paused, setPaused] = useState(false);
   return (
-    <div className={`overflow-hidden ${className ?? ""}`}>
-      <motion.ul
-        animate={{ translateY: "-50%" }}
-        transition={{ duration, repeat: Infinity, ease: "linear", repeatType: "loop" }}
+    <div
+      className={`overflow-hidden ${className ?? ""}`}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <ul
+        style={{ animation: `scroll-up ${duration}s linear infinite`, animationPlayState: paused ? "paused" : "running" }}
         className="flex flex-col gap-5 pb-5 list-none m-0 p-0"
       >
         {[0, 1].map((dupIdx) => (
@@ -137,7 +141,7 @@ function ScrollColumn({ items, duration, className }: { items: Testimonial[]; du
             ))}
           </React.Fragment>
         ))}
-      </motion.ul>
+      </ul>
     </div>
   );
 }
