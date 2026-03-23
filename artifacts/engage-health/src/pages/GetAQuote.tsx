@@ -51,9 +51,7 @@ export default function GetAQuote() {
     setSubmitting(true);
     try {
       const webhookUrl = import.meta.env.VITE_SHEETS_WEBHOOK_URL;
-      console.log("[Sheets] webhookUrl =", webhookUrl);
       if (webhookUrl) {
-        console.log("[Sheets] sending...");
         const payload = JSON.stringify({
           ...formData,
           coverTypes: formData.coverTypes.join(", "),
@@ -66,10 +64,9 @@ export default function GetAQuote() {
           mode: "no-cors",
           body: form,
         });
-        console.log("[Sheets] sent.");
       }
-    } catch (err) {
-      console.error("[Sheets] error:", err);
+    } catch (_) {
+      // silently continue
     } finally {
       setSubmitting(false);
       setDirection(1);
