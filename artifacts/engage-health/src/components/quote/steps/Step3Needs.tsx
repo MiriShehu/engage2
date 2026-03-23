@@ -72,15 +72,11 @@ export default function Step3Needs({ timeline, onChange }: Props) {
         </div>
 
         <h1 className="text-[32px] font-extrabold text-foreground tracking-tight leading-[1.15] mb-2">
-          What are you<br /><span className="text-primary">looking for?</span>
+          How soon do you<br /><span className="text-primary">need cover?</span>
         </h1>
         <p className="text-[14px] text-muted-foreground mb-8 leading-relaxed">
-          This helps our advisors prepare the most relevant options.
+          This helps our advisors prepare the most relevant options for you.
         </p>
-
-        <div className="text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted-foreground mb-3">
-          How soon do you need cover?
-        </div>
         <div className="flex flex-col gap-2.5">
           {TIMELINES.map((t) => (
             <OptionCard

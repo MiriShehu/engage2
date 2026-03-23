@@ -110,8 +110,6 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
             )}
             {step === 4 && (
               <StepInterstitial
-                company={formData.company}
-                coverTypes={formData.coverTypes}
                 employeeRange={formData.employeeRange}
                 onNext={onNext}
               />
