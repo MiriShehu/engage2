@@ -100,7 +100,7 @@ function MenuHeader({ label, color }: { label: string; color: string }) {
 }
 
 // ─── Shared hover helpers (delay-close so fixed panels don't flicker) ─────────
-function useMenuHover(delay = 120) {
+function useMenuHover(delay = 300) {
   const [open, setOpen] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -118,7 +118,7 @@ function SmallDropdown({
   const { open, enter, leave } = useMenuHover();
 
   return (
-    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
+    <div className="relative pb-3 -mb-3" onMouseEnter={enter} onMouseLeave={leave}>
       <button
         className="flex items-center gap-[6px] font-['Inter'] font-semibold text-[15px] tracking-wide text-foreground/80 hover:text-primary transition-all duration-300 py-2"
         aria-expanded={open}
