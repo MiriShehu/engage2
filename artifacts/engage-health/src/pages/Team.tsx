@@ -81,19 +81,13 @@ export default function Team() {
     return doc.body.textContent || "";
   };
 
-  // Extract job title from WP content HTML (e.g. <p><strong>Job title: </strong></p><p>Consultant</p>)
-  const extractJobTitle = (content: string): string => {
-    const match = content?.match(/Job title:?\s*<\/strong><\/p>\s*<p>([^<]+)/i);
-    return match ? match[1].trim() : "";
-  };
-
   // Parse WordPress team members if available
   let dynamicDepartments = departments;
   if (!isError && data?.teamMembers?.nodes?.length > 0) {
     const wpMembers = data.teamMembers.nodes.map((node: any) => ({
       name: node.title,
       slug: node.slug,
-      title: extractJobTitle(node.content || "") || decodeHtmlEntities(node.excerpt || "").split(".")[0] || "Team Member",
+      title: node.positionTitle || decodeHtmlEntities(node.excerpt || "").split(".")[0] || "Team Member",
       bio: decodeHtmlEntities(node.excerpt || node.content || ""),
       img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
       accent: "#003648", // Default brand color

@@ -50,9 +50,8 @@ export default function TeamMemberProfile() {
     return <NotFound />;
   }
 
-  // Extract job title from WP content HTML
-  const jobTitleMatch = member.content?.match(/Job title:?\s*<\/strong><\/p>\s*<p>([^<]+)/i);
-  const positionTitle = jobTitleMatch ? jobTitleMatch[1].trim() : null;
+  // Use the custom field for the position title
+  const positionTitle = member.positionTitle || null;
 
   // Generate email from name
   const nameParts = member.title.trim().toLowerCase().split(' ');

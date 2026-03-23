@@ -79,6 +79,7 @@ const GET_TEAM_MEMBERS_QUERY = `
         id
         slug
         title
+        positionTitle
         content
         excerpt
         featuredImage {
