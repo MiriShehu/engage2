@@ -103,8 +103,7 @@ export default function StepInterstitial({ employeeRange, onNext }: Props) {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 18 }}
-              className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
-              style={{ background: "linear-gradient(135deg,#003648,#76186f)" }}
+              className="w-16 h-16 rounded-full flex items-center justify-center bg-primary"
             >
               <CheckCircle2 className="w-8 h-8 text-white" strokeWidth={2.5} />
             </motion.div>
