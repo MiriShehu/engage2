@@ -453,23 +453,29 @@ export function Navbar() {
           </Link>
 
           {/* Mobile controls */}
-          <div className="lg:hidden flex items-center gap-1 z-50">
+          <div className="lg:hidden flex items-center gap-1.5 z-50">
             <a
               href="tel:01273974419"
               aria-label="Call us"
-              className="flex items-center justify-center w-9 h-9 rounded-full text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
+              className="flex items-center justify-center w-11 h-11 rounded-full text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
             >
-              <Phone className="w-5 h-5" />
+              <Phone className="w-6 h-6" />
             </a>
+            <Link
+              href="/get-a-quote"
+              className="btn-cta px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap"
+            >
+              Get Quotes
+            </Link>
             <button
-              className="flex items-center justify-center w-9 h-9 rounded-full text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
+              className="flex items-center justify-center w-11 h-11 rounded-full text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
               {mobileMenuOpen
-                ? <X className="w-5 h-5" />
+                ? <X className="w-6 h-6" />
                 : (
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+                  <svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
                     <line x1="3" y1="6" x2="17" y2="6" />
                     <line x1="6" y1="11" x2="17" y2="11" />
                     <line x1="9" y1="16" x2="17" y2="16" />
