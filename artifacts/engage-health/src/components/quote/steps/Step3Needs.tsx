@@ -12,6 +12,7 @@ const TIMELINES = [
 interface Props {
   timeline: string;
   onChange: (field: string, value: string) => void;
+  onNext: () => void;
 }
 
 function OptionCard({
@@ -58,7 +59,7 @@ function OptionCard({
   );
 }
 
-export default function Step3Needs({ timeline, onChange }: Props) {
+export default function Step3Needs({ timeline, onChange, onNext }: Props) {
   return (
     <div className="flex flex-col flex-1 items-center px-8 overflow-y-auto">
       <div className="w-full max-w-[480px] flex flex-col py-7">
@@ -83,7 +84,7 @@ export default function Step3Needs({ timeline, onChange }: Props) {
               key={t.value}
               {...t}
               selected={timeline === t.value}
-              onClick={() => onChange("timeline", t.value)}
+              onClick={() => { onChange("timeline", t.value); setTimeout(onNext, 280); }}
             />
           ))}
         </div>

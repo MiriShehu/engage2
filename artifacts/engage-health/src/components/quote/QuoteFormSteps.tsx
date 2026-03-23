@@ -118,6 +118,7 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
               <Step4Needs
                 timeline={formData.timeline}
                 onChange={(field, value) => onChange(field as keyof FormData, value)}
+                onNext={onNext}
               />
             )}
             {step === 6 && (
