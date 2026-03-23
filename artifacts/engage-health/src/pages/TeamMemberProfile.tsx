@@ -51,7 +51,7 @@ export default function TeamMemberProfile() {
   }
 
   // Use the custom field for the position title
-  const positionTitle = member.positionTitle || null;
+  const positionTitle = member.positionTitle?.positionTitle || null;
 
   // Generate email from name
   const nameParts = member.title.trim().toLowerCase().split(' ');

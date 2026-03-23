@@ -87,7 +87,7 @@ export default function Team() {
     const wpMembers = data.teamMembers.nodes.map((node: any) => ({
       name: node.title,
       slug: node.slug,
-      title: node.positionTitle || decodeHtmlEntities(node.excerpt || "").split(".")[0] || "Team Member",
+      title: node.positionTitle?.positionTitle || decodeHtmlEntities(node.excerpt || "").split(".")[0] || "Team Member",
       bio: decodeHtmlEntities(node.excerpt || node.content || ""),
       img: node.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
       accent: "#003648", // Default brand color
