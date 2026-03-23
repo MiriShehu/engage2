@@ -13,16 +13,41 @@ export const globalHiringChecks = [
   "Tailored to your international team",
 ];
 
-export const companiesRow1 = [
-  "Brill Power","Chattermill","Codility","One Plus","Designer Group",
-  "Dugout","GIMO","Humn.ai","Impala","Kairos","Loyalty Lion","Ometria",
-  "Oval Medical Technologies","Oxford Vacmedix","PI Labs","Pismo",
+export interface CompanyEntry { name: string; domain: string }
+
+export const companiesRow1: CompanyEntry[] = [
+  { name: "Brill Power",              domain: "brillpower.com" },
+  { name: "Chattermill",              domain: "chattermill.com" },
+  { name: "Codility",                 domain: "codility.com" },
+  { name: "OnePlus",                  domain: "oneplus.com" },
+  { name: "Designer Group",           domain: "designergroup.ie" },
+  { name: "Dugout",                   domain: "dugout.com" },
+  { name: "Humn.ai",                  domain: "humn.ai" },
+  { name: "Impala",                   domain: "impala.travel" },
+  { name: "Kairos",                   domain: "kairos.com" },
+  { name: "Loyalty Lion",             domain: "loyaltylion.com" },
+  { name: "Ometria",                  domain: "ometria.com" },
+  { name: "Oval Medical Technologies",domain: "ovalmedical.com" },
+  { name: "Oxford Vacmedix",          domain: "vacmedix.com" },
+  { name: "PI Labs",                  domain: "pilabs.co.uk" },
+  { name: "Pismo",                    domain: "pismo.io" },
 ];
 
-export const companiesRow2 = [
-  "Profit Accumulator","Qdot Technology","Scede","Studio71","ThanksBen",
-  "Thirdfort","Thread","Bootstrap Europe","Unibuddy","Wiredscore",
-  "Zappi","Bitpanda","Maze","Mews","Awin",
+export const companiesRow2: CompanyEntry[] = [
+  { name: "Profit Accumulator",  domain: "profitaccumulator.co.uk" },
+  { name: "Scede",               domain: "scede.io" },
+  { name: "Studio71",            domain: "studio71.com" },
+  { name: "ThanksBen",           domain: "thanksben.com" },
+  { name: "Thirdfort",           domain: "thirdfort.com" },
+  { name: "Thread",              domain: "thread.com" },
+  { name: "Bootstrap Europe",    domain: "bootstrap.eu" },
+  { name: "Unibuddy",            domain: "unibuddy.com" },
+  { name: "Wiredscore",          domain: "wiredscore.com" },
+  { name: "Zappi",               domain: "zappi.io" },
+  { name: "Bitpanda",            domain: "bitpanda.com" },
+  { name: "Maze",                domain: "maze.co" },
+  { name: "Mews",                domain: "mews.com" },
+  { name: "Awin",                domain: "awin.com" },
 ];
 
 export const coverageCardsRow1 = [

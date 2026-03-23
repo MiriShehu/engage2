@@ -132,9 +132,22 @@ export function WorldDots() {
   );
 }
 
-export function CompanyNameCard({ name }: { name: string }) {
+export function CompanyNameCard({ name, domain }: { name: string; domain: string }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const src = `https://logo.clearbit.com/${domain}?size=80`;
+
   return (
-    <div className="flex items-center justify-center px-6 py-4 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-[#003648]/20 transition-all duration-200 group cursor-default">
+    <div className="flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-[#003648]/20 transition-all duration-200 group cursor-default min-w-[140px]">
+      {!imgFailed ? (
+        <img
+          src={src}
+          alt={name}
+          width={24}
+          height={24}
+          className="w-6 h-6 object-contain flex-shrink-0 grayscale group-hover:grayscale-0 transition-all duration-200"
+          onError={() => setImgFailed(true)}
+        />
+      ) : null}
       <span className="text-sm font-semibold text-slate-400 group-hover:text-[#003648] transition-colors duration-200 whitespace-nowrap select-none"
         style={{ fontFamily: "'Inter', sans-serif" }}>
         {name}

@@ -305,14 +305,14 @@ export default function Xcelerate() {
           <div className="space-y-4">
             <InfiniteSlider gap={16} duration={120} durationOnHover={240}
               className="overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-              {[...companiesRow1, ...companiesRow1, ...companiesRow1].map((name, i) => (
-                <CompanyNameCard key={i} name={name} />
+              {[...companiesRow1, ...companiesRow1, ...companiesRow1].map((c, i) => (
+                <CompanyNameCard key={i} name={c.name} domain={c.domain} />
               ))}
             </InfiniteSlider>
             <InfiniteSlider gap={16} duration={140} durationOnHover={280} reverse
               className="overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-              {[...companiesRow2, ...companiesRow2, ...companiesRow2].map((name, i) => (
-                <CompanyNameCard key={i} name={name} />
+              {[...companiesRow2, ...companiesRow2, ...companiesRow2].map((c, i) => (
+                <CompanyNameCard key={i} name={c.name} domain={c.domain} />
               ))}
             </InfiniteSlider>
           </div>
