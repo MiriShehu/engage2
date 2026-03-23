@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Step1CoverType from "./steps/Step1CoverType";
 import Step2Business from "./steps/Step2Business";
 import Step3Company from "./steps/Step3Company";
+import StepInterstitial from "./steps/StepInterstitial";
 import Step4Needs from "./steps/Step3Needs";
 import Step5Notes from "./steps/Step5Notes";
 import Step6Contact from "./steps/Step4Contact";
@@ -48,8 +49,14 @@ function isStepValid(step: number, f: FormData): boolean {
   if (step === 1) return f.coverTypes.length > 0;
   if (step === 2) return !!f.employeeRange;
   if (step === 3) return f.company.trim().length > 0;
-  if (step === 4) return !!f.timeline;
-  return true; // step 5 (notes) is optional
+  if (step === 4) return true; // interstitial
+  if (step === 5) return !!f.timeline;
+  return true; // step 6 (notes) is optional
+}
+
+// Display number shown in progress counter (interstitial step 4 counts as 3)
+function displayStep(step: number) {
+  return step >= 5 ? step - 1 : step;
 }
 
 export default function QuoteFormSteps({ step, direction, formData, submitting, onChange, onNext, onBack, onSubmit }: Props) {
@@ -102,18 +109,26 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
               />
             )}
             {step === 4 && (
+              <StepInterstitial
+                company={formData.company}
+                coverTypes={formData.coverTypes}
+                employeeRange={formData.employeeRange}
+                onNext={onNext}
+              />
+            )}
+            {step === 5 && (
               <Step4Needs
                 timeline={formData.timeline}
                 onChange={(field, value) => onChange(field as keyof FormData, value)}
               />
             )}
-            {step === 5 && (
+            {step === 6 && (
               <Step5Notes
                 notes={formData.notes}
                 onChange={(field, value) => onChange(field as keyof FormData, value)}
               />
             )}
-            {step === 6 && (
+            {step === 7 && (
               <Step6Contact
                 firstName={formData.firstName}
                 lastName={formData.lastName}
@@ -131,8 +146,8 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
         </AnimatePresence>
       </div>
 
-      {/* Footer nav — steps 1–5 show Continue */}
-      {step >= 1 && step <= 5 && (
+      {/* Footer nav — steps 1–3 and 5–6 show Continue */}
+      {step >= 1 && step <= 6 && step !== 4 && (
         <div className="flex items-center justify-between px-8 py-4 border-t border-border flex-shrink-0">
           <div className="w-[92px]">
             {step > 1 ? (
@@ -142,7 +157,7 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
             ) : null}
           </div>
           <span className="text-[13px] text-muted-foreground font-semibold">
-            <strong className="text-foreground">{step}</strong>/6
+            <strong className="text-foreground">{displayStep(step)}</strong>/6
           </span>
           <button
             onClick={onNext}
@@ -155,8 +170,8 @@ export default function QuoteFormSteps({ step, direction, formData, submitting, 
         </div>
       )}
 
-      {/* Footer nav for step 6: Back + counter only */}
-      {step === 6 && (
+      {/* Footer nav for step 7: Back + counter only */}
+      {step === 7 && (
         <div className="flex items-center justify-between px-8 py-4 border-t border-border flex-shrink-0">
           <button onClick={onBack} className="flex items-center gap-1.5 text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors">
             ← Go Back

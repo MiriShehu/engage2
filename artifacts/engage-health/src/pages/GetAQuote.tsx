@@ -35,7 +35,7 @@ export default function GetAQuote() {
 
   const handleNext = () => {
     setDirection(1);
-    setStep((s) => Math.min(s + 1, 6));
+    setStep((s) => Math.min(s + 1, 7));
   };
 
   const handleBack = () => {
