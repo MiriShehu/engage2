@@ -132,20 +132,27 @@ export function WorldDots() {
   );
 }
 
+// Try logo.dev first, fall back to Google favicon service
+function logoSrc(domain: string, attempt: number) {
+  if (attempt === 0) return `https://img.logo.dev/${domain}?token=pk_J3Dx4tCMRMe4PjQ9YQ3JpA&retina=true`;
+  if (attempt === 1) return `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=64`;
+  return null;
+}
+
 export function CompanyNameCard({ name, domain }: { name: string; domain: string }) {
-  const [imgFailed, setImgFailed] = useState(false);
-  const src = `https://logo.clearbit.com/${domain}?size=80`;
+  const [attempt, setAttempt] = useState(0);
+  const src = logoSrc(domain, attempt);
 
   return (
     <div className="flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-[#003648]/20 transition-all duration-200 group cursor-default min-w-[140px]">
-      {!imgFailed ? (
+      {src ? (
         <img
           src={src}
           alt={name}
-          width={24}
-          height={24}
-          className="w-6 h-6 object-contain flex-shrink-0 grayscale group-hover:grayscale-0 transition-all duration-200"
-          onError={() => setImgFailed(true)}
+          width={28}
+          height={28}
+          className="w-7 h-7 object-contain flex-shrink-0 grayscale group-hover:grayscale-0 transition-all duration-200"
+          onError={() => setAttempt((a) => a + 1)}
         />
       ) : null}
       <span className="text-sm font-semibold text-slate-400 group-hover:text-[#003648] transition-colors duration-200 whitespace-nowrap select-none"
