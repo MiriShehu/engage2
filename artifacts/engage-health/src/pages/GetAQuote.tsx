@@ -51,7 +51,9 @@ export default function GetAQuote() {
     setSubmitting(true);
     try {
       const webhookUrl = import.meta.env.VITE_SHEETS_WEBHOOK_URL;
+      console.log("[Sheets] webhookUrl =", webhookUrl);
       if (webhookUrl) {
+        console.log("[Sheets] sending...");
         await fetch(webhookUrl, {
           method: "POST",
           mode: "no-cors",
@@ -63,8 +65,9 @@ export default function GetAQuote() {
           }),
         });
       }
-    } catch (_) {
-      // silently continue — don't block success screen on network error
+      console.log("[Sheets] sent.");
+    } catch (err) {
+      console.error("[Sheets] error:", err);
     } finally {
       setSubmitting(false);
       setDirection(1);
