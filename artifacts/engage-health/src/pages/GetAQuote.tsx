@@ -67,6 +67,7 @@ export default function GetAQuote() {
           body: form,
         });
         console.log("[Sheets] sent.");
+      }
     } catch (err) {
       console.error("[Sheets] error:", err);
     } finally {
