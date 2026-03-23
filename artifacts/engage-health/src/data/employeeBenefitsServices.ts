@@ -35,6 +35,28 @@ export const employeeBenefitsServices: ServiceEntry[] = [
     },
   },
 
+  // ── Group Dental Insurance stub (page served by GroupDentalInsurance.tsx) ──
+  {
+    slug: 'group-dental-insurance',
+    title: 'Group Dental Insurance',
+    titleAccent: 'Dental Insurance',
+    tagline: 'UK Group Dental Insurance',
+    subtitle: 'Simple, cost-effective dental cover for your team.',
+    icon: Smile,
+    colorScheme: 'purple',
+    stats: [
+      { icon: Building2, val: '500+', label: 'Businesses supported' },
+      { icon: Globe2,    val: '70+',  label: 'Countries covered' },
+      { icon: Users,     val: '30+',  label: 'Years combined expertise' },
+      { icon: Trophy,    val: '3×',   label: 'UK award wins' },
+    ],
+    sections: [],
+    sidebarTestimonial: {
+      quote: 'Engage made the whole process incredibly straightforward and found us a competitive dental scheme.',
+      author: 'HR Manager, Professional Services · 45 employees',
+    },
+  },
+
   // ── Group Life Insurance ───────────────────────────────────────────────
   {
     slug: 'group-life-insurance',

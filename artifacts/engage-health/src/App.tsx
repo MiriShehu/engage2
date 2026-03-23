@@ -12,6 +12,7 @@ import TeamMemberProfile from "@/pages/TeamMemberProfile";
 import EmployeeBenefits from "@/pages/EmployeeBenefits";
 import InternationalBenefits from "@/pages/InternationalBenefits";
 import GroupHealthInsurance from "@/pages/GroupHealthInsurance";
+import GroupDentalInsurance from "@/pages/GroupDentalInsurance";
 import ServicePage from "@/pages/ServicePage";
 import { employeeBenefitsServices } from "@/data/employeeBenefitsServices";
 import { internationalBenefitsServices } from "@/data/internationalBenefitsServices";
@@ -53,6 +54,7 @@ function Router() {
       <Route path="/team/:slug" component={TeamMemberProfile} />
       <Route path="/employee-benefits" component={EmployeeBenefits} />
       <Route path="/employee-benefits/group-health-insurance" component={GroupHealthInsurance} />
+      <Route path="/employee-benefits/group-dental-insurance" component={GroupDentalInsurance} />
       <Route path="/employee-benefits/:slug">
         {() => <ServicePage category="employee-benefits" services={employeeBenefitsServices} />}
       </Route>
