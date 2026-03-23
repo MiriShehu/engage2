@@ -47,13 +47,28 @@ export default function GetAQuote() {
     setStep((s) => Math.max(s - 1, 1));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const webhookUrl = import.meta.env.VITE_SHEETS_WEBHOOK_URL;
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...formData,
+            coverTypes: formData.coverTypes.join(", "),
+            submittedAt: new Date().toISOString(),
+          }),
+        });
+      }
+    } catch (_) {
+      // silently continue — don't block success screen on network error
+    } finally {
       setSubmitting(false);
       setDirection(1);
       setStep(0); // success
-    }, 500);
+    }
   };
 
   return (
