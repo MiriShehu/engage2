@@ -204,9 +204,10 @@ export default function Step4Contact({
             <DialCodePicker value={dialCode} onChange={(v) => { onChange("dialCode", v); onChange("phone", ""); }} className="border-r border-border" />
             <input
               type="tel"
+              name="tel"
+              autoComplete="tel"
               value={phone}
               onChange={(e) => onChange("phone", e.target.value.replace(/[^\d\s\-().+]/g, ""))}
-              onKeyDown={(e) => { if (!/[\d\s\-().+Backspace\t]/.test(e.key) && !e.ctrlKey && !e.metaKey) e.preventDefault(); }}
               onBlur={() => touch("phone")}
               placeholder={placeholder}
               className="flex-1 px-5 py-3.5 text-[15px] font-medium text-foreground bg-transparent outline-none placeholder:text-muted-foreground/60 min-w-0"
