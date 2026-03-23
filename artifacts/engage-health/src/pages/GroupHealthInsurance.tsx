@@ -89,28 +89,28 @@ export default function GroupHealthInsurance() {
         {/* Acute vs Chronic */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-5 rounded-2xl bg-green-50 border border-green-200">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center">
                 <Check className="w-4 h-4 text-white" />
               </div>
               <h4 className="font-bold text-green-900 text-sm">Acute conditions</h4>
             </div>
-            <p className="text-green-800/80 text-xs leading-relaxed">
-              A condition that responds well to active treatment and where the patient can be returned quickly to their previous state of health — e.g. a fractured arm, hernia or cataracts.
+            <p className="text-green-800/80 text-sm leading-relaxed">
+              A condition that responds well to active treatment and where the patient can be returned quickly to their previous state of health, e.g. a fractured arm, hernia or cataracts.
             </p>
-            <p className="mt-2 text-xs font-bold text-green-700">✓ CAN be covered by medical insurance</p>
+            <p className="mt-3 text-sm font-bold text-green-700">✓ CAN be covered by medical insurance</p>
           </div>
           <div className="p-5 rounded-2xl bg-red-50 border border-red-200">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 rounded-lg bg-red-500 flex items-center justify-center">
                 <X className="w-4 h-4 text-white" />
               </div>
               <h4 className="font-bold text-red-900 text-sm">Chronic conditions</h4>
             </div>
-            <p className="text-red-800/80 text-xs leading-relaxed">
-              A condition which cannot be cured and does not improve through active treatment — e.g. asthma or Type 1 diabetes. These can typically only be "managed".
+            <p className="text-red-800/80 text-sm leading-relaxed">
+              A condition which cannot be cured and does not improve through active treatment, e.g. asthma or Type 1 diabetes. These can typically only be "managed".
             </p>
-            <p className="mt-2 text-xs font-bold text-red-700">✗ NOT covered by medical insurance</p>
+            <p className="mt-3 text-sm font-bold text-red-700">✗ NOT covered by medical insurance</p>
           </div>
         </div>
 
@@ -135,12 +135,12 @@ export default function GroupHealthInsurance() {
               { type: "Outpatient", desc: "Patient is not admitted nor occupies a bed (e.g. a scan)." },
             ].map((item) => (
                <div key={item.type} className="flex items-start gap-3">
-                 <span className="w-24 text-xs font-bold text-primary flex-shrink-0 mt-0.5">{item.type}</span>
-                 <span className="text-xs text-muted-foreground">{item.desc}</span>
+                 <span className="w-24 text-sm font-bold text-primary flex-shrink-0 mt-0.5">{item.type}</span>
+                 <span className="text-sm text-muted-foreground leading-relaxed">{item.desc}</span>
                </div>
             ))}
           </div>
-          <p className="mt-3 text-xs font-semibold text-primary">All three scenarios CAN be covered by a Group Health policy.</p>
+          <p className="mt-3 text-sm font-semibold text-primary">All three scenarios CAN be covered by a Group Health policy.</p>
         </div>
 
         {/* Add-ons */}
@@ -239,14 +239,14 @@ export default function GroupHealthInsurance() {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-5 rounded-2xl border-2 border-red-200 bg-red-50">
             <h4 className="font-bold text-red-900 text-sm mb-2">Option 1: Direct to the insurer</h4>
-            <p className="text-red-800/80 text-xs leading-relaxed">
-              You are talking directly to a sales advisor motivated to sell you their product. It's only further down the line that you might discover the deal isn't as great as first sounded — leading to a stressful and time-sapping experience for HR.
+            <p className="text-red-800/80 text-sm leading-relaxed">
+              You are talking directly to a sales advisor motivated to sell you their product. It's only further down the line that you might discover the deal isn't as great as first sounded, leading to a stressful and time-sapping experience for HR.
             </p>
           </div>
           <div className="p-5 rounded-2xl border-2 border-primary/20 bg-primary/5">
             <h4 className="font-bold text-secondary text-sm mb-2">Option 2: Independent broker ✓ Recommended</h4>
-            <p className="text-muted-foreground text-xs leading-relaxed">
-              A truly independent broker works for <em>you</em>, not the insurer. We have relationships with all insurance providers, know what deals are available, and can negotiate at speed — delivering deals unavailable to the public.
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              A truly independent broker works for <em>you</em>, not the insurer. We have relationships with all insurance providers, know what deals are available, and can negotiate at speed, delivering deals unavailable to the public.
             </p>
           </div>
         </div>
